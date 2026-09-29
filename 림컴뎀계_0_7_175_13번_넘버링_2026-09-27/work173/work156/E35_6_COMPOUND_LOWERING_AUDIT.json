@@ -1,0 +1,91 @@
+{
+  "version": "E35-6",
+  "input": 808,
+  "lowering_counts": {
+    "implemented": 2,
+    "partial": 80,
+    "none": 726
+  },
+  "examples": [
+    {
+      "clause": "이 효과로 스킬 1을 사용할 때 코인 효과로 자신이 얻는 진동 횟수가 1 증가하고, 해당 스킬의 마지막 코인 적중시 진동 폭발",
+      "rule": {
+        "rule_id": "e35_6:0",
+        "owner_id": "identity-10409",
+        "trigger": "event",
+        "conditions": [],
+        "target": {
+          "side": "self",
+          "selector": "self",
+          "count": 1,
+          "filters": {}
+        },
+        "effects": [
+          {
+            "kind": "status_effect",
+            "params": {
+              "status": "진동",
+              "amount": 1,
+              "primitive_id": "status_effect"
+            }
+          }
+        ],
+        "timing": "immediate",
+        "activation_limit": null,
+        "source_text": "이 효과로 스킬 1을 사용할 때 코인 효과로 자신이 얻는 진동 횟수가 1 증가하고, 해당 스킬의 마지막 코인 적중시 진동 폭발",
+        "dependencies": [],
+        "status": "implemented",
+        "activation_scope": "owner",
+        "metadata": {
+          "compiler": "E35-6",
+          "lowering": "compound_multi_node",
+          "unknown_fragments": [],
+          "fragment_count": 2,
+          "primitive_contracts": [
+            "status_effect"
+          ]
+        }
+      }
+    },
+    {
+      "clause": "전투 시작 시 꿰뚫는 검이 5일 경우, 대신 피해량 증가 2, 위력 증가 1 얻음",
+      "rule": {
+        "rule_id": "e35_6:1",
+        "owner_id": "identity-10913",
+        "trigger": "event",
+        "conditions": [],
+        "target": {
+          "side": "self",
+          "selector": "self",
+          "count": 1,
+          "filters": {}
+        },
+        "effects": [
+          {
+            "kind": "status_effect",
+            "params": {
+              "status": "위력",
+              "amount": 1,
+              "primitive_id": "status_effect"
+            }
+          }
+        ],
+        "timing": "immediate",
+        "activation_limit": null,
+        "source_text": "전투 시작 시 꿰뚫는 검이 5일 경우, 대신 피해량 증가 2, 위력 증가 1 얻음",
+        "dependencies": [],
+        "status": "implemented",
+        "activation_scope": "owner",
+        "metadata": {
+          "compiler": "E35-6",
+          "lowering": "compound_multi_node",
+          "unknown_fragments": [],
+          "fragment_count": 2,
+          "primitive_contracts": [
+            "status_effect"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "version": "0.6.47",
+  "source": "identity_catalog_v2.json",
+  "rule_count": 20,
+  "rules": [
+    {
+      "rule_id": "gimmick:5",
+      "owner_id": "identity-10210",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:7",
+      "owner_id": "identity-10210",
+      "event": "after_kill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "killer_id"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:8",
+      "owner_id": "identity-10210",
+      "event": "after_kill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "killer_id"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:9",
+      "owner_id": "identity-10215",
+      "event": "after_skill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "actual_damage_gt_zero"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:10",
+      "owner_id": "identity-10215",
+      "event": "after_skill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "target_died"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:14",
+      "owner_id": "identity-10216",
+      "event": "after_coin",
+      "effect_kinds": [
+        "status_potency_damage"
+      ],
+      "condition_ops": [
+        "skill_basic",
+        "actual_damage_gt_zero",
+        "coin_reuse",
+        "target_available"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:19",
+      "owner_id": "identity-10405",
+      "event": "after_kill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "killer_id"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:20",
+      "owner_id": "identity-10405",
+      "event": "after_kill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "killer_id"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:21",
+      "owner_id": "identity-10406",
+      "event": "after_coin",
+      "effect_kinds": [
+        "extra_damage_scale"
+      ],
+      "condition_ops": [
+        "final_ammo_coin"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:33",
+      "owner_id": "identity-10612",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:34",
+      "owner_id": "identity-10614",
+      "event": "after_skill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "actual_damage_gt_zero"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:35",
+      "owner_id": "identity-10614",
+      "event": "after_skill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "target_died"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:37",
+      "owner_id": "identity-10709",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:40",
+      "owner_id": "identity-10713",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:42",
+      "owner_id": "identity-10715",
+      "event": "after_skill",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "target_died",
+        "target_id_in"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:47",
+      "owner_id": "identity-10914",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:49",
+      "owner_id": "identity-10916",
+      "event": "battle_start",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:50",
+      "owner_id": "identity-10916",
+      "event": "after_clash",
+      "effect_kinds": [
+        "resource_consume"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource_gte"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:52",
+      "owner_id": "identity-11215",
+      "event": "resource_cumulative_consumed",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "owner_id",
+        "resource",
+        "cumulative_resource_crossed"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    },
+    {
+      "rule_id": "gimmick:55",
+      "owner_id": "identity-11216",
+      "event": "after_coin",
+      "effect_kinds": [
+        "resource_gain"
+      ],
+      "condition_ops": [
+        "skill_basic",
+        "actual_damage_gt_zero",
+        "has_status"
+      ],
+      "activation_scope": "global",
+      "golden_status": "verified"
+    }
+  ]
+}

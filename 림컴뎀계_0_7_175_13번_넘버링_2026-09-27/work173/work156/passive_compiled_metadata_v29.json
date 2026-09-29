@@ -1,0 +1,4358 @@
+[
+  {
+    "identity_id": "identity-10101",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "정보전달",
+    "rule_id": "identity-10101:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "조작 패널에서 자신의 뒤에 있는 아군 2명에게 피해량 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10101",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "정보중화",
+    "rule_id": "identity-10101:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 1명 이번 턴에 정신력이 감소한 경우 턴 종료 시 정신력 10 회복"
+  },
+  {
+    "identity_id": "identity-10102",
+    "identity_name": "남부 세븐 협회 6과",
+    "passive_id": null,
+    "passive_name": "관찰",
+    "rule_id": "identity-10102:p0:r0",
+    "trigger": "ClashStart",
+    "source_text": "합 진행 시 대상의 합 위력 -2"
+  },
+  {
+    "identity_id": "identity-10102",
+    "identity_name": "남부 세븐 협회 6과",
+    "passive_id": null,
+    "passive_name": "분석",
+    "rule_id": "identity-10102:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "최대 체력이 가장 높은 아군 1명 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10103",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "냉정",
+    "rule_id": "identity-10103:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 호흡 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10103",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "냉정",
+    "rule_id": "identity-10103:p1:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 호흡 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10103",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "냉정",
+    "rule_id": "identity-10103:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "호흡 횟수 5당 코인 위력 +1 (최대 3)"
+  },
+  {
+    "identity_id": "identity-10104",
+    "identity_name": "개화 E.G.O:: 동백",
+    "passive_id": null,
+    "passive_name": "만개",
+    "rule_id": "identity-10104:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "2명 이상을 공격할 때 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-10104",
+    "identity_name": "개화 E.G.O:: 동백",
+    "passive_id": null,
+    "passive_name": "알싸한 봄바람",
+    "rule_id": "identity-10104:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 낮은 아군 1명이 2명 이상을 공격할 때 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10106",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "정리 시범 교육",
+    "rule_id": "identity-10106:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "충전 횟수가 가장 높은 아군 1명이 파열이 있는 대상에게 가하는 피해량이 대상의 파열 에 비례하여 증가 (파열 1 당 1.5%. 최대 15%)"
+  },
+  {
+    "identity_id": "identity-10107",
+    "identity_name": "피쿼드호 일등 항해사",
+    "passive_id": null,
+    "passive_name": "일등 항해사의 작살",
+    "rule_id": "identity-10107:p0:r0",
+    "trigger": "HeadsHit",
+    "source_text": "크리티컬 적중 시 스킬로 부여하는 출혈 위력 +2 (턴 당 최대 6회)"
+  },
+  {
+    "identity_id": "identity-10107",
+    "identity_name": "피쿼드호 일등 항해사",
+    "passive_id": null,
+    "passive_name": "일등 항해사의 노련함",
+    "rule_id": "identity-10107:p1:r0",
+    "trigger": "HeadsHit",
+    "source_text": "호흡을 가장 많이 보유한 아군 1명이 크리티컬 적중 시 스킬로 부여하는 출혈 위력 +2 (턴 당 최대 6회)"
+  },
+  {
+    "identity_id": "identity-10108",
+    "identity_name": "남부 디에치 협회 4과",
+    "passive_id": null,
+    "passive_name": "가라앉는 지식",
+    "rule_id": "identity-10108:p0:r0",
+    "trigger": "Hit",
+    "source_text": "피격 시 공격자에게 침잠 1 부여 (최대 4회)"
+  },
+  {
+    "identity_id": "identity-10108",
+    "identity_name": "남부 디에치 협회 4과",
+    "passive_id": null,
+    "passive_name": "가라앉는 지식",
+    "rule_id": "identity-10108:p1:r0",
+    "trigger": "Hit",
+    "source_text": "피격 시 공격자에게 침잠 1 부여. 보호막이 있는 동안 피격 시 침잠 1 추가 부여 (최대 4회)"
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p0:r0",
+    "trigger": "Hit",
+    "source_text": "적중시 대상에게 출혈이 6 이상 있으면 정신력 2 회복."
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "대상이 보유한 부정적인 효과 1개당 정신력 1 추가 회복.(최대 3)"
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p0:r2",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과로 정신력 회복 시 자신의 정신력이 최대면, 다음 턴에 공격 레벨 증가 1 얻음."
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p2:r0",
+    "trigger": "Hit",
+    "source_text": "적중시 대상에게 출혈이 4 이상 있으면 정신력 2 회복."
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p2:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "대상이 보유한 부정적인 효과 1개당 정신력 1 추가 회복.(최대 3)"
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "과제평가",
+    "rule_id": "identity-10109:p2:r2",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과로 정신력 회복 시 자신의 정신력이 최대면, 다음 턴에 공격 레벨 증가 2 얻음."
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "미학견습",
+    "rule_id": "identity-10109:p3:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군이 공격 적중 시 대상이 보유한 부정적인 효과 1개당 정신력 2 회복.(최대 6)"
+  },
+  {
+    "identity_id": "identity-10109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "미학견습",
+    "rule_id": "identity-10109:p4:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군이 공격 적중 시 대상이 보유한 부정적인 효과 1개당 정신력 2 회복.(최대 6)"
+  },
+  {
+    "identity_id": "identity-10110",
+    "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+    "passive_id": null,
+    "passive_name": "쏘아라.쏘으리로다.",
+    "rule_id": "identity-10110:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "산나비·죽은나비를 얻으면, 다음 턴에 신속 2 얻음 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10110",
+    "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+    "passive_id": null,
+    "passive_name": "쏘아라.쏘으리로다.",
+    "rule_id": "identity-10110:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "산나비·죽은나비를 얻으면, 다음 턴에 신속 2 얻음 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10112",
+    "identity_name": "남부 리우 협회 3과",
+    "passive_id": null,
+    "passive_name": "내면의 열혈",
+    "rule_id": "identity-10112:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "회복 대상이 화상 위력이나 횟수를 부여하는 기본 스킬을 보유하고 있으면, 정신력 5 추가 회복"
+  },
+  {
+    "identity_id": "identity-10112",
+    "identity_name": "남부 리우 협회 3과",
+    "passive_id": null,
+    "passive_name": "내면의 열혈",
+    "rule_id": "identity-10112:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "회복 대상이 화상 위력이나 횟수를 부여하는 기본 스킬을 보유하고 있으면, 정신력 5 추가 회복"
+  },
+  {
+    "identity_id": "identity-10112",
+    "identity_name": "남부 리우 협회 3과",
+    "passive_id": null,
+    "passive_name": "리우 방진",
+    "rule_id": "identity-10112:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 2명이 이번 턴에 정신력이 감소한 경우 턴 종료 시 정신력 5 회복"
+  },
+  {
+    "identity_id": "identity-10112",
+    "identity_name": "남부 리우 협회 3과",
+    "passive_id": null,
+    "passive_name": "리우 방진",
+    "rule_id": "identity-10112:p3:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 2명이 이번 턴에 정신력이 감소한 경우 턴 종료 시 정신력 5 회복"
+  },
+  {
+    "identity_id": "identity-10114",
+    "identity_name": "흑수 - 오 필두",
+    "passive_id": null,
+    "passive_name": "구마지심 [狗馬之心]",
+    "rule_id": "identity-10114:p1:r4",
+    "trigger": "TurnStart",
+    "source_text": "턴 시작 시 가주 후보 이스마엘에게 공격 위력 증가 1 부여. 이스마엘의 호흡 위력이 10 이상이면, 공격 위력 증가 1 추가 부여"
+  },
+  {
+    "identity_id": "identity-10114",
+    "identity_name": "흑수 - 오 필두",
+    "passive_id": null,
+    "passive_name": "필두선봉",
+    "rule_id": "identity-10114:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "호령 부여 시 이번 턴과 다음 턴에 공격 레벨 증가 3 얻음"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "모조된 삶",
+    "rule_id": "identity-10115:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 지령의 가호 1당 지령 표식 스킬 피해량 +2% (최대 16%)"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "모조된 삶",
+    "rule_id": "identity-10115:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "지령의 가호가 9일 경우, 대신 기본 스킬의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "신탁 대행자 / 해금",
+    "rule_id": "identity-10115:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 정신력 4 회복, 지령의 가호 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "신탁 대행자 / 해금",
+    "rule_id": "identity-10115:p2:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "대신 정신력 8 회복, 지령의 가호 3 얻음"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "신탁 대행자 / 해금",
+    "rule_id": "identity-10115:p2:r5",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 정신력 4 회복 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "신탁 대행자 / 해금",
+    "rule_id": "identity-10115:p2:r7",
+    "trigger": "BeforeAttack",
+    "source_text": "대신 정신력 8 회복, 지령의 가호 3 얻음"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "모조된 삶",
+    "rule_id": "identity-10115:p6:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 지령의 가호 1당 지령 표식 스킬 피해량 +2% (최대 16%)"
+  },
+  {
+    "identity_id": "identity-10115",
+    "identity_name": "거미집 검지 아비",
+    "passive_id": null,
+    "passive_name": "모조된 삶",
+    "rule_id": "identity-10115:p6:r1",
+    "trigger": "CoinHit",
+    "source_text": "지령의 가호가 9일 경우, 대신 기본 스킬의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10116",
+    "identity_name": "LCE E.G.O::차원찢개",
+    "passive_id": null,
+    "passive_name": "사람은광선보다도빠르게달아나라",
+    "rule_id": "identity-10116:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "속도가 가장 빠른 아군 1명이 충전 횟수를 소모하거나 얻는 스킬 사용시, 다음 턴에 신속 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10201",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "분석",
+    "rule_id": "identity-10201:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "부정적인 효과가 걸려있는 대상에게 가하는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10202",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "자가충전",
+    "rule_id": "identity-10202:p0:r0",
+    "trigger": "AttackEnd",
+    "source_text": "공격 종료 시 충전 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10202",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "자가충전",
+    "rule_id": "identity-10202:p1:r0",
+    "trigger": "AttackEnd",
+    "source_text": "공격 종료 시 충전 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10202",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "자가충전",
+    "rule_id": "identity-10202:p1:r1",
+    "trigger": "AttackEnd",
+    "source_text": "공격 종료 시 무작위 아군의 충전 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10203",
+    "identity_name": "살아남은 로보토미 직원",
+    "passive_id": null,
+    "passive_name": "지지",
+    "rule_id": "identity-10203:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "최대 체력이 가장 낮은 아군 1명 수비 스킬의 최종 위력 +2"
+  },
+  {
+    "identity_id": "identity-10204",
+    "identity_name": "쥐는 자",
+    "passive_id": null,
+    "passive_name": "휘파람",
+    "rule_id": "identity-10204:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 2명의 정신력 15 회복."
+  },
+  {
+    "identity_id": "identity-10204",
+    "identity_name": "쥐는 자",
+    "passive_id": null,
+    "passive_name": "휘파람",
+    "rule_id": "identity-10204:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 2명의 정신력 15 회복."
+  },
+  {
+    "identity_id": "identity-10204",
+    "identity_name": "쥐는 자",
+    "passive_id": null,
+    "passive_name": "속삭임",
+    "rule_id": "identity-10204:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 1명의 정신력 15 회복."
+  },
+  {
+    "identity_id": "identity-10204",
+    "identity_name": "쥐는 자",
+    "passive_id": null,
+    "passive_name": "속삭임",
+    "rule_id": "identity-10204:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 1명의 정신력 15 회복."
+  },
+  {
+    "identity_id": "identity-10206",
+    "identity_name": "남부 세븐 협회 4과",
+    "passive_id": null,
+    "passive_name": "세븐 협회의 티타임",
+    "rule_id": "identity-10206:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "(파열 1 당 1.5%. 최대 15%)"
+  },
+  {
+    "identity_id": "identity-10206",
+    "identity_name": "남부 세븐 협회 4과",
+    "passive_id": null,
+    "passive_name": "세븐 협회의 티타임",
+    "rule_id": "identity-10206:p2:r1",
+    "trigger": "CoinHit",
+    "source_text": "(파열 1 당 1.5%. 최대 15%)"
+  },
+  {
+    "identity_id": "identity-10206",
+    "identity_name": "남부 세븐 협회 4과",
+    "passive_id": null,
+    "passive_name": "세븐 협회의 티타임",
+    "rule_id": "identity-10206:p2:r3",
+    "trigger": "CoinHit",
+    "source_text": "(파열 1 당 0.5%. 최대 5%)"
+  },
+  {
+    "identity_id": "identity-10207",
+    "identity_name": "로보토미 E.G.O:: 후회",
+    "passive_id": null,
+    "passive_name": "떠밀린 후회",
+    "rule_id": "identity-10207:p0:r0",
+    "trigger": "ClashStart",
+    "source_text": "합 진행 시 대상이 보유한 부정적인 효과가 3개 이상이면, 대상의 합 위력 -1"
+  },
+  {
+    "identity_id": "identity-10207",
+    "identity_name": "로보토미 E.G.O:: 후회",
+    "passive_id": null,
+    "passive_name": "떠밀린 후회",
+    "rule_id": "identity-10207:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "자신이 생존해있을 때, 진동 폭발을 당하는 적이 방어 레벨 감소 2를 얻음. (턴 당 적 1명당 최대 1회)"
+  },
+  {
+    "identity_id": "identity-10207",
+    "identity_name": "로보토미 E.G.O:: 후회",
+    "passive_id": null,
+    "passive_name": "떠밀린 후회",
+    "rule_id": "identity-10207:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "합 진행 시 대상이 보유한 부정적인 효과 3개 당 대상의 합 위력 -1 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10207",
+    "identity_name": "로보토미 E.G.O:: 후회",
+    "passive_id": null,
+    "passive_name": "떠밀린 후회",
+    "rule_id": "identity-10207:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "자신이 생존해있을 때, 진동 폭발을 당하는 적이 방어 레벨 감소 2를 얻음 (턴 당 적 1명당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-10207",
+    "identity_name": "로보토미 E.G.O:: 후회",
+    "passive_id": null,
+    "passive_name": "억압 작업",
+    "rule_id": "identity-10207:p2:r0",
+    "trigger": "ClashStart",
+    "source_text": "속도가 가장 느린 아군 1명이 합 진행 시 대상이 보유한 부정적인 효과가 3개 이상이면, 대상의 합 위력 -1"
+  },
+  {
+    "identity_id": "identity-10208",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "매화 같이 터져나오는 피",
+    "rule_id": "identity-10208:p1:r0",
+    "trigger": "HeadsHit",
+    "source_text": "크리티컬 적중 시 홍매화 1 부여. 대상의 홍매화가 10이면, 대신 방어 레벨 감소 1 부여 (최대 6회)"
+  },
+  {
+    "identity_id": "identity-10208",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "미련 서린 검끝",
+    "rule_id": "identity-10208:p2:r0",
+    "trigger": "Hit",
+    "source_text": "편성 순서가 가장 빠른 아군이 참격 속성 스킬로 크리티컬 적중 시 방어 레벨 감소 1 부여 (턴 당 적 1명당 최대 3)"
+  },
+  {
+    "identity_id": "identity-10209",
+    "identity_name": "워더링하이츠 버틀러",
+    "passive_id": null,
+    "passive_name": "버틀러식 대응",
+    "rule_id": "identity-10209:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 대상에게 침잠 1 부여 (턴 당 3회)"
+  },
+  {
+    "identity_id": "identity-10209",
+    "identity_name": "워더링하이츠 버틀러",
+    "passive_id": null,
+    "passive_name": "버틀러식 대응",
+    "rule_id": "identity-10209:p1:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 대상에게 침잠 1 부여 (턴 당 3회)"
+  },
+  {
+    "identity_id": "identity-10209",
+    "identity_name": "워더링하이츠 버틀러",
+    "passive_id": null,
+    "passive_name": "그 날을 위한 훈련",
+    "rule_id": "identity-10209:p2:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군 1명이 침잠이 5 이상 부여된 대상에게 공격 적중 시 자신의 정신력 2 회복 (턴 당 4회)"
+  },
+  {
+    "identity_id": "identity-10209",
+    "identity_name": "워더링하이츠 버틀러",
+    "passive_id": null,
+    "passive_name": "그 날을 위한 훈련",
+    "rule_id": "identity-10209:p3:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군 1명이 침잠이 5 이상 부여된 대상에게 공격 적중 시 자신의 정신력 3 회복 (턴 당 4회)"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전류 해체",
+    "rule_id": "identity-10210:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전류 해체",
+    "rule_id": "identity-10210:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "충전이 2 이상이면, 피해량이 (충전 x 3)%만큼 증가 (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전류 해체",
+    "rule_id": "identity-10210:p1:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전류 해체",
+    "rule_id": "identity-10210:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "충전이 2 이상이면, 피해량이 (충전 x 3)%만큼 증가 (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전류 해체",
+    "rule_id": "identity-10210:p1:r2",
+    "trigger": "CoinHit",
+    "source_text": "대상의 체력이 50% 미만이면 (충전 x 5)%만큼 추가로 증가 (최대 25%)"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "해체 보조 전류",
+    "rule_id": "identity-10210:p2:r0",
+    "trigger": "OnKill",
+    "source_text": "충전 횟수가 가장 낮은 아군 1명이 적 처치 시 충전 횟수 2 증가 (턴 당 1회, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)"
+  },
+  {
+    "identity_id": "identity-10210",
+    "identity_name": "멀티크랙 사무소 대표",
+    "passive_id": null,
+    "passive_name": "해체 보조 전류",
+    "rule_id": "identity-10210:p3:r0",
+    "trigger": "OnKill",
+    "source_text": "충전 횟수가 가장 낮은 아군 1명이 적 처치 시 충전 횟수 3 증가 (턴 당 1회, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "불나방",
+    "rule_id": "identity-10211:p1:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신의 화상 6당, 다음 턴에 공격 레벨 증가 1 얻음 (최대 5)"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "불나방",
+    "rule_id": "identity-10211:p1:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "모든 적에게 화상 2 부여. 자신의 화상을 나누어 부여 (1명당 최대 3)"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "불나방",
+    "rule_id": "identity-10211:p1:r6",
+    "trigger": "BeforeAttack",
+    "source_text": "모든 적에게 화상 3 부여. 자신의 화상을 나누어 부여 (1명당 최대 5)"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "불나방",
+    "rule_id": "identity-10211:p1:r8",
+    "trigger": "CoinHit",
+    "source_text": "자신의 화상이 30 이상이었으면, 대기 해제되는 인원 1명에게 공격 레벨 증가 3 부여"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "잔열",
+    "rule_id": "identity-10211:p2:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군 1명이 기본 스킬의 적중시 효과로 화상을 부여할 때 화상 2 추가 부여 (최대 3회 발동)"
+  },
+  {
+    "identity_id": "identity-10211",
+    "identity_name": "LCE E.G.O:: 홍염살",
+    "passive_id": null,
+    "passive_name": "잔열",
+    "rule_id": "identity-10211:p2:r1",
+    "trigger": "Hit",
+    "source_text": "피격 대상의 화상이 30 이상이면, 대신 화상 횟수 1 증가 (최대 3회 발동)"
+  },
+  {
+    "identity_id": "identity-10212",
+    "identity_name": "흑수 - 묘 필두",
+    "passive_id": null,
+    "passive_name": "흑수화[묘] / 묘 필두",
+    "rule_id": "identity-10212:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 속도가 대상보다 빠르면, 속도 차이 1 당 가하는 피해량 +2% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-10212",
+    "identity_name": "흑수 - 묘 필두",
+    "passive_id": null,
+    "passive_name": "쾌도",
+    "rule_id": "identity-10212:p3:r0",
+    "trigger": "TurnEnd",
+    "source_text": "속도가 가장 빠른 아군이 파열 피해를 입히면, 다음 턴에 공격 레벨 증가 1 얻음 (턴 당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "시노유미",
+    "rule_id": "identity-10213:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "자신의 화살 - 시가 4면, 기본 공격 스킬 효과로 호흡 위력을 얻을 때, 호흡 횟수 1 증가 (전투당 2회, 화살 - 시가 3이 될 때 발동 횟수 초기화)"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "시노유미",
+    "rule_id": "identity-10213:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "목표 조준이 2 이상일 때 ‘섬궁’을 사용했으면, 다음 턴에 참격 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "저격 - 활",
+    "rule_id": "identity-10213:p1:r4",
+    "trigger": "CoinHit",
+    "source_text": "스킬 1: 기본 위력 +1, 피해량 +11%"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "저격 - 활",
+    "rule_id": "identity-10213:p1:r5",
+    "trigger": "CoinHit",
+    "source_text": "스킬 2: 기본 위력 +1, 코인 위력 +1, 피해량 +22%"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "저격 - 활",
+    "rule_id": "identity-10213:p1:r6",
+    "trigger": "CoinHit",
+    "source_text": "스킬 3: 기본 위력 +4, 코인 위력 +4, 피해량 +44%"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "시노유미",
+    "rule_id": "identity-10213:p2:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "자신의 화살 - 시가 4면, 기본 공격 스킬 효과로 호흡 위력을 얻을 때, 호흡 횟수 1 증가 (전투당 3회, 화살 - 시가 3이 될 때 발동 횟수 초기화)"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "시노유미",
+    "rule_id": "identity-10213:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "목표 조준이 2 이상일 때 ‘섬궁’을 사용했으면, 다음 턴에 참격 피해량 증가 2 얻음"
+  },
+  {
+    "identity_id": "identity-10213",
+    "identity_name": "동부 시 협회 3과",
+    "passive_id": null,
+    "passive_name": "한점 노리기",
+    "rule_id": "identity-10213:p3:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 전투 중 스킬 및 패시브로 적에게 출혈 위력을 가장 많이 부여한 아군 1명에게 다음 턴에 관통 피해량 증가 1 부여 (E.G.O스킬 포함, 출혈 부여량이 동일하다면 편성 순서가 빠른 순으로 결정함, 해당 턴에 출혈 위력을 부여하지 않았다면 발동하지 않음)"
+  },
+  {
+    "identity_id": "identity-10214",
+    "identity_name": "검지 수행자: 【쪽지】",
+    "passive_id": null,
+    "passive_name": "수행자의 검",
+    "rule_id": "identity-10214:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 지령의 가호 1당 지령 표식 스킬 피해량 +2% (최대 16%)"
+  },
+  {
+    "identity_id": "identity-10214",
+    "identity_name": "검지 수행자: 【쪽지】",
+    "passive_id": null,
+    "passive_name": "수행자의 검",
+    "rule_id": "identity-10214:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "지령의 가호가 9면, 대신 기본 스킬 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10214",
+    "identity_name": "검지 수행자: 【쪽지】",
+    "passive_id": null,
+    "passive_name": "수행자의 검",
+    "rule_id": "identity-10214:p0:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "호흡 1 얻고 침잠 1 부여 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10214",
+    "identity_name": "검지 수행자: 【쪽지】",
+    "passive_id": null,
+    "passive_name": "지령의 뜻",
+    "rule_id": "identity-10214:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 정신력 4 회복, 지령의 가호 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10214",
+    "identity_name": "검지 수행자: 【쪽지】",
+    "passive_id": null,
+    "passive_name": "지령의 뜻",
+    "rule_id": "identity-10214:p2:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "대신 정신력 8 회복, 지령의 가호 3 얻음"
+  },
+  {
+    "identity_id": "identity-10215",
+    "identity_name": "거미집 약지 제자",
+    "passive_id": null,
+    "passive_name": "크리틱으로부터의 영감",
+    "rule_id": "identity-10215:p1:r1",
+    "trigger": "AttackEnd",
+    "source_text": "공격 적중 시 해당 공격 스킬로 부정적인 효과를 부여했으면, 공격 종료 시 자신의 정신력 4 회복 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10215",
+    "identity_name": "거미집 약지 제자",
+    "passive_id": null,
+    "passive_name": "크리틱으로부터의 영감",
+    "rule_id": "identity-10215:p2:r1",
+    "trigger": "AttackEnd",
+    "source_text": "공격 적중 시 해당 공격 스킬로 부정적인 효과를 부여했으면, 공격 종료 시 자신의 정신력 4 회복 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10215",
+    "identity_name": "거미집 약지 제자",
+    "passive_id": null,
+    "passive_name": "크리틱으로부터의 영감",
+    "rule_id": "identity-10215:p2:r2",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과로 정신력 회복 시 자신의 정신력이 최대면, 다음 턴에 참격 피해량 증가 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10215",
+    "identity_name": "거미집 약지 제자",
+    "passive_id": null,
+    "passive_name": "아이언메이든 - 가시",
+    "rule_id": "identity-10215:p4:r0",
+    "trigger": "Hit",
+    "source_text": "이번 턴에 수비 스킬을 장착한 아군이 피격 시 공격자에게 출혈 4 부여 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10215",
+    "identity_name": "거미집 약지 제자",
+    "passive_id": null,
+    "passive_name": "아이언메이든 - 가시",
+    "rule_id": "identity-10215:p4:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "이미 출혈이 있으면, 대신 공격자의 출혈 횟수 2 증가"
+  },
+  {
+    "identity_id": "identity-10216",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "단열 코트",
+    "rule_id": "identity-10216:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "화상 효과로 받는 피해량 -50% (소수점 버림)"
+  },
+  {
+    "identity_id": "identity-10216",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "단열 코트",
+    "rule_id": "identity-10216:p0:r3",
+    "trigger": "CoinHit",
+    "source_text": "체력이 50% 미만이면 효과가 강화되어, 화상 효과로 받는 피해량 -75% (소수점 버림)"
+  },
+  {
+    "identity_id": "identity-10216",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "고독한 해결사",
+    "rule_id": "identity-10216:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 생존한 인격이 대기 인원을 전부 포함하여 1명이면, 해당 인격이 공격 레벨 증가 3, 방어 레벨 증가 3 얻음"
+  },
+  {
+    "identity_id": "identity-10301",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "정의의 응징",
+    "rule_id": "identity-10301:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 해당 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10301",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "응원",
+    "rule_id": "identity-10301:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명 관통 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10302",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "꺾인 마음",
+    "rule_id": "identity-10302:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 높은 아군 1명 첫번째 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10303",
+    "identity_name": "남부 시 협회 5과 부장",
+    "passive_id": null,
+    "passive_name": "양단",
+    "rule_id": "identity-10303:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 높은 아군 1명 참격 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10304",
+    "identity_name": "N사 중간 망치",
+    "passive_id": null,
+    "passive_name": "맹목의 망치",
+    "rule_id": "identity-10304:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "광신 이 있는 아군 중 정신력이 가장 낮은 아군의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10305",
+    "identity_name": "남부 섕크 협회 5과 부장",
+    "passive_id": null,
+    "passive_name": "고귀한 결투",
+    "rule_id": "identity-10305:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "모든 아군의 속도가 모든 적보다 높으면, 자신의 피해량이 속도가 가장 느린 적과의 속도 차이에 비례하여 증가 (속도 차이 1 당 6%. 최대 30%)"
+  },
+  {
+    "identity_id": "identity-10305",
+    "identity_name": "남부 섕크 협회 5과 부장",
+    "passive_id": null,
+    "passive_name": "결투 의뢰",
+    "rule_id": "identity-10305:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "모든 아군의 속도가 모든 적보다 높으면, 속도가 가장 빠른 아군의 피해량이 속도가 가장 느린 적과의 속도 차이에 비례하여 증가 (속도 차이 1 당 3%. 최대 15%)"
+  },
+  {
+    "identity_id": "identity-10306",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "원한 문신",
+    "rule_id": "identity-10306:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "자신을 포함한 아군이 3번 피격당할 때마다 다음 턴에 질투 피해량 증가 1을 얻음. (최대 5)"
+  },
+  {
+    "identity_id": "identity-10306",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "원한 문신",
+    "rule_id": "identity-10306:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "자신을 포함한 아군이 3번 피격당할 때마다 다음 턴에 질투 피해량 증가 1을 얻음. (최대 5)"
+  },
+  {
+    "identity_id": "identity-10306",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "편 가르기",
+    "rule_id": "identity-10306:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "최대 체력이 가장 낮은 아군 1명이 자신을 제외한 아군의 피격 횟수 6회마다 다음 턴에 타격 피해량 증가 1을 얻음. (최대 2)"
+  },
+  {
+    "identity_id": "identity-10307",
+    "identity_name": "로보토미 E.G.O:: 초롱",
+    "passive_id": null,
+    "passive_name": "잘근잘근 냠냠",
+    "rule_id": "identity-10307:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 스킬 슬롯에 도발치가 있을 때 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10307",
+    "identity_name": "로보토미 E.G.O:: 초롱",
+    "passive_id": null,
+    "passive_name": "잘근잘근 냠냠",
+    "rule_id": "identity-10307:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 스킬 슬롯에 도발치가 있을 때 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10308",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "밤 산책",
+    "rule_id": "identity-10308:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "호흡을 가장 적게 보유한 아군 1명이 자신의 스킬, 코인 효과로 호흡 위력을 얻을 때 얻는 호흡 위력 +1 (최대 2회. 호흡이 없는 대상에게는 적용되지 않음)"
+  },
+  {
+    "identity_id": "identity-10308",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "밤 산책",
+    "rule_id": "identity-10308:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "호흡을 가장 적게 보유한 아군 1명이 자신의 스킬, 코인 효과로 호흡 위력을 얻을 때 얻는 호흡 위력 +2 (최대 2회. 호흡이 없는 대상에게는 적용되지 않음)"
+  },
+  {
+    "identity_id": "identity-10309",
+    "identity_name": "T사 3등급 징수직 직원",
+    "passive_id": null,
+    "passive_name": "T사식 물리왜곡장",
+    "rule_id": "identity-10309:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 느린 아군 1명이 진동이 부여된 적에게 피해를 받을 때, 받는 피해량 -10%"
+  },
+  {
+    "identity_id": "identity-10310",
+    "identity_name": "라만차랜드 실장",
+    "passive_id": null,
+    "passive_name": "혈갑",
+    "rule_id": "identity-10310:p3:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 잃은 체력 15%당 다음 턴에 피해량 증가 1 얻음. (최대 3)"
+  },
+  {
+    "identity_id": "identity-10310",
+    "identity_name": "라만차랜드 실장",
+    "passive_id": null,
+    "passive_name": "‘가족들이여 억눌러온 허기를 채워라’",
+    "rule_id": "identity-10310:p4:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 체력이 가장 적은 아군이 잃은 체력 20%당 피해량 증가 1 얻음. (최대 3)"
+  },
+  {
+    "identity_id": "identity-10310",
+    "identity_name": "라만차랜드 실장",
+    "passive_id": null,
+    "passive_name": "‘가족들이여 억눌러온 허기를 채워라’",
+    "rule_id": "identity-10310:p4:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상 아군이 면, 효과를 대신하여 잃은 체력 15%당 피해량 증가 1 얻음. (최대 3)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "초염옥구",
+    "rule_id": "identity-10311:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신의 호흡 위력 5당, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "초염옥구",
+    "rule_id": "identity-10311:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "크리티컬 피해량 +(대상의 화상 위력)% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "",
+    "rule_id": "identity-10311:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신의 호흡 위력 3 당, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "",
+    "rule_id": "identity-10311:p1:r2",
+    "trigger": "CoinHit",
+    "source_text": "크리티컬 피해량 +(대상의 화상 위력)% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "초염옥구",
+    "rule_id": "identity-10311:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신의 호흡 위력 3당, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10311",
+    "identity_name": "동부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "초염옥구",
+    "rule_id": "identity-10311:p2:r2",
+    "trigger": "CoinHit",
+    "source_text": "크리티컬 피해량 +(대상의 화상 위력)% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10312",
+    "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+    "passive_id": null,
+    "passive_name": "사랑의 마법소녀 / 증오의 여왕",
+    "rule_id": "identity-10312:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "사랑/증오당, 피해량 +2% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-10312",
+    "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+    "passive_id": null,
+    "passive_name": "사랑의 마법소녀 / 증오의 여왕",
+    "rule_id": "identity-10312:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "사랑/증오당, 피해량 +2% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 파열과 침잠의 합 2당 피해량 +1% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 발각[發角]이 있으면, 적을 공격할 때 기본 스킬 마지막 코인의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p0:r3",
+    "trigger": "CoinHit",
+    "source_text": "수비 스킬을 장착한 스킬 슬롯 공격 시, 대신 마지막 코인의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p0:r4",
+    "trigger": "ClashStart",
+    "source_text": "합 가능 수비 스킬과 합 진행 시, 추가로 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "망양지탄 [亡羊之嘆]",
+    "rule_id": "identity-10313:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "스킬로 파열 위력 또는 횟수 부여 시, 침잠 1 부여 (턴당 3회)"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 정신력이 0 미만이면, 피해량이 (-대상의 정신력/3)%만큼 증가 (최대 15%, 소수점 버림)"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p2:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상의 파열과 침잠의 합 2당 피해량 +1% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p2:r3",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 발각[發角]이 있으면, 적을 공격할 때 기본 스킬 마지막 코인의 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p2:r4",
+    "trigger": "CoinHit",
+    "source_text": "수비 스킬을 장착한 스킬 슬롯 공격 시, 대신 마지막 코인의 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "발파각쇄",
+    "rule_id": "identity-10313:p2:r5",
+    "trigger": "ClashStart",
+    "source_text": "합 가능 수비 스킬과 합 진행 시, 추가로 합 위력 +3"
+  },
+  {
+    "identity_id": "identity-10313",
+    "identity_name": "흑수 - 미",
+    "passive_id": null,
+    "passive_name": "살을 뚫고 자라나는 뿔",
+    "rule_id": "identity-10313:p3:r0",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 빠른 아군이 파열 횟수 또는 침잠 횟수를 2 이상 보유한 적에게 기본 공격 스킬 적중 시, 방어 레벨 감소 1 부여 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "역시 마법의 삐삐님은 본인이 원하는 걸 알아주시는 군!",
+    "rule_id": "identity-10314:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 지령의 가호 1당 지령 표식 스킬 피해량 +2% (최대 16%)"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "역시 마법의 삐삐님은 본인이 원하는 걸 알아주시는 군!",
+    "rule_id": "identity-10314:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "지령의 가호가 9면, 대신 기본 스킬의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "역시 마법의 삐삐님은 본인이 원하는 걸 알아주시는 군!",
+    "rule_id": "identity-10314:p0:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "정신력 3 회복 (스킬당 1회, 턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "지령의 뜻",
+    "rule_id": "identity-10314:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 정신력 4 회복, 지령의 가호 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "지령의 뜻",
+    "rule_id": "identity-10314:p2:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "대신 정신력 8 회복, 지령의 가호 3 얻음"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "이 또한 마법의 삐삐님의 은혜일테지",
+    "rule_id": "identity-10314:p4:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시, 정신력이 가장 낮은 아군 1명의 정신력 15 회복"
+  },
+  {
+    "identity_id": "identity-10314",
+    "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+    "passive_id": null,
+    "passive_name": "이 또한 마법의 삐삐님의 은혜일테지",
+    "rule_id": "identity-10314:p4:r2",
+    "trigger": "CoinHit",
+    "source_text": "대상이 검지 소속이면 효과가 강화되어 추가로 피해량 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10401",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "무차별적 예술",
+    "rule_id": "identity-10401:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신이 받는 피해량 +25%. 가하는 피해량 +25%"
+  },
+  {
+    "identity_id": "identity-10401",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "등떠밀기",
+    "rule_id": "identity-10401:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "최대 체력이 가장 낮은 아군 1명 가하는 피해량 +20%, 받는 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10402",
+    "identity_name": "남부 세븐 협회 6과",
+    "passive_id": null,
+    "passive_name": "반.갈",
+    "rule_id": "identity-10402:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "이번 턴 참격 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10405",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "차원 마검",
+    "rule_id": "identity-10405:p0:r0",
+    "trigger": "OnKill",
+    "source_text": "적 처치 시 충전 횟수 2 증가 (턴 당 최대 3회 발동)"
+  },
+  {
+    "identity_id": "identity-10405",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "차원 마검",
+    "rule_id": "identity-10405:p1:r0",
+    "trigger": "OnKill",
+    "source_text": "적 처치 시 충전 횟수 3 증가 (턴 당 최대 3회 발동)"
+  },
+  {
+    "identity_id": "identity-10405",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "차원 굴절 칼날 - Type: Blade Mk7",
+    "rule_id": "identity-10405:p2:r0",
+    "trigger": "OnKill",
+    "source_text": "최대 체력이 가장 낮은 아군 1명이 적 처치 시 충전 횟수 2 증가 (턴 당 최대 1회 발동)"
+  },
+  {
+    "identity_id": "identity-10405",
+    "identity_name": "W사 3등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "차원 굴절 칼날 - Type: Blade Mk7",
+    "rule_id": "identity-10405:p3:r0",
+    "trigger": "OnKill",
+    "source_text": "최대 체력이 가장 낮은 아군 1명이 적 처치 시 충전 횟수 3 증가 (턴 당 최대 1회 발동)"
+  },
+  {
+    "identity_id": "identity-10406",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "담.탐",
+    "rule_id": "identity-10406:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신에게 호흡이 7 이상 있으면, 정신력 8 회복."
+  },
+  {
+    "identity_id": "identity-10406",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "담.탐",
+    "rule_id": "identity-10406:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "상시 적용 : 탄환 7개 보유"
+  },
+  {
+    "identity_id": "identity-10406",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "담.탐",
+    "rule_id": "identity-10406:p1:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신에게 호흡이 7 이상 있으면, 정신력 8 회복."
+  },
+  {
+    "identity_id": "identity-10406",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "담.탐",
+    "rule_id": "identity-10406:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "상시 적용 : 탄환 7개 보유"
+  },
+  {
+    "identity_id": "identity-10406",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "담.탐",
+    "rule_id": "identity-10406:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신에게 호흡이 7 이상 있으면, 정신력 8 회복."
+  },
+  {
+    "identity_id": "identity-10407",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "화전",
+    "rule_id": "identity-10407:p0:r0",
+    "trigger": "OnKill",
+    "source_text": "자신이 화상이 부여된 적 처치 시 화상이 없거나 화상 위력이 가장 낮은 무작위 적 1명에게 화상 4 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10407",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "화전",
+    "rule_id": "identity-10407:p1:r0",
+    "trigger": "OnKill",
+    "source_text": "자신이 화상이 부여된 적 처치 시 화상이 없거나 화상 위력이 가장 낮은 무작위 적 2명에게 화상 4 부여 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-10407",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "전화",
+    "rule_id": "identity-10407:p2:r0",
+    "trigger": "OnKill",
+    "source_text": "속도가 가장 느린 아군 1명이 화상이 부여된 적 처치 시 무작위 적 1명에게 화상 3 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10407",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "전화",
+    "rule_id": "identity-10407:p3:r0",
+    "trigger": "OnKill",
+    "source_text": "속도가 가장 느린 아군 1명이 화상이 부여된 적 처치 시 무작위 적 2명에게 화상 3 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "집안일 끝내기",
+    "rule_id": "identity-10408:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "버.표가 있는 대상에게 공격 적중 시 다음 턴에 신속 1 얻음 (턴 당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "집안일 끝내기",
+    "rule_id": "identity-10408:p0:r1",
+    "trigger": "HeadsHit",
+    "source_text": "버.표가 있는 대상에게 크리티컬 적중 시 대상의 버.표를 제거하고, 대상의 속도가 자신보다 느리면, 대상과의 속도 차이 1 당 크리티컬 피해량 +5% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "집안일 끝내기",
+    "rule_id": "identity-10408:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "버.표가 있는 대상에게 공격 적중 시 호흡 횟수 1 증가, 다음 턴에 신속 1 얻음 (턴 당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "집안일 끝내기",
+    "rule_id": "identity-10408:p1:r1",
+    "trigger": "HeadsHit",
+    "source_text": "버.표가 있는 대상에게 크리티컬 적중 시 대상의 버.표를 제거하고, 대상의 속도가 자신보다 느리면, 대상과의 속도 차이 1 당 크리티컬 피해량 +10% (최대 60%)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "청소 지휘",
+    "rule_id": "identity-10408:p2:r0",
+    "trigger": "ClashWin",
+    "source_text": "편성 순서가 가장 뒤인 아군 1명이 합 승리 시 호흡 횟수 1 증가 (턴 당 3회)"
+  },
+  {
+    "identity_id": "identity-10408",
+    "identity_name": "에드가 가문 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "청소 지휘",
+    "rule_id": "identity-10408:p3:r0",
+    "trigger": "TurnEnd",
+    "source_text": "편성 순서가 가장 뒤인 아군 1명이 합 승리 시 호흡 횟수 1 증가 (턴 당 3회), 다음 턴에 신속 1 얻음 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "피해량이 (적안/2)%만큼 증가"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p0:r4",
+    "trigger": "BeforeAttack",
+    "source_text": "피해량이 (참회/2)%만큼 증가"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p2:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "피해량이 (적안/2)%만큼 증가"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p2:r2",
+    "trigger": "BeforeAttack",
+    "source_text": "대상의 속도가 자신보다 3 이상 낮으면, 피해량이 (적안/2)%만큼 추가로 증가"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p2:r5",
+    "trigger": "BeforeAttack",
+    "source_text": "피해량이 (참회/2)%만큼 증가"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "거미대가리 / 해골바가지",
+    "rule_id": "identity-10410:p2:r6",
+    "trigger": "BeforeAttack",
+    "source_text": "대상의 정신력이 자신보다 낮으면, 피해량이 (참회/2)%만큼 추가로 증가 (정신력이 없는 대상일 경우, 0으로 계산)"
+  },
+  {
+    "identity_id": "identity-10410",
+    "identity_name": "로보토미 E.G.O:: 적안・참회",
+    "passive_id": null,
+    "passive_name": "먹고 자라",
+    "rule_id": "identity-10410:p3:r2",
+    "trigger": "BeforeAttack",
+    "source_text": "정신력이 제일 낮은 아군 1명이 정신력 3 회복"
+  },
+  {
+    "identity_id": "identity-10411",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "흑수화[묘]",
+    "rule_id": "identity-10411:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 각력【묘】가 있으면 가하는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10411",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "흑수화[묘]",
+    "rule_id": "identity-10411:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 각력【묘】가 있으면 가하는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10411",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "흑수화[묘]",
+    "rule_id": "identity-10411:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상에게 주살【신속】이 있으면 가하는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10411",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "부분 흑수화 수련",
+    "rule_id": "identity-10411:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료시 속도가 가장 빠른 아군 1명이 다음 턴에 신속 2 얻음"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "쓰러질 수조차 없게 붙드는 손아귀",
+    "rule_id": "identity-10412:p1:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "출혈 2 부여, 출혈 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "쓰러질 수조차 없게 붙드는 손아귀",
+    "rule_id": "identity-10412:p1:r4",
+    "trigger": "BeforeAttack",
+    "source_text": "진동 2 부여, 진동 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "그건 흐르고 울린다",
+    "rule_id": "identity-10412:p4:r0",
+    "trigger": "Hit",
+    "source_text": "편성 순서가 가장 빠른 아군 1명이 적에게 공격 적중 시, 출혈 1 부여 (적 당 턴 당 최대 1회)"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "그건 흐르고 울린다",
+    "rule_id": "identity-10412:p4:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "대상에게 출혈이 있으면, 추가로 출혈 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "그건 흐르고 울린다",
+    "rule_id": "identity-10412:p4:r2",
+    "trigger": "Hit",
+    "source_text": "편성 순서가 가장 빠른 아군 1명이 적에게 피격시, 공격자에게 진동 1 부여 (턴 당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-10412",
+    "identity_name": "N사 E.G.O:: 경멸, 경외",
+    "passive_id": null,
+    "passive_name": "그건 흐르고 울린다",
+    "rule_id": "identity-10412:p4:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "공격자에게 진동이 있으면, 추가로 진동 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10413",
+    "identity_name": "홍원 방랑무사",
+    "passive_id": null,
+    "passive_name": "협객",
+    "rule_id": "identity-10413:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "‘군.가.곁.좋’ 패시브 효과로 ‘어이, 물러서라’ 발동 시, 해당 스킬 크리티컬 피해량 +30%. 자신을 제외한 정신력이 가장 낮은 아군 1명의 정신력 2 ~ 4 회복 (턴 당 1회. 정신력이 -40 이하인 아군 제외)"
+  },
+  {
+    "identity_id": "identity-10413",
+    "identity_name": "홍원 방랑무사",
+    "passive_id": null,
+    "passive_name": "방랑",
+    "rule_id": "identity-10413:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작시 편성 순서가 가장 빠른 아군 1명이 자신의 호흡 위력 1당 보호막 1 얻음 (최대 10)"
+  },
+  {
+    "identity_id": "identity-10414",
+    "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+    "passive_id": null,
+    "passive_name": "시들지 않는 꽃",
+    "rule_id": "identity-10414:p2:r5",
+    "trigger": "BeforeAttack",
+    "source_text": "이번 턴에 자신의 체력을 최대 체력의 10% 이상 잃으면, 최대 체력의 3%, 정신력 10 회복 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "재회 [再會]",
+    "rule_id": "identity-10415:p0:r7",
+    "trigger": "CoinHit",
+    "source_text": "검지 아비 이상 : 기본 공격 스킬 사용시 마지막 코인이 파괴 불가 코인으로 변경됨. 기본 공격 스킬의 파괴 불가 코인의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "재회 [再會]",
+    "rule_id": "identity-10415:p0:r8",
+    "trigger": "Hit",
+    "source_text": "검지 대행자 - 개화 E.G.O::대행 돈키호테 : 기본 공격 스킬 사용시 호흡 2 얻음. 기본 공격 스킬 크리티컬 적중시 침잠 1 부여"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "재회 [再會]",
+    "rule_id": "identity-10415:p0:r9",
+    "trigger": "CoinHit",
+    "source_text": "중지 제자 이스마엘 : 방어 레벨 2 증가, 기본 스킬로 부여하는 화상 위력 +1"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "재회 [再會]",
+    "rule_id": "identity-10415:p0:r12",
+    "trigger": "TurnStart",
+    "source_text": "소지 제자 싱클레어 : 매 턴 시작시 호흡 횟수 1, 크리티컬 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "시공간 잔상 분열",
+    "rule_id": "identity-10415:p1:r4",
+    "trigger": "CoinHit",
+    "source_text": "해당 스킬 코인이 모두 파괴 불가 코인으로 변경되고, 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10415",
+    "identity_name": "거미집의 검",
+    "passive_id": null,
+    "passive_name": "잔상 반향",
+    "rule_id": "identity-10415:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 20을 초과하는 호흡 위력 1당 자신의 기본 공격 스킬 크리티컬 피해량 +1% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-10501",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "등뒤 받쳐주기",
+    "rule_id": "identity-10501:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "최대 체력이 가장 높은 아군 1명 공격 스킬로 받는 피해량 -10%"
+  },
+  {
+    "identity_id": "identity-10502",
+    "identity_name": "남부 리우 협회 6과",
+    "passive_id": null,
+    "passive_name": "태산",
+    "rule_id": "identity-10502:p0:r0",
+    "trigger": "Hit",
+    "source_text": "피격 시 무작위 대상에게 화상 1 부여 (최대 4회)"
+  },
+  {
+    "identity_id": "identity-10503",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "견뎌내기",
+    "rule_id": "identity-10503:p0:r0",
+    "trigger": "Hit",
+    "source_text": "피격 시 충전 횟수 1 증가 (최대 6회)"
+  },
+  {
+    "identity_id": "identity-10503",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "견뎌내기",
+    "rule_id": "identity-10503:p1:r0",
+    "trigger": "Hit",
+    "source_text": "피격 시 충전 횟수 1 증가 (최대 6회)"
+  },
+  {
+    "identity_id": "identity-10503",
+    "identity_name": "W사 2등급 정리 요원",
+    "passive_id": null,
+    "passive_name": "견뎌내기",
+    "rule_id": "identity-10503:p1:r1",
+    "trigger": "ClashLose",
+    "source_text": "합 패배 시 충전 횟수 1 증가 (최대 6회, 피격 시 조건과 별도로 판정)"
+  },
+  {
+    "identity_id": "identity-10504",
+    "identity_name": "N사 큰 망치",
+    "passive_id": null,
+    "passive_name": "집념의 망치",
+    "rule_id": "identity-10504:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 체력이 50% 미만이면, 자신에게 부여된 부정적인 효과 중 1개를 제거하고, 광신 1, 공격 위력 증가 1, 보호 3을 얻음"
+  },
+  {
+    "identity_id": "identity-10504",
+    "identity_name": "N사 큰 망치",
+    "passive_id": null,
+    "passive_name": "으뜸 영광",
+    "rule_id": "identity-10504:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 낮은 아군 1명이 체력이 50% 미만이면 공격 위력 증가 1, 보호 1을 얻음. 대상이 N사 광신도면 광신 1을 추가로 얻음"
+  },
+  {
+    "identity_id": "identity-10505",
+    "identity_name": "장미스패너 공방 해결사",
+    "passive_id": null,
+    "passive_name": "만성 피로",
+    "rule_id": "identity-10505:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 진동 이 5 이상이면 대상의 합 위력 -1"
+  },
+  {
+    "identity_id": "identity-10505",
+    "identity_name": "장미스패너 공방 해결사",
+    "passive_id": null,
+    "passive_name": "권고 휴직",
+    "rule_id": "identity-10505:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "속도가 가장 빠른 아군 1명이 진동 이 부여된 적과 합 진행 시 적의 합 위력 -1"
+  },
+  {
+    "identity_id": "identity-10507",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "의리",
+    "rule_id": "identity-10507:p0:r2",
+    "trigger": "TurnEnd",
+    "source_text": "자신 이외의 중지 인격이 생존해있으면, 매 턴 종료 시 정신력 6 회복"
+  },
+  {
+    "identity_id": "identity-10507",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "의리",
+    "rule_id": "identity-10507:p1:r2",
+    "trigger": "TurnEnd",
+    "source_text": "자신 이외의 중지 인격이 생존해있으면, 매 턴 종료 시 자신과 정신력이 가장 낮은 중지 인격 1명의 매 턴 종료 시 정신력 6 회복"
+  },
+  {
+    "identity_id": "identity-10507",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "한 식구",
+    "rule_id": "identity-10507:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 1명이 자신과 동일한 소속의 캐릭터가 생존해있는 경우, 턴 종료 시 정신력 10 회복"
+  },
+  {
+    "identity_id": "identity-10508",
+    "identity_name": "검계 우두머리",
+    "passive_id": null,
+    "passive_name": "본국검술",
+    "rule_id": "identity-10508:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 호흡을 가장 많이 보유한 아군 1명의 참격 속성 스킬의 크리티컬 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10509",
+    "identity_name": "데드레빗츠 보스",
+    "passive_id": null,
+    "passive_name": "시간 벌기",
+    "rule_id": "identity-10509:p0:r0",
+    "trigger": "ClashStart",
+    "source_text": "파열이 있는 대상과 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10509",
+    "identity_name": "데드레빗츠 보스",
+    "passive_id": null,
+    "passive_name": "시간 벌기",
+    "rule_id": "identity-10509:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "파열이 있는 대상과 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10509",
+    "identity_name": "데드레빗츠 보스",
+    "passive_id": null,
+    "passive_name": "시간 벌기",
+    "rule_id": "identity-10509:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상의 파열 횟수가 5 이상이면, 합 위력 +2"
+  },
+  {
+    "identity_id": "identity-10511",
+    "identity_name": "서부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "결투 생방송",
+    "rule_id": "identity-10511:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료시 자신의 호흡 위력 3 마다, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10511",
+    "identity_name": "서부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "",
+    "rule_id": "identity-10511:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 자신의 호흡 위력 3 마다, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10511",
+    "identity_name": "서부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "",
+    "rule_id": "identity-10511:p1:r2",
+    "trigger": "OnKill",
+    "source_text": "집중 공격 - 뫼르소가 부여된 슬롯을 공격하여 대상을 처치하거나 부위를 파괴했으면, 정신력 7 회복"
+  },
+  {
+    "identity_id": "identity-10511",
+    "identity_name": "서부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "결투 생방송",
+    "rule_id": "identity-10511:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료시 자신의 호흡 위력 3 마다, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10511",
+    "identity_name": "서부 섕크 협회 3과",
+    "passive_id": null,
+    "passive_name": "결투 생방송",
+    "rule_id": "identity-10511:p2:r2",
+    "trigger": "OnKill",
+    "source_text": "집중 공격 - 뫼르소가 부여된 슬롯을 공격하여 대상을 처치하거나 부위를 파괴했으면, 정신력 7 회복"
+  },
+  {
+    "identity_id": "identity-10512",
+    "identity_name": "동부 엄지 카포IIII",
+    "passive_id": null,
+    "passive_name": "천퇴성도 [天退星刀]",
+    "rule_id": "identity-10512:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "호표탄을 소모하는 스킬 코인 위력 +1 (소모 가능한 만큼만 적용)"
+  },
+  {
+    "identity_id": "identity-10512",
+    "identity_name": "동부 엄지 카포IIII",
+    "passive_id": null,
+    "passive_name": "천퇴성도 [天退星刀]",
+    "rule_id": "identity-10512:p0:r6",
+    "trigger": "CoinHit",
+    "source_text": "맹호표탄을 소모하는 스킬 코인 위력 +2 (소모 가능한 만큼만 적용)"
+  },
+  {
+    "identity_id": "identity-10512",
+    "identity_name": "동부 엄지 카포IIII",
+    "passive_id": null,
+    "passive_name": "천퇴성도 [天退星刀]",
+    "rule_id": "identity-10512:p2:r2",
+    "trigger": "CoinHit",
+    "source_text": "호표탄을 소모하는 스킬 코인 위력 +1, 피해량 +10% (소모 가능한 만큼만 적용)"
+  },
+  {
+    "identity_id": "identity-10512",
+    "identity_name": "동부 엄지 카포IIII",
+    "passive_id": null,
+    "passive_name": "천퇴성도 [天退星刀]",
+    "rule_id": "identity-10512:p2:r6",
+    "trigger": "CoinHit",
+    "source_text": "맹호표탄을 소모하는 스킬 코인 위력 +2, 피해량 +30%, 해당 코인으로 적중 시 부여하는 화상 위력과 화상 횟수 부여값 +2 (소모 가능한 만큼만 적용)"
+  },
+  {
+    "identity_id": "identity-10513",
+    "identity_name": "라만차랜드 왕자",
+    "passive_id": null,
+    "passive_name": "‘피를 두르고, 가면을 쓰고, 피가 명하는 대로’",
+    "rule_id": "identity-10513:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "3 ~ : 공격 레벨 증가 2, 방어 레벨 증가 2"
+  },
+  {
+    "identity_id": "identity-10513",
+    "identity_name": "라만차랜드 왕자",
+    "passive_id": null,
+    "passive_name": "‘피를 두르고, 가면을 쓰고, 피가 명하는 대로’",
+    "rule_id": "identity-10513:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "3 ~ : 공격 레벨 증가 1, 방어 레벨 증가 1"
+  },
+  {
+    "identity_id": "identity-10513",
+    "identity_name": "라만차랜드 왕자",
+    "passive_id": null,
+    "passive_name": "왕자였던 자가 해야하는 일",
+    "rule_id": "identity-10513:p3:r3",
+    "trigger": "CoinHit",
+    "source_text": "전투 인원에 라만차랜드 공주 로쟈가 있다면, 라만차랜드 공주 로쟈와 라만차랜드 왕자 뫼르소의 스킬 3 피해량 +15% (강화 스킬 포함)"
+  },
+  {
+    "identity_id": "identity-10514",
+    "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+    "passive_id": null,
+    "passive_name": "E.G.O 변조 / 포자탄",
+    "rule_id": "identity-10514:p1:r6",
+    "trigger": "BeforeAttack",
+    "source_text": "정신력 2, 포자탄[기본] 2 소모하여, 포자탄[산탄] 1 얻음"
+  },
+  {
+    "identity_id": "identity-10514",
+    "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+    "passive_id": null,
+    "passive_name": "일벌",
+    "rule_id": "identity-10514:p3:r1",
+    "trigger": "TurnEnd",
+    "source_text": "이번 턴 동안 스킬 슬롯에 장착한 모든 기본 공격 스킬이 관통 속성이면, 턴 종료시 모든 아군 정신력 10 회복"
+  },
+  {
+    "identity_id": "identity-10515",
+    "identity_name": "약지 야수파 스튜던트",
+    "passive_id": null,
+    "passive_name": "차오르는 영감",
+    "rule_id": "identity-10515:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "자신이 찢긴 색채 [루주]를 4 부여 할 때마다, 정신력 5 회복 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-10515",
+    "identity_name": "약지 야수파 스튜던트",
+    "passive_id": null,
+    "passive_name": "차오르는 영감",
+    "rule_id": "identity-10515:p0:r2",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과로 정신력 회복 시 자신의 정신력이 최대면, 다음 턴에 타격 피해량 증가 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10515",
+    "identity_name": "약지 야수파 스튜던트",
+    "passive_id": null,
+    "passive_name": "겹쳐 그린 상흔",
+    "rule_id": "identity-10515:p2:r0",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 빠른 아군 1명이 공격 적중 시 대상의 부정적인 효과 2개당 방어 레벨 감소 1 부여(턴당 최대 1회, 최대 3)"
+  },
+  {
+    "identity_id": "identity-10601",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "유희",
+    "rule_id": "identity-10601:p0:r0",
+    "trigger": "TurnStart",
+    "source_text": "다음 턴 시작 시 정신력 6 회복"
+  },
+  {
+    "identity_id": "identity-10601",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "실없는 농담",
+    "rule_id": "identity-10601:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "정신력이 가장 낮은 아군 1명 전투 시작 시 정신력 6 회복"
+  },
+  {
+    "identity_id": "identity-10602",
+    "identity_name": "흑운회 와카슈",
+    "passive_id": null,
+    "passive_name": "흑운도",
+    "rule_id": "identity-10602:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "연결한 죄 중 마지막 죄의 마지막 코인으로 공격할 때 출혈 3 부여"
+  },
+  {
+    "identity_id": "identity-10603",
+    "identity_name": "콩콩이파 두목",
+    "passive_id": null,
+    "passive_name": "승부수",
+    "rule_id": "identity-10603:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명 앞면이 나온 코인의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10607",
+    "identity_name": "갈고리 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "갈고리",
+    "rule_id": "identity-10607:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "적 처치 시 다음 턴에 공격 위력 증가 1을 얻음 (턴 당 최대 1회)"
+  },
+  {
+    "identity_id": "identity-10607",
+    "identity_name": "갈고리 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "보급형 생체 장비",
+    "rule_id": "identity-10607:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "속도가 가장 빠른 아군 1명이 출혈이 부여된 적 처치 시 다음 턴에 공격 위력 증가 1을 얻음 (턴 당 최대 1회)"
+  },
+  {
+    "identity_id": "identity-10608",
+    "identity_name": "남부 디에치 협회 4과",
+    "passive_id": null,
+    "passive_name": "깨우침",
+    "rule_id": "identity-10608:p2:r0",
+    "trigger": "AttackEnd",
+    "source_text": "정신력이 가장 낮은 아군 1명이 공격 종료 후 대상을 흐트러짐 상태로 만들거나, 처치하면 정신력 7 회복"
+  },
+  {
+    "identity_id": "identity-10610",
+    "identity_name": "송곳니 사냥 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "유쾌한 사냥법",
+    "rule_id": "identity-10610:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상이 , 면 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10610",
+    "identity_name": "송곳니 사냥 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "유쾌한 사냥법",
+    "rule_id": "identity-10610:p0:r1",
+    "trigger": "Hit",
+    "source_text": "스킬 사용시 자신에게 출혈이 있으면, 공격 적중 시 파열 3 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10610",
+    "identity_name": "송곳니 사냥 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "유쾌한 사냥법",
+    "rule_id": "identity-10610:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상이 , 거나, 대상의 파열이 10 이상이면 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10610",
+    "identity_name": "송곳니 사냥 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "유쾌한 사냥법",
+    "rule_id": "identity-10610:p1:r1",
+    "trigger": "Hit",
+    "source_text": "스킬 사용시 자신에게 출혈이 있으면, 공격 적중 시 파열 3 부여 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-10610",
+    "identity_name": "송곳니 사냥 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "혈귀 공략 교본 - 지혈",
+    "rule_id": "identity-10610:p2:r1",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 빠른 아군 1명이 파열이 있는 적에게 공격 적중시, 방어 레벨 감소 1 부여 (턴 당 최대 2회)"
+  },
+  {
+    "identity_id": "identity-10611",
+    "identity_name": "마침표 사무소 대표",
+    "passive_id": null,
+    "passive_name": "전술적 사격 지원",
+    "rule_id": "identity-10611:p2:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작시 자신의 호흡 위력이 20 이상이면, 호흡 횟수 1 얻음"
+  },
+  {
+    "identity_id": "identity-10611",
+    "identity_name": "마침표 사무소 대표",
+    "passive_id": null,
+    "passive_name": "제압 사격",
+    "rule_id": "identity-10611:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "탄환을 가장 많이 보유한 아군 인격이 탄환을 소모하는 스킬로 가하는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파 충전 집속 뿔",
+    "rule_id": "identity-10612:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파 충전 집속 뿔",
+    "rule_id": "identity-10612:p0:r3",
+    "trigger": "CoinHit",
+    "source_text": "기본 공격 스킬의 피해량이 (충전 x 3)%만큼 증가 (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파 충전 집속 뿔",
+    "rule_id": "identity-10612:p1:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파 충전 집속 뿔",
+    "rule_id": "identity-10612:p1:r3",
+    "trigger": "CoinHit",
+    "source_text": "기본 공격 스킬의 피해량이 (충전 x 5)%만큼 증가 (최대 25%)"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "충전 분쇄 지원",
+    "rule_id": "identity-10612:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "충전이 가장 높은 아군 1명이 충전 횟수를 획득하는 기본 공격 스킬 사용 시, 마지막 코인의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10612",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "충전 분쇄 지원",
+    "rule_id": "identity-10612:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "충전이 가장 높은 아군 1명이 충전 횟수를 획득하는 기본 공격 스킬 사용 시, 마지막 코인의 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10613",
+    "identity_name": "홍원 군주",
+    "passive_id": null,
+    "passive_name": "더러운 피마저 받아들이고, 누군가의 피를 묻혀가며 뜻을 이룬다.",
+    "rule_id": "identity-10613:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신의 오혈 1 당 스킬 피해량 +3%"
+  },
+  {
+    "identity_id": "identity-10613",
+    "identity_name": "홍원 군주",
+    "passive_id": null,
+    "passive_name": "더러운 피마저 받아들이고, 누군가의 피를 묻혀가며 뜻을 이룬다.",
+    "rule_id": "identity-10613:p0:r3",
+    "trigger": "TurnStart",
+    "source_text": "E.G.O 스킬 ‘오혈읍루 - 종’ 발동 시, 공격 종료시 사망 효과가 발동하지 않고 최대 체력의 60% 회복. 다음 턴부터 매 턴 시작시마다 피해량 증가 1 얻음 (전투 당 1회)"
+  },
+  {
+    "identity_id": "identity-10613",
+    "identity_name": "홍원 군주",
+    "passive_id": null,
+    "passive_name": "흑수군주",
+    "rule_id": "identity-10613:p1:r5",
+    "trigger": "CoinHit",
+    "source_text": "흑수환염[黑獣丸染] 1 당 피해량 +5% (최대 55%)"
+  },
+  {
+    "identity_id": "identity-10614",
+    "identity_name": "거미집 약지 아비",
+    "passive_id": null,
+    "passive_name": "마에스트로의 크리틱",
+    "rule_id": "identity-10614:p0:r1",
+    "trigger": "AttackEnd",
+    "source_text": "공격 적중 시 해당 공격 스킬로 부정적인 효과를 부여했으면, 공격 종료 시 자신의 정신력 4 회복 (턴당 3회)"
+  },
+  {
+    "identity_id": "identity-10614",
+    "identity_name": "거미집 약지 아비",
+    "passive_id": null,
+    "passive_name": "마에스트로의 크리틱",
+    "rule_id": "identity-10614:p1:r1",
+    "trigger": "AttackEnd",
+    "source_text": "공격 적중 시 해당 공격 스킬로 부정적인 효과를 부여했으면, 공격 종료 시 자신의 정신력 4 회복 (턴당 3회)"
+  },
+  {
+    "identity_id": "identity-10614",
+    "identity_name": "거미집 약지 아비",
+    "passive_id": null,
+    "passive_name": "마에스트로의 크리틱",
+    "rule_id": "identity-10614:p1:r2",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과로 정신력 회복 시 자신의 정신력이 최대면, 다음 턴에 참격 피해량 증가 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10614",
+    "identity_name": "거미집 약지 아비",
+    "passive_id": null,
+    "passive_name": "뛰어다니는 관객은 의자에 앉아 감상하시죠",
+    "rule_id": "identity-10614:p4:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 속도가 가장 빠른 적 1명에게 다음 턴에 공격 레벨 감소  2 부여하고 출혈 횟수 1 증가 (집중 전투일 경우, 부위로 판정)"
+  },
+  {
+    "identity_id": "identity-10615",
+    "identity_name": "S사 추노꾼",
+    "passive_id": null,
+    "passive_name": "추쇄건[推刷巾]",
+    "rule_id": "identity-10615:p1:r2",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작시 이번 턴에 참격 속성이고, 오만 속성인 스킬을 장착한 아군당 피해량 +5% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10615",
+    "identity_name": "S사 추노꾼",
+    "passive_id": null,
+    "passive_name": "악에 받친 추격",
+    "rule_id": "identity-10615:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "편성 순서가 가장 빠른 아군이 속박이 부여된 적을 공격할 때, 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10701",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "르쌍티망",
+    "rule_id": "identity-10701:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상이 자신보다 최대 체력이 높으면 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10701",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "악에 받친",
+    "rule_id": "identity-10701:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "최대 체력이 가장 낮은 아군 1명 타격 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10702",
+    "identity_name": "남부 시 협회 5과",
+    "passive_id": null,
+    "passive_name": "호흡",
+    "rule_id": "identity-10702:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "이번 턴에 공격으로 피해를 받으면 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10702",
+    "identity_name": "남부 시 협회 5과",
+    "passive_id": null,
+    "passive_name": "자신을 돌보지 않음",
+    "rule_id": "identity-10702:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 낮은 아군 1명 가하는 피해량 +20%, 받는 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10703",
+    "identity_name": "R사 제 4무리 토끼팀",
+    "passive_id": null,
+    "passive_name": "풀 뜯을 준비",
+    "rule_id": "identity-10703:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "충전 횟수가 5 이상이면 신속 1, 공격 위력 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-10703",
+    "identity_name": "R사 제 4무리 토끼팀",
+    "passive_id": null,
+    "passive_name": "풀 뜯을 준비",
+    "rule_id": "identity-10703:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "충전 횟수가 5 이상이면 신속 1, 공격 위력 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-10703",
+    "identity_name": "R사 제 4무리 토끼팀",
+    "passive_id": null,
+    "passive_name": "집념",
+    "rule_id": "identity-10703:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 높은 아군 1명 관통 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10704",
+    "identity_name": "N사 작은 망치",
+    "passive_id": null,
+    "passive_name": "젠장...",
+    "rule_id": "identity-10704:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "생존한 N사 광신도가 파티에 자신 포함 4명 이상 있을 때 코인 위력 +1"
+  },
+  {
+    "identity_id": "identity-10705",
+    "identity_name": "로보토미 E.G.O:: 여우비",
+    "passive_id": null,
+    "passive_name": "눈물비",
+    "rule_id": "identity-10705:p0:r2",
+    "trigger": "TurnEnd",
+    "source_text": "피격 시 다음 턴에 타격 피해량 증가 1을 얻음 (턴 당 최대 3)"
+  },
+  {
+    "identity_id": "identity-10705",
+    "identity_name": "로보토미 E.G.O:: 여우비",
+    "passive_id": null,
+    "passive_name": "해진 우산",
+    "rule_id": "identity-10705:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 1명이 피격 시 정신력 10 감소하고, 다음 턴에 타격 피해량 증가 1을 얻음 (턴 당 1회 발동)"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "헤집어진 문신",
+    "rule_id": "identity-10707:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "자신을 포함한 아군이 피격당할 때마다 다음 턴에 공격 레벨 증가 1, 방어 레벨 증가 1을 얻는다. (최대 6)"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "헤집어진 문신",
+    "rule_id": "identity-10707:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신의 잃은 체력 1%당 피해량 0.4% 증가"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "헤집어진 문신",
+    "rule_id": "identity-10707:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "자신을 포함한 아군이 피격당할 때마다 다음 턴에 공격 레벨 증가 1, 방어 레벨 증가 1을 얻는다. 피격 당한 아군이 피쿼드호 소속인 경우, 대신 2를 얻는다. (최대 9)"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "헤집어진 문신",
+    "rule_id": "identity-10707:p1:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신의 잃은 체력 1%당 피해량 1% 증가"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "절박",
+    "rule_id": "identity-10707:p2:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신의 잃은 체력 1%당 피해량 0.15% 증가 (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10707",
+    "identity_name": "피쿼드호 작살잡이",
+    "passive_id": null,
+    "passive_name": "절박",
+    "rule_id": "identity-10707:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신의 잃은 체력 1%당 피해량 0.3% 증가 (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10708",
+    "identity_name": "남부 외우피 협회 3과",
+    "passive_id": null,
+    "passive_name": "엄중한 입회",
+    "rule_id": "identity-10708:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 진동 위력 6 당 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10708",
+    "identity_name": "남부 외우피 협회 3과",
+    "passive_id": null,
+    "passive_name": "엄중한 입회",
+    "rule_id": "identity-10708:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 진동 위력 6 당 피해량 +10% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10708",
+    "identity_name": "남부 외우피 협회 3과",
+    "passive_id": null,
+    "passive_name": "의무 이행 확인",
+    "rule_id": "identity-10708:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명의 진동 위력, 횟수를 부여하는 스킬의 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10709",
+    "identity_name": "멀티크랙 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "모델 L37 충전",
+    "rule_id": "identity-10709:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10709",
+    "identity_name": "멀티크랙 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "모델 L37 충전",
+    "rule_id": "identity-10709:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 충전이 2 이상이면, 다음 턴에 신속 1 얻음"
+  },
+  {
+    "identity_id": "identity-10709",
+    "identity_name": "멀티크랙 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "모델 L37 충전",
+    "rule_id": "identity-10709:p1:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10709",
+    "identity_name": "멀티크랙 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "모델 L37 충전",
+    "rule_id": "identity-10709:p1:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 충전이 2 이상이면, 다음 턴에 신속 1 얻음"
+  },
+  {
+    "identity_id": "identity-10709",
+    "identity_name": "멀티크랙 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "모델 L37 충전",
+    "rule_id": "identity-10709:p1:r2",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 충전이 3 이상이면, 다음 턴에 신속 1, 합 위력 증가 1 추가로 얻음"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 침잠 1당 피해량 +1% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "듀라한",
+    "rule_id": "identity-10710:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "듀라한에 탑승할 때마다 정신력 5 소모"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 침잠 1당 피해량 +1% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p2:r2",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 와일드헌트를 부여한 인격에게 피해량 증가 2 부여"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p2:r3",
+    "trigger": "TurnEnd",
+    "source_text": "워더링하이츠, 에드가 가문 소속이면, 다음 턴에 공격 위력 증가 1 추가 부여"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 침잠 1당 피해량 +1% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p3:r2",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 와일드헌트를 부여한 인격에게 피해량 증가 2 부여"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "마왕의 부름",
+    "rule_id": "identity-10710:p3:r3",
+    "trigger": "TurnEnd",
+    "source_text": "워더링하이츠, 에드가 가문 소속이면, 다음 턴에 공격 위력 증가 1 추가 부여"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "울고 또 울어라",
+    "rule_id": "identity-10710:p4:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명이 정신력이 0 미만인 대상에게 입히는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10710",
+    "identity_name": "와일드헌트",
+    "passive_id": null,
+    "passive_name": "울고 또 울어라",
+    "rule_id": "identity-10710:p4:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "대상의 정신력이 0보다 낮을수록 입히는 피해량이 증가 (정신력 1당 +0.5%, 최대 20%)"
+  },
+  {
+    "identity_id": "identity-10711",
+    "identity_name": "마침표 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "정밀 조준",
+    "rule_id": "identity-10711:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료시 자신의 호흡 10 당, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10711",
+    "identity_name": "마침표 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "정밀 조준",
+    "rule_id": "identity-10711:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료시 자신의 호흡 10 당, 다음 턴에 신속 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-10711",
+    "identity_name": "마침표 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "감적수",
+    "rule_id": "identity-10711:p4:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "탄환을 가장 적게 보유한 아군 1명이 탄환을 소모하는 스킬을 사용할 때, 호흡 횟수 2 증가"
+  },
+  {
+    "identity_id": "identity-10712",
+    "identity_name": "흑운회 와카슈",
+    "passive_id": null,
+    "passive_name": "흑운도",
+    "rule_id": "identity-10712:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "이번 턴에 수비 스킬을 사용한 적 또는 공격 시작 전에 최대 체력인 적에게 입히는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10712",
+    "identity_name": "흑운회 와카슈",
+    "passive_id": null,
+    "passive_name": "흑운도",
+    "rule_id": "identity-10712:p2:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "이번 턴에 수비 스킬을 사용한 적 또는 공격 시작 전에 최대 체력인 적에게 입히는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10712",
+    "identity_name": "흑운회 와카슈",
+    "passive_id": null,
+    "passive_name": "후벼파기",
+    "rule_id": "identity-10712:p3:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "속도가 가장 빠른 아군 1명이 이번 턴에 수비 스킬을 사용했거나, 공격 시작 전에 최대 체력인 적에게 가하는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10713",
+    "identity_name": "W사 4등급 정리 요원 - CCA",
+    "passive_id": null,
+    "passive_name": "방어지향 충전",
+    "rule_id": "identity-10713:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10713",
+    "identity_name": "W사 4등급 정리 요원 - CCA",
+    "passive_id": null,
+    "passive_name": "컨제스쳔 클리닝 아머",
+    "rule_id": "identity-10713:p1:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신의 스킬로 충전 횟수 최대치를 초과하여 충전 횟수를 얻으면, 최대치를 초과한 충전 횟수 1 당 해당 스킬 피해량 +3% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10714",
+    "identity_name": "흑수 - 유 필두",
+    "passive_id": null,
+    "passive_name": "배수의 진",
+    "rule_id": "identity-10714:p3:r0",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 체력 비율이 가장 낮은 아군 1명의 현재 체력이 최대 체력의 50% 미만이라면, 다음 턴에 합 위력 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-10715",
+    "identity_name": "중지 작은 형님",
+    "passive_id": null,
+    "passive_name": "앙갚음 장부",
+    "rule_id": "identity-10715:p0:r7",
+    "trigger": "AttackEnd",
+    "source_text": "해당 공격 종료 시 모든 아군 중지 인격에게 공격 레벨 증가 1, 방어 레벨 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10715",
+    "identity_name": "중지 작은 형님",
+    "passive_id": null,
+    "passive_name": "원한 문신 공명",
+    "rule_id": "identity-10715:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작시 수비 스킬을 장착한 중지 소속 아군 인격이 이번 턴 동안 일방공격으로 받는 피해량 -20%"
+  },
+  {
+    "identity_id": "identity-10715",
+    "identity_name": "중지 작은 형님",
+    "passive_id": null,
+    "passive_name": "의리 사슬",
+    "rule_id": "identity-10715:p4:r0",
+    "trigger": "TurnEnd",
+    "source_text": "전투 중 중지 소속 아군 인격이 사망하면 해당 턴과 다음 턴에 모든 중지 소속 아군 인격이 공격 위력 증가 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "수치 1당, 기본 스킬로 가하는 피해량 +3% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r2",
+    "trigger": "CoinHit",
+    "source_text": "1 : 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r3",
+    "trigger": "CoinHit",
+    "source_text": "2 : 기본 스킬의 기본 위력 +1"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r5",
+    "trigger": "CoinHit",
+    "source_text": "4 : 기본 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r6",
+    "trigger": "CoinHit",
+    "source_text": "5 : 기본 스킬의 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "팔레르모 검술",
+    "rule_id": "identity-10716:p3:r7",
+    "trigger": "CoinHit",
+    "source_text": "자신의 완성되어가는 교본과 자신을 공격하는 적의 결투 고조 수치 합 1당, 받는 피해량 -3% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "일대일 결투라면...",
+    "rule_id": "identity-10716:p4:r0",
+    "trigger": "ClashWin",
+    "source_text": "속도가 가장 빠른 아군이 기본 공격 스킬로 합 승리 시, 대상 적의 화상 횟수 1 증가 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10716",
+    "identity_name": "거미집 엄지 제자",
+    "passive_id": null,
+    "passive_name": "일대일 결투라면...",
+    "rule_id": "identity-10716:p4:r2",
+    "trigger": "BeforeAttack",
+    "source_text": "엄지 소속 인격이면 효과가 강화되어, 대신 대상의 화상 횟수와 진동 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10801",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "발악",
+    "rule_id": "identity-10801:p0:r0",
+    "trigger": "ClashStart",
+    "source_text": "합 진행 시 자신의 체력이 25% 미만이면 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10801",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "살아남고 말것이라는 마음",
+    "rule_id": "identity-10801:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "현재 체력이 가장 낮은 아군 1명 체력이 50% 미만이면 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10802",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파집속",
+    "rule_id": "identity-10802:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력 -15."
+  },
+  {
+    "identity_id": "identity-10802",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "뇌파집속",
+    "rule_id": "identity-10802:p1:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시 이번 턴에 피해를 주지 못한 경우 정신력 -15"
+  },
+  {
+    "identity_id": "identity-10802",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "집념",
+    "rule_id": "identity-10802:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 낮은 아군 1명 타격 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10803",
+    "identity_name": "남부 시 협회 5과",
+    "passive_id": null,
+    "passive_name": "투쟁",
+    "rule_id": "identity-10803:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 낮은 아군 1명 반격 스킬의 최종 위력 +2"
+  },
+  {
+    "identity_id": "identity-10804",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "약점포착",
+    "rule_id": "identity-10804:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 후 공격 적중 시마다 진동 1 부여"
+  },
+  {
+    "identity_id": "identity-10804",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "매뉴얼대로",
+    "rule_id": "identity-10804:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 낮은 아군 1명 가드 스킬의 최종 위력 +2"
+  },
+  {
+    "identity_id": "identity-10805",
+    "identity_name": "로보토미 E.G.O:: 출렁임",
+    "passive_id": null,
+    "passive_name": "부식 점액",
+    "rule_id": "identity-10805:p2:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "속도가 가장 빠른 아군 1명이 진동 폭발 발동 시 파열 2 부여"
+  },
+  {
+    "identity_id": "identity-10806",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "격화",
+    "rule_id": "identity-10806:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 화상 횟수 3 당 타격 피해량 +10% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10806",
+    "identity_name": "남부 리우 협회 4과",
+    "passive_id": null,
+    "passive_name": "격화",
+    "rule_id": "identity-10806:p1:r0",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 느린 아군 1명이 공격 적중 시 대상의 화상 횟수 3 당 타격 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10807",
+    "identity_name": "어금니 보트 센터 해결사",
+    "passive_id": null,
+    "passive_name": "크랲 파쇄",
+    "rule_id": "identity-10807:p0:r0",
+    "trigger": "Hit",
+    "source_text": "진동이 있는 대상에게 공격 적중 시 침잠 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "피쿼드호의 선장",
+    "rule_id": "identity-10808:p0:r2",
+    "trigger": "BeforeAttack",
+    "source_text": "자신을 제외한 정신력이 가장 낮은 아군 1명의 정신력 7 회복."
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "피쿼드호의 선장",
+    "rule_id": "identity-10808:p0:r3",
+    "trigger": "BeforeAttack",
+    "source_text": "대상이 피쿼드호 소속이면, 정신력 5 추가 회복."
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "사냥 시간",
+    "rule_id": "identity-10808:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상이 면 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "피쿼드호의 선장",
+    "rule_id": "identity-10808:p2:r2",
+    "trigger": "BeforeAttack",
+    "source_text": "자신을 제외한 정신력이 가장 낮은 아군 2명의 정신력 7 회복, 호흡 4 부여."
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "피쿼드호의 선장",
+    "rule_id": "identity-10808:p2:r3",
+    "trigger": "TurnEnd",
+    "source_text": "대상이 피쿼드호 소속이면, 정신력 5 추가 회복, 턴 당 1회 다음 턴에 관통 위력 증가 1 부여."
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "선장의 명령",
+    "rule_id": "identity-10808:p3:r0",
+    "trigger": "AttackEnd",
+    "source_text": "정신력이 가장 높은 아군 1명이 자신의 공격 종료 시 대상이 사망했으면, 호흡 2 얻음 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-10808",
+    "identity_name": "피쿼드호 선장",
+    "passive_id": null,
+    "passive_name": "선장의 명령",
+    "rule_id": "identity-10808:p4:r0",
+    "trigger": "AttackEnd",
+    "source_text": "정신력이 가장 높은 아군 1명이 자신의 공격 종료 시 대상이 사망했으면, 호흡 2, 호흡 횟수 2 얻음 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-10809",
+    "identity_name": "에드가 가문 버틀러",
+    "passive_id": null,
+    "passive_name": "충실한 보조",
+    "rule_id": "identity-10809:p1:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "속도가 가장 빠른 아군 1명이 침잠이 있는 대상 공격 시 대상의 침잠 1당 피해량 0.5% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-10809",
+    "identity_name": "에드가 가문 버틀러",
+    "passive_id": null,
+    "passive_name": "충실한 보조",
+    "rule_id": "identity-10809:p2:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "속도가 가장 빠른 아군 1명이 침잠이 있는 대상 공격 시 대상의 침잠 1당 피해량 1% (최대 20%)"
+  },
+  {
+    "identity_id": "identity-10812",
+    "identity_name": "가주 후보",
+    "passive_id": null,
+    "passive_name": "파흡자환[破吸自桓]",
+    "rule_id": "identity-10812:p0:r2",
+    "trigger": "ClashStart",
+    "source_text": "합 진행 시 합을 진행하는 적보다 공격 레벨이 높으면, 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10812",
+    "identity_name": "가주 후보",
+    "passive_id": null,
+    "passive_name": "시동[始動]",
+    "rule_id": "identity-10812:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "전투에서 퇴각할 때, 아군에게 편성 순서 순으로 다음 턴에 공격 레벨 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10812",
+    "identity_name": "가주 후보",
+    "passive_id": null,
+    "passive_name": "시동[始動]",
+    "rule_id": "identity-10812:p1:r2",
+    "trigger": "TurnEnd",
+    "source_text": "부여 대상이 \"가씨 가문\"이면, 대신 다음 턴에 공격 레벨 증가 2 부여"
+  },
+  {
+    "identity_id": "identity-10813",
+    "identity_name": "정사무소 대표",
+    "passive_id": null,
+    "passive_name": "낱장치기",
+    "rule_id": "identity-10813:p0:r0",
+    "trigger": "TailsHit",
+    "source_text": "뒷면 적중 시 정신력 5 회복 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10813",
+    "identity_name": "정사무소 대표",
+    "passive_id": null,
+    "passive_name": "낱장치기",
+    "rule_id": "identity-10813:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "사기 저하 또는 패닉 상태인 적에게 가하는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10813",
+    "identity_name": "정사무소 대표",
+    "passive_id": null,
+    "passive_name": "중계",
+    "rule_id": "identity-10813:p2:r0",
+    "trigger": "Hit",
+    "source_text": "전투 시작시 정신력이 가장 낮은 아군 1명이 기본 공격 스킬로 앞면 적중시 해당 아군 정신력 5 회복 (턴당 2회, 정신력이 -40 이하인 아군 제외)"
+  },
+  {
+    "identity_id": "identity-10814",
+    "identity_name": "거미집 중지 제자",
+    "passive_id": null,
+    "passive_name": "당신… 해결사 좋아해요?",
+    "rule_id": "identity-10814:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "편성 순서 1번의 기본 공격 스킬의 합 위력 +1 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-10814",
+    "identity_name": "거미집 중지 제자",
+    "passive_id": null,
+    "passive_name": "당신… 해결사 좋아해요?",
+    "rule_id": "identity-10814:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "질투 공명이 완전 공명이면, 편성 순서 1번의 기본 스킬 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10815",
+    "identity_name": "LCD 현장추리팀",
+    "passive_id": null,
+    "passive_name": "베고, 죽일 뿐",
+    "rule_id": "identity-10815:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군이 가하는 참격 스킬 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10815",
+    "identity_name": "LCD 현장추리팀",
+    "passive_id": null,
+    "passive_name": "베고, 죽일 뿐",
+    "rule_id": "identity-10815:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "신속이 있다면, 대신 참격 스킬 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10901",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "단악",
+    "rule_id": "identity-10901:p0:r0",
+    "trigger": "Hit",
+    "source_text": "공격 적중 시 50% 확률로 출혈 1 부여"
+  },
+  {
+    "identity_id": "identity-10901",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "도박사",
+    "rule_id": "identity-10901:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 높은 아군 1명 앞면이 나온 코인의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10902",
+    "identity_name": "흑운회 와카슈",
+    "passive_id": null,
+    "passive_name": "흑운검술",
+    "rule_id": "identity-10902:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 낮은 아군 1명 참격 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10903",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "방어 허물기",
+    "rule_id": "identity-10903:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "이번 턴에 수비스킬을 사용한 적에게 입히는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10903",
+    "identity_name": "LCCB 대리",
+    "passive_id": null,
+    "passive_name": "브리칭",
+    "rule_id": "identity-10903:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 높은 아군 1명 이번 턴에 수비스킬을 사용한 적에게 입히는 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10904",
+    "identity_name": "N사 중간 망치",
+    "passive_id": null,
+    "passive_name": "처단의 기쁨",
+    "rule_id": "identity-10904:p0:r0",
+    "trigger": "TurnStart",
+    "source_text": "적이 사망하면 다음 턴 시작 시 신속 1, 피해량 증가 1을 얻음. 자신이 적을 처치한 경우 광신 1을 얻음.(턴 당 1회 발동)"
+  },
+  {
+    "identity_id": "identity-10904",
+    "identity_name": "N사 중간 망치",
+    "passive_id": null,
+    "passive_name": "차오르는 신앙",
+    "rule_id": "identity-10904:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "적이 사망하면 정신력이 가장 높은 아군 1명이 다음 턴에 신속 1, 피해량 증가 1을 얻음 (턴 당 1회 발동)"
+  },
+  {
+    "identity_id": "identity-10905",
+    "identity_name": "장미스패너 공방 대표",
+    "passive_id": null,
+    "passive_name": "빠른 퇴근을 위하여~",
+    "rule_id": "identity-10905:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "진동 폭발 시 충전 횟수 3을 소모하여, 진동 폭발의 흐트러짐 피해량 +40%"
+  },
+  {
+    "identity_id": "identity-10905",
+    "identity_name": "장미스패너 공방 대표",
+    "passive_id": null,
+    "passive_name": "빠른 퇴근을 위하여~",
+    "rule_id": "identity-10905:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "진동 폭발 발동 시 다음 턴에 신속 1, 타격 피해량 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-10905",
+    "identity_name": "장미스패너 공방 대표",
+    "passive_id": null,
+    "passive_name": "공진 스패너",
+    "rule_id": "identity-10905:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 느린 아군 1명이 진동 폭발로 입히는 흐트러짐 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-10906",
+    "identity_name": "남부 츠바이 협회 5과",
+    "passive_id": null,
+    "passive_name": "방어 호흡",
+    "rule_id": "identity-10906:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 호흡 횟수 1 마다 보호막을 2 얻음 (최대 20)"
+  },
+  {
+    "identity_id": "identity-10906",
+    "identity_name": "남부 츠바이 협회 5과",
+    "passive_id": null,
+    "passive_name": "지정 보호",
+    "rule_id": "identity-10906:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 현재 체력 비율이 가장 낮은 아군 1명이 자신의 호흡 횟수 1 당 보호막을 1 얻음 (최대 10)"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "뜨거운 기세",
+    "rule_id": "identity-10908:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 화상 위력 6 당 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "뜨거운 기세",
+    "rule_id": "identity-10908:p0:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 모든 적에게 화상이 6 이상 부여되어 있으면, 아군 (최대 분노 완전 공명 수) 명에게 편성 순으로 분노 피해량 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "뜨거운 기세",
+    "rule_id": "identity-10908:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 화상 위력 6 당 피해량 +10% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "뜨거운 기세",
+    "rule_id": "identity-10908:p1:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 모든 적에게 화상이 6 이상 부여되어 있으면, 아군 (최대 분노 완전 공명 수) 명에게 편성 순으로 분노 피해량 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "뜨거운 기세",
+    "rule_id": "identity-10908:p1:r3",
+    "trigger": "CoinHit",
+    "source_text": "대상이 리우 협회 해결사면, 공격 위력 증가 1 부여"
+  },
+  {
+    "identity_id": "identity-10908",
+    "identity_name": "남부 리우 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "화끈한 격려",
+    "rule_id": "identity-10908:p2:r0",
+    "trigger": "Hit",
+    "source_text": "정신력이 가장 낮은 아군 1명이 공격 적중 시 대상의 화상 위력 6 당 관통 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-10909",
+    "identity_name": "T사 2등급 징수직 직원",
+    "passive_id": null,
+    "passive_name": "황금 시간 - 맞서기",
+    "rule_id": "identity-10909:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "시간 유예를 보유한 대상과 합을 진행할 때 합 위력 +2"
+  },
+  {
+    "identity_id": "identity-10909",
+    "identity_name": "T사 2등급 징수직 직원",
+    "passive_id": null,
+    "passive_name": "황금 시간 - 맞서기",
+    "rule_id": "identity-10909:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "시간 유예를 보유한 적에게 피해를 받을 때, 받는 피해량 -10%"
+  },
+  {
+    "identity_id": "identity-10909",
+    "identity_name": "T사 2등급 징수직 직원",
+    "passive_id": null,
+    "passive_name": "T사식 격투술",
+    "rule_id": "identity-10909:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "속도가 가장 빠른 아군 1명이 진동을 5 이상 보유한 적과 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10910",
+    "identity_name": "북부 제뱌찌 협회 3과",
+    "passive_id": null,
+    "passive_name": "신속 배달",
+    "rule_id": "identity-10910:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "퇴각 시, 다음 턴에 아군 둘에게 합 위력 증가 1 부여 (대기 해제된 인격에게 우선으로 부여되며, 그 다음으로는 편성 순서가 빠른 순으로 적용)"
+  },
+  {
+    "identity_id": "identity-10910",
+    "identity_name": "북부 제뱌찌 협회 3과",
+    "passive_id": null,
+    "passive_name": "신속 배달",
+    "rule_id": "identity-10910:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "퇴각 시, 다음 턴에 아군 둘에게 합 위력 증가 1 부여 (대기 해제된 인격에게 우선으로 부여되며, 그 다음으로는 편성 순서가 빠른 순으로 적용)"
+  },
+  {
+    "identity_id": "identity-10910",
+    "identity_name": "북부 제뱌찌 협회 3과",
+    "passive_id": null,
+    "passive_name": "우수 배달부",
+    "rule_id": "identity-10910:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명의 파열 위력, 횟수를 부여하는 스킬의 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-10912",
+    "identity_name": "흑수 - 사",
+    "passive_id": null,
+    "passive_name": "흑수화[사]",
+    "rule_id": "identity-10912:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 사완이 있으면, 가하는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10912",
+    "identity_name": "흑수 - 사",
+    "passive_id": null,
+    "passive_name": "흑수화[사]",
+    "rule_id": "identity-10912:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상에게 주살【독】이 있으면, 가하는 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-10912",
+    "identity_name": "흑수 - 사",
+    "passive_id": null,
+    "passive_name": "피에 흐르는 독",
+    "rule_id": "identity-10912:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "속도가 가장 빠른 아군 1명이 적에게 파열 피해를 입히면, 다음 턴에 공격 레벨 감소  1, 방어 레벨 감소 1 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "부수고, 찢어, 꿰뚫는다",
+    "rule_id": "identity-10913:p3:r0",
+    "trigger": "Hit",
+    "source_text": "꿰뚫는 검을 보유하였다면, 기본 공격 스킬을 사용하여 적에게 적중 전에 꿰뚫는 검 1을 소모하여 침잠 1 부여"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "부수고, 찢어, 꿰뚫는다",
+    "rule_id": "identity-10913:p3:r2",
+    "trigger": "CoinHit",
+    "source_text": "눈물 벼리기를 3개 보유하였다면, 기본 공격 스킬을 사용하여 적에게 마지막 코인 적중 전에 눈물 벼리기를 전부 소모하여 침잠 3, 침잠 횟수 3을 부여하고 해당 코인의 피해량 +50%"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "부수고, 찢어, 꿰뚫는다",
+    "rule_id": "identity-10913:p3:r3",
+    "trigger": "TurnEnd",
+    "source_text": "이 효과가 발동하였다면, 해당 턴 종료 시 정신력이 0 미만이면 정신력이 0으로 초기화 (패닉 또는 E.G.O 침식 상태일 경우, 해제). 그 후, 정신력 30 회복"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "정의의 마법소녀 / 절망의 기사",
+    "rule_id": "identity-10913:p4:r2",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 지키는 검이 3 이상이면, 보호 1 얻음"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "정의의 마법소녀 / 절망의 기사",
+    "rule_id": "identity-10913:p4:r3",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 지키는 검이 5일 경우, 대신 보호 2, 합 위력 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "정의의 마법소녀 / 절망의 기사",
+    "rule_id": "identity-10913:p4:r6",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 꿰뚫는 검이 3 이상이면, 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "절망하는 모든 자들을 위해…",
+    "rule_id": "identity-10913:p5:r1",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 -15 이하면, 빼기 코인 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "절망하는 모든 자들을 위해…",
+    "rule_id": "identity-10913:p6:r1",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 -15 이하면, 빼기 코인 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10913",
+    "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+    "passive_id": null,
+    "passive_name": "절망하는 모든 자들을 위해…",
+    "rule_id": "identity-10913:p6:r2",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 -30 이하면, 대신 빼기 코인 스킬의 최종 위력 +1, 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-10914",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "성탄절 장식된 뿔",
+    "rule_id": "identity-10914:p0:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10914",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "성탄절 장식된 뿔",
+    "rule_id": "identity-10914:p1:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-10914",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "성탄절 장식된 뿔",
+    "rule_id": "identity-10914:p1:r2",
+    "trigger": "CoinHit",
+    "source_text": "자신의 체력이 35% 미만일 시, 기본 공격 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-10914",
+    "identity_name": "R사 제 4무리 순록팀",
+    "passive_id": null,
+    "passive_name": "캐롤 속에 죽어가는 동료들",
+    "rule_id": "identity-10914:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 낮은 아군 1명의 충전 또는 특수 충전을 소모하고 적에게 침잠을 부여하는 효과를 가진 스킬의 피해량 +10% (E.G.O 스킬 제외)"
+  },
+  {
+    "identity_id": "identity-10915",
+    "identity_name": "약지 야수파 도슨트",
+    "passive_id": null,
+    "passive_name": "부서지진 않게 조심조심…",
+    "rule_id": "identity-10915:p3:r3",
+    "trigger": "CombatStart",
+    "source_text": "해당 인격이 약지 소속 인격이면, 전투 시작시 공격 레벨 증가 1 또는 방어 레벨 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-10916",
+    "identity_name": "거미집 엄지 아비",
+    "passive_id": null,
+    "passive_name": "보냐텔리 가문의 수치",
+    "rule_id": "identity-10916:p1:r0",
+    "trigger": "TurnStart",
+    "source_text": "가속탄 소모한 수치 1당, 호흡 2 얻음, 자신의 호흡 횟수 2 증가 / 가속탄을 소모하는 코인을 굴릴 때, 가속탄이 없는 경우에도 공격을 취소하지 않음 / 이 인격은 화상, 진동을 부여하는 인격으로만 취급됨 / 턴 시작 시 슬롯 내 '처분' 스킬이 있으면, 이전 턴에 가장 마지막으로 공격한 적에게 사냥 표적 부여 (집중 전투일 경우, 부위로 판정) - 대상이 없을 시, 체력이 가장 낮은 적에게 사냥 표적 부여"
+  },
+  {
+    "identity_id": "identity-10916",
+    "identity_name": "거미집 엄지 아비",
+    "passive_id": null,
+    "passive_name": "재회 [再会] - 엄지",
+    "rule_id": "identity-10916:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "스테이지 시작시 사망한 상태거나 전투 중 사망 시, 거미집의 검 료슈 인격이 아래 효과 얻음 - 얽힘 1 얻음 - 수비 스킬 코인 위력 +1, 보호막을 보유한 대상에게 가하는 기본 공격 스킬 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-10916",
+    "identity_name": "거미집 엄지 아비",
+    "passive_id": null,
+    "passive_name": "팔레르모 스파다",
+    "rule_id": "identity-10916:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "보유한 가속탄이 1 이상이면, 스킬 3의 코인 위력 +1, 피해량 +25% / 메인 타겟의 화상 2당, 기본 스킬로 가하는 피해량 +1% (최대 15%) - 메인 타겟에게 보호막이 있으면, 대신 기본 스킬로 가하는 피해량 +3% (최대 45%)"
+  },
+  {
+    "identity_id": "identity-10916",
+    "identity_name": "거미집 엄지 아비",
+    "passive_id": null,
+    "passive_name": "약해 빠진 것들",
+    "rule_id": "identity-10916:p4:r0",
+    "trigger": "TurnEnd",
+    "source_text": "속도가 가장 빠른 아군 1명이 적에게 진동 폭발 시, 다음 턴에 공격 레벨 증가 2 얻음 (턴당 1회) - 엄지 소속의 경우 추가로 신속 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-11001",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "각오",
+    "rule_id": "identity-11001:p0:r0",
+    "trigger": "TurnEnd",
+    "source_text": "이번 턴에 아군이 사망하면 다음 턴에 공격 위력 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-11001",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "앙심",
+    "rule_id": "identity-11001:p1:r0",
+    "trigger": "TurnEnd",
+    "source_text": "정신력이 가장 낮은 아군 1명 다른 아군이 사망하면 다음 턴에 공격 위력 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-11002",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "살수",
+    "rule_id": "identity-11002:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "연결한 죄 중 마지막 죄의 마지막 코인의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-11002",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "살수",
+    "rule_id": "identity-11002:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "연결한 죄 중 마지막 죄의 마지막 코인의 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-11002",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "살수",
+    "rule_id": "identity-11002:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "자신을 제외한 아군의 스킬로 호흡 횟수가 증가할 때 50% 확률로 자신의 호흡 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-11002",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "피 묻힌 손",
+    "rule_id": "identity-11002:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 낮은 아군 1명 마지막 스킬의 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-11003",
+    "identity_name": "남부 츠바이 협회 6과",
+    "passive_id": null,
+    "passive_name": "당신의 방패",
+    "rule_id": "identity-11003:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 조작 패널에서 자신의 양 옆에 있는 캐릭터에게 이번 턴에 수비 위력 증가 2, 보호 1 부여"
+  },
+  {
+    "identity_id": "identity-11003",
+    "identity_name": "남부 츠바이 협회 6과",
+    "passive_id": null,
+    "passive_name": "뚝심",
+    "rule_id": "identity-11003:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 낮은 아군 1명 받는 피해량 -10%"
+  },
+  {
+    "identity_id": "identity-11004",
+    "identity_name": "마리아치 보스",
+    "passive_id": null,
+    "passive_name": "농락",
+    "rule_id": "identity-11004:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명 자신보다 정신력이 낮은 적 공격 시 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11005",
+    "identity_name": "쥐어들 자",
+    "passive_id": null,
+    "passive_name": "광염",
+    "rule_id": "identity-11005:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리, 적 처치 시 회복하는 정신력 50% 감소"
+  },
+  {
+    "identity_id": "identity-11005",
+    "identity_name": "쥐어들 자",
+    "passive_id": null,
+    "passive_name": "광염",
+    "rule_id": "identity-11005:p1:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리, 적 처치 시 회복하는 정신력 50% 감소"
+  },
+  {
+    "identity_id": "identity-11005",
+    "identity_name": "쥐어들 자",
+    "passive_id": null,
+    "passive_name": "광염",
+    "rule_id": "identity-11005:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "생존한 N사 광신도가 자신을 포함하여 5명 이상 있을 때, N사 광신도들의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11005",
+    "identity_name": "쥐어들 자",
+    "passive_id": null,
+    "passive_name": "몰린",
+    "rule_id": "identity-11005:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 낮은 아군 1명의 타격 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11008",
+    "identity_name": "남부 섕크 협회 4과 부장",
+    "passive_id": null,
+    "passive_name": "잠든 살기",
+    "rule_id": "identity-11008:p1:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 모든 아군의 속도가 모든 적보다 높으면, 관통 피해량 증가 1을 얻음"
+  },
+  {
+    "identity_id": "identity-11009",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "스티그마 공방 무기 / 격정",
+    "rule_id": "identity-11009:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신이 스킬로 부여하는 화상 위력 +1 (턴 당 최대 6회 발동)"
+  },
+  {
+    "identity_id": "identity-11009",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "스티그마 공방 무기 / 격정",
+    "rule_id": "identity-11009:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신이 불안정 E.G.O 상태이고, 정신력이 0 이상이면, (자신의 정신력/20)만큼 코인 위력이 증가함. 자신의 정신력이 45면, 대신 코인 위력 +3"
+  },
+  {
+    "identity_id": "identity-11009",
+    "identity_name": "새벽 사무소 해결사",
+    "passive_id": null,
+    "passive_name": "스티그마 공방 무기 / 격정",
+    "rule_id": "identity-11009:p2:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신이 불안정 E.G.O 상태이고, 정신력이 0 이상이면, (자신의 정신력/20)만큼 코인 위력이 증가함. 자신의 정신력이 45면, 대신 코인 위력 +3"
+  },
+  {
+    "identity_id": "identity-11011",
+    "identity_name": "북부 제뱌찌 협회 3과",
+    "passive_id": null,
+    "passive_name": "잠시만 부탁드려요...",
+    "rule_id": "identity-11011:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "퇴각 시, 다음 턴에 아군 둘에게 합 위력 증가 1 부여 (대기 해제된 인격에게 우선으로 부여되며, 그 다음으로는 편성 순서가 빠른 순으로 적용)"
+  },
+  {
+    "identity_id": "identity-11011",
+    "identity_name": "북부 제뱌찌 협회 3과",
+    "passive_id": null,
+    "passive_name": "신속 배달부",
+    "rule_id": "identity-11011:p3:r0",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 빠른 아군 1명이 파열이 부여된 적에게 공격 적중시 방어 레벨 감소 1 부여 (턴 당 적 1명당 최대 3)"
+  },
+  {
+    "identity_id": "identity-11012",
+    "identity_name": "중지 작은 아우",
+    "passive_id": null,
+    "passive_name": "빽",
+    "rule_id": "identity-11012:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상이 중지 소속이면, 공격 레벨 증가 2 추가로 얻음"
+  },
+  {
+    "identity_id": "identity-11014",
+    "identity_name": "흑수 - 유",
+    "passive_id": null,
+    "passive_name": "싸움에 취해보죠",
+    "rule_id": "identity-11014:p0:r0",
+    "trigger": "Hit",
+    "source_text": "파열이 7 이상 부여된 대상에게 적중 시 (최대 공명 수)x15% 확률로 화상 1 부여 (턴 당 4회)"
+  },
+  {
+    "identity_id": "identity-11014",
+    "identity_name": "흑수 - 유",
+    "passive_id": null,
+    "passive_name": "싸움에 취해보죠",
+    "rule_id": "identity-11014:p0:r1",
+    "trigger": "TurnStart",
+    "source_text": "전투 종료시 자신에게 화상이 있으면, 다음 턴 시작시 혈염 [血炎] 1, 분노 피해량 증가 1, 탐식 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11014",
+    "identity_name": "흑수 - 유",
+    "passive_id": null,
+    "passive_name": "투계",
+    "rule_id": "identity-11014:p1:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "스킬로 파열 위력 또는 횟수 부여 시, 화상 1 부여 (턴 당 3회)"
+  },
+  {
+    "identity_id": "identity-11014",
+    "identity_name": "흑수 - 유",
+    "passive_id": null,
+    "passive_name": "혈염도 [血炎刀]",
+    "rule_id": "identity-11014:p2:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "속도가 가장 빠른 아군이 자신의 스킬로 적에게 화상 또는 파열 위력을 부여할 때, 화상, 파열 위력 1 부여 (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-11015",
+    "identity_name": "거미집 소지 제자",
+    "passive_id": null,
+    "passive_name": "정검[整劍]",
+    "rule_id": "identity-11015:p0:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 종료시 자신의 호흡 위력이 20 이상이면, 자신의 호흡 횟수 1 증가"
+  },
+  {
+    "identity_id": "identity-11015",
+    "identity_name": "거미집 소지 제자",
+    "passive_id": null,
+    "passive_name": "정념[靜念]",
+    "rule_id": "identity-11015:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "속도가 가장 빠른 아군 1명이 수비 스킬을 장착하고 전투 시작시 정신력 5 회복, 보호막 5 얻음"
+  },
+  {
+    "identity_id": "identity-11101",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "처형",
+    "rule_id": "identity-11101:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상의 정신력이 0 미만일 때 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11101",
+    "identity_name": "LCB 수감자",
+    "passive_id": null,
+    "passive_name": "군인정신",
+    "rule_id": "identity-11101:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "현재 체력이 가장 높은 아군 1명 정신력이 0 미만인 적 공격 시 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-11102",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "냉정",
+    "rule_id": "identity-11102:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "체력이 25%미만인 적 공격 시 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-11102",
+    "identity_name": "검계 살수",
+    "passive_id": null,
+    "passive_name": "확인사살",
+    "rule_id": "identity-11102:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명 체력이 25% 미만인 적 공격 시 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-11103",
+    "identity_name": "G사 부장",
+    "passive_id": null,
+    "passive_name": "사기진작",
+    "rule_id": "identity-11103:p0:r0",
+    "trigger": "TurnStart",
+    "source_text": "다음 턴 시작 시 자신과 이번 턴에 조작 패널에서 자신의 양옆에 있는 아군에게 신속 2 부여"
+  },
+  {
+    "identity_id": "identity-11103",
+    "identity_name": "G사 부장",
+    "passive_id": null,
+    "passive_name": "각오",
+    "rule_id": "identity-11103:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "현재 체력이 가장 높은 아군 1명 전투 시작 시 수비 위력 증가 1, 공격 위력 증가 1, 보호 1 중 무작위 1개 효과를 얻음"
+  },
+  {
+    "identity_id": "identity-11104",
+    "identity_name": "남부 세븐 협회 6과 부장",
+    "passive_id": null,
+    "passive_name": "약점 파악",
+    "rule_id": "identity-11104:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "상대의 약점이나 취약 속성으로 공격할 때 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11104",
+    "identity_name": "남부 세븐 협회 6과 부장",
+    "passive_id": null,
+    "passive_name": "정보 공유",
+    "rule_id": "identity-11104:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 높은 아군 1명이 상대의 약점이나 취약 속성으로 공격할 때 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11106",
+    "identity_name": "남부 섕크 협회 4과",
+    "passive_id": null,
+    "passive_name": "멘토의 지도",
+    "rule_id": "identity-11106:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명의 속도가 모든 적보다 높으면, 해당 아군의 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-11106",
+    "identity_name": "남부 섕크 협회 4과",
+    "passive_id": null,
+    "passive_name": "멘토의 지도",
+    "rule_id": "identity-11106:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명의 속도가 모든 적보다 높으면, 해당 아군의 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-11106",
+    "identity_name": "남부 섕크 협회 4과",
+    "passive_id": null,
+    "passive_name": "멘토의 지도",
+    "rule_id": "identity-11106:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "효과를 적용받는 아군이 섕크 협회 해결사면, 해당 캐릭터의 관통 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11107",
+    "identity_name": "로보토미 E.G.O:: 마탄",
+    "passive_id": null,
+    "passive_name": "의뢰 작업",
+    "rule_id": "identity-11107:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명의 E.G.O 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11107",
+    "identity_name": "로보토미 E.G.O:: 마탄",
+    "passive_id": null,
+    "passive_name": "의뢰 작업",
+    "rule_id": "identity-11107:p3:r0",
+    "trigger": "CoinHit",
+    "source_text": "정신력이 가장 높은 아군 1명의 E.G.O 스킬의 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11107",
+    "identity_name": "로보토미 E.G.O:: 마탄",
+    "passive_id": null,
+    "passive_name": "의뢰 작업",
+    "rule_id": "identity-11107:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "E.G.O 자원을 7개 이상 소모하는 E.G.O 스킬이면, 추가로 피해량 +5%"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p0:r0",
+    "trigger": "ClashStart",
+    "source_text": "정신력이 -25 미만인 대상과 합 진행 시 합 위력 +1, 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "저택의 메아리가 있는 대상에게 가하는 피해량 +15%"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p0:r2",
+    "trigger": "TurnEnd",
+    "source_text": "모든 코인이 남은 상태로 합 승리 시 정신력 10 회복. 정신력이 이미 최대라면, 다음 턴에 공격 레벨 증가 2 얻음 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p1:r0",
+    "trigger": "ClashStart",
+    "source_text": "정신력이 0 미만인 대상과 합 진행 시 합 위력 +1, 피해량 +20%"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "저택의 메아리가 있는 대상에게 가하는 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "마님의 소리가...!",
+    "rule_id": "identity-11108:p1:r2",
+    "trigger": "TurnEnd",
+    "source_text": "모든 코인이 남은 상태로 합 승리 시 정신력 10 회복. 정신력이 이미 최대라면, 다음 턴에 공격 레벨 증가 3 얻음 (턴 당 2회)"
+  },
+  {
+    "identity_id": "identity-11108",
+    "identity_name": "워더링하이츠 치프 버틀러",
+    "passive_id": null,
+    "passive_name": "버틀러 교육",
+    "rule_id": "identity-11108:p2:r0",
+    "trigger": "ClashStart",
+    "source_text": "정신력이 가장 높은 아군 1명이 정신력이 -25 미만인 대상과 합 진행 시 합 위력 +1"
+  },
+  {
+    "identity_id": "identity-11109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "밑그림",
+    "rule_id": "identity-11109:p3:r0",
+    "trigger": "OnKill",
+    "source_text": "정신력이 가장 낮은 아군 1명이 출혈이 부여된 적 처치 시 정신력 4 회복."
+  },
+  {
+    "identity_id": "identity-11109",
+    "identity_name": "약지 점묘파 스튜던트",
+    "passive_id": null,
+    "passive_name": "밑그림",
+    "rule_id": "identity-11109:p4:r0",
+    "trigger": "OnKill",
+    "source_text": "정신력이 가장 낮은 아군 1명이 출혈이 부여된 적 처치 시 정신력 4 회복."
+  },
+  {
+    "identity_id": "identity-11110",
+    "identity_name": "W사 3등급 정리 요원 팀장",
+    "passive_id": null,
+    "passive_name": "과충전 / 정리 지시",
+    "rule_id": "identity-11110:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "턴 종료 시, 자신을 포함한 W사 직원 (충전)명에게 편성 순서가 가장 뒤인 순으로 다음 턴에 합 위력 증가 1 부여 (최대 부여 대상 수: 5명)"
+  },
+  {
+    "identity_id": "identity-11110",
+    "identity_name": "W사 3등급 정리 요원 팀장",
+    "passive_id": null,
+    "passive_name": "굴절",
+    "rule_id": "identity-11110:p1:r0",
+    "trigger": "TurnStart",
+    "source_text": "턴 시작 시 충전 횟수가 가장 많은 아군 1명의 충전 횟수를 7 이상 소모한 스킬 피해량 +10% (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-11111",
+    "identity_name": "라만차랜드 이발사",
+    "passive_id": null,
+    "passive_name": "그 옷이 아니야!!!",
+    "rule_id": "identity-11111:p0:r0",
+    "trigger": "Hit",
+    "source_text": "적중시 자신의 누적 소모 혈찬 10당, 피해량 +1% (최대 20%)"
+  },
+  {
+    "identity_id": "identity-11111",
+    "identity_name": "라만차랜드 이발사",
+    "passive_id": null,
+    "passive_name": "그 옷이 아니야!!!",
+    "rule_id": "identity-11111:p2:r0",
+    "trigger": "CoinHit",
+    "source_text": "과 합을 할 때, 합 위력 +1."
+  },
+  {
+    "identity_id": "identity-11111",
+    "identity_name": "라만차랜드 이발사",
+    "passive_id": null,
+    "passive_name": "그 옷이 아니야!!!",
+    "rule_id": "identity-11111:p2:r1",
+    "trigger": "Hit",
+    "source_text": "적중시 자신의 누적 소모 혈찬 10당, 피해량 +1.5% (최대 30%)"
+  },
+  {
+    "identity_id": "identity-11111",
+    "identity_name": "라만차랜드 이발사",
+    "passive_id": null,
+    "passive_name": "그 옷이 아니야!!!",
+    "rule_id": "identity-11111:p2:r2",
+    "trigger": "Hit",
+    "source_text": "적중시 대상의 출혈당 피해량 +0.5% (최대 10%)"
+  },
+  {
+    "identity_id": "identity-11111",
+    "identity_name": "라만차랜드 이발사",
+    "passive_id": null,
+    "passive_name": "돈키호테류 경혈 8식 가위",
+    "rule_id": "identity-11111:p3:r1",
+    "trigger": "AttackEnd",
+    "source_text": "속도가 가장 빠른 아군 1명이 공격 종료 시 적이 사망했다면, 다음 턴동안 스킬, 코인 효과로 출혈 위력 부여 시 출혈 횟수 1 증가 (턴 당 최대 3회)"
+  },
+  {
+    "identity_id": "identity-11112",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "흑수화[묘]",
+    "rule_id": "identity-11112:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신에게 각력【묘】가 있고 대상에게 주살【신속】이 있으면 각력【묘】당 가하는 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-11112",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "무리짓는 토끼",
+    "rule_id": "identity-11112:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명이 파열이 있는 대상을 공격할 때, 가하는 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11112",
+    "identity_name": "흑수 - 묘",
+    "passive_id": null,
+    "passive_name": "무리짓는 토끼",
+    "rule_id": "identity-11112:p1:r1",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 신속 1 얻음 (턴 당 최대 1회)"
+  },
+  {
+    "identity_id": "identity-11113",
+    "identity_name": "T사 3등급 강력징수직 직원",
+    "passive_id": null,
+    "passive_name": "황금 시간 - 공진",
+    "rule_id": "identity-11113:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신이 시간 대여 상태면, 자신의 스킬 최종 위력 +1"
+  },
+  {
+    "identity_id": "identity-11113",
+    "identity_name": "T사 3등급 강력징수직 직원",
+    "passive_id": null,
+    "passive_name": "신속 공무 집행",
+    "rule_id": "identity-11113:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 빠른 아군 1명이 흐트러짐 상태인 대상을 공격할 때, 피해량 +10%"
+  },
+  {
+    "identity_id": "identity-11114",
+    "identity_name": "LCA 우제트 선봉 3팀 팀장",
+    "passive_id": null,
+    "passive_name": "선봉대",
+    "rule_id": "identity-11114:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신의 보호 1당, 피해량 5% 증가 (최대 15%)"
+  },
+  {
+    "identity_id": "identity-11114",
+    "identity_name": "LCA 우제트 선봉 3팀 팀장",
+    "passive_id": null,
+    "passive_name": "매의 눈",
+    "rule_id": "identity-11114:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 체력 비율이 제일 낮은 아군 1명에게 다음 턴 보호 1 부여"
+  },
+  {
+    "identity_id": "identity-11115",
+    "identity_name": "거미집 중지 아비",
+    "passive_id": null,
+    "passive_name": "재회 [再會] - 중지",
+    "rule_id": "identity-11115:p3:r3",
+    "trigger": "Hit",
+    "source_text": "피격 시 공격 레벨 증가 1 얻음 (턴당 2회)"
+  },
+  {
+    "identity_id": "identity-11115",
+    "identity_name": "거미집 중지 아비",
+    "passive_id": null,
+    "passive_name": "딸램… 고맙다.",
+    "rule_id": "identity-11115:p4:r2",
+    "trigger": "TurnEnd",
+    "source_text": "해당 스킬로 중지 소속 아군을 처치했을 경우, 다음 턴에 질투 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11115",
+    "identity_name": "거미집 중지 아비",
+    "passive_id": null,
+    "passive_name": "누가 가족을 건드렸나",
+    "rule_id": "identity-11115:p6:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 반격을 장착한 아군이 피해량 증가 1, 보호 1 얻음"
+  },
+  {
+    "identity_id": "identity-11115",
+    "identity_name": "거미집 중지 아비",
+    "passive_id": null,
+    "passive_name": "누가 가족을 건드렸나",
+    "rule_id": "identity-11115:p6:r1",
+    "trigger": "BeforeAttack",
+    "source_text": "효과를 받는 아군이 중지 소속이면, 대신 질투 피해량 증가 2, 보호 2 얻음"
+  },
+  {
+    "identity_id": "identity-11202",
+    "identity_name": "남부 리우 협회 6과",
+    "passive_id": null,
+    "passive_name": "발화",
+    "rule_id": "identity-11202:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "스킬의 3번째 코인부터 적중 시 화상 1 부여"
+  },
+  {
+    "identity_id": "identity-11202",
+    "identity_name": "남부 리우 협회 6과",
+    "passive_id": null,
+    "passive_name": "내달리는 마음",
+    "rule_id": "identity-11202:p1:r0",
+    "trigger": "CoinHit",
+    "source_text": "속도가 가장 낮은 아군 1명 3번째 코인 이후부터 피해량 +30%"
+  },
+  {
+    "identity_id": "identity-11207",
+    "identity_name": "쌍갈고리 해적단 부선장",
+    "passive_id": null,
+    "passive_name": "총알은 비싸다고",
+    "rule_id": "identity-11207:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "상시 적용 : 탄환 7개 보유"
+  },
+  {
+    "identity_id": "identity-11207",
+    "identity_name": "쌍갈고리 해적단 부선장",
+    "passive_id": null,
+    "passive_name": "바람 구멍",
+    "rule_id": "identity-11207:p2:r0",
+    "trigger": "TurnEnd",
+    "source_text": "호흡을 가장 많이 보유한 아군 1명이 적 처치 시 다음 턴에 관통 피해량 증가 1 을 얻음. (턴 당 1회)"
+  },
+  {
+    "identity_id": "identity-11208",
+    "identity_name": "흑운회 부조장",
+    "passive_id": null,
+    "passive_name": "흑운도",
+    "rule_id": "identity-11208:p0:r0",
+    "trigger": "ClashWin",
+    "source_text": "합 승리 시 출혈 1 부여 (턴 당 3회)"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "끝 없는 악몽",
+    "rule_id": "identity-11209:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 이전 턴 시작 시와의 정신력 차이 5 당 피해량 증가 1, 취약 1 얻음 (최대 3)"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "끝 없는 악몽",
+    "rule_id": "identity-11209:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상의 침잠 위력 1 당 피해량 +1% (최대 20%)"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "끝 없는 악몽",
+    "rule_id": "identity-11209:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 이전 턴 시작 시와의 정신력 차이 5 당 피해량 증가 1, 취약 1 얻음 (최대 5)"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "끝 없는 악몽",
+    "rule_id": "identity-11209:p1:r1",
+    "trigger": "CoinHit",
+    "source_text": "대상의 침잠 위력 1 당 피해량 +2% (최대 40%)"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "시달림",
+    "rule_id": "identity-11209:p2:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 1명의 정신력이 7 감소하고, 우울 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11209",
+    "identity_name": "에드가 가문 승계자",
+    "passive_id": null,
+    "passive_name": "시달림",
+    "rule_id": "identity-11209:p3:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 정신력이 가장 낮은 아군 1명의 정신력이 5 감소하고, 우울 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11211",
+    "identity_name": "불주먹 사무소 생존자",
+    "passive_id": null,
+    "passive_name": "나만 살아남아버렸어...",
+    "rule_id": "identity-11211:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "자신이 이번 전투에서 소모한 12구산 연료, 과열 연료당 피해량 +0.2% (최대 40%)"
+  },
+  {
+    "identity_id": "identity-11211",
+    "identity_name": "불주먹 사무소 생존자",
+    "passive_id": null,
+    "passive_name": "나만 살아남아버렸어...",
+    "rule_id": "identity-11211:p0:r1",
+    "trigger": "CoinHit",
+    "source_text": "메인 타겟이 , 거나, 대상의 화상과 화상 횟수의 합이 30 이상이면, 대신 피해량 +0.3% (최대 60%)"
+  },
+  {
+    "identity_id": "identity-11211",
+    "identity_name": "불주먹 사무소 생존자",
+    "passive_id": null,
+    "passive_name": "나만 살아남아버렸어...",
+    "rule_id": "identity-11211:p0:r2",
+    "trigger": "OnKill",
+    "source_text": "12구산 연료, 과열 연료가 1 이상일 때, 화상이 부여된 적을 흐트러짐 상태로 만들거나 처치하면 화상이 없거나 화상 횟수가 가장 낮은 무작위 적 2명의 화상 횟수 2 증가 (턴 당 1 회)"
+  },
+  {
+    "identity_id": "identity-11211",
+    "identity_name": "불주먹 사무소 생존자",
+    "passive_id": null,
+    "passive_name": "저건 우리 사무소의 복장이길...",
+    "rule_id": "identity-11211:p2:r0",
+    "trigger": "Hit",
+    "source_text": "속도가 가장 빠른 인격 1명이 공격 적중 시 대상의 화상 6 당, 분노 피해량 +5% (최대 20%)"
+  },
+  {
+    "identity_id": "identity-11212",
+    "identity_name": "흑수 - 사",
+    "passive_id": null,
+    "passive_name": "흑수화[사]",
+    "rule_id": "identity-11212:p0:r0",
+    "trigger": "CoinHit",
+    "source_text": "대상에게 주살【독】이 있으면, 자신의 사완당 피해량 +5% (최대 15%)"
+  },
+  {
+    "identity_id": "identity-11212",
+    "identity_name": "흑수 - 사",
+    "passive_id": null,
+    "passive_name": "흑수화[사]",
+    "rule_id": "identity-11212:p0:r1",
+    "trigger": "TurnEnd",
+    "source_text": "자신이 주살【독】을 소모시켜 수치를 0으로 만들었으면, 다음 턴에 관통 피해량 증가 1 얻음 (최대 2)"
+  },
+  {
+    "identity_id": "identity-11214",
+    "identity_name": "로보토미 E.G.O:: 램프",
+    "passive_id": null,
+    "passive_name": "등불과 같은 눈",
+    "rule_id": "identity-11214:p0:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 현혹이 부여된 적이 있으면, 정신력 3 회복"
+  },
+  {
+    "identity_id": "identity-11214",
+    "identity_name": "로보토미 E.G.O:: 램프",
+    "passive_id": null,
+    "passive_name": "현혹의 램프",
+    "rule_id": "identity-11214:p1:r3",
+    "trigger": "CoinHit",
+    "source_text": "신속을 얻을 때, 대신 합 위력 증가 1 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-11214",
+    "identity_name": "로보토미 E.G.O:: 램프",
+    "passive_id": null,
+    "passive_name": "E.G.O 장비 숙련 매뉴얼",
+    "rule_id": "identity-11214:p2:r1",
+    "trigger": "TurnEnd",
+    "source_text": "아군 사망 시 다음 턴에 관통 피해량 증가 2 얻음 (턴당 1회)"
+  },
+  {
+    "identity_id": "identity-11214",
+    "identity_name": "로보토미 E.G.O:: 램프",
+    "passive_id": null,
+    "passive_name": "등불과 같은 눈",
+    "rule_id": "identity-11214:p3:r1",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시 현혹이 부여된 적이 있으면, 정신력 5 회복"
+  },
+  {
+    "identity_id": "identity-11214",
+    "identity_name": "로보토미 E.G.O:: 램프",
+    "passive_id": null,
+    "passive_name": "아직 구해야 할 생명이 더 남아있었나",
+    "rule_id": "identity-11214:p4:r2",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 타격 피해량 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p0:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시, 자신의 충전 횟수 10 증가 (전투당 1회)"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p0:r6",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 자신보다 편성 순서가 빠른 아군의 충전 횟수 2 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p0:r8",
+    "trigger": "BeforeAttack",
+    "source_text": "자신의 충전이 3 이상이면, 대신 아군의 충전 횟수 4 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p0:r9",
+    "trigger": "BeforeAttack",
+    "source_text": "전장에 자신보다 편성 순서가 빠른 아군이 없으면, 대신 자신의 충전 횟수 4 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p1:r0",
+    "trigger": "CombatStart",
+    "source_text": "전투 시작 시, 자신의 충전 횟수 5 증가 (전투당 1회)"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p1:r6",
+    "trigger": "TurnEnd",
+    "source_text": "다음 턴에 자신보다 편성 순서가 빠른 아군의 충전 횟수 2 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p1:r8",
+    "trigger": "BeforeAttack",
+    "source_text": "자신의 충전이 3 이상이면, 대신 아군의 충전 횟수 4 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "앞으로 나서게. 지원하도록 하지.",
+    "rule_id": "identity-11215:p1:r9",
+    "trigger": "BeforeAttack",
+    "source_text": "전장에 자신보다 편성 순서가 빠른 아군이 없으면, 대신 자신의 충전 횟수 4 증가"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "끈질긴 생명력",
+    "rule_id": "identity-11215:p2:r0",
+    "trigger": "BeforeAttack",
+    "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음"
+  },
+  {
+    "identity_id": "identity-11215",
+    "identity_name": "LCE E.G.O:: AEDD",
+    "passive_id": null,
+    "passive_name": "교류 방출 지원",
+    "rule_id": "identity-11215:p3:r1",
+    "trigger": "CoinHit",
+    "source_text": "자신과 해당 아군 전부 공격 레벨 증가 1 얻음"
+  },
+  {
+    "identity_id": "identity-11216",
+    "identity_name": "새벽 사무소 대표",
+    "passive_id": null,
+    "passive_name": "새벽녘의 해결사",
+    "rule_id": "identity-11216:p0:r2",
+    "trigger": "CoinHit",
+    "source_text": "화상 효과로 받는 피해량 -50%"
+  },
+  {
+    "identity_id": "identity-11216",
+    "identity_name": "새벽 사무소 대표",
+    "passive_id": null,
+    "passive_name": "새벽녘의 해결사",
+    "rule_id": "identity-11216:p0:r3",
+    "trigger": "CoinHit",
+    "source_text": "체력이 50% 미만이면 효과가 강화되어, 화상 효과로 받는 피해량 -75%"
+  },
+  {
+    "identity_id": "identity-11216",
+    "identity_name": "새벽 사무소 대표",
+    "passive_id": null,
+    "passive_name": "스티그마 공방 의체",
+    "rule_id": "identity-11216:p3:r0",
+    "trigger": "Hit",
+    "source_text": "현재 체력이 가장 많은 아군이 화상이 있는 적에게 공격 적중 시, 진동 2 부여 (턴당 1회)"
+  }
+]

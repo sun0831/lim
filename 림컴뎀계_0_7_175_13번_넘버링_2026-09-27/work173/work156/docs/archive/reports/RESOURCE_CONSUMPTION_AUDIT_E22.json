@@ -1,0 +1,1212 @@
+{
+  "source": "RESOURCE_PRIMITIVE_DECOMPOSITION_E18.json",
+  "input_records": 92,
+  "classification_counts": {
+    "cumulative_spend_reward": 13,
+    "consume_trigger": 24,
+    "consume_condition": 8,
+    "direct_consume_effect": 13,
+    "consume_tracking_modifier": 14,
+    "consume_conversion": 7,
+    "consume_during_action": 13
+  },
+  "clauses": [
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "passive_name": "소중한 작품 파시아",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 생체 재료 횟수 10을 소모할 때마다 생체 재료를 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "passive_name": "일생의 작품 티비아",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 생체 재료 횟수 10을 소모할 때마다 생체 재료를 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "돛대",
+      "kind": "resource_consume",
+      "text": "탄환을 가장 적게 보유한 아군 1명이 코인에서 마지막 탄환을 소모하면, 코인의 공격 종료 시, 각 대상에게 해당 코인의 공격으로 입힌 피해량의 50%만큼 추가 피해를 줌. (소수점 반올림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "돛대",
+      "kind": "resource_consume",
+      "text": "탄환을 가장 적게 보유한 아군 1명이 탄환을 소모하는 스킬을 사용할 때, 호흡 3 부여. (턴 당 1회. 탄환이 없는 대상에게는 적용되지 않음)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "돛대",
+      "kind": "resource_consume",
+      "text": "탄환을 가장 적게 보유한 아군 1명이 코인에서 마지막 탄환을 소모하면, 코인의 공격 종료 시, 각 대상에게 해당 코인의 공격으로 입힌 피해량의 50%만큼 추가 피해를 줌. (소수점 반올림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "kind": "resource_consume",
+      "text": "적을 처치하면 자신과 충전 횟수가 가장 적은 아군 2명이 (2 + 충전)만큼 충전 횟수 증가 (최대 5, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "kind": "resource_consume",
+      "text": "기본 공격 스킬 또는 반격 스킬 공격 종료 시, 대상의 복수 대상을 전부 소모",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "kind": "resource_consume",
+      "text": "적의 복수 대상을 소모할 때마다, 그 수치만큼 앙갚음 장부 [싱클레어] 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "kind": "resource_consume",
+      "text": "기본 공격 스킬 또는 반격 스킬 공격 종료 시, 대상의 복수 대상을 전부 소모",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "kind": "resource_consume",
+      "text": "적의 복수 대상을 소모할 때마다, 그 수치만큼 앙갚음 장부 [싱클레어] 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11009",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "불안정한 자아의 껍질",
+      "kind": "resource_consume",
+      "text": "턴 시작 시 정신력이 40 이상이면, 정신력을 20 소모하여 불안정 E.G.O::밀랍날개 상태가 됨. (이후 턴 시작 시 효과가 추가로 발동되지 않음)",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-11211",
+      "identity_name": "불주먹 사무소 생존자",
+      "passive_name": "나만 살아남아버렸어...",
+      "kind": "resource_consume",
+      "text": "자신이 이번 전투에서 소모한 12구산 연료, 과열 연료당 피해량 +0.2% (최대 40%)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "kind": "resource_consume",
+      "text": "적을 처치하면 자신과 충전 횟수가 가장 적은 아군 1명이 충전만큼 충전 횟수 증가 (최대 3, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10106",
+      "identity_name": "W사 3등급 정리 요원",
+      "passive_name": "비워낸 생각",
+      "kind": "resource_consume",
+      "text": "자신이 스킬로 충전 횟수를 소모할 때, 현재 체력 비율이 가장 낮은 아군 1명에게 충전 역장 3 부여",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10106",
+      "identity_name": "W사 3등급 정리 요원",
+      "passive_name": "비워낸 생각",
+      "kind": "resource_consume",
+      "text": "자신이 스킬로 충전 횟수를 소모할 때, 현재 체력 비율이 가장 낮은 아군 1명에게 충전 역장 3 부여",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "아류 산초 경혈식",
+      "kind": "resource_consume",
+      "text": "자신을 제외한 아군이 출혈 피해를 받거나 혈찬을 소모할 때, 경혈 2 얻음 (턴 당 3회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10404",
+      "identity_name": "료. 고. 파. 주방장",
+      "passive_name": "즉흥 조리",
+      "kind": "resource_consume",
+      "text": "갈증 이 있는 경우 전부 소모하고, 소모한 갈증 에 비례하여 체력 회복량 증가.",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "제세동",
+      "kind": "resource_consume",
+      "text": "편성 순서가 제일 빠른 아군 둘이 턴 종료 시 이번 턴에 각자의 공격 스킬을 사용하여 소모한 충전 횟수와 소모한 특수 충전의 합만큼 각자의 체력을 회복 (최대 10)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "제세동",
+      "kind": "resource_consume",
+      "text": "편성 순서가 제일 빠른 아군 셋이 턴 종료 시 이번 턴에 각자의 공격 스킬을 사용하여 소모한 충전 횟수와 소모한 특수 충전의 합만큼 각자의 체력을 회복 (최대 10)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10116",
+      "identity_name": "LCE E.G.O::차원찢개",
+      "passive_name": "뚫린 골목",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10 소모할 때마다 충전 위력 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10116",
+      "identity_name": "LCE E.G.O::차원찢개",
+      "passive_name": "뚫린 골목",
+      "kind": "resource_consume",
+      "text": "자신을 제외한 아군의 스킬이 적에게 적중하면, 해당 공격 종료시 차원 표류를 1 소모하여 대상에게 '차원 베기'를 발동한 후, 사색 차원 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11110",
+      "identity_name": "W사 3등급 정리 요원 팀장",
+      "passive_name": "과충전 / 정리 지시",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전을 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "앞으로 나서게. 지원하도록 하지.",
+      "kind": "resource_consume",
+      "text": "초과한 충전 횟수를 최대 8까지 소모하고 이 효과로 소모한 수치의 절반만큼 아군 1명의 충전 횟수 증가 (소수점 올림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "앞으로 나서게. 지원하도록 하지.",
+      "kind": "resource_consume",
+      "text": "초과한 충전 횟수를 최대 8까지 소모하고 이 효과로 소모한 수치의 절반만큼 아군 1명의 충전 횟수 증가 (아군 충전 횟수 최소 1 증가, 소수점 버림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "kind": "resource_consume",
+      "text": "산나비·죽은나비를 소모할 때, 해당 효과의 산나비(위력)와 죽은나비(횟수)를 무작위로 소모.",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "kind": "resource_consume",
+      "text": "나비를 부여할 때, 해당 코인에서 소모한 산나비·죽은나비에 따라 부여.",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "kind": "resource_consume",
+      "text": "산나비를 소모했으면, 소모한 값만큼 산나비를 부여.",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "kind": "resource_consume",
+      "text": "죽은나비를 소모했으면, 소모한 값만큼 죽은나비를 부여.",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10113",
+      "identity_name": "N사 E.G.O:: 흉탄",
+      "passive_name": "흉탄",
+      "kind": "resource_consume",
+      "text": "자신의 E.G.O 흉탄을 사용하여, 찢어진 추억이 소모되면, 턴 종료 시 소모한만큼 다음 턴에 찢어진 추억을 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "passive_name": "채워지지 않는 공허",
+      "kind": "resource_consume",
+      "text": "자신의 공격 종료시 탄환 - 고독이 0이면, 대상을 '멈추지 않는 이야기'로 일방공격하고 정신력을 10 소모하여 재장전",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "맹호의 도약",
+      "kind": "resource_consume",
+      "text": "속도가 가장 빠른 아군 1명이 탄환을 소모하는 스킬 사용 시 대상보다 속도가 3 이상 높다면, 가하는 피해량 +(대상과의 속도 차이 x 2)% (최대 10%)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "맹호의 도약",
+      "kind": "resource_consume",
+      "text": "속도가 가장 빠른 아군 1명이 탄환을 소모하는 스킬 사용 시 대상보다 속도가 3 이상 높다면, 가하는 피해량 +(대상과의 속도 차이 x 3)% (최대 15%)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "구원의 손",
+      "kind": "resource_consume",
+      "text": "아군의 스킬 적중 시 대상의 침잠을 2 소모하여 나비 1 부여 (턴 당 3회)",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "해금/개화 E.G.O::대행",
+      "kind": "resource_consume",
+      "text": "해금 - I을 얻으면, 정신력을 15 소모하여 개화 E.G.O::대행 상태가 됨",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "해금/개화 E.G.O::대행",
+      "kind": "resource_consume",
+      "text": "정신력 소모 전 정신력이 25까지 증가하고 (증가한 정신력/5)만큼 카르마 얻음 (소수점 올림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "해금/개화 E.G.O::대행",
+      "kind": "resource_consume",
+      "text": "정신력을 15 소모하여 해당 상태가 됨",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "삽시호 [揷翅虎]",
+      "kind": "resource_consume",
+      "text": "호표탄, 맹호표탄을 소모하는 코인을 굴릴 때, 해당 특수 탄환이 없는 경우에도 공격을 취소하지 않는 대신 해당 코인의 적중 시 화상 부여, 화상 횟수 증가 효과가 발동하지 않음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "삽시호 [揷翅虎]",
+      "kind": "resource_consume",
+      "text": "자신이 소모한 호표탄과 맹호표탄의 합이 8 이상이면, 천퇴성[天退星]이 신(心) - 천퇴성[天退星]으로 변경",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "삽시호 [揷翅虎]",
+      "kind": "resource_consume",
+      "text": "맹호표탄의 마지막 탄환을 소모하는 기본 공격 스킬을 사용할 경우,",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "왕자였던 자가 해야하는 일",
+      "kind": "resource_consume",
+      "text": "피해로 인한 흐트러짐 상태일 때, 흐트러짐 해제하고 경혈 갑주 전부 소모 (스테이지 및 인격당 1회, 강제 흐트러짐 제외)",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "듀라한",
+      "kind": "resource_consume",
+      "text": "듀라한에 탑승할 때마다 정신력 5 소모",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "교류 방출 지원",
+      "kind": "resource_consume",
+      "text": "그레고르의 E.G.O인 AEDD의 패시브 효과로 충전 횟수를 소모할 때 자신의 충전 횟수가 12 이하면, 앞면 적중 시 자신의 충전 횟수 2를 소모하는 대신, 보호막 또는 체력을 4씩 감소하여 효과 발동",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10814",
+      "identity_name": "거미집 중지 제자",
+      "passive_name": "중지는 잊지 않는다구요",
+      "kind": "resource_consume",
+      "text": "자신이 중지 - 원한을 5 소모할 때마다 중지식 강화 문신 1 얻음 (턴당 2회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10814",
+      "identity_name": "거미집 중지 제자",
+      "passive_name": "중지는 잊지 않는다구요",
+      "kind": "resource_consume",
+      "text": "자신이 중지 - 원한을 5 소모할 때마다 중지식 강화 문신 1 얻음 (턴당 2회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "kind": "resource_consume",
+      "text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 3개) (전투당 1회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "kind": "resource_consume",
+      "text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 5개) (전투당 1회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "앙갚음 장부 - 거미집 특별 조항",
+      "kind": "resource_consume",
+      "text": "자신이 중지 - 원한을 5 소모할 때마다 중지 - 원한 문신 [큰 누님] 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "경혈의 가시",
+      "kind": "resource_consume",
+      "text": "자신을 제외한 아군이 출혈 피해를 받거나 혈찬을 소모할 때마다, 자신이 피어나는 가시 1 얻음 (턴 당 최대 5회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "총검술",
+      "kind": "resource_consume",
+      "text": "스킬이나 패시브로 작열 추진탄을 소모했다면, 다음 턴에 소모한 만큼 피해량 증가를 얻음 (최대 3)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "총검술",
+      "kind": "resource_consume",
+      "text": "작열 추진탄을 소모하는 코인을 굴릴 때, 작열 추진탄이 없는 경우에도 공격이 취소되지 않는 대신 해당 코인의 적중 시 화상 부여, 화상 횟수 증가 효과가 발동하지 않음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11114",
+      "identity_name": "LCA 우제트 선봉 3팀 팀장",
+      "passive_name": "호루스의 셉터 - 레플리카",
+      "kind": "resource_consume",
+      "text": "LCA 균열탄을 소모한 경우, 소모한 LCA 균열탄만큼 추가 부여",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "kind": "resource_consume",
+      "text": "탄환이 없는 경우, 대신 크리티컬 적중 시 부당 수익을 전부 소모하여, 피해량의 (5 x 소모한 부당 수익)% 만큼 추가 피해를 줌.",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "passive_name": "사랑과 증오의 이름으로 - !E.G.O 장비 동기화율 초과주의!",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 사랑/증오 횟수 10을 소모할 때마다, 사랑/증오 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "passive_name": "사랑과 증오의 이름으로 - !E.G.O 장비 동기화율 초과주의!",
+      "kind": "resource_consume",
+      "text": "자신의 기본 공격 스킬의 정신력 소모 효과에 의해서 정신력이 -40 미만으로 내려가지 않음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "kind": "resource_consume",
+      "text": "기본 공격 스킬로 적의 시선 또는 경멸을 소모했다면,",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "kind": "resource_consume",
+      "text": "다음 턴에 (소모한 적의 시선/2 + 소모한 적의 경멸x3)만큼 경멸의 시선 획득 (턴 당 최대 6. 소수점 버림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "kind": "resource_consume",
+      "text": "기본 공격 스킬로 적의 시선 또는 경멸을 소모했다면,",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "kind": "resource_consume",
+      "text": "다음 턴에 (소모한 적의 시선/2 + 소모한 적의 경멸x3)만큼 경멸의 시선 획득 (턴 당 최대 6. 소수점 버림)",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "부수고, 찢어, 꿰뚫는다",
+      "kind": "resource_consume",
+      "text": "꿰뚫는 검을 보유하였다면, 기본 공격 스킬을 사용하여 적에게 적중 전에 꿰뚫는 검 1을 소모하여 침잠 1 부여",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "부수고, 찢어, 꿰뚫는다",
+      "kind": "resource_consume",
+      "text": "이번 턴에 마지막으로 사용하는 기본 공격 스킬의 마지막 코인 적중 전에 남은 꿰뚫는 검이 2 이상이면, 대신 전부 소모하여 그 수치만큼 침잠 부여",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "부수고, 찢어, 꿰뚫는다",
+      "kind": "resource_consume",
+      "text": "눈물 벼리기를 3개 보유하였다면, 기본 공격 스킬을 사용하여 적에게 마지막 코인 적중 전에 눈물 벼리기를 전부 소모하여 침잠 3, 침잠 횟수 3을 부여하고 해당 코인의 피해량 +50%",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "마왕의 부름",
+      "kind": "resource_consume",
+      "text": "전투 중 아군 1명이 사망에 이르는 피해를 받았을 때, 관 2를 소모하여 와일드헌트를 부여 (턴 당 1회)",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "마왕의 부름",
+      "kind": "resource_consume",
+      "text": "전투 중 아군 1명이 사망에 이르는 피해를 받았을 때, 관 2를 소모하여 와일드헌트를 부여 (턴 당 2회)",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "배신 당한 기사의 속삭임",
+      "kind": "resource_consume",
+      "text": "(※ 정신력 피해에만 적용되며, 정신력이 변경되거나 E.G.O 스킬 사용과 같이 정신력을 소모하는 경우에는 적용되지 않음)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "포자 확산",
+      "kind": "resource_consume",
+      "text": "기본 공격 스킬로 처치 시 (해당 스킬에서 소모하는 포자탄 / 2)만큼 포자탄 획득 (소수점 올림, 스킬당 1회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "감적수",
+      "kind": "resource_consume",
+      "text": "탄환을 가장 적게 보유한 아군 1명이 탄환을 소모하는 스킬을 사용할 때, 호흡 횟수 2 증가",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "경혈의 가시",
+      "kind": "resource_consume",
+      "text": "자신을 제외한 아군이 출혈 피해를 받거나 혈찬을 소모할 때마다, 자신이 피어나는 가시 1 얻음 (턴 당 최대 3회)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "혈찬",
+      "kind": "resource_consume",
+      "text": "혈찬을 소모할 때,  소속 중에서 자신과 같은 권속이 있으면, 자신이 먼저 혈찬을 소모함.",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "호표탄을 소모하는 스킬 코인 위력 +1, 피해량 +10% (소모 가능한 만큼만 적용)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "0 이면 기본 공격 스킬의 특수 탄환을 소모할 수 있는 코인이 파괴 불가 코인으로 변경",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "맹호표탄을 소모하는 스킬 코인 위력 +2, 피해량 +30%, 해당 코인으로 적중 시 부여하는 화상 위력과 화상 횟수 부여값 +2 (소모 가능한 만큼만 적용)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10713",
+      "identity_name": "W사 4등급 정리 요원 - CCA",
+      "passive_name": "방어지향 충전",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "kind": "resource_consume",
+      "text": "탄환 소모하는 코인 적중 시 부당 수익을 전부 소모하여, 피해량의 (25 x 소모한 부당 수익)% 만큼 추가 피해를 줌.",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "kind": "resource_consume",
+      "text": "탄환이 없는 경우, 대신 크리티컬 적중 시 부당 수익을 전부 소모하여, (5 x 소모한 부당 수익)%만큼 추가 피해를 줌",
+      "confidence": "medium",
+      "evidence": [
+        "consumed amount reused as parameter"
+      ],
+      "classification": "consume_tracking_modifier",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10705",
+      "identity_name": "로보토미 E.G.O:: 여우비",
+      "passive_name": "눈물비",
+      "kind": "resource_consume",
+      "text": "전투 시작 시 침잠 횟수를 1 소모하여 침잠 만큼 정신력 감소",
+      "confidence": "medium",
+      "evidence": [
+        "direct consume operation"
+      ],
+      "classification": "direct_consume_effect",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "kind": "resource_consume",
+      "text": "포자탄을 소모하는 코인 적중 시",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "kind": "resource_consume",
+      "text": "포자탄[기본]을 소모했으면, 포자 2 부여",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "kind": "resource_consume",
+      "text": "포자탄[산탄]을 소모했으면, 포자 3 부여",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "kind": "resource_consume",
+      "text": "포자탄[산탄]을 소모하는 코인 사용 전 포자탄[산탄]이 없으면,",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "kind": "resource_consume",
+      "text": "정신력 2, 포자탄[기본] 2 소모하여, 포자탄[산탄] 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption-to-new-state/resource"
+      ],
+      "classification": "consume_conversion",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "제압 사격",
+      "kind": "resource_consume",
+      "text": "탄환을 가장 많이 보유한 아군 인격이 탄환을 소모하는 스킬로 가하는 피해량 +10%",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파 충전 집속 뿔",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파 충전 집속 뿔",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "집중",
+      "kind": "resource_consume",
+      "text": "탄환을 소모하는 코인을 굴릴 때, 탄환이 없는 경우에도 해당 코인의 적중시 효과를 부여하지 않는 대신 공격이 취소되지 않음",
+      "confidence": "medium",
+      "evidence": [
+        "consumption event causes downstream effect"
+      ],
+      "classification": "consume_trigger",
+      "primitive": "resource_consume_trigger"
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "성탄절 장식된 뿔",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "성탄절 장식된 뿔",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "끈질긴 생명력",
+      "kind": "resource_consume",
+      "text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음",
+      "confidence": "medium",
+      "evidence": [
+        "cumulative-spend marker"
+      ],
+      "classification": "cumulative_spend_reward",
+      "primitive": "cumulative_resource_gain"
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "호표탄을 소모하는 스킬 코인 위력 +1 (소모 가능한 만큼만 적용)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "0 이면 기본 공격 스킬의 특수 탄환을 소모할 수 있는 코인이 파괴 불가 코인으로 변경",
+      "confidence": "medium",
+      "evidence": [
+        "consumption tied to action/coin"
+      ],
+      "classification": "consume_during_action",
+      "primitive": null
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "kind": "resource_consume",
+      "text": "맹호표탄을 소모하는 스킬 코인 위력 +2 (소모 가능한 만큼만 적용)",
+      "confidence": "medium",
+      "evidence": [
+        "consumption used as predicate/fallback"
+      ],
+      "classification": "consume_condition",
+      "primitive": null
+    }
+  ],
+  "method": "conservative semantic audit; classification is not end-to-end execution proof"
+}

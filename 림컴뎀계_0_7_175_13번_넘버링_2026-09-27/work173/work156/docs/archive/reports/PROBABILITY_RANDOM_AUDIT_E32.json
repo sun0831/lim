@@ -1,0 +1,257 @@
+{
+  "axis": "probability_random",
+  "record_count": 30,
+  "unique_source_text_count": 29,
+  "classification_counts": {
+    "random_target": 13,
+    "random_choice_without_explicit_probability": 11,
+    "probabilistic_effect": 3,
+    "per_coin_random_outcome": 1,
+    "probabilistic_trigger_or_reuse": 1,
+    "non_probability_clause_overlap": 1
+  },
+  "new_dedicated_runtime_confirmed": false,
+  "important_contract_gap": "per_coin_random_outcome",
+  "rows": [
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "passive_name": "앙갚음 장부",
+      "classification": "random_target",
+      "source_text": "자신 또는 중지 소속의 아군 인격이 적에게 피격 시, 대상에게 복수 대상을 1 부여하고 앙갚음 장부 [히스클리프] 1 얻음 (스킬당 1회)\n아군 인격 사망시, 앙갚음 장부 [히스클리프] 3 얻음\n\n턴 시작시 자신의 원한 문신이 15 이상이면 아래 효과 적용\n- 기본 스킬 하나를 ‘전원, 처형이다!!’로 변경 (가장 왼쪽 슬롯의 아래 스킬 우선 적용)\n· 변경된 스킬이 다른 스킬로 변경되어 사용할 수 없게 되면, 위 효과를 다시 발동함\n- 이번 턴이 종료될 때까지 전투 BGM을 변경 (일부 전투 제외)\n\n대기 해제 또는 복귀로 등장한 턴의 전투 시작시, ‘내 헤어쿠포오오오온!!!!'을 무작위 대상에게 사용함\n- 해당 공격 종료 시 모든 아군 중지 인격에게 공격 레벨 증가 1, 방어 레벨 증가 1 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "시공간 잔상 분열",
+      "classification": "random_target",
+      "source_text": "무작위 대상 1명에게 잔영 부여 (집중 전투인 경우, 본체로 판정)\n- 사망한 아군 거미집 소속 인격 3명당, 추가로 무작위 적 1명에게 잔영 부여 (최대 3개 생성)\n- 전투 시작 시 잔영이 부여된 적을 기본 공격 스킬 메인 타겟으로 지정했으면, 해당 스킬 사용 전 '필연쇄 [必然殺]'로 일방 공격함 (턴당 1회)\n- 잔영을 보유한 대상에게 기본 공격 스킬 사용시,\n· 해당 스킬 코인이 모두 파괴 불가 코인으로 변경되고, 최종 위력 +1\n· 얽힘 1 얻음 (턴당 1회)",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "단말기로 전해진 지령",
+      "classification": "random_target",
+      "source_text": "턴 시작 시,\n- 자신의 해금 단계에 따라 지령[단말기] I/지령[단말기] II/지령[단말기] III/지령[단말기] IV 얻음\n- 무작위 적 1명에게 지령 대상 부여 (집중 전투면, 부위에 부여)\n- 조작 슬롯의 자신의 기본 공격 스킬에 지령 표식 부여 (슬롯당 1개, 최대 2개 부여)\n· 해금 - II 이상이면, 스킬 3에 우선 부여 (강화된 스킬 우선)\n- 흐트러짐, 행동 불가, 패닉, E.G.O 침식 상태면, 위의 모든 효과와 지령 수행 여부가 적용되지 않음",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10613",
+      "identity_name": "홍원 군주",
+      "passive_name": "더러운 피마저 받아들이고, 누군가의 피를 묻혀가며 뜻을 이룬다.",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "전투 시작시 자신이 수비스킬을 장착하지 않고 일방공격 당할 예정이면, 원호 방어 수치가 가장 낮은 무작위 흑수 아군 (최대 공명 수 / 3)명에게 호위 1 부여. (최대 2명, 인격 당 1회. 원호 방어를 획득하는 스킬 보유 인격 제외)\n\n이번 전투에서 체력이 0이 되는 피해를 받았을 때, 해당 피해를 받지 않고 해당 턴 동안 체력이 1로 유지되며, 오혈 1 얻음 (전투 당 1회)\n\n자신의 오혈 1 당 스킬 피해량 +3%\n\nE.G.O 스킬 ‘오혈읍루 - 종’ 발동 시, 공격 종료시 사망 효과가 발동하지 않고 최대 체력의 60% 회복. 다음 턴부터 매 턴 시작시마다 피해량 증가 1 얻음 (전투 당 1회)",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "신탁 단말기 [카두세우스]",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "기본 공격 스킬의 코인마다 무기가 무작위로 정해져 특수한 효과가 적용됨\n- 손도끼로 갈비뼈를 찍어 내릴 때는…\n- 스틸레토로 허파를 꿰뚫을 때는…\n- 바스타드 소드로 어깨와 머리를 짓이길 때는…\n- 레이피어로 몸에 10개 이상의 구멍을 내야할 때는…\n- 망치로 뒤통수를 으깨야 할 때는…\n- 커다란 검으로 몸통을 갈라야 할 때는…\n- 랜스로 20인치의 구멍을 내야 할 때는…\n- 채찍으로 살점을 만 갈래 떼어내야 할 때는…\n- 낫으로… 누군가처럼 공간을 따라 베어내야 할 때는…\n\n지령 표식 스킬 사용 시, 대행 [헤르메스] 1 얻음\n\n이번 전투에서 ‘Furioso-Replica’를 처음 사용하였다면,\n해당 턴 종료 시 상처를 가린 가면이 이글거리는 상처로 변경됨\n\n턴 시작 시 이글거리는 상처를 보유 중일 때,\n조작 슬롯에 ‘Furioso-Replica’가 있으면 지령 탐닉 얻음",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-11211",
+      "identity_name": "불주먹 사무소 생존자",
+      "passive_name": "나만 살아남아버렸어...",
+      "classification": "random_target",
+      "source_text": "자신이 이번 전투에서 소모한 12구산 연료, 과열 연료당 피해량 +0.2% (최대 40%)\n- 메인 타겟이 , 거나, 대상의 화상과 화상 횟수의 합이 30 이상이면, 대신 피해량 +0.3% (최대 60%)\n\n12구산 연료, 과열 연료가 1 이상일 때, 화상이 부여된 적을 흐트러짐 상태로 만들거나 처치하면 화상이 없거나 화상 횟수가 가장 낮은 무작위 적 2명의 화상 횟수 2 증가 (턴 당 1 회)\n- 집중 전투인 경우 부위에 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10813",
+      "identity_name": "정사무소 대표",
+      "passive_name": "코이코이[こいこい]",
+      "classification": "probabilistic_effect",
+      "source_text": "턴 시작시 광【光】이 없으면, 광【光】 위력 0, 횟수 3 얻음\n\n턴 시작시 ‘짝패’가 없으면, 짝패 - 송학, 짝패 - 억새, 짝패 - 청벚꽃 중 자신의 가장 왼쪽 슬롯의 기본 공격 스킬에 대응되는 무작위 ‘짝패’ 얻음\n\n전투 시작시 자신의 가장 왼쪽 슬롯에 장착한 기본 공격 스킬 또는 E.G.O 스킬이 사용될 때 아래 효과 적용 (턴당 1회)\n- 다음 턴에 해당 스킬에 대응되는 ‘짝패’로 변경\n- '사쿠라센' 또는 E.G.O 스킬이면, 광【光】 위력 1 얻음\n- 해당 스킬 속성이 ‘짝패’와 일치하면, 아래 효과 적용\n  · 광【光】 위력 1 얻음\n  · 이전 턴과 연속으로 ‘짝패’가 일치했으면, 광【光】 위력 1 얻음\n  · 해당 스킬 적중 시 진동 폭발. 대상의 진동 횟수 1 감소\n  · 25% 확률로 해당 스킬 속성의 E.G.O 자원 1 얻음\n- 해당 스킬 종료 시 광【光】 위력이 5거나, 횟수가 0이면, '코오쟌' 발동",
+      "existing_primitive": "ProbabilisticTriggerRuntime + Effect/Condition"
+    },
+    {
+      "identity_id": "identity-10214",
+      "identity_name": "검지 수행자: 【쪽지】",
+      "passive_name": "쪽지로 전해진 지령",
+      "classification": "random_target",
+      "source_text": "턴 시작 시\n- 자신의 지령의 가호 수치에 따라 지령[쪽지] I / 지령[쪽지] II / 지령[쪽지] III /지령[쪽지] IV 얻음\n- 무작위 적 1명에게 지령 대상 부여 (집중 전투면, 부위에 부여)\n- 조작 슬롯의 자신의 기본 공격 스킬에 지령 표식 부여 (슬롯당 1개, 최대 2개 부여)\n· 지령의 가호가 6 이상이면, 스킬 3에 우선 부여\n- 흐트러짐, 행동 불가, 패닉, E.G.O 침식 상태면, 위의 모든 효과와 지령 수행 여부가 적용되지 않음",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "단말기로 전해진 지령",
+      "classification": "random_target",
+      "source_text": "턴 시작 시\n- 자신의 해금 단계에 따라 지령[단말기] I / 지령[단말기] II / 지령[단말기] III / 지령[단말기] IV 얻음\n- 무작위 적 1명에게 지령 대상 부여 (집중 전투면, 부위에 부여)\n- 조작 슬롯의 자신의 기본 공격 스킬에 지령 표식 부여 (슬롯당 1개, 최대 2개 부여)\n· 해금 - II 이상이면, 스킬 3에 우선 부여\n- 흐트러짐, 행동 불가, 패닉, E.G.O 침식 상태면, 위의 모든 효과와 지령 수행 여부가 적용되지 않음\n\n턴 시작 시 해금 - III이면, 신(心) - 대행 얻음",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10613",
+      "identity_name": "홍원 군주",
+      "passive_name": "흑수군주",
+      "classification": "random_target",
+      "source_text": "자신을 제외한 아군 인격이 대기해제 또는 복귀했으면, 정신력을 10 회복하고, 전투 시작시 스킬 1로 무작위 대상에게 일방공격 명령\n- 해당 아군이 흑수 또는 가씨 가문 소속이면 대신 정신력을 20 회복하고, 전투 시작시 기본 스킬 3으로 무작위 대상에게 일방공격 명령 (인격 당 전투 당 2회)\n\n스테이지 시작 시, 대기 인원을 포함하여 편성된 흑수 인격 1명 당 모든 흑수의 주인 1 얻음\n\n전투에서 흑수 인격이 사망 시, 정신력을 20 회복하고, 사중구활[死中求活] 버프 1 얻음\n(자신이 퇴각 상태여도 적용)\n흑수환염[黑獣丸染] 1 당 피해량 +5% (최대 55%)",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10915",
+      "identity_name": "약지 야수파 도슨트",
+      "passive_name": "지도 편달",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "턴 시작시 (전장에 있는 스튜던트 인격 수)만큼 경의를 얻음 (전투당 1회)\n\n턴 시작 시 무작위 약지 스튜던트 인격 2명에게 공격 레벨 증가나 방어 레벨 증가 효과를 (전장에 있는 스튜던트 인격 수)만큼 무작위로 부여 (전투당 1회, 최대 부여량 2개, 야수파 스튜던트 우선 적용)",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "classification": "per_coin_random_outcome",
+      "source_text": "전투 시작 시 산나비·죽은나비를 각각 10씩 보유함.\n\n 산나비·죽은나비를 소모할 때, 해당 효과의 산나비(위력)와 죽은나비(횟수)를 무작위로 소모.\n\n나비를 부여할 때, 해당 코인에서 소모한 산나비·죽은나비에 따라 부여.\n- 산나비를 소모했으면, 소모한 값만큼 산나비를 부여.\n- 죽은나비를 소모했으면, 소모한 값만큼 죽은나비를 부여.\n\n스킬 사용 중 산나비·죽은나비가 부족하면, 다음 코인을 모두 취소하고 재장전\n\n재장전을 하거나 산나비·죽은나비를 얻을 때, 현재 정신력에 따라 얻는 나비가 정해짐.\n- 정신력이 0 이상이면, 30% 확률로 산나비를, 70% 확률로 죽은나비를 얻음.\n- 정신력이 0 미만이면, 70% 확률로 산나비를, 30% 확률로 죽은나비를 얻음.\n- 확률은 각 탄환마다 개별적으로 적용됨.",
+      "existing_primitive": "requires per-coin RNG outcome contract; no dedicated runtime confirmed"
+    },
+    {
+      "identity_id": "identity-10201",
+      "identity_name": "LCB 수감자",
+      "passive_name": "관찰",
+      "classification": "probabilistic_effect",
+      "source_text": "최대 체력이 가장 높은 아군 1명 공격 적중 시 25% 확률로 공격 레벨 감소 2 부여",
+      "existing_primitive": "ProbabilisticTriggerRuntime + Effect/Condition"
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "여러 점",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "전투 시작 시 부정적인 효과를 가장 적게 보유한 적 2명에게 화상, 출혈, 진동, 파열, 침잠 중 무작위 1개 효과 2 부여\n(집중 전투인 경우, 부위로 판정)",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "전화",
+      "classification": "random_target",
+      "source_text": "속도가 가장 느린 아군 1명이 화상이 부여된 적 처치 시 무작위 적 2명에게 화상 3 부여 (턴 당 1회)\n- 집중 전투에서는 부위에 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "지혜성 [地慧星]",
+      "classification": "random_target",
+      "source_text": "자신의 지혜성도가 50 이상이면, 해당 턴의 마지막 순서에 무작위 적에게 '공간참 - 연 [空間斬 - 緣]' 발동 (전투당 1회)\n- 이 효과로 '공간참 - 연 [空間斬 - 緣]'을 사용한 후, 아래 효과 적용\n· 이번 전투 동안 퇴각 불가\n· 턴 종료시 자신의 지혜성도가 50 이상이면, 다음 턴 시작시 기본 스킬 하나를 '공간참 - 잔 [空間斬 - 殘]'으로 변경 (가장 왼쪽 슬롯의 아래 스킬 우선 적용)",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 3개) (전투당 1회)\n\n- 탄환을 보급 받는 인격이 자신보다 계급이 높은 엄지 소속 인격이면, 해당 인격이 사용하는 탄환을 1개 더 보급함\n- 위력, 횟수가 분리된 탄환은 위력, 횟수를 무작위로 보급함\n- 만약 위력 또는 횟수가 최댓값인 경우, 최댓값이 아닌 쪽의 탄환으로 보급함",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 5개) (전투당 1회)\n\n- 탄환을 보급 받는 인격이 자신보다 계급이 높은 엄지 소속 인격이면, 해당 인격이 사용하는 탄환을 1개 더 보급함\n- 위력, 횟수가 분리된 탄환은 위력, 횟수를 무작위로 보급함\n- 만약 위력 또는 횟수가 최댓값인 경우, 최댓값이 아닌 쪽의 탄환으로 보급함",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "재장전",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면, 탄환을 최대치의 절반만큼 다시 얻음 (소수점 올림, 전투당 1회, 최대 탄환 획득 값 : 5)\n\n- 위력, 횟수가 분리된 탄환은 위력, 횟수를 무작위로 얻음\n- 만약 위력 또는 횟수가 최댓값인 경우, 최댓값이 아닌 쪽의 탄환으로 얻음\n- 탄환을 사용하는 인격이 없으면, 이 효과는 발동하지 않음",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "여러 점",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "전투 시작 시 부정적인 효과를 가장 적게 보유한 적 1명에게 화상, 출혈, 진동, 파열, 침잠 중 무작위 1개 효과 2 부여\n(집중 전투인 경우, 부위로 판정)",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "전화",
+      "classification": "random_target",
+      "source_text": "속도가 가장 느린 아군 1명이 화상이 부여된 적 처치 시 무작위 적 1명에게 화상 3 부여 (턴 당 1회)\n- 집중 전투에서는 부위에 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10812",
+      "identity_name": "가주 후보",
+      "passive_name": "시동[始動]",
+      "classification": "random_target",
+      "source_text": "전투에서 퇴각할 때, 아군에게 편성 순서 순으로 다음 턴에 공격 레벨 증가 1 부여\n- 부여 대상 수 : 자신의 시[始] 수치\n- 부여 대상이 \"가씨 가문\"이면, 대신 다음 턴에 공격 레벨 증가 2 부여\n- 다음 턴에 복귀, 대기 해제되는 인격에게는 부여되지 않음\n\n대기 해제 또는 복귀로 등장한 턴에 자신이 대[待]를 얻고, 전투 시작시 스킬 순서상 가장 먼저 '적격 - 시【始】'를 무작위 대상에게 사용함",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-11014",
+      "identity_name": "흑수 - 유",
+      "passive_name": "싸움에 취해보죠",
+      "classification": "probabilistic_effect",
+      "source_text": "파열이 7 이상 부여된 대상에게 적중 시 (최대 공명 수)x15% 확률로 화상 1 부여 (턴 당 4회)\n\n전투 종료시 자신에게 화상이 있으면, 다음 턴 시작시 혈염 [血炎] 1, 분노 피해량 증가 1, 탐식 피해량 증가 1 얻음\n\n전투 시작시 자신의 잃은 체력 20%당 공격 레벨 증가, 방어 레벨 증가 1 얻음 (최대 3)",
+      "existing_primitive": "ProbabilisticTriggerRuntime + Effect/Condition"
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "화전",
+      "classification": "random_target",
+      "source_text": "자신이 화상이 부여된 적 처치 시 화상이 없거나 화상 위력이 가장 낮은 무작위 적 2명에게 화상 4 부여 (턴 당 2회)\n- 집중 전투에서는 부위에 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "신탁 단말기 [카두세우스]",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "기본 공격 스킬의 코인마다 무기가 무작위로 정해져 특수한 효과가 적용됨\n- 손도끼로 갈비뼈를 찍어 내릴 때는…\n- 스틸레토로 허파를 꿰뚫을 때는…\n- 바스타드 소드로 어깨와 머리를 짓이길 때는…\n- 레이피어로 몸에 10개 이상의 구멍을 내야할 때는…\n- 망치로 뒤통수를 으깨야 할 때는…\n- 커다란 검으로 몸통을 갈라야 할 때는…\n- 랜스로 20인치의 구멍을 내야 할 때는…\n- 채찍으로 살점을 만 갈래 떼어내야 할 때는…\n- 낫으로… 누군가처럼 공간을 따라 베어내야 할 때는…\n\n지령 표식 스킬 사용 시, 대행 [헤르메스] 1 얻음",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-10609",
+      "identity_name": "20구 유로지비",
+      "passive_name": "내가 범인이라면...?",
+      "classification": "probabilistic_trigger_or_reuse",
+      "source_text": "편성 순서 1번인 아군의 스킬, 코인 효과로 진동 폭발 시 25% 확률로 진동 폭발이 1회 추가로 발동 (턴 당 1회)",
+      "existing_primitive": "reuse_probability / ProbabilisticTriggerRuntime"
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "화전",
+      "classification": "random_target",
+      "source_text": "자신이 화상이 부여된 적 처치 시 화상이 없거나 화상 위력이 가장 낮은 무작위 적 1명에게 화상 4 부여 (턴 당 1회)\n- 집중 전투에서는 부위에 부여",
+      "existing_primitive": "TargetSelector.random"
+    },
+    {
+      "identity_id": "identity-11004",
+      "identity_name": "마리아치 보스",
+      "passive_name": "유흥",
+      "classification": "non_probability_clause_overlap",
+      "source_text": "회피 성공 시 (우울 공명 수 x5)% 확률로 회피 스킬의 위력만큼 흐트러짐 회복",
+      "existing_primitive": "existing Condition/Action/Effect primitive"
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "혈점묘파",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "이 인격은 출혈을 부여하는 인격으로만 취급됨. 랜덤으로 화상, 출혈, 진동, 파열, 침잠을 부여하는 스킬이 이 효과로 인해서 해당 키워드를 부여하는 스킬로 취급되지 않음.",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "혈점묘파",
+      "classification": "random_choice_without_explicit_probability",
+      "source_text": "이 인격은 출혈을 부여하는 인격으로만 취급됨. 랜덤으로 화상, 출혈, 진동, 파열, 침잠을 부여하는 스킬이 이 효과로 인해서 해당 키워드를 부여하는 스킬로 취급되지 않음.",
+      "existing_primitive": "TargetSelector.random or generic random-choice parameter"
+    }
+  ]
+}

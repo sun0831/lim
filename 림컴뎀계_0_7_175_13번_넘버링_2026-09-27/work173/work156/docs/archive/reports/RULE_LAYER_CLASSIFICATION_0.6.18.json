@@ -1,0 +1,6943 @@
+{
+  "version": "0.6.18-r1",
+  "identity_count": 184,
+  "rule_layers": {
+    "affiliation": {
+      "middle": [
+        "middle_revenge_hit",
+        "middle_ally_death_ledger"
+      ],
+      "ring": [
+        "bio_material_skill_damage",
+        "bio_material_kill_bonus",
+        "bio_material_start"
+      ],
+      "pequod": [
+        "captain_right_assist"
+      ],
+      "spider_house": [
+        "foresight_start",
+        "foresight_clash_cost"
+      ],
+      "black_cloud": [
+        "blackcloud_received_s1",
+        "blackcloud_received_s4"
+      ],
+      "dawn_office": [
+        "resource_gain"
+      ]
+    },
+    "keyword": [
+      "keyword modules: charge, bleed, poise, tremor, burn, rupture, sinking"
+    ],
+    "common": [
+      "assist",
+      "stagger_assist",
+      "support_left_assist",
+      "support_right_assist",
+      "ally_hit_followup",
+      "received_attack_followup",
+      "clash_loss_followup",
+      "defense_clash_loss_followup",
+      "kill_resource_gain",
+      "kill_resource_distribute",
+      "kill_lowest_ally_heal",
+      "enemy_death_lowest_ally_heal",
+      "target_death_resource_gain",
+      "lowest_ammo_poise",
+      "extra_damage",
+      "resource_start",
+      "cumulative_resource_gain"
+    ],
+    "identity_specific": [
+      "enemy_hp_followup",
+      "forced_skill",
+      "conditional_assist",
+      "reused_status_damage"
+    ]
+  },
+  "identity_matrix": [
+    {
+      "identity_id": "identity-10101",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 이상",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "피해량 증가",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "피해량 증가",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10102",
+      "name": "남부 세븐 협회 6과",
+      "full_name": "남부 세븐 협회 6과 이상",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SEVEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10103",
+      "name": "검계 살수",
+      "full_name": "검계 살수 이상",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10104",
+      "name": "개화 E.G.O:: 동백",
+      "full_name": "개화 E.G.O:: 동백 이상",
+      "generic_keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ATL"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10105",
+      "name": "어금니 사무소 해결사",
+      "full_name": "어금니 사무소 해결사 이상",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MOLAR"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10106",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 이상",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10107",
+      "name": "피쿼드호 일등 항해사",
+      "full_name": "피쿼드호 일등 항해사 이상",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "raw_affiliations": [
+        "PEQUOD CREW"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "pequod"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10108",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 이상",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DIECI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10109",
+      "name": "약지 점묘파 스튜던트",
+      "full_name": "약지 점묘파 스튜던트 이상",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "raw_affiliations": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "ring"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10110",
+      "name": "로보토미 E.G.O:: 엄숙한 애도",
+      "full_name": "로보토미 E.G.O:: 엄숙한 애도 이상",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10111",
+      "name": "LCE E.G.O:: 초롱",
+      "full_name": "LCE E.G.O:: 초롱 이상",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "속박",
+        "자원 획득"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "속박",
+          "자원 획득"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10112",
+      "name": "남부 리우 협회 3과",
+      "full_name": "남부 리우 협회 3과 이상",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10113",
+      "name": "N사 E.G.O:: 흉탄",
+      "full_name": "N사 E.G.O:: 흉탄 이상",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10114",
+      "name": "흑수 - 오 필두",
+      "full_name": "흑수 - 오 필두 이상",
+      "generic_keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FAMILY GA",
+        "BLACK BEAST HORSE",
+        "H CORP"
+      ],
+      "named_mechanics": [
+        "흑풍마각월참"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "흑풍마각월참"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10115",
+      "name": "거미집 검지 아비",
+      "full_name": "거미집 검지 아비 이상",
+      "generic_keywords": [
+        "poise",
+        "sinking"
+      ],
+      "combat_affiliations": [
+        "index",
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [
+        "지령"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "sinking"
+        ],
+        "affiliations": [
+          "index",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "지령"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10116",
+      "name": "LCE E.G.O::차원찢개",
+      "full_name": "LCE E.G.O::차원찢개 이상",
+      "generic_keywords": [
+        "rupture",
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "최종 위력",
+        "코인 위력",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "최종 위력",
+          "코인 위력",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10201",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 파우스트",
+      "generic_keywords": [],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10202",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 파우스트",
+      "generic_keywords": [
+        "charge"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "합 위력",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "합 위력",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10203",
+      "name": "살아남은 로보토미 직원",
+      "full_name": "살아남은 로보토미 직원 파우스트",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10204",
+      "name": "쥐는 자",
+      "full_name": "쥐는 자 파우스트",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10205",
+      "name": "남부 츠바이 협회 4과",
+      "full_name": "남부 츠바이 협회 4과 파우스트",
+      "generic_keywords": [],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10206",
+      "name": "남부 세븐 협회 4과",
+      "full_name": "남부 세븐 협회 4과 파우스트",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SEVEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10207",
+      "name": "로보토미 E.G.O:: 후회",
+      "full_name": "로보토미 E.G.O:: 후회 파우스트",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "공격 레벨",
+        "방어 레벨",
+        "속박",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "공격 레벨",
+          "방어 레벨",
+          "속박",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10208",
+      "name": "검계 살수",
+      "full_name": "검계 살수 파우스트",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "방어 레벨",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "방어 레벨",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10209",
+      "name": "워더링하이츠 버틀러",
+      "full_name": "워더링하이츠 버틀러 파우스트",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "WUTHERING HEIGHTS"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10210",
+      "name": "멀티크랙 사무소 대표",
+      "full_name": "멀티크랙 사무소 대표 파우스트",
+      "generic_keywords": [
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MULTI CRACK"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10211",
+      "name": "LCE E.G.O:: 홍염살",
+      "full_name": "LCE E.G.O:: 홍염살 파우스트",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "자원 획득",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "자원 획득",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10212",
+      "name": "흑수 - 묘 필두",
+      "full_name": "흑수 - 묘 필두 파우스트",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "공격 레벨",
+        "방어 레벨",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "공격 레벨",
+          "방어 레벨",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10213",
+      "name": "동부 시 협회 3과",
+      "full_name": "동부 시 협회 3과 파우스트",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SHI"
+      ],
+      "named_mechanics": [
+        "섬궁"
+      ],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "섬궁"
+        ],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10214",
+      "name": "검지 수행자: 【쪽지】",
+      "full_name": "검지 수행자: 【쪽지】 파우스트",
+      "generic_keywords": [
+        "poise",
+        "sinking"
+      ],
+      "combat_affiliations": [
+        "index"
+      ],
+      "raw_affiliations": [
+        "INDEX FINGER"
+      ],
+      "named_mechanics": [
+        "지령"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "sinking"
+        ],
+        "affiliations": [
+          "index"
+        ],
+        "identity_specific_mechanics": [
+          "지령"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10215",
+      "name": "거미집 약지 제자",
+      "full_name": "거미집 약지 제자 파우스트",
+      "generic_keywords": [
+        "bleed",
+        "charge"
+      ],
+      "combat_affiliations": [
+        "ring",
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [
+        "생체 재료",
+        "작품명"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속",
+        "속박",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "charge"
+        ],
+        "affiliations": [
+          "ring",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "생체 재료",
+          "작품명"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속",
+          "속박",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10216",
+      "name": "새벽 사무소 해결사",
+      "full_name": "새벽 사무소 해결사 파우스트",
+      "generic_keywords": [
+        "burn",
+        "tremor"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "불꽃나비의 관",
+        "새벽녘"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "공격 레벨",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "tremor"
+        ],
+        "affiliations": [
+          "dawn_office"
+        ],
+        "identity_specific_mechanics": [
+          "불꽃나비의 관",
+          "새벽녘"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "공격 레벨",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10301",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 돈키호테",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10302",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 돈키호테",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10303",
+      "name": "남부 시 협회 5과 부장",
+      "full_name": "남부 시 협회 5과 부장 돈키호테",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SHI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10304",
+      "name": "N사 중간 망치",
+      "full_name": "N사 중간 망치 돈키호테",
+      "generic_keywords": [
+        "tremor",
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor",
+          "bleed"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10305",
+      "name": "남부 섕크 협회 5과 부장",
+      "full_name": "남부 섕크 협회 5과 부장 돈키호테",
+      "generic_keywords": [],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "CINQ"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10306",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 돈키호테",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "raw_affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "middle"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10307",
+      "name": "로보토미 E.G.O:: 초롱",
+      "full_name": "로보토미 E.G.O:: 초롱 돈키호테",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10308",
+      "name": "검계 살수",
+      "full_name": "검계 살수 돈키호테",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10309",
+      "name": "T사 3등급 징수직 직원",
+      "full_name": "T사 3등급 징수직 직원 돈키호테",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "T사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해 감소",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해 감소",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10310",
+      "name": "라만차랜드 실장",
+      "full_name": "라만차랜드 실장 돈키호테",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "raw_affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "la_mancha_land"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10311",
+      "name": "동부 섕크 협회 3과",
+      "full_name": "동부 섕크 협회 3과 돈키호테",
+      "generic_keywords": [
+        "burn",
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "CINQ"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10312",
+      "name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "full_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로 돈키호테",
+      "generic_keywords": [
+        "charge",
+        "rupture",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10313",
+      "name": "흑수 - 미",
+      "full_name": "흑수 - 미 돈키호테",
+      "generic_keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST SHEEP",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10314",
+      "name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "full_name": "검지 대행자 - 개화 E.G.O:: 대행 돈키호테",
+      "generic_keywords": [
+        "poise",
+        "sinking"
+      ],
+      "combat_affiliations": [
+        "index",
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [
+        "지령"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "sinking"
+        ],
+        "affiliations": [
+          "index",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "지령"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10401",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 료슈",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10402",
+      "name": "남부 세븐 협회 6과",
+      "full_name": "남부 세븐 협회 6과 료슈",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SEVEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가",
+        "취약",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가",
+          "취약",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10403",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 료슈",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10404",
+      "name": "료. 고. 파. 주방장",
+      "full_name": "료. 고. 파. 주방장 료슈",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BACKSTREET COOK"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10405",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 료슈",
+      "generic_keywords": [
+        "charge"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10406",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 료슈",
+      "generic_keywords": [
+        "poise",
+        "rupture",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10407",
+      "name": "남부 리우 협회 4과",
+      "full_name": "남부 리우 협회 4과 료슈",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10408",
+      "name": "에드가 가문 치프 버틀러",
+      "full_name": "에드가 가문 치프 버틀러 료슈",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LINTON"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10409",
+      "name": "20구 유로지비",
+      "full_name": "20구 유로지비 료슈",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "YURODIVY"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10410",
+      "name": "로보토미 E.G.O:: 적안・참회",
+      "full_name": "로보토미 E.G.O:: 적안・참회 료슈",
+      "generic_keywords": [
+        "bleed",
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "공격 위력",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "공격 위력",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10411",
+      "name": "흑수 - 묘",
+      "full_name": "흑수 - 묘 료슈",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10412",
+      "name": "N사 E.G.O:: 경멸, 경외",
+      "full_name": "N사 E.G.O:: 경멸, 경외 료슈",
+      "generic_keywords": [
+        "bleed",
+        "tremor"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "속박",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "tremor"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "속박",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10413",
+      "name": "홍원 방랑무사",
+      "full_name": "홍원 방랑무사 료슈",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10414",
+      "name": "로보토미 E.G.O:: 잔향・외로움",
+      "full_name": "로보토미 E.G.O:: 잔향・외로움 료슈",
+      "generic_keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10415",
+      "name": "거미집의 검",
+      "full_name": "거미집의 검 료슈",
+      "generic_keywords": [
+        "burn",
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "얽힘"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "공격 레벨",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "얽힘"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "공격 레벨",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10501",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 뫼르소",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해 감소",
+        "보호"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해 감소",
+          "보호"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10502",
+      "name": "남부 리우 협회 6과",
+      "full_name": "남부 리우 협회 6과 뫼르소",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10503",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 뫼르소",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "보호",
+        "취약",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "보호",
+          "취약",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10504",
+      "name": "N사 큰 망치",
+      "full_name": "N사 큰 망치 뫼르소",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "보호",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "보호",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10505",
+      "name": "장미스패너 공방 해결사",
+      "full_name": "장미스패너 공방 해결사 뫼르소",
+      "generic_keywords": [
+        "charge",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "공격 위력",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "공격 위력",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10506",
+      "name": "R사 제 4무리 코뿔소팀",
+      "full_name": "R사 제 4무리 코뿔소팀 뫼르소",
+      "generic_keywords": [
+        "bleed",
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "R사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10507",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 뫼르소",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "raw_affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "middle"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10508",
+      "name": "검계 우두머리",
+      "full_name": "검계 우두머리 뫼르소",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10509",
+      "name": "데드레빗츠 보스",
+      "full_name": "데드레빗츠 보스 뫼르소",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DEAD RABBITS"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10510",
+      "name": "남부 디에치 협회 4과 부장",
+      "full_name": "남부 디에치 협회 4과 부장 뫼르소",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DIECI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10511",
+      "name": "서부 섕크 협회 3과",
+      "full_name": "서부 섕크 협회 3과 뫼르소",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "CINQ"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10512",
+      "name": "동부 엄지 카포IIII",
+      "full_name": "동부 엄지 카포IIII 뫼르소",
+      "generic_keywords": [
+        "burn",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "THUMB FINGER"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10513",
+      "name": "라만차랜드 왕자",
+      "full_name": "라만차랜드 왕자 뫼르소",
+      "generic_keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "raw_affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "공격 레벨",
+        "방어 레벨",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "rupture"
+        ],
+        "affiliations": [
+          "la_mancha_land"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "공격 레벨",
+          "방어 레벨",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10514",
+      "name": "로보토미 E.G.O:: 호넷【변조】",
+      "full_name": "로보토미 E.G.O:: 호넷【변조】 뫼르소",
+      "generic_keywords": [
+        "bleed",
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10515",
+      "name": "약지 야수파 스튜던트",
+      "full_name": "약지 야수파 스튜던트 뫼르소",
+      "generic_keywords": [
+        "bleed",
+        "sinking"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "raw_affiliations": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "sinking"
+        ],
+        "affiliations": [
+          "ring"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10601",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 홍루",
+      "generic_keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "공격 위력",
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "공격 위력",
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10602",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 홍루",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": []
+      }
+    },
+    {
+      "identity_id": "identity-10603",
+      "name": "콩콩이파 두목",
+      "full_name": "콩콩이파 두목 홍루",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "KONG KONG"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10604",
+      "name": "남부 리우 협회 5과",
+      "full_name": "남부 리우 협회 5과 홍루",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10605",
+      "name": "K사 3등급 적출직 직원",
+      "full_name": "K사 3등급 적출직 직원 홍루",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "K사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "코인 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "코인 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10606",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 홍루",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10607",
+      "name": "갈고리 사무소 해결사",
+      "full_name": "갈고리 사무소 해결사 홍루",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "HOOK OFFICE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10608",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 홍루",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DIECI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10609",
+      "name": "20구 유로지비",
+      "full_name": "20구 유로지비 홍루",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "YURODIVY"
+      ],
+      "named_mechanics": [
+        "얽힘"
+      ],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "얽힘"
+        ],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10610",
+      "name": "송곳니 사냥 사무소 해결사",
+      "full_name": "송곳니 사냥 사무소 해결사 홍루",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FANG HUNT"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10611",
+      "name": "마침표 사무소 대표",
+      "full_name": "마침표 사무소 대표 홍루",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FULL STOP"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "공격 위력",
+        "최종 위력",
+        "피해량 증가",
+        "취약",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "공격 위력",
+          "최종 위력",
+          "피해량 증가",
+          "취약",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10612",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 홍루",
+      "generic_keywords": [
+        "charge",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "R사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10613",
+      "name": "홍원 군주",
+      "full_name": "홍원 군주 홍루",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "H CORP",
+        "FAMILY GA CANCELED"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "공격 위력",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "공격 위력",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10614",
+      "name": "거미집 약지 아비",
+      "full_name": "거미집 약지 아비 홍루",
+      "generic_keywords": [
+        "bleed",
+        "charge"
+      ],
+      "combat_affiliations": [
+        "ring",
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [
+        "생체 재료",
+        "작품명",
+        "폐장 - 설치미술 제 1호 "
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨",
+        "신속",
+        "속박",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "charge"
+        ],
+        "affiliations": [
+          "ring",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "생체 재료",
+          "작품명",
+          "폐장 - 설치미술 제 1호 "
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨",
+          "신속",
+          "속박",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10615",
+      "name": "S사 추노꾼",
+      "full_name": "S사 추노꾼 홍루",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10701",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 히스클리프",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10702",
+      "name": "남부 시 협회 5과",
+      "full_name": "남부 시 협회 5과 히스클리프",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SHI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10703",
+      "name": "R사 제 4무리 토끼팀",
+      "full_name": "R사 제 4무리 토끼팀 히스클리프",
+      "generic_keywords": [
+        "bleed",
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "R사"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10704",
+      "name": "N사 작은 망치",
+      "full_name": "N사 작은 망치 히스클리프",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10705",
+      "name": "로보토미 E.G.O:: 여우비",
+      "full_name": "로보토미 E.G.O:: 여우비 히스클리프",
+      "generic_keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ATL"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "피해량 증가",
+        "보호",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "피해량 증가",
+          "보호",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10706",
+      "name": "남부 세븐 협회 4과",
+      "full_name": "남부 세븐 협회 4과 히스클리프",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SEVEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "취약",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "취약",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10707",
+      "name": "피쿼드호 작살잡이",
+      "full_name": "피쿼드호 작살잡이 히스클리프",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "raw_affiliations": [
+        "PEQUOD CREW"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "pequod"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10708",
+      "name": "남부 외우피 협회 3과",
+      "full_name": "남부 외우피 협회 3과 히스클리프",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "OUFI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10709",
+      "name": "멀티크랙 사무소 해결사",
+      "full_name": "멀티크랙 사무소 해결사 히스클리프",
+      "generic_keywords": [
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MULTI CRACK"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "취약",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "취약",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10710",
+      "name": "와일드헌트",
+      "full_name": "와일드헌트 히스클리프",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "WILD HUNT",
+        "WUTHERING HEIGHTS"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "공격 위력",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "공격 위력",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10711",
+      "name": "마침표 사무소 해결사",
+      "full_name": "마침표 사무소 해결사 히스클리프",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FULL STOP"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "피해량 증가",
+        "취약",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "피해량 증가",
+          "취약",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10712",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 히스클리프",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10713",
+      "name": "W사 4등급 정리 요원 - CCA",
+      "full_name": "W사 4등급 정리 요원 - CCA 히스클리프",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10714",
+      "name": "흑수 - 유 필두",
+      "full_name": "흑수 - 유 필두 히스클리프",
+      "generic_keywords": [
+        "burn",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "H CORP",
+        "BLACK BEAST CHICKEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10715",
+      "name": "중지 작은 형님",
+      "full_name": "중지 작은 형님 히스클리프",
+      "generic_keywords": [
+        "bleed",
+        "burn"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "raw_affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "named_mechanics": [
+        "내 헤어쿠포오오오온!!!!",
+        "문신",
+        "장부",
+        "원한 문신",
+        "앙갚음 장부"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "공격 레벨",
+        "방어 레벨",
+        "자원 획득",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "burn"
+        ],
+        "affiliations": [
+          "middle"
+        ],
+        "identity_specific_mechanics": [
+          "내 헤어쿠포오오오온!!!!",
+          "문신",
+          "장부",
+          "원한 문신",
+          "앙갚음 장부"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "공격 레벨",
+          "방어 레벨",
+          "자원 획득",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10716",
+      "name": "거미집 엄지 제자",
+      "full_name": "거미집 엄지 제자 히스클리프",
+      "generic_keywords": [
+        "burn",
+        "tremor"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "얽힘",
+        "예지",
+        "예지안"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "보호",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "tremor"
+        ],
+        "affiliations": [
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "얽힘",
+          "예지",
+          "예지안"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "보호",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10801",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 이스마엘",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10802",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 이스마엘",
+      "generic_keywords": [
+        "charge",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "R사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10803",
+      "name": "남부 시 협회 5과",
+      "full_name": "남부 시 협회 5과 이스마엘",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SHI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "최종 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "최종 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10804",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 이스마엘",
+      "generic_keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10805",
+      "name": "로보토미 E.G.O:: 출렁임",
+      "full_name": "로보토미 E.G.O:: 출렁임 이스마엘",
+      "generic_keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ATL"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": []
+      }
+    },
+    {
+      "identity_id": "identity-10806",
+      "name": "남부 리우 협회 4과",
+      "full_name": "남부 리우 협회 4과 이스마엘",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10807",
+      "name": "어금니 보트 센터 해결사",
+      "full_name": "어금니 보트 센터 해결사 이스마엘",
+      "generic_keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MOLAR"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "취약",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "취약",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10808",
+      "name": "피쿼드호 선장",
+      "full_name": "피쿼드호 선장 이스마엘",
+      "generic_keywords": [
+        "bleed",
+        "burn",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "raw_affiliations": [
+        "PEQUOD CREW"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "공격 레벨",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "burn",
+          "poise"
+        ],
+        "affiliations": [
+          "pequod"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "공격 레벨",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10809",
+      "name": "에드가 가문 버틀러",
+      "full_name": "에드가 가문 버틀러 이스마엘",
+      "generic_keywords": [
+        "poise",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LINTON"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "취약",
+        "방어 레벨",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "취약",
+          "방어 레벨",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10810",
+      "name": "서부 츠바이 협회 3과",
+      "full_name": "서부 츠바이 협회 3과 이스마엘",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10811",
+      "name": "흑운회 부조장",
+      "full_name": "흑운회 부조장 이스마엘",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "취약",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "취약",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10812",
+      "name": "가주 후보",
+      "full_name": "가주 후보 이스마엘",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FAMILY GA",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10813",
+      "name": "정사무소 대표",
+      "full_name": "정사무소 대표 이스마엘",
+      "generic_keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "JEONG OFFICE",
+        "OUFI COOP"
+      ],
+      "named_mechanics": [
+        "얽힘",
+        "짝패"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "자원 획득"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "얽힘",
+          "짝패"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "자원 획득"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10814",
+      "name": "거미집 중지 제자",
+      "full_name": "거미집 중지 제자 이스마엘",
+      "generic_keywords": [
+        "burn",
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "middle",
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "MIDDLE FINGER",
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [
+        "문신",
+        "중지 - 원한",
+        "중지식 강화 문신"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "bleed"
+        ],
+        "affiliations": [
+          "middle",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "문신",
+          "중지 - 원한",
+          "중지식 강화 문신"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10815",
+      "name": "LCD 현장추리팀",
+      "full_name": "LCD 현장추리팀 이스마엘",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10901",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 로쟈",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10902",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 로쟈",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "보호"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "보호"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10903",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 로쟈",
+      "generic_keywords": [],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10904",
+      "name": "N사 중간 망치",
+      "full_name": "N사 중간 망치 로쟈",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10905",
+      "name": "장미스패너 공방 대표",
+      "full_name": "장미스패너 공방 대표 로쟈",
+      "generic_keywords": [
+        "charge",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10906",
+      "name": "남부 츠바이 협회 5과",
+      "full_name": "남부 츠바이 협회 5과 로쟈",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10907",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 로쟈",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DIECI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10908",
+      "name": "남부 리우 협회 4과 부장",
+      "full_name": "남부 리우 협회 4과 부장 로쟈",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10909",
+      "name": "T사 2등급 징수직 직원",
+      "full_name": "T사 2등급 징수직 직원 로쟈",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "T사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10910",
+      "name": "북부 제뱌찌 협회 3과",
+      "full_name": "북부 제뱌찌 협회 3과 로쟈",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DEVYAT"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10911",
+      "name": "라만차랜드 공주",
+      "full_name": "라만차랜드 공주 로쟈",
+      "generic_keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "raw_affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "named_mechanics": [
+        "열기"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "공격 위력",
+        "코인 위력"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "rupture"
+        ],
+        "affiliations": [
+          "la_mancha_land"
+        ],
+        "identity_specific_mechanics": [
+          "열기"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "공격 위력",
+          "코인 위력"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10912",
+      "name": "흑수 - 사",
+      "full_name": "흑수 - 사 로쟈",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10913",
+      "name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "full_name": "로보토미 E.G.O:: 눈물로 벼려낸 검 로쟈",
+      "generic_keywords": [
+        "sinking",
+        "charge"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "보호"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "charge"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "보호"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10914",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 로쟈",
+      "generic_keywords": [
+        "charge",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "R사"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10915",
+      "name": "약지 야수파 도슨트",
+      "full_name": "약지 야수파 도슨트 로쟈",
+      "generic_keywords": [
+        "bleed",
+        "sinking"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "raw_affiliations": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "sinking"
+        ],
+        "affiliations": [
+          "ring"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-10916",
+      "name": "거미집 엄지 아비",
+      "full_name": "거미집 엄지 아비 로쟈",
+      "generic_keywords": [
+        "burn",
+        "tremor"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "가속탄",
+        "얽힘",
+        "예지",
+        "예지안",
+        "처분"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "tremor"
+        ],
+        "affiliations": [
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "가속탄",
+          "얽힘",
+          "예지",
+          "예지안",
+          "처분"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11001",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 싱클레어",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11002",
+      "name": "검계 살수",
+      "full_name": "검계 살수 싱클레어",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11003",
+      "name": "남부 츠바이 협회 6과",
+      "full_name": "남부 츠바이 협회 6과 싱클레어",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해 감소",
+        "보호",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해 감소",
+          "보호",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11004",
+      "name": "마리아치 보스",
+      "full_name": "마리아치 보스 싱클레어",
+      "generic_keywords": [
+        "poise",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MARIACHI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11005",
+      "name": "쥐어들 자",
+      "full_name": "쥐어들 자 싱클레어",
+      "generic_keywords": [
+        "bleed",
+        "burn"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "raw_affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "burn"
+        ],
+        "affiliations": [
+          "n_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11006",
+      "name": "로보토미 E.G.O:: 홍적",
+      "full_name": "로보토미 E.G.O:: 홍적 싱클레어",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ATL"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": []
+      }
+    },
+    {
+      "identity_id": "identity-11007",
+      "name": "어금니 보트 센터 해결사",
+      "full_name": "어금니 보트 센터 해결사 싱클레어",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MOLAR"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "보호"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "보호"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11008",
+      "name": "남부 섕크 협회 4과 부장",
+      "full_name": "남부 섕크 협회 4과 부장 싱클레어",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "CINQ"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11009",
+      "name": "새벽 사무소 해결사",
+      "full_name": "새벽 사무소 해결사 싱클레어",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "raw_affiliations": [
+        "DAWN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [
+          "dawn_office"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11010",
+      "name": "서부 츠바이 협회 3과",
+      "full_name": "서부 츠바이 협회 3과 싱클레어",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "공격 레벨",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "공격 레벨",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11011",
+      "name": "북부 제뱌찌 협회 3과",
+      "full_name": "북부 제뱌찌 협회 3과 싱클레어",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DEVYAT"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11012",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 싱클레어",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "raw_affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "named_mechanics": [
+        "장부",
+        "앙갚음 장부"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "middle"
+        ],
+        "identity_specific_mechanics": [
+          "장부",
+          "앙갚음 장부"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11013",
+      "name": "동부 엄지 솔다토II",
+      "full_name": "동부 엄지 솔다토II 싱클레어",
+      "generic_keywords": [
+        "burn",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "THUMB FINGER"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11014",
+      "name": "흑수 - 유",
+      "full_name": "흑수 - 유 싱클레어",
+      "generic_keywords": [
+        "burn",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST CHICKEN",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "방어 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "방어 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11015",
+      "name": "거미집 소지 제자",
+      "full_name": "거미집 소지 제자 싱클레어",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "raw_affiliations": [
+        "SPIDER HOUSE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11101",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 오티스",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11102",
+      "name": "검계 살수",
+      "full_name": "검계 살수 오티스",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "raw_affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [
+          "blade_lineage"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11103",
+      "name": "G사 부장",
+      "full_name": "G사 부장 오티스",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "G CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "피해량 증가",
+        "보호",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "피해량 증가",
+          "보호",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11104",
+      "name": "남부 세븐 협회 6과 부장",
+      "full_name": "남부 세븐 협회 6과 부장 오티스",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "SEVEN"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "공격 레벨",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "공격 레벨",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11105",
+      "name": "어금니 사무소 해결사",
+      "full_name": "어금니 사무소 해결사 오티스",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "MOLAR"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "공격 레벨",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "공격 레벨",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11106",
+      "name": "남부 섕크 협회 4과",
+      "full_name": "남부 섕크 협회 4과 오티스",
+      "generic_keywords": [
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "CINQ"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11107",
+      "name": "로보토미 E.G.O:: 마탄",
+      "full_name": "로보토미 E.G.O:: 마탄 오티스",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "L CORP"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "자원 획득",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "자원 획득",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11108",
+      "name": "워더링하이츠 치프 버틀러",
+      "full_name": "워더링하이츠 치프 버틀러 오티스",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "WUTHERING HEIGHTS"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11109",
+      "name": "약지 점묘파 스튜던트",
+      "full_name": "약지 점묘파 스튜던트 오티스",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "raw_affiliations": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "ring"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11110",
+      "name": "W사 3등급 정리 요원 팀장",
+      "full_name": "W사 3등급 정리 요원 팀장 오티스",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "raw_affiliations": [
+        "W CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [
+          "w_corp"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11111",
+      "name": "라만차랜드 이발사",
+      "full_name": "라만차랜드 이발사 오티스",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "raw_affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "la_mancha_land"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11112",
+      "name": "흑수 - 묘",
+      "full_name": "흑수 - 묘 오티스",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11113",
+      "name": "T사 3등급 강력징수직 직원",
+      "full_name": "T사 3등급 강력징수직 직원 오티스",
+      "generic_keywords": [
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "T사"
+      ],
+      "named_mechanics": [
+        "얽힘"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "얽힘"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11114",
+      "name": "LCA 우제트 선봉 3팀 팀장",
+      "full_name": "LCA 우제트 선봉 3팀 팀장 오티스",
+      "generic_keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCA"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "보호",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "보호",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11115",
+      "name": "거미집 중지 아비",
+      "full_name": "거미집 중지 아비 오티스",
+      "generic_keywords": [
+        "burn",
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "middle",
+        "spider_house"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "문신",
+        "얽힘",
+        "원한 스탬핑",
+        "장부",
+        "즉결처형",
+        "중지 - 원한",
+        "원한 문신",
+        "앙갚음 장부"
+      ],
+      "effect_tags": [
+        "정신력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "보호",
+        "취약",
+        "공격 레벨",
+        "속박",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "bleed"
+        ],
+        "affiliations": [
+          "middle",
+          "spider_house"
+        ],
+        "identity_specific_mechanics": [
+          "문신",
+          "얽힘",
+          "원한 스탬핑",
+          "장부",
+          "즉결처형",
+          "중지 - 원한",
+          "원한 문신",
+          "앙갚음 장부"
+        ],
+        "effect_tags": [
+          "정신력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "보호",
+          "취약",
+          "공격 레벨",
+          "속박",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11201",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 그레고르",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "피해량 증가",
+        "취약"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "피해량 증가",
+          "취약"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11202",
+      "name": "남부 리우 협회 6과",
+      "full_name": "남부 리우 협회 6과 그레고르",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LIU"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11203",
+      "name": "G사 일등대리",
+      "full_name": "G사 일등대리 그레고르",
+      "generic_keywords": [
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "G CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11204",
+      "name": "료. 고. 파. 조수",
+      "full_name": "료. 고. 파. 조수 그레고르",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BACKSTREET COOK"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "코인 위력",
+        "피해량 증가",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "코인 위력",
+          "피해량 증가",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11205",
+      "name": "장미스패너 공방 해결사",
+      "full_name": "장미스패너 공방 해결사 그레고르",
+      "generic_keywords": [
+        "charge",
+        "rupture",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11206",
+      "name": "남부 츠바이 협회 4과",
+      "full_name": "남부 츠바이 협회 4과 그레고르",
+      "generic_keywords": [],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "ZWEI"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11207",
+      "name": "쌍갈고리 해적단 부선장",
+      "full_name": "쌍갈고리 해적단 부선장 그레고르",
+      "generic_keywords": [
+        "bleed",
+        "poise"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "DUAL HOOK PIRATE"
+      ],
+      "named_mechanics": [
+        "탄환"
+      ],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "poise"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [
+          "탄환"
+        ],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11208",
+      "name": "흑운회 부조장",
+      "full_name": "흑운회 부조장 그레고르",
+      "generic_keywords": [
+        "bleed"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "raw_affiliations": [
+        "BLACK CLOUD"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "공격 위력",
+        "합 위력",
+        "코인 위력",
+        "공격 레벨"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed"
+        ],
+        "affiliations": [
+          "black_cloud"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "공격 위력",
+          "합 위력",
+          "코인 위력",
+          "공격 레벨"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11209",
+      "name": "에드가 가문 승계자",
+      "full_name": "에드가 가문 승계자 그레고르",
+      "generic_keywords": [
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "LINTON"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "취약",
+        "신속",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "취약",
+          "신속",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11210",
+      "name": "라만차랜드 신부",
+      "full_name": "라만차랜드 신부 그레고르",
+      "generic_keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "raw_affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "정신력 회복",
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "rupture"
+        ],
+        "affiliations": [
+          "la_mancha_land"
+        ],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "정신력 회복",
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11211",
+      "name": "불주먹 사무소 생존자",
+      "full_name": "불주먹 사무소 생존자 그레고르",
+      "generic_keywords": [
+        "burn"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "FIREPUNCH OFFICE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11212",
+      "name": "흑수 - 사",
+      "full_name": "흑수 - 사 그레고르",
+      "generic_keywords": [
+        "poise",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "poise",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11213",
+      "name": "밤의 송곳 카피타노",
+      "full_name": "밤의 송곳 카피타노 그레고르",
+      "generic_keywords": [
+        "bleed",
+        "tremor"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "NIGHTSTILETTO"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속",
+        "속박",
+        "자원 획득",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "bleed",
+          "tremor"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속",
+          "속박",
+          "자원 획득",
+          "흐트러짐"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11214",
+      "name": "로보토미 E.G.O:: 램프",
+      "full_name": "로보토미 E.G.O:: 램프 그레고르",
+      "generic_keywords": [
+        "burn",
+        "sinking"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "정신력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "방어 레벨",
+        "신속",
+        "속박"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "burn",
+          "sinking"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "정신력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "방어 레벨",
+          "신속",
+          "속박"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11215",
+      "name": "LCE E.G.O:: AEDD",
+      "full_name": "LCE E.G.O:: AEDD 그레고르",
+      "generic_keywords": [
+        "charge",
+        "rupture"
+      ],
+      "combat_affiliations": [],
+      "raw_affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "named_mechanics": [],
+      "effect_tags": [
+        "체력 회복",
+        "합 위력",
+        "코인 위력",
+        "피해량 증가",
+        "공격 레벨",
+        "광역"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "charge",
+          "rupture"
+        ],
+        "affiliations": [],
+        "identity_specific_mechanics": [],
+        "effect_tags": [
+          "체력 회복",
+          "합 위력",
+          "코인 위력",
+          "피해량 증가",
+          "공격 레벨",
+          "광역"
+        ]
+      }
+    },
+    {
+      "identity_id": "identity-11216",
+      "name": "새벽 사무소 대표",
+      "full_name": "새벽 사무소 대표 그레고르",
+      "generic_keywords": [
+        "tremor",
+        "burn"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "raw_affiliations": [],
+      "named_mechanics": [
+        "새벽녘",
+        "새벽불"
+      ],
+      "effect_tags": [
+        "체력 회복",
+        "최종 위력",
+        "코인 위력",
+        "피해량 증가",
+        "피해 감소",
+        "보호",
+        "광역",
+        "흐트러짐"
+      ],
+      "classification_rule": "generic keywords + confirmed combat affiliations + explicit named mechanics/resources and effectTags; no inferred mechanics",
+      "classification": {
+        "keywords": [
+          "tremor",
+          "burn"
+        ],
+        "affiliations": [
+          "dawn_office"
+        ],
+        "identity_specific_mechanics": [
+          "새벽녘",
+          "새벽불"
+        ],
+        "effect_tags": [
+          "체력 회복",
+          "최종 위력",
+          "코인 위력",
+          "피해량 증가",
+          "피해 감소",
+          "보호",
+          "광역",
+          "흐트러짐"
+        ]
+      }
+    }
+  ],
+  "policy": "classification is data/effect-tag based; no unsupported mechanics are inferred"
+}

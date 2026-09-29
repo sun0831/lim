@@ -1,0 +1,425 @@
+{
+  "version": "0.6.48",
+  "total_rules": 55,
+  "migration_safe": 22,
+  "deferred": 33,
+  "unknown": 0,
+  "deferred_effect_counts": {
+    "support_poise_count_bonus": 1,
+    "support_action": 6,
+    "hongmaehwa_crit": 1,
+    "resource_gain_lowest_allies": 2,
+    "poise_gain_lowest_ally": 2,
+    "heal_lowest_ally": 2,
+    "poise_gain": 1,
+    "queue_action": 10,
+    "support_poise_gain": 1,
+    "poise_gain_lowest_affiliation": 2,
+    "poise_gain_self_bonus": 1,
+    "status_gain_affiliation": 1,
+    "register_fatal_prevention": 2,
+    "register_damage_modifier_highest_poise": 1,
+    "enemy_status_count_gain": 1,
+    "resource_gain": 1
+  },
+  "records": [
+    {
+      "rule_id": "gimmick:1",
+      "owner_id": "identity-10103",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_poise_count_bonus"
+      ],
+      "source_text": "정신력이 가장 높은 아군 1명 스킬의 효과로 얻는 호흡 횟수 +1"
+    },
+    {
+      "rule_id": "gimmick:2",
+      "owner_id": "identity-10114",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "‘흑풍마각월참’ 사용 후 가주 후보 이스마엘이 적춘 스킬로 원호 공격함 (턴 당 1회)"
+    },
+    {
+      "rule_id": "gimmick:3",
+      "owner_id": "identity-10208",
+      "event": "after_coin",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "hongmaehwa_crit"
+      ],
+      "source_text": "크리티컬 적중 시 홍매화 1 부여. 대상의 홍매화가 10이면, 대신 방어 레벨 감소 1 부여 (최대 6회)"
+    },
+    {
+      "rule_id": "gimmick:4",
+      "owner_id": "identity-10210",
+      "event": "after_kill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "resource_gain_lowest_allies"
+      ],
+      "source_text": "적을 처치하면 자신과 충전 횟수가 가장 적은 아군 1명이 충전만큼 충전 횟수 증가"
+    },
+    {
+      "rule_id": "gimmick:6",
+      "owner_id": "identity-10210",
+      "event": "after_kill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "resource_gain_lowest_allies"
+      ],
+      "source_text": "적을 처치하면 자신과 충전 횟수가 가장 적은 아군 2명이 (2 + 충전)만큼 충전 횟수 증가"
+    },
+    {
+      "rule_id": "gimmick:12",
+      "owner_id": "identity-10216",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "\n\n자신 이외의 새벽 사무소 소속 인격이 다음 조건 만족 시, 새벽 사무소 해결사 파우스트가 '연계' 사용 (인격별 턴당 1회)\n- 기본 스킬 공격 종료 시 적중한 적이 흐트러졌을 때, 대상에게 사용 (해당 스킬 공격 시작 전 이미 흐트러짐 상태였으면, 발동하지 않음)\n- 새벽 사무소 대표 그레고르의 '새벽을 가르는 검', '새벽녘' 또는 새벽 사무소 해결사 싱클레어의 '낙인', '타오르는 일격' 공격 종료 시, 적중한 적에게 사용 (흐트러진 대상 우선)"
+    },
+    {
+      "rule_id": "gimmick:13",
+      "owner_id": "identity-10216",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "\n\n자신 이외의 새벽 사무소 소속 인격이 다음 조건 만족 시, 새벽 사무소 해결사 파우스트가 '연계' 사용 (인격별 턴당 1회)\n- 기본 스킬 공격 종료 시 적중한 적이 흐트러졌을 때, 대상에게 사용 (해당 스킬 공격 시작 전 이미 흐트러짐 상태였으면, 발동하지 않음)\n- 새벽 사무소 대표 그레고르의 '새벽을 가르는 검', '새벽녘' 또는 새벽 사무소 해결사 싱클레어의 '낙인', '타오르는 일격' 공격 종료 시, 적중한 적에게 사용 (흐트러진 대상 우선)"
+    },
+    {
+      "rule_id": "gimmick:15",
+      "owner_id": "identity-10308",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain_lowest_ally"
+      ],
+      "source_text": "자신의 스킬, 코인 효과로 호흡 위력을 얻을 때, 호흡이 없거나 호흡 위력이 가장 낮은 아군 1명에게 호흡 1 부여 (최대 3회)"
+    },
+    {
+      "rule_id": "gimmick:16",
+      "owner_id": "identity-10308",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain_lowest_ally"
+      ],
+      "source_text": "자신의 스킬, 코인 효과로 호흡 위력을 얻을 때, 호흡이 없거나 호흡 위력이 가장 낮은 아군 1명에게 호흡 1 부여 (최대 5회)"
+    },
+    {
+      "rule_id": "gimmick:17",
+      "owner_id": "identity-10404",
+      "event": "after_kill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "heal_lowest_ally"
+      ],
+      "source_text": "적 처치 시 체력이 가장 낮은 아군 1명의 체력 15 회복"
+    },
+    {
+      "rule_id": "gimmick:18",
+      "owner_id": "identity-10404",
+      "event": "after_kill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "heal_lowest_ally"
+      ],
+      "source_text": "적 사망 시 체력이 가장 낮은 아군 1명의 체력 15 회복"
+    },
+    {
+      "rule_id": "gimmick:22",
+      "owner_id": "identity-10406",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain"
+      ],
+      "source_text": "탄환을 가장 적게 보유한 아군 1명이 탄환을 소모하는 스킬을 사용할 때, 호흡 3 부여"
+    },
+    {
+      "rule_id": "gimmick:23",
+      "owner_id": "identity-10413",
+      "event": "after_received_attack",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "적이 아군을 공격하여 해당 아군이 사망했거나 체력이 25% 미만이면, 해당 공격 종료시 홍원 방랑무사 료슈가 ‘가척아원’으로 해당 적 일방 공격"
+    },
+    {
+      "rule_id": "gimmick:24",
+      "owner_id": "identity-10413",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "자신을 제외한 아군의 스킬이 적에게 적중하면, 해당 공격 종료시 ‘어이, 물러서라’로 일방 공격"
+    },
+    {
+      "rule_id": "gimmick:25",
+      "owner_id": "identity-10414",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "자신의 공격 스킬 종료시, 자신의 꽃잎이 30 이상이면, 잔향이 가장 높은 대상에게 '황홀한 종말' 발동"
+    },
+    {
+      "rule_id": "gimmick:26",
+      "owner_id": "identity-10415",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_poise_gain"
+      ],
+      "source_text": "편성 순서가 가장 빠른 아군이 기본 스킬 사용시, 호흡 위력 2 얻음 (턴당 3회)"
+    },
+    {
+      "rule_id": "gimmick:27",
+      "owner_id": "identity-10508",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain_lowest_affiliation"
+      ],
+      "source_text": "이번 전투에서 체력이 0이 되는 피해를 받았을 때, 해당 피해를 받지 않고, 해당 턴 동안 체력이 1로 유지됨. (전투 당 1회)\n\n자신의 스킬, 코인 효과로 호흡 위력, 횟수를 얻을 때, 자신을 제외한 호흡이 없거나, 가장 낮은 검계 인격 2명의 호흡 위력, 횟수 1 증가\n- 전투에 참여한 검계 조직원이 6명 이상이면, 대신 2 증가"
+    },
+    {
+      "rule_id": "gimmick:28",
+      "owner_id": "identity-10508",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain_self_bonus"
+      ],
+      "source_text": "자신을 제외한 검계 조직원이 3명 이상 사망한 경우\n- 자신의 스킬, 코인 효과로 호흡 위력, 횟수를 얻을 때, 호흡 위력, 횟수 1 추가 증가\n- 검계 조직원이 5명 이상 사망한 경우, 대신 2 증가\n- 전투 시작 시 자신에게 본국검술 부여"
+    },
+    {
+      "rule_id": "gimmick:29",
+      "owner_id": "identity-10508",
+      "event": "battle_start",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "status_gain_affiliation",
+        "register_fatal_prevention"
+      ],
+      "source_text": "이번 전투에서 체력이 0이 되는 피해를 받았을 때, 해당 피해를 받지 않고, 해당 턴 동안 체력이 1로 유지됨. (전투 당 1회)\n\n자신의 스킬, 코인 효과로 호흡 위력, 횟수를 얻을 때, 자신을 제외한 호흡이 없거나, 가장 낮은 검계 인격 2명의 호흡 위력, 횟수 1 증가\n- 전투에 참여한 검계 조직원이 6명 이상이면, 대신 2 증가\n\n전투 시작 시 자신을 제외한 검계 조직원에게 본국검술 부여"
+    },
+    {
+      "rule_id": "gimmick:30",
+      "owner_id": "identity-10508",
+      "event": "battle_start",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "register_fatal_prevention"
+      ],
+      "source_text": "이번 전투에서 체력이 0이 되는 피해를 받았을 때, 해당 피해를 받지 않고, 해당 턴 동안 체력이 1로 유지됨. (전투 당 1회)\n\n자신의 스킬, 코인 효과로 호흡 위력, 횟수를 얻을 때, 자신을 제외한 호흡이 없거나, 가장 낮은 검계 인격 2명의 호흡 위력, 횟수 1 증가\n- 전투에 참여한 검계 조직원이 6명 이상이면, 대신 2 증가\n\n전투 시작 시 자신을 제외한 검계 조직원에게 본국검술 부여"
+    },
+    {
+      "rule_id": "gimmick:31",
+      "owner_id": "identity-10508",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "poise_gain_lowest_affiliation"
+      ],
+      "source_text": "이번 전투에서 체력이 0이 되는 피해를 받았을 때, 해당 피해를 받지 않고, 해당 턴 동안 체력이 1로 유지됨. (전투 당 1회)\n\n자신의 스킬, 코인 효과로 호흡 위력, 횟수를 얻을 때, 자신을 제외한 호흡이 없거나, 가장 낮은 검계 인격 2명의 호흡 위력, 횟수 1 증가\n- 전투에 참여한 검계 조직원이 6명 이상이면, 대신 2 증가\n\n전투 시작 시 자신을 제외한 검계 조직원에게 본국검술 부여"
+    },
+    {
+      "rule_id": "gimmick:32",
+      "owner_id": "identity-10508",
+      "event": "battle_start",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "register_damage_modifier_highest_poise"
+      ],
+      "source_text": "전투 시작 시 호흡을 가장 많이 보유한 아군 1명의 참격 속성 스킬의 크리티컬 피해량 +15%"
+    },
+    {
+      "rule_id": "gimmick:38",
+      "owner_id": "identity-10712",
+      "event": "after_received_attack",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "적의 아군 피격 후 일반 원호"
+    },
+    {
+      "rule_id": "gimmick:39",
+      "owner_id": "identity-10712",
+      "event": "after_received_attack",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "적의 아군 사망/HP25 미만 후 흑운도 원호"
+    },
+    {
+      "rule_id": "gimmick:41",
+      "owner_id": "identity-10715",
+      "event": "after_received_attack",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "enemy_status_count_gain",
+        "resource_gain"
+      ],
+      "source_text": "자신 또는 중지 소속의 아군 인격이 적에게 피격 시, 대상에게 복수 대상을 1 부여하고 앙갚음 장부 [히스클리프] 1 얻음 (스킬당 1회)\n아군 인격 사망시, 앙갚음 장부 [히스클리프] 3 얻음\n\n턴 시작시 자신의 원한 문신이 15 이상이면 아래 효과 적용\n- 기본 스킬 하나를 ‘전원, 처형이다!!’로 변경 (가장 왼쪽 슬롯의 아래 스킬 우선 적용)\n· 변경된 스킬이 다른 스킬로 변경되어 사용할 수 없게 되면, 위 효과를 다시 발동함\n- 이번 턴이 종료될 때까지 전투 BGM을 변경 (일부 전투 제외)\n\n대기 해제 또는 복귀로 등장한 턴의 전투 시작시, ‘내 헤어쿠포오오오온!!!!'을 무작위 대상에게 사용함\n- 해당 공격 종료 시 모든 아군 중지 인격에게 공격 레벨 증가 1, 방어 레벨 증가 1 부여"
+    },
+    {
+      "rule_id": "gimmick:43",
+      "owner_id": "identity-10716",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "거미집 엄지 아비 로쟈가 전장에 있을 경우, 다음 효과 발동\n(자신이 패닉 또는 흐트러진 턴 제외)\n- 거미집 엄지 아비 로쟈가 예지안이 있을 때 적에게 기본 스킬 적중 시, 해당 공격 종료 시점에 대상에게 '팔레르모 스파다'로 일방 공격"
+    },
+    {
+      "rule_id": "gimmick:44",
+      "owner_id": "identity-10808",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "[사용시] 가장 높은 공명의 공명 당 20% 확률로 조작 패널에서 자신의 우측에 위치한 아군에게 이번 턴에 원호 공격을 명령함."
+    },
+    {
+      "rule_id": "gimmick:45",
+      "owner_id": "identity-10815",
+      "event": "after_clash",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "수비 스킬 합 패배 시 신속이 3 이상이면, 수비 스킬 종료 시까지 피해로 인해 흐트러짐 상태가 되지 않고, 피격 후 '골단' 발동"
+    },
+    {
+      "rule_id": "gimmick:46",
+      "owner_id": "identity-10815",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "기본 공격 스킬 종료 시 자신의 묵 공방 - 예[銳] 2식 발도 / 추력:도깨비불이 15 이상이면, '상전 청린화' 발동"
+    },
+    {
+      "rule_id": "gimmick:48",
+      "owner_id": "identity-10916",
+      "event": "after_clash",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "일방 공격 또는 파괴 불가 코인 공격을 당하거나 공격 스킬에 합 패배 시 '예지' 스킬 발동"
+    },
+    {
+      "rule_id": "gimmick:51",
+      "owner_id": "identity-11213",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "queue_action"
+      ],
+      "source_text": "아군이 적에게 기본 공격 스킬 종료 시 적(본체)의 체력이 20% 이하인 경우, 대상에게 ‘메르체’ 사용"
+    },
+    {
+      "rule_id": "gimmick:53",
+      "owner_id": "identity-11216",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "\n\n자신 이외의 새벽 사무소 소속 인격이 다음 조건 만족 시, 새벽 사무소 대표 그레고르가 대상 적에게 '여명의 섬광' 사용\n- 기본 스킬 공격 종료 시 적중한 적이 흐트러졌을 때, 대상에게 사용 (해당 스킬 공격 시작 전 이미 흐트러짐 상태였으면, 발동하지 않음)\n- 새벽 사무소 해결사 파우스트의 '사출', '사출-정오', '정오의 해체' 또는 새벽 사무소 해결사 싱클레어의 '낙인', '타오르는 일격' 공격 종료 시, 적중한 적에게 사용 (흐트러진 대상 우선)"
+    },
+    {
+      "rule_id": "gimmick:54",
+      "owner_id": "identity-11216",
+      "event": "after_skill",
+      "reasons": [
+        "deferred_effect"
+      ],
+      "effects": [
+        "support_action"
+      ],
+      "source_text": "\n\n자신 이외의 새벽 사무소 소속 인격이 다음 조건 만족 시, 새벽 사무소 대표 그레고르가 대상 적에게 '여명의 섬광' 사용\n- 기본 스킬 공격 종료 시 적중한 적이 흐트러졌을 때, 대상에게 사용 (해당 스킬 공격 시작 전 이미 흐트러짐 상태였으면, 발동하지 않음)\n- 새벽 사무소 해결사 파우스트의 '사출', '사출-정오', '정오의 해체' 또는 새벽 사무소 해결사 싱클레어의 '낙인', '타오르는 일격' 공격 종료 시, 적중한 적에게 사용 (흐트러진 대상 우선)"
+    }
+  ]
+}

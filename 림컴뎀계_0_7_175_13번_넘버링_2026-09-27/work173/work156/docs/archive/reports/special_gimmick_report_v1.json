@@ -1,0 +1,26 @@
+{
+  "version": "0.5.2",
+  "catalog_identities": 184,
+  "special_rules_total": 2,
+  "recognized": [
+    {
+      "owner_id": "identity-10114",
+      "kind": "assist",
+      "source_text": "- ‘흑풍마각월참’ 사용 후 가주 후보 이스마엘이 적춘 스킬로 원호 공격함 (턴 당 1회)",
+      "trigger_skill_name": "흑풍마각월참",
+      "actor_hint": "가주 후보 이스마엘",
+      "skill_hint": "적춘",
+      "max_activations": 1
+    },
+    {
+      "owner_id": "identity-10406",
+      "kind": "extra_damage",
+      "source_text": "탄환을 가장 적게 보유한 아군 1명이 코인에서 마지막 탄환을 소모하면, 코인의 공격 종료 시, 각 대상에게 해당 코인의 공격으로 입힌 피해량의 50%만큼 추가 피해를 줌. (소수점 반올림)",
+      "trigger_skill_name": null,
+      "actor_hint": null,
+      "skill_hint": null,
+      "max_activations": 1
+    }
+  ],
+  "design_note": "Special mechanics are separated from generic passive stat rules; unsupported special text is not guessed."
+}

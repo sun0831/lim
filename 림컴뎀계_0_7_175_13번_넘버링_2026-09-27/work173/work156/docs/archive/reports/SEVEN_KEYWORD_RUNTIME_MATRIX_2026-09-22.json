@@ -1,0 +1,12 @@
+{
+  "version": "0.7.0-research-2026-09-22",
+  "keywords": {
+    "burn": {"values": ["potency", "count"], "trigger": ["turn_end", "immediate_activate_if_rule"], "damage": "fixed_hp", "special": ["unique_burn"]},
+    "bleed": {"values": ["potency", "count"], "trigger": ["attack_coin_roll", "clash_coin"], "damage": "fixed_hp", "special": ["unbreakable_coin", "clash_state"]},
+    "tremor": {"values": ["potency", "count"], "trigger": ["tremor_burst"], "damage": "stagger_threshold_effect", "special": ["burst", "conversion", "amplitude"]},
+    "rupture": {"values": ["potency", "count"], "trigger": ["hit"], "damage": "fixed_hp", "special": ["hit_order", "new_application_timing"]},
+    "sinking": {"values": ["potency", "count"], "trigger": ["hit"], "damage": "sp_or_gloom_hp", "special": ["deluge", "panic", "non_sp_target"]},
+    "poise": {"values": ["potency", "count"], "trigger": ["on_hit", "critical_result", "turn_end"], "damage": "crit_modifier", "special": ["crit_probability", "crit_count_consumption"]},
+    "charge": {"values": ["count", "optional_potency"], "trigger": ["gain", "spend", "turn_end"], "damage": "skill_dependent", "special": ["cumulative_spend", "persistent_potency", "unique_charge"]}
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "version": "0.6.16",
+  "principle": "The seven generic keywords remain the common status/resource axis. Named resources are not promoted into an eighth/ninth keyword merely because they co-occur with a keyword. Only explicit mechanical equivalence is mapped.",
+  "generic_keywords": [
+    "charge",
+    "bleed",
+    "poise",
+    "tremor",
+    "burn",
+    "rupture",
+    "sinking"
+  ],
+  "resources": [
+    {
+      "resource_name": "흑풍마각월참",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "섬궁",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "지령",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "작품명",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "생체 재료",
+      "classification": "keyword_equivalent",
+      "keyword": "charge",
+      "module": "charge",
+      "relation": "alias_resource",
+      "confidence": "confirmed",
+      "basis": "identity data explicitly labels the identity with 충전 and treats the relevant basic/defense skills as 충전 횟수를 얻는 스킬; this resource is therefore modeled on the Charge axis rather than as a ninth generic keyword."
+    },
+    {
+      "resource_name": "불꽃나비의 관",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "탄환",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "얽힘",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "폐장 - 설치미술 제 1호 ",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "내 헤어쿠포오오오온!!!!",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "문신",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "장부",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "짝패",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "열기",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "예지",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "처분",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "예지안",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "가속탄",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "원한 스탬핑",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "즉결처형",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "새벽불",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    },
+    {
+      "resource_name": "새벽녘",
+      "classification": "dedicated_resource",
+      "keyword": null,
+      "module": null,
+      "relation": null,
+      "confidence": "not_equivalent_to_7_keywords",
+      "basis": "source data shows a named resource/status/skill-specific counter, but no rule establishes it as one of the seven generic keyword axes."
+    }
+  ]
+}

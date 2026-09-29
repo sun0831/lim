@@ -1,0 +1,4444 @@
+{
+  "version": "0.6.19",
+  "axes": {
+    "keywords": [
+      "charge",
+      "bleed",
+      "poise",
+      "tremor",
+      "burn",
+      "rupture",
+      "sinking"
+    ],
+    "gimmick_modules": [
+      "black_cloud",
+      "blade_lineage",
+      "dawn_office",
+      "full_stop",
+      "index",
+      "la_mancha_land",
+      "liu",
+      "middle",
+      "n_corp",
+      "pequod",
+      "ring",
+      "seven",
+      "spider_house",
+      "thumb",
+      "w_corp",
+      "zwei"
+    ]
+  },
+  "identities": [
+    {
+      "identity_id": "identity-10101",
+      "game_id": "10101",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 이상",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10102",
+      "game_id": "10102",
+      "name": "남부 세븐 협회 6과",
+      "full_name": "남부 세븐 협회 6과 이상",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "SEVEN"
+      ],
+      "gimmick_modules": [
+        "seven"
+      ],
+      "combat_affiliations": [
+        "seven"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10103",
+      "game_id": "10103",
+      "name": "검계 살수",
+      "full_name": "검계 살수 이상",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10104",
+      "game_id": "10104",
+      "name": "개화 E.G.O:: 동백",
+      "full_name": "개화 E.G.O:: 동백 이상",
+      "keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "진동"
+      ],
+      "affiliations": [
+        "ATL"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "atl"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10105",
+      "game_id": "10105",
+      "name": "어금니 사무소 해결사",
+      "full_name": "어금니 사무소 해결사 이상",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "MOLAR"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "molar"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10106",
+      "game_id": "10106",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 이상",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10107",
+      "game_id": "10107",
+      "name": "피쿼드호 일등 항해사",
+      "full_name": "피쿼드호 일등 항해사 이상",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "PEQUOD CREW"
+      ],
+      "gimmick_modules": [
+        "pequod"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10108",
+      "game_id": "10108",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 이상",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "DIECI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dieci"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10109",
+      "game_id": "10109",
+      "name": "약지 점묘파 스튜던트",
+      "full_name": "약지 점묘파 스튜던트 이상",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "gimmick_modules": [
+        "ring"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10110",
+      "game_id": "10110",
+      "name": "로보토미 E.G.O:: 엄숙한 애도",
+      "full_name": "로보토미 E.G.O:: 엄숙한 애도 이상",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10111",
+      "game_id": "10111",
+      "name": "LCE E.G.O:: 초롱",
+      "full_name": "LCE E.G.O:: 초롱 이상",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10112",
+      "game_id": "10112",
+      "name": "남부 리우 협회 3과",
+      "full_name": "남부 리우 협회 3과 이상",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10113",
+      "game_id": "10113",
+      "name": "N사 E.G.O:: 흉탄",
+      "full_name": "N사 E.G.O:: 흉탄 이상",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "N사"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10114",
+      "game_id": "10114",
+      "name": "흑수 - 오 필두",
+      "full_name": "흑수 - 오 필두 이상",
+      "keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "파열",
+        "진동"
+      ],
+      "affiliations": [
+        "FAMILY GA",
+        "BLACK BEAST HORSE",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_horse",
+        "family_ga",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10115",
+      "game_id": "10115",
+      "name": "거미집 검지 아비",
+      "full_name": "거미집 검지 아비 이상",
+      "keywords": [
+        "poise",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "침잠"
+      ],
+      "affiliations": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "index",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "index",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "index",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10116",
+      "game_id": "10116",
+      "name": "LCE E.G.O::차원찢개",
+      "full_name": "LCE E.G.O::차원찢개 이상",
+      "keywords": [
+        "rupture",
+        "charge"
+      ],
+      "keyword_labels": [
+        "파열",
+        "충전"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10201",
+      "game_id": "10201",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 파우스트",
+      "keywords": [],
+      "keyword_labels": [],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10202",
+      "game_id": "10202",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 파우스트",
+      "keywords": [
+        "charge"
+      ],
+      "keyword_labels": [
+        "충전"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10203",
+      "game_id": "10203",
+      "name": "살아남은 로보토미 직원",
+      "full_name": "살아남은 로보토미 직원 파우스트",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10204",
+      "game_id": "10204",
+      "name": "쥐는 자",
+      "full_name": "쥐는 자 파우스트",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10205",
+      "game_id": "10205",
+      "name": "남부 츠바이 협회 4과",
+      "full_name": "남부 츠바이 협회 4과 파우스트",
+      "keywords": [],
+      "keyword_labels": [],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10206",
+      "game_id": "10206",
+      "name": "남부 세븐 협회 4과",
+      "full_name": "남부 세븐 협회 4과 파우스트",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "SEVEN"
+      ],
+      "gimmick_modules": [
+        "seven"
+      ],
+      "combat_affiliations": [
+        "seven"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10207",
+      "game_id": "10207",
+      "name": "로보토미 E.G.O:: 후회",
+      "full_name": "로보토미 E.G.O:: 후회 파우스트",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10208",
+      "game_id": "10208",
+      "name": "검계 살수",
+      "full_name": "검계 살수 파우스트",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10209",
+      "game_id": "10209",
+      "name": "워더링하이츠 버틀러",
+      "full_name": "워더링하이츠 버틀러 파우스트",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "WUTHERING HEIGHTS"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "wuthering_heights"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10210",
+      "game_id": "10210",
+      "name": "멀티크랙 사무소 대표",
+      "full_name": "멀티크랙 사무소 대표 파우스트",
+      "keywords": [
+        "charge"
+      ],
+      "keyword_labels": [
+        "충전"
+      ],
+      "affiliations": [
+        "MULTI CRACK"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "multi_crack"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10211",
+      "game_id": "10211",
+      "name": "LCE E.G.O:: 홍염살",
+      "full_name": "LCE E.G.O:: 홍염살 파우스트",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10212",
+      "game_id": "10212",
+      "name": "흑수 - 묘 필두",
+      "full_name": "흑수 - 묘 필두 파우스트",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10213",
+      "game_id": "10213",
+      "name": "동부 시 협회 3과",
+      "full_name": "동부 시 협회 3과 파우스트",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "SHI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "shi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10214",
+      "game_id": "10214",
+      "name": "검지 수행자: 【쪽지】",
+      "full_name": "검지 수행자: 【쪽지】 파우스트",
+      "keywords": [
+        "poise",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "침잠"
+      ],
+      "affiliations": [
+        "INDEX FINGER"
+      ],
+      "gimmick_modules": [
+        "index"
+      ],
+      "combat_affiliations": [
+        "index"
+      ],
+      "affiliation_tags": [
+        "index"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10215",
+      "game_id": "10215",
+      "name": "거미집 약지 제자",
+      "full_name": "거미집 약지 제자 파우스트",
+      "keywords": [
+        "bleed",
+        "charge"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "충전"
+      ],
+      "affiliations": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "ring",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "ring",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "ring",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": [
+        "생체 재료"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "game_id": "10216",
+      "name": "새벽 사무소 해결사",
+      "full_name": "새벽 사무소 해결사 파우스트",
+      "keywords": [
+        "burn",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "화상",
+        "진동"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "dawn_office"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "affiliation_tags": [
+        "dawn_office"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10301",
+      "game_id": "10301",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 돈키호테",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10302",
+      "game_id": "10302",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 돈키호테",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10303",
+      "game_id": "10303",
+      "name": "남부 시 협회 5과 부장",
+      "full_name": "남부 시 협회 5과 부장 돈키호테",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "SHI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "shi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10304",
+      "game_id": "10304",
+      "name": "N사 중간 망치",
+      "full_name": "N사 중간 망치 돈키호테",
+      "keywords": [
+        "tremor",
+        "bleed"
+      ],
+      "keyword_labels": [
+        "진동",
+        "출혈"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10305",
+      "game_id": "10305",
+      "name": "남부 섕크 협회 5과 부장",
+      "full_name": "남부 섕크 협회 5과 부장 돈키호테",
+      "keywords": [],
+      "keyword_labels": [],
+      "affiliations": [
+        "CINQ"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "cinq"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10306",
+      "game_id": "10306",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 돈키호테",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "gimmick_modules": [
+        "middle"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10307",
+      "game_id": "10307",
+      "name": "로보토미 E.G.O:: 초롱",
+      "full_name": "로보토미 E.G.O:: 초롱 돈키호테",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10308",
+      "game_id": "10308",
+      "name": "검계 살수",
+      "full_name": "검계 살수 돈키호테",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10309",
+      "game_id": "10309",
+      "name": "T사 3등급 징수직 직원",
+      "full_name": "T사 3등급 징수직 직원 돈키호테",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "T사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "t_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10310",
+      "game_id": "10310",
+      "name": "라만차랜드 실장",
+      "full_name": "라만차랜드 실장 돈키호테",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "gimmick_modules": [
+        "la_mancha_land"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10311",
+      "game_id": "10311",
+      "name": "동부 섕크 협회 3과",
+      "full_name": "동부 섕크 협회 3과 돈키호테",
+      "keywords": [
+        "burn",
+        "poise"
+      ],
+      "keyword_labels": [
+        "화상",
+        "호흡"
+      ],
+      "affiliations": [
+        "CINQ"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "cinq"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10312",
+      "game_id": "10312",
+      "name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "full_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로 돈키호테",
+      "keywords": [
+        "charge",
+        "rupture",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열",
+        "침잠"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10313",
+      "game_id": "10313",
+      "name": "흑수 - 미",
+      "full_name": "흑수 - 미 돈키호테",
+      "keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "파열",
+        "침잠"
+      ],
+      "affiliations": [
+        "BLACK BEAST SHEEP",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_sheep",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10314",
+      "game_id": "10314",
+      "name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "full_name": "검지 대행자 - 개화 E.G.O:: 대행 돈키호테",
+      "keywords": [
+        "poise",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "침잠"
+      ],
+      "affiliations": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "index",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "index",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "index",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10401",
+      "game_id": "10401",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 료슈",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10402",
+      "game_id": "10402",
+      "name": "남부 세븐 협회 6과",
+      "full_name": "남부 세븐 협회 6과 료슈",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "SEVEN"
+      ],
+      "gimmick_modules": [
+        "seven"
+      ],
+      "combat_affiliations": [
+        "seven"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10403",
+      "game_id": "10403",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 료슈",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10404",
+      "game_id": "10404",
+      "name": "료. 고. 파. 주방장",
+      "full_name": "료. 고. 파. 주방장 료슈",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BACKSTREET COOK"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "backstreet_cook"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10405",
+      "game_id": "10405",
+      "name": "W사 3등급 정리 요원",
+      "full_name": "W사 3등급 정리 요원 료슈",
+      "keywords": [
+        "charge"
+      ],
+      "keyword_labels": [
+        "충전"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10406",
+      "game_id": "10406",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 료슈",
+      "keywords": [
+        "poise",
+        "rupture",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열",
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10407",
+      "game_id": "10407",
+      "name": "남부 리우 협회 4과",
+      "full_name": "남부 리우 협회 4과 료슈",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10408",
+      "game_id": "10408",
+      "name": "에드가 가문 치프 버틀러",
+      "full_name": "에드가 가문 치프 버틀러 료슈",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "LINTON"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "linton"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10409",
+      "game_id": "10409",
+      "name": "20구 유로지비",
+      "full_name": "20구 유로지비 료슈",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "YURODIVY"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "yurodivy"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10410",
+      "game_id": "10410",
+      "name": "로보토미 E.G.O:: 적안・참회",
+      "full_name": "로보토미 E.G.O:: 적안・참회 료슈",
+      "keywords": [
+        "bleed",
+        "charge"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "충전"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10411",
+      "game_id": "10411",
+      "name": "흑수 - 묘",
+      "full_name": "흑수 - 묘 료슈",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10412",
+      "game_id": "10412",
+      "name": "N사 E.G.O:: 경멸, 경외",
+      "full_name": "N사 E.G.O:: 경멸, 경외 료슈",
+      "keywords": [
+        "bleed",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "진동"
+      ],
+      "affiliations": [
+        "N사"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10413",
+      "game_id": "10413",
+      "name": "홍원 방랑무사",
+      "full_name": "홍원 방랑무사 료슈",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10414",
+      "game_id": "10414",
+      "name": "로보토미 E.G.O:: 잔향・외로움",
+      "full_name": "로보토미 E.G.O:: 잔향・외로움 료슈",
+      "keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "진동"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10415",
+      "game_id": "10415",
+      "name": "거미집의 검",
+      "full_name": "거미집의 검 료슈",
+      "keywords": [
+        "burn",
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "화상",
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10501",
+      "game_id": "10501",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 뫼르소",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10502",
+      "game_id": "10502",
+      "name": "남부 리우 협회 6과",
+      "full_name": "남부 리우 협회 6과 뫼르소",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10503",
+      "game_id": "10503",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 뫼르소",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10504",
+      "game_id": "10504",
+      "name": "N사 큰 망치",
+      "full_name": "N사 큰 망치 뫼르소",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10505",
+      "game_id": "10505",
+      "name": "장미스패너 공방 해결사",
+      "full_name": "장미스패너 공방 해결사 뫼르소",
+      "keywords": [
+        "charge",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "충전",
+        "진동"
+      ],
+      "affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10506",
+      "game_id": "10506",
+      "name": "R사 제 4무리 코뿔소팀",
+      "full_name": "R사 제 4무리 코뿔소팀 뫼르소",
+      "keywords": [
+        "bleed",
+        "charge"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "충전"
+      ],
+      "affiliations": [
+        "R사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "r_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10507",
+      "game_id": "10507",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 뫼르소",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "gimmick_modules": [
+        "middle"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10508",
+      "game_id": "10508",
+      "name": "검계 우두머리",
+      "full_name": "검계 우두머리 뫼르소",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10509",
+      "game_id": "10509",
+      "name": "데드레빗츠 보스",
+      "full_name": "데드레빗츠 보스 뫼르소",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "DEAD RABBITS"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dead_rabbits"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10510",
+      "game_id": "10510",
+      "name": "남부 디에치 협회 4과 부장",
+      "full_name": "남부 디에치 협회 4과 부장 뫼르소",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "DIECI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dieci"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10511",
+      "game_id": "10511",
+      "name": "서부 섕크 협회 3과",
+      "full_name": "서부 섕크 협회 3과 뫼르소",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "CINQ"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "cinq"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10512",
+      "game_id": "10512",
+      "name": "동부 엄지 카포IIII",
+      "full_name": "동부 엄지 카포IIII 뫼르소",
+      "keywords": [
+        "burn",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "화상",
+        "진동"
+      ],
+      "affiliations": [
+        "THUMB FINGER"
+      ],
+      "gimmick_modules": [
+        "thumb"
+      ],
+      "combat_affiliations": [
+        "thumb"
+      ],
+      "affiliation_tags": [
+        "thumb"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10513",
+      "game_id": "10513",
+      "name": "라만차랜드 왕자",
+      "full_name": "라만차랜드 왕자 뫼르소",
+      "keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "파열"
+      ],
+      "affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "gimmick_modules": [
+        "la_mancha_land"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10514",
+      "game_id": "10514",
+      "name": "로보토미 E.G.O:: 호넷【변조】",
+      "full_name": "로보토미 E.G.O:: 호넷【변조】 뫼르소",
+      "keywords": [
+        "bleed",
+        "burn"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "화상"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10515",
+      "game_id": "10515",
+      "name": "약지 야수파 스튜던트",
+      "full_name": "약지 야수파 스튜던트 뫼르소",
+      "keywords": [
+        "bleed",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "침잠"
+      ],
+      "affiliations": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "gimmick_modules": [
+        "ring"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10601",
+      "game_id": "10601",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 홍루",
+      "keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "파열",
+        "침잠"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10602",
+      "game_id": "10602",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 홍루",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10603",
+      "game_id": "10603",
+      "name": "콩콩이파 두목",
+      "full_name": "콩콩이파 두목 홍루",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "KONG KONG"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "kong_kong"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10604",
+      "game_id": "10604",
+      "name": "남부 리우 협회 5과",
+      "full_name": "남부 리우 협회 5과 홍루",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10605",
+      "game_id": "10605",
+      "name": "K사 3등급 적출직 직원",
+      "full_name": "K사 3등급 적출직 직원 홍루",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "K사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "k_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10606",
+      "game_id": "10606",
+      "name": "W사 2등급 정리 요원",
+      "full_name": "W사 2등급 정리 요원 홍루",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10607",
+      "game_id": "10607",
+      "name": "갈고리 사무소 해결사",
+      "full_name": "갈고리 사무소 해결사 홍루",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "HOOK OFFICE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "hook_office"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10608",
+      "game_id": "10608",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 홍루",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "DIECI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dieci"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10609",
+      "game_id": "10609",
+      "name": "20구 유로지비",
+      "full_name": "20구 유로지비 홍루",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "YURODIVY"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "yurodivy"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10610",
+      "game_id": "10610",
+      "name": "송곳니 사냥 사무소 해결사",
+      "full_name": "송곳니 사냥 사무소 해결사 홍루",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "FANG HUNT"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "fang_hunt"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10611",
+      "game_id": "10611",
+      "name": "마침표 사무소 대표",
+      "full_name": "마침표 사무소 대표 홍루",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "FULL STOP"
+      ],
+      "gimmick_modules": [
+        "full_stop"
+      ],
+      "combat_affiliations": [
+        "full_stop"
+      ],
+      "affiliation_tags": [
+        "full_stop"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10612",
+      "game_id": "10612",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 홍루",
+      "keywords": [
+        "charge",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "충전",
+        "침잠"
+      ],
+      "affiliations": [
+        "R사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "r_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10613",
+      "game_id": "10613",
+      "name": "홍원 군주",
+      "full_name": "홍원 군주 홍루",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "H CORP",
+        "FAMILY GA CANCELED"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "family_ga",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10614",
+      "game_id": "10614",
+      "name": "거미집 약지 아비",
+      "full_name": "거미집 약지 아비 홍루",
+      "keywords": [
+        "bleed",
+        "charge"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "충전"
+      ],
+      "affiliations": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "ring",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "ring",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "ring",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": [
+        "생체 재료"
+      ]
+    },
+    {
+      "identity_id": "identity-10615",
+      "game_id": "10615",
+      "name": "S사 추노꾼",
+      "full_name": "S사 추노꾼 홍루",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10701",
+      "game_id": "10701",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 히스클리프",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10702",
+      "game_id": "10702",
+      "name": "남부 시 협회 5과",
+      "full_name": "남부 시 협회 5과 히스클리프",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "SHI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "shi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10703",
+      "game_id": "10703",
+      "name": "R사 제 4무리 토끼팀",
+      "full_name": "R사 제 4무리 토끼팀 히스클리프",
+      "keywords": [
+        "bleed",
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "R사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "r_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10704",
+      "game_id": "10704",
+      "name": "N사 작은 망치",
+      "full_name": "N사 작은 망치 히스클리프",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10705",
+      "game_id": "10705",
+      "name": "로보토미 E.G.O:: 여우비",
+      "full_name": "로보토미 E.G.O:: 여우비 히스클리프",
+      "keywords": [
+        "rupture",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "파열",
+        "침잠"
+      ],
+      "affiliations": [
+        "ATL"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "atl"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10706",
+      "game_id": "10706",
+      "name": "남부 세븐 협회 4과",
+      "full_name": "남부 세븐 협회 4과 히스클리프",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "SEVEN"
+      ],
+      "gimmick_modules": [
+        "seven"
+      ],
+      "combat_affiliations": [
+        "seven"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10707",
+      "game_id": "10707",
+      "name": "피쿼드호 작살잡이",
+      "full_name": "피쿼드호 작살잡이 히스클리프",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "PEQUOD CREW"
+      ],
+      "gimmick_modules": [
+        "pequod"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10708",
+      "game_id": "10708",
+      "name": "남부 외우피 협회 3과",
+      "full_name": "남부 외우피 협회 3과 히스클리프",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "OUFI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "oufi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10709",
+      "game_id": "10709",
+      "name": "멀티크랙 사무소 해결사",
+      "full_name": "멀티크랙 사무소 해결사 히스클리프",
+      "keywords": [
+        "charge"
+      ],
+      "keyword_labels": [
+        "충전"
+      ],
+      "affiliations": [
+        "MULTI CRACK"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "multi_crack"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10710",
+      "game_id": "10710",
+      "name": "와일드헌트",
+      "full_name": "와일드헌트 히스클리프",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "WILD HUNT",
+        "WUTHERING HEIGHTS"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "wild_hunt",
+        "wuthering_heights"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10711",
+      "game_id": "10711",
+      "name": "마침표 사무소 해결사",
+      "full_name": "마침표 사무소 해결사 히스클리프",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "FULL STOP"
+      ],
+      "gimmick_modules": [
+        "full_stop"
+      ],
+      "combat_affiliations": [
+        "full_stop"
+      ],
+      "affiliation_tags": [
+        "full_stop"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10712",
+      "game_id": "10712",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 히스클리프",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10713",
+      "game_id": "10713",
+      "name": "W사 4등급 정리 요원 - CCA",
+      "full_name": "W사 4등급 정리 요원 - CCA 히스클리프",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10714",
+      "game_id": "10714",
+      "name": "흑수 - 유 필두",
+      "full_name": "흑수 - 유 필두 히스클리프",
+      "keywords": [
+        "burn",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "화상",
+        "파열"
+      ],
+      "affiliations": [
+        "H CORP",
+        "BLACK BEAST CHICKEN"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_chicken",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10715",
+      "game_id": "10715",
+      "name": "중지 작은 형님",
+      "full_name": "중지 작은 형님 히스클리프",
+      "keywords": [
+        "bleed",
+        "burn"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "화상"
+      ],
+      "affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "gimmick_modules": [
+        "middle"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10716",
+      "game_id": "10716",
+      "name": "거미집 엄지 제자",
+      "full_name": "거미집 엄지 제자 히스클리프",
+      "keywords": [
+        "burn",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "화상",
+        "진동"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10801",
+      "game_id": "10801",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 이스마엘",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10802",
+      "game_id": "10802",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 이스마엘",
+      "keywords": [
+        "charge",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "충전",
+        "침잠"
+      ],
+      "affiliations": [
+        "R사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "r_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10803",
+      "game_id": "10803",
+      "name": "남부 시 협회 5과",
+      "full_name": "남부 시 협회 5과 이스마엘",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "SHI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "shi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10804",
+      "game_id": "10804",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 이스마엘",
+      "keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "파열",
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10805",
+      "game_id": "10805",
+      "name": "로보토미 E.G.O:: 출렁임",
+      "full_name": "로보토미 E.G.O:: 출렁임 이스마엘",
+      "keywords": [
+        "rupture",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "파열",
+        "진동"
+      ],
+      "affiliations": [
+        "ATL"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "atl"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10806",
+      "game_id": "10806",
+      "name": "남부 리우 협회 4과",
+      "full_name": "남부 리우 협회 4과 이스마엘",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10807",
+      "game_id": "10807",
+      "name": "어금니 보트 센터 해결사",
+      "full_name": "어금니 보트 센터 해결사 이스마엘",
+      "keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "진동"
+      ],
+      "affiliations": [
+        "MOLAR"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "molar"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10808",
+      "game_id": "10808",
+      "name": "피쿼드호 선장",
+      "full_name": "피쿼드호 선장 이스마엘",
+      "keywords": [
+        "bleed",
+        "burn",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "화상",
+        "호흡"
+      ],
+      "affiliations": [
+        "PEQUOD CREW"
+      ],
+      "gimmick_modules": [
+        "pequod"
+      ],
+      "combat_affiliations": [
+        "pequod"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10809",
+      "game_id": "10809",
+      "name": "에드가 가문 버틀러",
+      "full_name": "에드가 가문 버틀러 이스마엘",
+      "keywords": [
+        "poise",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "침잠"
+      ],
+      "affiliations": [
+        "LINTON"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "linton"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10810",
+      "game_id": "10810",
+      "name": "서부 츠바이 협회 3과",
+      "full_name": "서부 츠바이 협회 3과 이스마엘",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10811",
+      "game_id": "10811",
+      "name": "흑운회 부조장",
+      "full_name": "흑운회 부조장 이스마엘",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10812",
+      "game_id": "10812",
+      "name": "가주 후보",
+      "full_name": "가주 후보 이스마엘",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "FAMILY GA",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "family_ga",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10813",
+      "game_id": "10813",
+      "name": "정사무소 대표",
+      "full_name": "정사무소 대표 이스마엘",
+      "keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "진동"
+      ],
+      "affiliations": [
+        "JEONG OFFICE",
+        "OUFI COOP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "jeong_office",
+        "oufi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10814",
+      "game_id": "10814",
+      "name": "거미집 중지 제자",
+      "full_name": "거미집 중지 제자 이스마엘",
+      "keywords": [
+        "burn",
+        "bleed"
+      ],
+      "keyword_labels": [
+        "화상",
+        "출혈"
+      ],
+      "affiliations": [
+        "MIDDLE FINGER",
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "middle",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "middle",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "middle",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10815",
+      "game_id": "10815",
+      "name": "LCD 현장추리팀",
+      "full_name": "LCD 현장추리팀 이스마엘",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10901",
+      "game_id": "10901",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 로쟈",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10902",
+      "game_id": "10902",
+      "name": "흑운회 와카슈",
+      "full_name": "흑운회 와카슈 로쟈",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10903",
+      "game_id": "10903",
+      "name": "LCCB 대리",
+      "full_name": "LCCB 대리 로쟈",
+      "keywords": [],
+      "keyword_labels": [],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10904",
+      "game_id": "10904",
+      "name": "N사 중간 망치",
+      "full_name": "N사 중간 망치 로쟈",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10905",
+      "game_id": "10905",
+      "name": "장미스패너 공방 대표",
+      "full_name": "장미스패너 공방 대표 로쟈",
+      "keywords": [
+        "charge",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "충전",
+        "진동"
+      ],
+      "affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10906",
+      "game_id": "10906",
+      "name": "남부 츠바이 협회 5과",
+      "full_name": "남부 츠바이 협회 5과 로쟈",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10907",
+      "game_id": "10907",
+      "name": "남부 디에치 협회 4과",
+      "full_name": "남부 디에치 협회 4과 로쟈",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "DIECI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dieci"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10908",
+      "game_id": "10908",
+      "name": "남부 리우 협회 4과 부장",
+      "full_name": "남부 리우 협회 4과 부장 로쟈",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10909",
+      "game_id": "10909",
+      "name": "T사 2등급 징수직 직원",
+      "full_name": "T사 2등급 징수직 직원 로쟈",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "T사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "t_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10910",
+      "game_id": "10910",
+      "name": "북부 제뱌찌 협회 3과",
+      "full_name": "북부 제뱌찌 협회 3과 로쟈",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "DEVYAT"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "devyat"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10911",
+      "game_id": "10911",
+      "name": "라만차랜드 공주",
+      "full_name": "라만차랜드 공주 로쟈",
+      "keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "파열"
+      ],
+      "affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "gimmick_modules": [
+        "la_mancha_land"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10912",
+      "game_id": "10912",
+      "name": "흑수 - 사",
+      "full_name": "흑수 - 사 로쟈",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_snake",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10913",
+      "game_id": "10913",
+      "name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "full_name": "로보토미 E.G.O:: 눈물로 벼려낸 검 로쟈",
+      "keywords": [
+        "sinking",
+        "charge"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "충전"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10914",
+      "game_id": "10914",
+      "name": "R사 제 4무리 순록팀",
+      "full_name": "R사 제 4무리 순록팀 로쟈",
+      "keywords": [
+        "charge",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "충전",
+        "침잠"
+      ],
+      "affiliations": [
+        "R사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "r_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10915",
+      "game_id": "10915",
+      "name": "약지 야수파 도슨트",
+      "full_name": "약지 야수파 도슨트 로쟈",
+      "keywords": [
+        "bleed",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "침잠"
+      ],
+      "affiliations": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "gimmick_modules": [
+        "ring"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-10916",
+      "game_id": "10916",
+      "name": "거미집 엄지 아비",
+      "full_name": "거미집 엄지 아비 로쟈",
+      "keywords": [
+        "burn",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "화상",
+        "진동"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11001",
+      "game_id": "11001",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 싱클레어",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11002",
+      "game_id": "11002",
+      "name": "검계 살수",
+      "full_name": "검계 살수 싱클레어",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11003",
+      "game_id": "11003",
+      "name": "남부 츠바이 협회 6과",
+      "full_name": "남부 츠바이 협회 6과 싱클레어",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11004",
+      "game_id": "11004",
+      "name": "마리아치 보스",
+      "full_name": "마리아치 보스 싱클레어",
+      "keywords": [
+        "poise",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "침잠"
+      ],
+      "affiliations": [
+        "MARIACHI"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "mari",
+        "mariachi"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11005",
+      "game_id": "11005",
+      "name": "쥐어들 자",
+      "full_name": "쥐어들 자 싱클레어",
+      "keywords": [
+        "bleed",
+        "burn"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "화상"
+      ],
+      "affiliations": [
+        "N사",
+        "N사 광신도"
+      ],
+      "gimmick_modules": [
+        "n_corp"
+      ],
+      "combat_affiliations": [
+        "n_corp"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11006",
+      "game_id": "11006",
+      "name": "로보토미 E.G.O:: 홍적",
+      "full_name": "로보토미 E.G.O:: 홍적 싱클레어",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "ATL"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "atl"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11007",
+      "game_id": "11007",
+      "name": "어금니 보트 센터 해결사",
+      "full_name": "어금니 보트 센터 해결사 싱클레어",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "MOLAR"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "molar"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11008",
+      "game_id": "11008",
+      "name": "남부 섕크 협회 4과 부장",
+      "full_name": "남부 섕크 협회 4과 부장 싱클레어",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "CINQ"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "cinq"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11009",
+      "game_id": "11009",
+      "name": "새벽 사무소 해결사",
+      "full_name": "새벽 사무소 해결사 싱클레어",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "DAWN"
+      ],
+      "gimmick_modules": [
+        "dawn_office"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "affiliation_tags": [
+        "dawn_office"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11010",
+      "game_id": "11010",
+      "name": "서부 츠바이 협회 3과",
+      "full_name": "서부 츠바이 협회 3과 싱클레어",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11011",
+      "game_id": "11011",
+      "name": "북부 제뱌찌 협회 3과",
+      "full_name": "북부 제뱌찌 협회 3과 싱클레어",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "DEVYAT"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "devyat"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11012",
+      "game_id": "11012",
+      "name": "중지 작은 아우",
+      "full_name": "중지 작은 아우 싱클레어",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "MIDDLE FINGER"
+      ],
+      "gimmick_modules": [
+        "middle"
+      ],
+      "combat_affiliations": [
+        "middle"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11013",
+      "game_id": "11013",
+      "name": "동부 엄지 솔다토II",
+      "full_name": "동부 엄지 솔다토II 싱클레어",
+      "keywords": [
+        "burn",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "화상",
+        "진동"
+      ],
+      "affiliations": [
+        "THUMB FINGER"
+      ],
+      "gimmick_modules": [
+        "thumb"
+      ],
+      "combat_affiliations": [
+        "thumb"
+      ],
+      "affiliation_tags": [
+        "thumb"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11014",
+      "game_id": "11014",
+      "name": "흑수 - 유",
+      "full_name": "흑수 - 유 싱클레어",
+      "keywords": [
+        "burn",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "화상",
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST CHICKEN",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_chicken",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11015",
+      "game_id": "11015",
+      "name": "거미집 소지 제자",
+      "full_name": "거미집 소지 제자 싱클레어",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "SPIDER HOUSE"
+      ],
+      "gimmick_modules": [
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11101",
+      "game_id": "11101",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 오티스",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11102",
+      "game_id": "11102",
+      "name": "검계 살수",
+      "full_name": "검계 살수 오티스",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "BLADE LINEAGE"
+      ],
+      "gimmick_modules": [
+        "blade_lineage"
+      ],
+      "combat_affiliations": [
+        "blade_lineage"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11103",
+      "game_id": "11103",
+      "name": "G사 부장",
+      "full_name": "G사 부장 오티스",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "G CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "g_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11104",
+      "game_id": "11104",
+      "name": "남부 세븐 협회 6과 부장",
+      "full_name": "남부 세븐 협회 6과 부장 오티스",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "SEVEN"
+      ],
+      "gimmick_modules": [
+        "seven"
+      ],
+      "combat_affiliations": [
+        "seven"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11105",
+      "game_id": "11105",
+      "name": "어금니 사무소 해결사",
+      "full_name": "어금니 사무소 해결사 오티스",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "MOLAR"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "molar"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11106",
+      "game_id": "11106",
+      "name": "남부 섕크 협회 4과",
+      "full_name": "남부 섕크 협회 4과 오티스",
+      "keywords": [
+        "poise"
+      ],
+      "keyword_labels": [
+        "호흡"
+      ],
+      "affiliations": [
+        "CINQ"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "cinq"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11107",
+      "game_id": "11107",
+      "name": "로보토미 E.G.O:: 마탄",
+      "full_name": "로보토미 E.G.O:: 마탄 오티스",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "L CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "l_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11108",
+      "game_id": "11108",
+      "name": "워더링하이츠 치프 버틀러",
+      "full_name": "워더링하이츠 치프 버틀러 오티스",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "WUTHERING HEIGHTS"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "wuthering_heights"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11109",
+      "game_id": "11109",
+      "name": "약지 점묘파 스튜던트",
+      "full_name": "약지 점묘파 스튜던트 오티스",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "gimmick_modules": [
+        "ring"
+      ],
+      "combat_affiliations": [
+        "ring"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11110",
+      "game_id": "11110",
+      "name": "W사 3등급 정리 요원 팀장",
+      "full_name": "W사 3등급 정리 요원 팀장 오티스",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "W CORP"
+      ],
+      "gimmick_modules": [
+        "w_corp"
+      ],
+      "combat_affiliations": [
+        "w_corp"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11111",
+      "game_id": "11111",
+      "name": "라만차랜드 이발사",
+      "full_name": "라만차랜드 이발사 오티스",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "gimmick_modules": [
+        "la_mancha_land"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11112",
+      "game_id": "11112",
+      "name": "흑수 - 묘",
+      "full_name": "흑수 - 묘 오티스",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11113",
+      "game_id": "11113",
+      "name": "T사 3등급 강력징수직 직원",
+      "full_name": "T사 3등급 강력징수직 직원 오티스",
+      "keywords": [
+        "tremor"
+      ],
+      "keyword_labels": [
+        "진동"
+      ],
+      "affiliations": [
+        "T사"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "t_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11114",
+      "game_id": "11114",
+      "name": "LCA 우제트 선봉 3팀 팀장",
+      "full_name": "LCA 우제트 선봉 3팀 팀장 오티스",
+      "keywords": [
+        "sinking",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "침잠",
+        "진동"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCA"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "lca",
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "game_id": "11115",
+      "name": "거미집 중지 아비",
+      "full_name": "거미집 중지 아비 오티스",
+      "keywords": [
+        "burn",
+        "bleed"
+      ],
+      "keyword_labels": [
+        "화상",
+        "출혈"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "middle",
+        "spider_house"
+      ],
+      "combat_affiliations": [
+        "middle",
+        "spider_house"
+      ],
+      "affiliation_tags": [
+        "middle",
+        "spider_house"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11201",
+      "game_id": "11201",
+      "name": "LCB 수감자",
+      "full_name": "LCB 수감자 그레고르",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11202",
+      "game_id": "11202",
+      "name": "남부 리우 협회 6과",
+      "full_name": "남부 리우 협회 6과 그레고르",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "LIU"
+      ],
+      "gimmick_modules": [
+        "liu"
+      ],
+      "combat_affiliations": [
+        "liu"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11203",
+      "game_id": "11203",
+      "name": "G사 일등대리",
+      "full_name": "G사 일등대리 그레고르",
+      "keywords": [
+        "rupture"
+      ],
+      "keyword_labels": [
+        "파열"
+      ],
+      "affiliations": [
+        "G CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "g_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11204",
+      "game_id": "11204",
+      "name": "료. 고. 파. 조수",
+      "full_name": "료. 고. 파. 조수 그레고르",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BACKSTREET COOK"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "backstreet_cook"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11205",
+      "game_id": "11205",
+      "name": "장미스패너 공방 해결사",
+      "full_name": "장미스패너 공방 해결사 그레고르",
+      "keywords": [
+        "charge",
+        "rupture",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열",
+        "진동"
+      ],
+      "affiliations": [
+        "TROUBLE SHOOTER"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11206",
+      "game_id": "11206",
+      "name": "남부 츠바이 협회 4과",
+      "full_name": "남부 츠바이 협회 4과 그레고르",
+      "keywords": [],
+      "keyword_labels": [],
+      "affiliations": [
+        "ZWEI"
+      ],
+      "gimmick_modules": [
+        "zwei"
+      ],
+      "combat_affiliations": [
+        "zwei"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11207",
+      "game_id": "11207",
+      "name": "쌍갈고리 해적단 부선장",
+      "full_name": "쌍갈고리 해적단 부선장 그레고르",
+      "keywords": [
+        "bleed",
+        "poise"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "호흡"
+      ],
+      "affiliations": [
+        "DUAL HOOK PIRATE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "dual_hook_pirate"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11208",
+      "game_id": "11208",
+      "name": "흑운회 부조장",
+      "full_name": "흑운회 부조장 그레고르",
+      "keywords": [
+        "bleed"
+      ],
+      "keyword_labels": [
+        "출혈"
+      ],
+      "affiliations": [
+        "BLACK CLOUD"
+      ],
+      "gimmick_modules": [
+        "black_cloud"
+      ],
+      "combat_affiliations": [
+        "black_cloud"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11209",
+      "game_id": "11209",
+      "name": "에드가 가문 승계자",
+      "full_name": "에드가 가문 승계자 그레고르",
+      "keywords": [
+        "sinking"
+      ],
+      "keyword_labels": [
+        "침잠"
+      ],
+      "affiliations": [
+        "LINTON"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "linton"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11210",
+      "game_id": "11210",
+      "name": "라만차랜드 신부",
+      "full_name": "라만차랜드 신부 그레고르",
+      "keywords": [
+        "bleed",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "파열"
+      ],
+      "affiliations": [
+        "LA MANCHA LAND"
+      ],
+      "gimmick_modules": [
+        "la_mancha_land"
+      ],
+      "combat_affiliations": [
+        "la_mancha_land"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11211",
+      "game_id": "11211",
+      "name": "불주먹 사무소 생존자",
+      "full_name": "불주먹 사무소 생존자 그레고르",
+      "keywords": [
+        "burn"
+      ],
+      "keyword_labels": [
+        "화상"
+      ],
+      "affiliations": [
+        "FIREPUNCH OFFICE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "firepunch_office"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11212",
+      "game_id": "11212",
+      "name": "흑수 - 사",
+      "full_name": "흑수 - 사 그레고르",
+      "keywords": [
+        "poise",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "호흡",
+        "파열"
+      ],
+      "affiliations": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "black_beast_snake",
+        "h_corp"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11213",
+      "game_id": "11213",
+      "name": "밤의 송곳 카피타노",
+      "full_name": "밤의 송곳 카피타노 그레고르",
+      "keywords": [
+        "bleed",
+        "tremor"
+      ],
+      "keyword_labels": [
+        "출혈",
+        "진동"
+      ],
+      "affiliations": [
+        "NIGHTSTILETTO"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "nightstiletto"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11214",
+      "game_id": "11214",
+      "name": "로보토미 E.G.O:: 램프",
+      "full_name": "로보토미 E.G.O:: 램프 그레고르",
+      "keywords": [
+        "burn",
+        "sinking"
+      ],
+      "keyword_labels": [
+        "화상",
+        "침잠"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11215",
+      "game_id": "11215",
+      "name": "LCE E.G.O:: AEDD",
+      "full_name": "LCE E.G.O:: AEDD 그레고르",
+      "keywords": [
+        "charge",
+        "rupture"
+      ],
+      "keyword_labels": [
+        "충전",
+        "파열"
+      ],
+      "affiliations": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "gimmick_modules": [],
+      "combat_affiliations": [],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ],
+      "keyword_equivalent_resources": []
+    },
+    {
+      "identity_id": "identity-11216",
+      "game_id": "11216",
+      "name": "새벽 사무소 대표",
+      "full_name": "새벽 사무소 대표 그레고르",
+      "keywords": [
+        "tremor",
+        "burn"
+      ],
+      "keyword_labels": [
+        "진동",
+        "화상"
+      ],
+      "affiliations": [],
+      "gimmick_modules": [
+        "dawn_office"
+      ],
+      "combat_affiliations": [
+        "dawn_office"
+      ],
+      "affiliation_tags": [
+        "dawn_office"
+      ],
+      "keyword_equivalent_resources": []
+    }
+  ],
+  "affiliation_taxonomy": "affiliation_taxonomy_v1.json",
+  "affiliation_policy": "multi-label; combat_affiliations are all confirmed combat-relevant normalized affiliations from affiliation_taxonomy_v1.json",
+  "keyword_equivalent_resource_policy": "Named resources remain separate unless mechanically equivalent to one of the seven generic keyword axes; 생체 재료 is explicitly mapped to charge."
+}

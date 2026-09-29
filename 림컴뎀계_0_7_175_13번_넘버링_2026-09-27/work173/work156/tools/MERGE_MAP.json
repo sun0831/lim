@@ -1,0 +1,3185 @@
+{
+ "test_boundary_legacy_retirement.py": {
+  "sources": [
+   "test_v101_legacy_retirement_boundary.py",
+   "test_v102_probabilistic_deferred_runtime_persistence.py",
+   "test_v103_legacy_event_boundary.py",
+   "test_v104_fire_event_boundary.py",
+   "test_v105_production_event_boundary.py",
+   "test_v106_probabilistic_runtime_boundary.py",
+   "test_v107_production_trigger_boundary.py",
+   "test_v108_trigger_model_boundary.py",
+   "test_v109_legacy_runtime_boundary.py"
+  ],
+  "renames": {
+   "test_v104_fire_event_boundary": {
+    "_generic_rule": "_generic_rule__v104_fire"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v101_legacy_retirement_boundary",
+    "original": "test_production_fire_does_not_enter_legacy_for_generic_rule",
+    "merged": "test_production_fire_does_not_enter_legacy_for_generic_rule"
+   },
+   {
+    "source": "test_v101_legacy_retirement_boundary",
+    "original": "test_partition_never_places_migration_safe_rule_in_legacy_bucket",
+    "merged": "test_partition_never_places_migration_safe_rule_in_legacy_bucket"
+   },
+   {
+    "source": "test_v101_legacy_retirement_boundary",
+    "original": "test_catalog_generic_rules_do_not_fallback_to_legacy",
+    "merged": "test_catalog_generic_rules_do_not_fallback_to_legacy"
+   },
+   {
+    "source": "test_v101_legacy_retirement_boundary",
+    "original": "test_production_boundary_fails_fast_if_a_deferred_rule_is_introduced",
+    "merged": "test_production_boundary_fails_fast_if_a_deferred_rule_is_introduced"
+   },
+   {
+    "source": "test_v102_probabilistic_deferred_runtime_persistence",
+    "original": "test_deferred_probabilistic_runtime_is_branch_persistent",
+    "merged": "test_deferred_probabilistic_runtime_is_branch_persistent"
+   },
+   {
+    "source": "test_v102_probabilistic_deferred_runtime_persistence",
+    "original": "test_all_generic_probabilistic_path_does_not_create_legacy_runtime",
+    "merged": "test_all_generic_probabilistic_path_does_not_create_legacy_runtime"
+   },
+   {
+    "source": "test_v102_probabilistic_deferred_runtime_persistence",
+    "original": "test_deferred_runtime_activation_survives_branch_deepcopy",
+    "merged": "test_deferred_runtime_activation_survives_branch_deepcopy"
+   },
+   {
+    "source": "test_v103_legacy_event_boundary",
+    "original": "test_legacy_event_handlers_are_extracted_from_registry",
+    "merged": "test_legacy_event_handlers_are_extracted_from_registry"
+   },
+   {
+    "source": "test_v103_legacy_event_boundary",
+    "original": "test_compatibility_module_is_explicitly_separate",
+    "merged": "test_compatibility_module_is_explicitly_separate"
+   },
+   {
+    "source": "test_v103_legacy_event_boundary",
+    "original": "test_legacy_trigger_adapter_is_external_to_registry",
+    "merged": "test_legacy_trigger_adapter_is_external_to_registry"
+   },
+   {
+    "source": "test_v104_fire_event_boundary",
+    "original": "test_fire_event_is_production_ir_entrypoint",
+    "merged": "test_fire_event_is_production_ir_entrypoint"
+   },
+   {
+    "source": "test_v104_fire_event_boundary",
+    "original": "test_legacy_compatibility_is_explicitly_external",
+    "merged": "test_legacy_compatibility_is_explicitly_external"
+   },
+   {
+    "source": "test_v105_production_event_boundary",
+    "original": "test_production_registry_does_not_import_legacy_event_compat",
+    "merged": "test_production_registry_does_not_import_legacy_event_compat"
+   },
+   {
+    "source": "test_v105_production_event_boundary",
+    "original": "test_legacy_event_compat_is_wrapper_only",
+    "merged": "test_legacy_event_compat_is_wrapper_only"
+   },
+   {
+    "source": "test_v105_production_event_boundary",
+    "original": "test_production_event_runtime_contains_live_handlers",
+    "merged": "test_production_event_runtime_contains_live_handlers"
+   },
+   {
+    "source": "test_v106_probabilistic_runtime_boundary",
+    "original": "test_solver_probability_path_uses_new_runtime_not_legacy_trigger_runtime",
+    "merged": "test_solver_probability_path_uses_new_runtime_not_legacy_trigger_runtime"
+   },
+   {
+    "source": "test_v106_probabilistic_runtime_boundary",
+    "original": "test_probability_runtime_factory_returns_new_runtime",
+    "merged": "test_probability_runtime_factory_returns_new_runtime"
+   },
+   {
+    "source": "test_v107_production_trigger_boundary",
+    "original": "test_production_registry_has_no_top_level_legacy_trigger_import",
+    "merged": "test_production_registry_has_no_top_level_legacy_trigger_import"
+   },
+   {
+    "source": "test_v107_production_trigger_boundary",
+    "original": "test_legacy_trigger_runtime_is_not_exposed_by_production_registry",
+    "merged": "test_legacy_trigger_runtime_is_not_exposed_by_production_registry"
+   },
+   {
+    "source": "test_v108_trigger_model_boundary",
+    "original": "test_solver_uses_trigger_data_model_not_legacy_runtime",
+    "merged": "test_solver_uses_trigger_data_model_not_legacy_runtime"
+   },
+   {
+    "source": "test_v108_trigger_model_boundary",
+    "original": "test_trigger_runtime_reexports_shared_data_model",
+    "merged": "test_trigger_runtime_reexports_shared_data_model"
+   },
+   {
+    "source": "test_v108_trigger_model_boundary",
+    "original": "test_model_has_no_runtime_dependency",
+    "merged": "test_model_has_no_runtime_dependency"
+   },
+   {
+    "source": "test_v109_legacy_runtime_boundary",
+    "original": "test_production_special_gimmick_does_not_import_legacy_runtime",
+    "merged": "test_production_special_gimmick_does_not_import_legacy_runtime"
+   },
+   {
+    "source": "test_v109_legacy_runtime_boundary",
+    "original": "test_only_compat_adapter_imports_legacy_runtime",
+    "merged": "test_only_compat_adapter_imports_legacy_runtime"
+   },
+   {
+    "source": "test_v109_legacy_runtime_boundary",
+    "original": "test_compat_adapter_is_explicit",
+    "merged": "test_compat_adapter_is_explicit"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_boundary_solver_structure.py": {
+  "sources": [
+   "test_v101_action_runtime_boundary.py",
+   "test_v110_generated_action_effect_aliases.py",
+   "test_v111_engine_conversion_audit.py",
+   "test_v112_activation_ledger.py",
+   "test_v113_coin_execution_core.py",
+   "test_v113_turn_execution_context.py",
+   "test_v114_action_target_boundary.py",
+   "test_v114_solver_module_split.py",
+   "test_v114_solver_phase_boundaries.py",
+   "test_v115_action_resolution_boundary.py",
+   "test_v116_action_execution_boundary.py",
+   "test_v117_trigger_action_boundary.py"
+  ],
+  "renames": {
+   "test_v114_solver_module_split": {
+    "IdentityCatalogV29": "IdentityCatalogV29__v114_solver"
+   },
+   "test_v115_action_resolution_boundary": {
+    "_fixture": "_fixture__v115_action"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v101_action_runtime_boundary",
+    "original": "test_generated_action_boundary_inherits_explicit_source_target",
+    "merged": "test_generated_action_boundary_inherits_explicit_source_target"
+   },
+   {
+    "source": "test_v101_action_runtime_boundary",
+    "original": "test_generated_action_boundary_prefers_explicit_generated_target",
+    "merged": "test_generated_action_boundary_prefers_explicit_generated_target"
+   },
+   {
+    "source": "test_v101_action_runtime_boundary",
+    "original": "test_generated_action_boundary_preserves_requested_order",
+    "merged": "test_generated_action_boundary_preserves_requested_order"
+   },
+   {
+    "source": "test_v110_generated_action_effect_aliases",
+    "original": "test_generated_action_aliases_are_generic_executable",
+    "merged": "test_generated_action_aliases_are_generic_executable"
+   },
+   {
+    "source": "test_v110_generated_action_effect_aliases",
+    "original": "test_generated_action_alias_normalizes_to_queue_action",
+    "merged": "test_generated_action_alias_normalizes_to_queue_action"
+   },
+   {
+    "source": "test_v111_engine_conversion_audit",
+    "original": "test_catalog_trigger_rules_are_fully_common_runtime_safe",
+    "merged": "test_catalog_trigger_rules_are_fully_common_runtime_safe"
+   },
+   {
+    "source": "test_v111_engine_conversion_audit",
+    "original": "test_production_event_boundary_has_no_direct_legacy_runtime_dependency",
+    "merged": "test_production_event_boundary_has_no_direct_legacy_runtime_dependency"
+   },
+   {
+    "source": "test_v112_activation_ledger",
+    "original": "test_rule_runtime_uses_turn_state_activation_ledger",
+    "merged": "test_rule_runtime_uses_turn_state_activation_ledger"
+   },
+   {
+    "source": "test_v112_activation_ledger",
+    "original": "test_probability_runtime_shares_same_turn_ledger_and_per_skill_bucket",
+    "merged": "test_probability_runtime_shares_same_turn_ledger_and_per_skill_bucket"
+   },
+   {
+    "source": "test_v112_activation_ledger",
+    "original": "test_probability_branch_clone_forks_activation_ledger_without_runtime_sync",
+    "merged": "test_probability_branch_clone_forks_activation_ledger_without_runtime_sync"
+   },
+   {
+    "source": "test_v113_coin_execution_core",
+    "original": "test_shared_core_handles_coin_reuse_and_after_skill_in_one_lifecycle",
+    "merged": "test_shared_core_handles_coin_reuse_and_after_skill_in_one_lifecycle"
+   },
+   {
+    "source": "test_v113_coin_execution_core",
+    "original": "test_deterministic_unopposed_path_calls_shared_coin_core",
+    "merged": "test_deterministic_unopposed_path_calls_shared_coin_core"
+   },
+   {
+    "source": "test_v113_coin_execution_core",
+    "original": "test_generated_action_path_calls_the_same_shared_coin_core",
+    "merged": "test_generated_action_path_calls_the_same_shared_coin_core"
+   },
+   {
+    "source": "test_v113_turn_execution_context",
+    "original": "test_prepare_turn_context_contains_execution_state_and_queue",
+    "merged": "test_prepare_turn_context_contains_execution_state_and_queue"
+   },
+   {
+    "source": "test_v113_turn_execution_context",
+    "original": "test_context_prepare_then_solve_preserves_public_result_contract",
+    "merged": "test_context_prepare_then_solve_preserves_public_result_contract"
+   },
+   {
+    "source": "test_v114_action_target_boundary",
+    "original": "test_action_target_boundary_honors_request_precedence_and_coin_mapping",
+    "merged": "test_action_target_boundary_honors_request_precedence_and_coin_mapping"
+   },
+   {
+    "source": "test_v114_action_target_boundary",
+    "original": "test_target_boundary_preserves_random_counter_between_actions",
+    "merged": "test_target_boundary_preserves_random_counter_between_actions"
+   },
+   {
+    "source": "test_v114_solver_module_split",
+    "original": "test_parser_and_catalog_are_extracted_modules",
+    "merged": "test_parser_and_catalog_are_extracted_modules"
+   },
+   {
+    "source": "test_v114_solver_module_split",
+    "original": "test_solver_reexports_legacy_import_surface",
+    "merged": "test_solver_reexports_legacy_import_surface"
+   },
+   {
+    "source": "test_v114_solver_phase_boundaries",
+    "original": "test_solver_has_explicit_finalization_phase",
+    "merged": "test_solver_has_explicit_finalization_phase"
+   },
+   {
+    "source": "test_v114_solver_phase_boundaries",
+    "original": "test_solver_phase_boundary_does_not_duplicate_finalization_body",
+    "merged": "test_solver_phase_boundary_does_not_duplicate_finalization_body"
+   },
+   {
+    "source": "test_v115_action_resolution_boundary",
+    "original": "test_action_resolution_is_explicit_boundary",
+    "merged": "test_action_resolution_is_explicit_boundary"
+   },
+   {
+    "source": "test_v115_action_resolution_boundary",
+    "original": "test_resolve_action_centralizes_skill_faces_resources_and_targets",
+    "merged": "test_resolve_action_centralizes_skill_faces_resources_and_targets"
+   },
+   {
+    "source": "test_v116_action_execution_boundary",
+    "original": "test_action_execution_boundary_exists",
+    "merged": "test_action_execution_boundary_exists"
+   },
+   {
+    "source": "test_v116_action_execution_boundary",
+    "original": "test_solve_delegates_execution_boundary",
+    "merged": "test_solve_delegates_execution_boundary"
+   },
+   {
+    "source": "test_v117_trigger_action_boundary",
+    "original": "test_trigger_boundary_preserves_target_inheritance",
+    "merged": "test_trigger_boundary_preserves_target_inheritance"
+   },
+   {
+    "source": "test_v117_trigger_action_boundary",
+    "original": "test_trigger_boundary_uses_explicit_generated_target",
+    "merged": "test_trigger_boundary_uses_explicit_generated_target"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_architecture_contracts.py": {
+  "sources": [
+   "test_v48_architecture_contract.py",
+   "test_v49_architecture_state_trace.py",
+   "test_v77_architecture_foundations.py",
+   "test_v90_runtime_registry_consistency.py"
+  ],
+  "renames": {},
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v48_architecture_contract",
+    "original": "test_first_divergence_finds_first_field",
+    "merged": "test_first_divergence_finds_first_field"
+   },
+   {
+    "source": "test_v48_architecture_contract",
+    "original": "test_audit_requires_analyzer_contract",
+    "merged": "test_audit_requires_analyzer_contract"
+   },
+   {
+    "source": "test_v48_architecture_contract",
+    "original": "test_action_state_diff_exposes_status_resource_and_stagger_changes",
+    "merged": "test_action_state_diff_exposes_status_resource_and_stagger_changes"
+   },
+   {
+    "source": "test_v49_architecture_state_trace",
+    "original": "test_action_start_snapshot_is_pre_action",
+    "merged": "test_action_start_snapshot_is_pre_action"
+   },
+   {
+    "source": "test_v49_architecture_state_trace",
+    "original": "test_action_trace_has_explicit_coin_and_state_trace",
+    "merged": "test_action_trace_has_explicit_coin_and_state_trace"
+   },
+   {
+    "source": "test_v77_architecture_foundations",
+    "original": "test_catalog_validation",
+    "merged": "test_catalog_validation"
+   },
+   {
+    "source": "test_v77_architecture_foundations",
+    "original": "test_rule_dependency_graph",
+    "merged": "test_rule_dependency_graph"
+   },
+   {
+    "source": "test_v77_architecture_foundations",
+    "original": "test_rule_dependency_cycle_detection",
+    "merged": "test_rule_dependency_cycle_detection"
+   },
+   {
+    "source": "test_v77_architecture_foundations",
+    "original": "test_golden_compare",
+    "merged": "test_golden_compare"
+   },
+   {
+    "source": "test_v90_runtime_registry_consistency",
+    "original": "test_condition_support_registry_is_shared_with_migration_safety",
+    "merged": "test_condition_support_registry_is_shared_with_migration_safety"
+   },
+   {
+    "source": "test_v90_runtime_registry_consistency",
+    "original": "test_generic_effect_registry_is_shared_with_migration_classifier",
+    "merged": "test_generic_effect_registry_is_shared_with_migration_classifier"
+   },
+   {
+    "source": "test_v90_runtime_registry_consistency",
+    "original": "test_specialized_category_does_not_become_generic_by_category_membership",
+    "merged": "test_specialized_category_does_not_become_generic_by_category_membership"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_buff_debuff_runtime.py": {
+  "sources": [
+   "test_v113_buff_debuff_runtime.py",
+   "test_v118_buff_debuff_damage_integration.py",
+   "test_v119_buff_debuff_timing.py",
+   "test_v120_buff_debuff_aggregation.py",
+   "test_v121_buff_debuff_lifecycle.py",
+   "test_v122_buff_debuff_event_bridge.py"
+  ],
+  "renames": {
+   "test_v119_buff_debuff_timing": {
+    "_case": "_case__v119_buff"
+   },
+   "test_v121_buff_debuff_lifecycle": {
+    "state": "state__v121_buff"
+   },
+   "test_v122_buff_debuff_event_bridge": {
+    "state": "state__v122_buff"
+   }
+  },
+  "deduped": [
+   [
+    "test_v120_buff_debuff_aggregation",
+    [
+     "state"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v113_buff_debuff_runtime",
+    "original": "test_buff_debuff_lifecycle_and_branch_clone",
+    "merged": "test_buff_debuff_lifecycle_and_branch_clone"
+   },
+   {
+    "source": "test_v113_buff_debuff_runtime",
+    "original": "test_effect_and_condition_common_runtime",
+    "merged": "test_effect_and_condition_common_runtime"
+   },
+   {
+    "source": "test_v118_buff_debuff_damage_integration",
+    "original": "test_buff_damage_percent_flows_into_damage_engine",
+    "merged": "test_buff_damage_percent_flows_into_damage_engine"
+   },
+   {
+    "source": "test_v118_buff_debuff_damage_integration",
+    "original": "test_buff_power_modifiers_change_skill_and_coin_power",
+    "merged": "test_buff_power_modifiers_change_skill_and_coin_power"
+   },
+   {
+    "source": "test_v118_buff_debuff_damage_integration",
+    "original": "test_enemy_vulnerability_and_defense_debuff_flow_through_common_runtime",
+    "merged": "test_enemy_vulnerability_and_defense_debuff_flow_through_common_runtime"
+   },
+   {
+    "source": "test_v119_buff_debuff_timing",
+    "original": "test_timing_filters_before_coin_vs_damage",
+    "merged": "test_timing_filters_before_coin_vs_damage"
+   },
+   {
+    "source": "test_v119_buff_debuff_timing",
+    "original": "test_timing_condition_uses_current_coin_context",
+    "merged": "test_timing_condition_uses_current_coin_context"
+   },
+   {
+    "source": "test_v120_buff_debuff_aggregation",
+    "original": "test_default_modifier_stacking_is_additive_and_item_stack_modes_are_explicit",
+    "merged": "test_default_modifier_stacking_is_additive_and_item_stack_modes_are_explicit"
+   },
+   {
+    "source": "test_v120_buff_debuff_aggregation",
+    "original": "test_modifier_max_min_and_replace_priority_are_deterministic",
+    "merged": "test_modifier_max_min_and_replace_priority_are_deterministic"
+   },
+   {
+    "source": "test_v120_buff_debuff_aggregation",
+    "original": "test_multiplicative_scale_is_opt_in_and_default_remains_additive",
+    "merged": "test_multiplicative_scale_is_opt_in_and_default_remains_additive"
+   },
+   {
+    "source": "test_v121_buff_debuff_lifecycle",
+    "original": "test_event_consumption_is_opt_in_and_count_based",
+    "merged": "test_event_consumption_is_opt_in_and_count_based"
+   },
+   {
+    "source": "test_v121_buff_debuff_lifecycle",
+    "original": "test_effect_executor_preserves_consume_on_declaration",
+    "merged": "test_effect_executor_preserves_consume_on_declaration"
+   },
+   {
+    "source": "test_v122_buff_debuff_event_bridge",
+    "original": "test_bridge_consumes_same_lifecycle_contract",
+    "merged": "test_bridge_consumes_same_lifecycle_contract"
+   },
+   {
+    "source": "test_v122_buff_debuff_event_bridge",
+    "original": "test_bridge_turn_end_records_expiry",
+    "merged": "test_bridge_turn_end_records_expiry"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_status_effect_runtime.py": {
+  "sources": [
+   "test_v123_status_lifecycle_taxonomy.py",
+   "test_v124_rule_buff_damage_e2e.py",
+   "test_v125_status_effect_catalog.py",
+   "test_v126_status_effect_runtime.py",
+   "test_v127_status_effect_damage_path.py"
+  ],
+  "renames": {},
+  "deduped": [
+   [
+    "test_v125_status_effect_catalog",
+    [
+     "state"
+    ]
+   ],
+   [
+    "test_v126_status_effect_runtime",
+    [
+     "state"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v123_status_lifecycle_taxonomy",
+    "original": "test_standard_effect_lifecycle_classification",
+    "merged": "test_standard_effect_lifecycle_classification"
+   },
+   {
+    "source": "test_v123_status_lifecycle_taxonomy",
+    "original": "test_display_count_is_not_assumed_to_be_consumption_count",
+    "merged": "test_display_count_is_not_assumed_to_be_consumption_count"
+   },
+   {
+    "source": "test_v123_status_lifecycle_taxonomy",
+    "original": "test_consume_requires_explicit_event",
+    "merged": "test_consume_requires_explicit_event"
+   },
+   {
+    "source": "test_v123_status_lifecycle_taxonomy",
+    "original": "test_rule_lifecycle_is_not_count_consumption",
+    "merged": "test_rule_lifecycle_is_not_count_consumption"
+   },
+   {
+    "source": "test_v124_rule_buff_damage_e2e",
+    "original": "test_rule_ir_condition_effect_buff_lifecycle_and_damage_modifier_end_to_end",
+    "merged": "test_rule_ir_condition_effect_buff_lifecycle_and_damage_modifier_end_to_end"
+   },
+   {
+    "source": "test_v124_rule_buff_damage_e2e",
+    "original": "test_rule_condition_can_read_buff_created_by_previous_rule",
+    "merged": "test_rule_condition_can_read_buff_created_by_previous_rule"
+   },
+   {
+    "source": "test_v125_status_effect_catalog",
+    "original": "test_catalog_is_loaded_and_unique",
+    "merged": "test_catalog_is_loaded_and_unique"
+   },
+   {
+    "source": "test_v125_status_effect_catalog",
+    "original": "test_core_keywords_keep_independent_consumption_and_expiration",
+    "merged": "test_core_keywords_keep_independent_consumption_and_expiration"
+   },
+   {
+    "source": "test_v125_status_effect_catalog",
+    "original": "test_display_count_semantics_are_catalogled_not_inferred_as_consumption",
+    "merged": "test_display_count_semantics_are_catalogled_not_inferred_as_consumption"
+   },
+   {
+    "source": "test_v125_status_effect_catalog",
+    "original": "test_unknown_effect_remains_unspecified",
+    "merged": "test_unknown_effect_remains_unspecified"
+   },
+   {
+    "source": "test_v125_status_effect_catalog",
+    "original": "test_runtime_persists_catalog_metadata",
+    "merged": "test_runtime_persists_catalog_metadata"
+   },
+   {
+    "source": "test_v126_status_effect_runtime",
+    "original": "test_common_damage_up_maps_to_damage_modifier",
+    "merged": "test_common_damage_up_maps_to_damage_modifier"
+   },
+   {
+    "source": "test_v126_status_effect_runtime",
+    "original": "test_negative_damage_down_maps_with_negative_sign",
+    "merged": "test_negative_damage_down_maps_with_negative_sign"
+   },
+   {
+    "source": "test_v126_status_effect_runtime",
+    "original": "test_compound_effect_is_deferred_not_guessed",
+    "merged": "test_compound_effect_is_deferred_not_guessed"
+   },
+   {
+    "source": "test_v127_status_effect_damage_path",
+    "original": "test_count_drives_damage_up_value_when_value_is_omitted",
+    "merged": "test_count_drives_damage_up_value_when_value_is_omitted"
+   },
+   {
+    "source": "test_v127_status_effect_damage_path",
+    "original": "test_count_drives_power_and_coin_power_catalog_effects",
+    "merged": "test_count_drives_power_and_coin_power_catalog_effects"
+   },
+   {
+    "source": "test_v127_status_effect_damage_path",
+    "original": "test_potency_drives_level_effects",
+    "merged": "test_potency_drives_level_effects"
+   },
+   {
+    "source": "test_v127_status_effect_damage_path",
+    "original": "test_protection_and_fragile_are_target_side_damage_modifiers",
+    "merged": "test_protection_and_fragile_are_target_side_damage_modifiers"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_keyword_runtime.py": {
+  "sources": [
+   "test_v126_keyword_poise_charge_runtime.py",
+   "test_v128_keyword_runtime.py",
+   "test_v129_keyword_runtime_engine_bridge.py"
+  ],
+  "renames": {},
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v126_keyword_poise_charge_runtime",
+    "original": "test_poise_critical_consumes_once_and_logs",
+    "merged": "test_poise_critical_consumes_once_and_logs"
+   },
+   {
+    "source": "test_v126_keyword_poise_charge_runtime",
+    "original": "test_turn_end_consumes_poise_once_and_charge_once",
+    "merged": "test_turn_end_consumes_poise_once_and_charge_once"
+   },
+   {
+    "source": "test_v126_keyword_poise_charge_runtime",
+    "original": "test_turn_end_does_not_consume_bio_material_resource",
+    "merged": "test_turn_end_does_not_consume_bio_material_resource"
+   },
+   {
+    "source": "test_v128_keyword_runtime",
+    "original": "test_burn_turn_end_consumes_one_count_and_damage",
+    "merged": "test_burn_turn_end_consumes_one_count_and_damage"
+   },
+   {
+    "source": "test_v128_keyword_runtime",
+    "original": "test_rupture_and_sinking_are_hit_consumers",
+    "merged": "test_rupture_and_sinking_are_hit_consumers"
+   },
+   {
+    "source": "test_v128_keyword_runtime",
+    "original": "test_tremor_burst_consumes_requested_count",
+    "merged": "test_tremor_burst_consumes_requested_count"
+   },
+   {
+    "source": "test_v129_keyword_runtime_engine_bridge",
+    "original": "test_damage_engine_hit_lifecycle_uses_shared_keyword_runtime",
+    "merged": "test_damage_engine_hit_lifecycle_uses_shared_keyword_runtime"
+   },
+   {
+    "source": "test_v129_keyword_runtime_engine_bridge",
+    "original": "test_damage_engine_turn_end_uses_shared_burn_runtime",
+    "merged": "test_damage_engine_turn_end_uses_shared_burn_runtime"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_resource_primitives.py": {
+  "sources": [
+   "test_v130_resource_primitives.py",
+   "test_v131_resource_clause_decomposer.py",
+   "test_v132_resource_consumption_audit.py",
+   "test_v132_resource_semantic_clusters.py",
+   "test_v133_resource_selector_symmetry.py",
+   "test_v136_resource_conversion_primitive.py"
+  ],
+  "renames": {},
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_trigger_gain_maps_to_common_primitive",
+    "merged": "test_trigger_gain_maps_to_common_primitive"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_cumulative_gain_schema_is_explicit",
+    "merged": "test_cumulative_gain_schema_is_explicit"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_resource_scaled_modifier_is_not_identity_specific",
+    "merged": "test_resource_scaled_modifier_is_not_identity_specific"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_lowest_resource_selector_is_a_target_primitive",
+    "merged": "test_lowest_resource_selector_is_a_target_primitive"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_unknown_effect_is_not_guessed",
+    "merged": "test_unknown_effect_is_not_guessed"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_schema_rejects_missing_semantics",
+    "merged": "test_schema_rejects_missing_semantics"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_highest_resource_selector_is_symmetric_with_lowest",
+    "merged": "test_highest_resource_selector_is_symmetric_with_lowest"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_pure_resource_consumption_trigger_is_distinct_from_cumulative_reward",
+    "merged": "test_pure_resource_consumption_trigger_is_distinct_from_cumulative_reward"
+   },
+   {
+    "source": "test_v130_resource_primitives",
+    "original": "test_resource_triggered_skill_swap_is_distinct_from_skill_reclassify",
+    "merged": "test_resource_triggered_skill_swap_is_distinct_from_skill_reclassify"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_gain_trigger",
+    "merged": "test_gain_trigger"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_cumulative_spend",
+    "merged": "test_cumulative_spend"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_affiliation_lowest",
+    "merged": "test_affiliation_lowest"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_resource_scaled_damage",
+    "merged": "test_resource_scaled_damage"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_zero_skill_transform",
+    "merged": "test_zero_skill_transform"
+   },
+   {
+    "source": "test_v131_resource_clause_decomposer",
+    "original": "test_random_scaled",
+    "merged": "test_random_scaled"
+   },
+   {
+    "source": "test_v132_resource_consumption_audit",
+    "original": "test_cumulative_spend_is_not_plain_trigger",
+    "merged": "test_cumulative_spend_is_not_plain_trigger"
+   },
+   {
+    "source": "test_v132_resource_consumption_audit",
+    "original": "test_consume_trigger",
+    "merged": "test_consume_trigger"
+   },
+   {
+    "source": "test_v132_resource_consumption_audit",
+    "original": "test_consumption_conversion",
+    "merged": "test_consumption_conversion"
+   },
+   {
+    "source": "test_v132_resource_consumption_audit",
+    "original": "test_consumption_condition",
+    "merged": "test_consumption_condition"
+   },
+   {
+    "source": "test_v132_resource_semantic_clusters",
+    "original": "test_resource_source_baseline",
+    "merged": "test_resource_source_baseline"
+   },
+   {
+    "source": "test_v132_resource_semantic_clusters",
+    "original": "test_cluster_method_is_non_additive",
+    "merged": "test_cluster_method_is_non_additive"
+   },
+   {
+    "source": "test_v132_resource_semantic_clusters",
+    "original": "test_expected_core_clusters_exist",
+    "merged": "test_expected_core_clusters_exist"
+   },
+   {
+    "source": "test_v133_resource_selector_symmetry",
+    "original": "test_highest_resource_selector_preserves_resource_and_side",
+    "merged": "test_highest_resource_selector_preserves_resource_and_side"
+   },
+   {
+    "source": "test_v133_resource_selector_symmetry",
+    "original": "test_e21_corpus_contains_explicit_highest_resource_cases",
+    "merged": "test_e21_corpus_contains_explicit_highest_resource_cases"
+   },
+   {
+    "source": "test_v133_resource_selector_symmetry",
+    "original": "test_lowest_and_highest_preserve_explicit_target_side",
+    "merged": "test_lowest_and_highest_preserve_explicit_target_side"
+   },
+   {
+    "source": "test_v136_resource_conversion_primitive",
+    "original": "test_fixed_resource_conversion_maps_to_common_primitive",
+    "merged": "test_fixed_resource_conversion_maps_to_common_primitive"
+   },
+   {
+    "source": "test_v136_resource_conversion_primitive",
+    "original": "test_proportional_consumption_conversion_maps_to_same_primitive",
+    "merged": "test_proportional_consumption_conversion_maps_to_same_primitive"
+   },
+   {
+    "source": "test_v136_resource_conversion_primitive",
+    "original": "test_conversion_modes_are_explicit",
+    "merged": "test_conversion_modes_are_explicit"
+   },
+   {
+    "source": "test_v136_resource_conversion_primitive",
+    "original": "test_conversion_rejects_missing_mode",
+    "merged": "test_conversion_rejects_missing_mode"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_resource_runtime.py": {
+  "sources": [
+   "test_v29_resource_runtime.py",
+   "test_v29_resource_runtime_lifecycle.py",
+   "test_v29_cumulative_resource_consumption.py",
+   "test_v29_resource_trigger_integration.py",
+   "test_v29_resource_conversion.py",
+   "test_v29_special_resource_lifecycle.py",
+   "test_v29_special_resource_skill_parser.py",
+   "test_v29_special_resource_analyzer.py",
+   "test_v29_special_resource_analyzer_v2.py"
+  ],
+  "renames": {
+   "test_v29_resource_trigger_integration": {
+    "Fighter": "Fighter__v29_resource",
+    "State": "State__v29_resource"
+   },
+   "test_v29_special_resource_analyzer_v2": {
+    "analyze": "analyze__v29_special"
+   }
+  },
+  "deduped": [
+   [
+    "test_v29_resource_trigger_integration",
+    [
+     "Skill"
+    ]
+   ],
+   [
+    "test_v29_resource_trigger_integration",
+    [
+     "Ident"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v29_resource_runtime",
+    "original": "test_resource_runtime_gain_clamps_and_checks_threshold",
+    "merged": "test_resource_runtime_gain_clamps_and_checks_threshold"
+   },
+   {
+    "source": "test_v29_resource_runtime",
+    "original": "test_solver_accepts_explicit_special_resource_spec",
+    "merged": "test_solver_accepts_explicit_special_resource_spec"
+   },
+   {
+    "source": "test_v29_resource_runtime_lifecycle",
+    "original": "test_threshold_crossing_emits_distinct_event_once_per_crossing",
+    "merged": "test_threshold_crossing_emits_distinct_event_once_per_crossing"
+   },
+   {
+    "source": "test_v29_resource_runtime_lifecycle",
+    "original": "test_threshold_operator_and_consume_are_supported",
+    "merged": "test_threshold_operator_and_consume_are_supported"
+   },
+   {
+    "source": "test_v29_cumulative_resource_consumption",
+    "original": "test_cumulative_consumption_crossing_fires_once_per_threshold",
+    "merged": "test_cumulative_consumption_crossing_fires_once_per_threshold"
+   },
+   {
+    "source": "test_v29_cumulative_resource_consumption",
+    "original": "test_resource_runtime_tracks_cumulative_consumption_separately_from_live_value",
+    "merged": "test_resource_runtime_tracks_cumulative_consumption_separately_from_live_value"
+   },
+   {
+    "source": "test_v29_cumulative_resource_consumption",
+    "original": "test_cumulative_consumption_can_cross_multiple_thresholds_in_one_event",
+    "merged": "test_cumulative_consumption_can_cross_multiple_thresholds_in_one_event"
+   },
+   {
+    "source": "test_v29_resource_trigger_integration",
+    "original": "test_resource_threshold_trigger_can_set_flag_and_queue_action",
+    "merged": "test_resource_threshold_trigger_can_set_flag_and_queue_action"
+   },
+   {
+    "source": "test_v29_resource_trigger_integration",
+    "original": "test_resource_runtime_threshold_event_can_feed_trigger_runtime",
+    "merged": "test_resource_runtime_threshold_event_can_feed_trigger_runtime"
+   },
+   {
+    "source": "test_v29_resource_conversion",
+    "original": "test_resource_conversion_parse_from_consumed_amount",
+    "merged": "test_resource_conversion_parse_from_consumed_amount"
+   },
+   {
+    "source": "test_v29_resource_conversion",
+    "original": "test_fixed_resource_conversion_parse",
+    "merged": "test_fixed_resource_conversion_parse"
+   },
+   {
+    "source": "test_v29_resource_conversion",
+    "original": "test_fixed_conversion_is_retained_as_executable_use_effect",
+    "merged": "test_fixed_conversion_is_retained_as_executable_use_effect"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_special_resource_max_and_all_consume_are_parsed",
+    "merged": "test_special_resource_max_and_all_consume_are_parsed"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_special_resource_per_coin_cost_is_parsed",
+    "merged": "test_special_resource_per_coin_cost_is_parsed"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_conditional_resource_cost_is_not_unconditionally_applied",
+    "merged": "test_conditional_resource_cost_is_not_unconditionally_applied"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_turn_start_zero_resource_transformation_pattern_is_recognized",
+    "merged": "test_turn_start_zero_resource_transformation_pattern_is_recognized"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_resource_threshold_coin_power_is_parsed",
+    "merged": "test_resource_threshold_coin_power_is_parsed"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_resource_threshold_coin_power_condition_reads_live_resource",
+    "merged": "test_resource_threshold_coin_power_condition_reads_live_resource"
+   },
+   {
+    "source": "test_v29_special_resource_lifecycle",
+    "original": "test_turn_reset_all_applies_declared_reset",
+    "merged": "test_turn_reset_all_applies_declared_reset"
+   },
+   {
+    "source": "test_v29_special_resource_skill_parser",
+    "original": "test_identity_resource_gain_and_consume_are_parsed_separately",
+    "merged": "test_identity_resource_gain_and_consume_are_parsed_separately"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer",
+    "original": "test_analyzer_excludes_ego_and_sin_candidates",
+    "merged": "test_analyzer_excludes_ego_and_sin_candidates"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer",
+    "original": "test_analyzer_finds_dawn_fire",
+    "merged": "test_analyzer_finds_dawn_fire"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer",
+    "original": "test_lifecycle_score_bounded",
+    "merged": "test_lifecycle_score_bounded"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer_v2",
+    "original": "test_normalizer_does_not_treat_status_count_as_special_resource",
+    "merged": "test_normalizer_does_not_treat_status_count_as_special_resource"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer_v2",
+    "original": "test_normalizer_keeps_dawn_fire",
+    "merged": "test_normalizer_keeps_dawn_fire"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer_v2",
+    "original": "test_normalizer_keeps_ego_and_sin_excluded",
+    "merged": "test_normalizer_keeps_ego_and_sin_excluded"
+   },
+   {
+    "source": "test_v29_special_resource_analyzer_v2",
+    "original": "test_confidence_is_bounded",
+    "merged": "test_confidence_is_bounded"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_special_clause_audits.py": {
+  "sources": [
+   "test_v132_trigger_reclassifier.py",
+   "test_v134_skill_transform_audit.py",
+   "test_v135_non_resource_special_audit.py",
+   "test_v137_status_side_clause_audit.py",
+   "test_v138_cross_identity_audit.py",
+   "test_v139_target_selection_audit.py",
+   "test_v140_stack_threshold_audit.py",
+   "test_v142_multi_target_audit.py",
+   "test_v143_probability_random_audit.py",
+   "test_v144_special_state_audit.py"
+  ],
+  "renames": {
+   "test_v139_target_selection_audit": {
+    "classify_clause": "classify_clause__v139_target",
+    "Match": "Match__v139_target"
+   },
+   "test_v143_probability_random_audit": {
+    "audit": "audit__v143_probability"
+   },
+   "test_v144_special_state_audit": {
+    "audit": "audit__v144_special"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v132_trigger_reclassifier",
+    "original": "test_resource_gain_branch",
+    "merged": "test_resource_gain_branch"
+   },
+   {
+    "source": "test_v132_trigger_reclassifier",
+    "original": "test_status_branch",
+    "merged": "test_status_branch"
+   },
+   {
+    "source": "test_v132_trigger_reclassifier",
+    "original": "test_action_branch",
+    "merged": "test_action_branch"
+   },
+   {
+    "source": "test_v132_trigger_reclassifier",
+    "original": "test_condition_branch",
+    "merged": "test_condition_branch"
+   },
+   {
+    "source": "test_v132_trigger_reclassifier",
+    "original": "test_trigger_catchall_audit_count_matches_e19",
+    "merged": "test_trigger_catchall_audit_count_matches_e19"
+   },
+   {
+    "source": "test_v134_skill_transform_audit",
+    "original": "test_generic_skill_swap_is_distinct_from_resource_triggered_swap",
+    "merged": "test_generic_skill_swap_is_distinct_from_resource_triggered_swap"
+   },
+   {
+    "source": "test_v134_skill_transform_audit",
+    "original": "test_skill_swap_effect_maps_to_generic_primitive",
+    "merged": "test_skill_swap_effect_maps_to_generic_primitive"
+   },
+   {
+    "source": "test_v134_skill_transform_audit",
+    "original": "test_reclassify_remains_distinct",
+    "merged": "test_reclassify_remains_distinct"
+   },
+   {
+    "source": "test_v135_non_resource_special_audit",
+    "original": "test_audit_finds_86_unresolved_clauses",
+    "merged": "test_audit_finds_86_unresolved_clauses"
+   },
+   {
+    "source": "test_v135_non_resource_special_audit",
+    "original": "test_skill_reclassify_is_absorbed",
+    "merged": "test_skill_reclassify_is_absorbed"
+   },
+   {
+    "source": "test_v135_non_resource_special_audit",
+    "original": "test_out_of_scope_bgm_is_not_promoted_to_runtime",
+    "merged": "test_out_of_scope_bgm_is_not_promoted_to_runtime"
+   },
+   {
+    "source": "test_v135_non_resource_special_audit",
+    "original": "test_true_unresolved_is_preserved",
+    "merged": "test_true_unresolved_is_preserved"
+   },
+   {
+    "source": "test_v137_status_side_clause_audit",
+    "original": "test_e26_status_side_clause_count_and_scope",
+    "merged": "test_e26_status_side_clause_count_and_scope"
+   },
+   {
+    "source": "test_v137_status_side_clause_audit",
+    "original": "test_e26_does_not_claim_execution_coverage",
+    "merged": "test_e26_does_not_claim_execution_coverage"
+   },
+   {
+    "source": "test_v138_cross_identity_audit",
+    "original": "test_affiliation_count_and_resource",
+    "merged": "test_affiliation_count_and_resource"
+   },
+   {
+    "source": "test_v138_cross_identity_audit",
+    "original": "test_cross_identity_target_selector",
+    "merged": "test_cross_identity_target_selector"
+   },
+   {
+    "source": "test_v138_cross_identity_audit",
+    "original": "test_cross_identity_action",
+    "merged": "test_cross_identity_action"
+   },
+   {
+    "source": "test_v138_cross_identity_audit",
+    "original": "test_unresolved_is_conservative",
+    "merged": "test_unresolved_is_conservative"
+   },
+   {
+    "source": "test_v139_target_selection_audit",
+    "original": "test_random_target_existing",
+    "merged": "test_random_target_existing"
+   },
+   {
+    "source": "test_v139_target_selection_audit",
+    "original": "test_resource_lowest_highest",
+    "merged": "test_resource_lowest_highest"
+   },
+   {
+    "source": "test_v139_target_selection_audit",
+    "original": "test_speed_hp_formation_existing",
+    "merged": "test_speed_hp_formation_existing"
+   },
+   {
+    "source": "test_v139_target_selection_audit",
+    "original": "test_affiliation_is_existing_resolver",
+    "merged": "test_affiliation_is_existing_resolver"
+   },
+   {
+    "source": "test_v140_stack_threshold_audit",
+    "original": "test_resource_threshold_routes_without_new_runtime",
+    "merged": "test_resource_threshold_routes_without_new_runtime"
+   },
+   {
+    "source": "test_v140_stack_threshold_audit",
+    "original": "test_status_threshold_routes_to_existing_status_condition",
+    "merged": "test_status_threshold_routes_to_existing_status_condition"
+   },
+   {
+    "source": "test_v140_stack_threshold_audit",
+    "original": "test_hp_and_mental_thresholds_are_existing_condition_axes",
+    "merged": "test_hp_and_mental_thresholds_are_existing_condition_axes"
+   },
+   {
+    "source": "test_v140_stack_threshold_audit",
+    "original": "test_activation_cap_is_not_a_new_threshold_primitive",
+    "merged": "test_activation_cap_is_not_a_new_threshold_primitive"
+   },
+   {
+    "source": "test_v142_multi_target_audit",
+    "original": "test_multi_target_corpus_count_and_no_new_primitive",
+    "merged": "test_multi_target_corpus_count_and_no_new_primitive"
+   },
+   {
+    "source": "test_v142_multi_target_audit",
+    "original": "test_explicit_count_and_all_target_route_to_existing_contracts",
+    "merged": "test_explicit_count_and_all_target_route_to_existing_contracts"
+   },
+   {
+    "source": "test_v142_multi_target_audit",
+    "original": "test_conditional_multi_target_is_compositional",
+    "merged": "test_conditional_multi_target_is_compositional"
+   },
+   {
+    "source": "test_v142_multi_target_audit",
+    "original": "test_focused_battle_part_is_target_resolution_not_new_runtime",
+    "merged": "test_focused_battle_part_is_target_resolution_not_new_runtime"
+   },
+   {
+    "source": "test_v143_probability_random_audit",
+    "original": "test_random_target_routes_to_target_selector",
+    "merged": "test_random_target_routes_to_target_selector"
+   },
+   {
+    "source": "test_v143_probability_random_audit",
+    "original": "test_probability_trigger_routes_to_existing_runtime",
+    "merged": "test_probability_trigger_routes_to_existing_runtime"
+   },
+   {
+    "source": "test_v143_probability_random_audit",
+    "original": "test_per_coin_probability_is_distinct_contract",
+    "merged": "test_per_coin_probability_is_distinct_contract"
+   },
+   {
+    "source": "test_v143_probability_random_audit",
+    "original": "test_axis_audit_counts_unique_sources",
+    "merged": "test_axis_audit_counts_unique_sources"
+   },
+   {
+    "source": "test_v144_special_state_audit",
+    "original": "test_named_state_routes_to_existing_state_contract",
+    "merged": "test_named_state_routes_to_existing_state_contract"
+   },
+   {
+    "source": "test_v144_special_state_audit",
+    "original": "test_turn_state_routes_to_lifecycle",
+    "merged": "test_turn_state_routes_to_lifecycle"
+   },
+   {
+    "source": "test_v144_special_state_audit",
+    "original": "test_skill_state_routes_to_skill_action_primitives",
+    "merged": "test_skill_state_routes_to_skill_action_primitives"
+   },
+   {
+    "source": "test_v144_special_state_audit",
+    "original": "test_resource_state_routes_to_resource_runtime",
+    "merged": "test_resource_state_routes_to_resource_runtime"
+   },
+   {
+    "source": "test_v144_special_state_audit",
+    "original": "test_axis_counts_unique_sources",
+    "merged": "test_axis_counts_unique_sources"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_clash_bleed_probability.py": {
+  "sources": [
+   "test_clash_exchange_runtime_v1.py",
+   "test_v29_bleed_probability.py",
+   "test_v29_trim_scope.py",
+   "test_v29_clash_event_consistency.py",
+   "test_v29_clash_exchange_integration.py",
+   "test_v29_clash_lifecycle_alignment.py",
+   "test_v29_reuse_probability.py"
+  ],
+  "renames": {
+   "test_v29_clash_lifecycle_alignment": {
+    "_identity": "_identity__v29_clash"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_ww_w_3_2_1",
+    "merged": "test_ww_w_3_2_1"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_wwlll",
+    "merged": "test_wwlll"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_llwww",
+    "merged": "test_llwww"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_five_losses",
+    "merged": "test_five_losses"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_unopposed_transition",
+    "merged": "test_unopposed_transition"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_explicit_attacker_state_allows_more_exchanges_than_nominal_coins",
+    "merged": "test_explicit_attacker_state_allows_more_exchanges_than_nominal_coins"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_attacker_tracking_is_opt_in",
+    "merged": "test_attacker_tracking_is_opt_in"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_mixed_sequence_defender_evolution_is_authoritative",
+    "merged": "test_mixed_sequence_defender_evolution_is_authoritative"
+   },
+   {
+    "source": "test_clash_exchange_runtime_v1",
+    "original": "test_tie_keeps_both_coin_counts",
+    "merged": "test_tie_keeps_both_coin_counts"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_probabilistic_win_matches_3_2_1",
+    "merged": "test_probabilistic_win_matches_3_2_1"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_probabilistic_loss_keeps_defender_coins",
+    "merged": "test_probabilistic_loss_keeps_defender_coins"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_draw_keeps_both_sides_unchanged",
+    "merged": "test_draw_keeps_both_sides_unchanged"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_99th_exchange_is_forced_defender_win",
+    "merged": "test_99th_exchange_is_forced_defender_win"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_two_sided_five_percent_trim",
+    "merged": "test_two_sided_five_percent_trim"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_unbreakable_coin_is_active_for_first_bleed_then_deactivates_on_win",
+    "merged": "test_unbreakable_coin_is_active_for_first_bleed_then_deactivates_on_win"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_solver_integrates_probabilistic_bleed_and_virtual_count",
+    "merged": "test_solver_integrates_probabilistic_bleed_and_virtual_count"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_probabilistic_mode_reports_expected_clash_damage",
+    "merged": "test_probabilistic_mode_reports_expected_clash_damage"
+   },
+   {
+    "source": "test_v29_bleed_probability",
+    "original": "test_probabilistic_loss_has_zero_expected_clash_damage",
+    "merged": "test_probabilistic_loss_has_zero_expected_clash_damage"
+   },
+   {
+    "source": "test_v29_trim_scope",
+    "original": "test_99th_exchange_is_forced_defender_win_only_at_real_99_cap",
+    "merged": "test_99th_exchange_is_forced_defender_win_only_at_real_99_cap"
+   },
+   {
+    "source": "test_v29_trim_scope",
+    "original": "test_turn_trim_is_reported_as_final_total_proc_trim",
+    "merged": "test_turn_trim_is_reported_as_final_total_proc_trim"
+   },
+   {
+    "source": "test_v29_trim_scope",
+    "original": "test_trimmed_distribution_preserves_partial_probability_atoms",
+    "merged": "test_trimmed_distribution_preserves_partial_probability_atoms"
+   },
+   {
+    "source": "test_v29_clash_event_consistency",
+    "original": "test_normal_clash_draw_keeps_both_coins_for_next_exchange",
+    "merged": "test_normal_clash_draw_keeps_both_coins_for_next_exchange"
+   },
+   {
+    "source": "test_v29_clash_exchange_integration",
+    "original": "test_solver_exposes_defender_coins_per_exchange",
+    "merged": "test_solver_exposes_defender_coins_per_exchange"
+   },
+   {
+    "source": "test_v29_clash_lifecycle_alignment",
+    "original": "test_deterministic_clash_applies_clash_and_on_hit_effects_before_after_coins",
+    "merged": "test_deterministic_clash_applies_clash_and_on_hit_effects_before_after_coins"
+   },
+   {
+    "source": "test_v29_clash_lifecycle_alignment",
+    "original": "test_explicit_exchange_path_applies_same_clash_lifecycle",
+    "merged": "test_explicit_exchange_path_applies_same_clash_lifecycle"
+   },
+   {
+    "source": "test_v29_reuse_probability",
+    "original": "test_parser_recognizes_probability_reuse_with_negative_status_bonus",
+    "merged": "test_parser_recognizes_probability_reuse_with_negative_status_bonus"
+   },
+   {
+    "source": "test_v29_reuse_probability",
+    "original": "test_probability_reuse_is_capped",
+    "merged": "test_probability_reuse_is_capped"
+   },
+   {
+    "source": "test_v29_reuse_probability",
+    "original": "test_bounded_reuse_distribution_is_exact_and_normalized",
+    "merged": "test_bounded_reuse_distribution_is_exact_and_normalized"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_probabilistic_solver.py": {
+  "sources": [
+   "test_v29_probabilistic_clash_coin_resources.py",
+   "test_v29_probabilistic_clash_effects.py",
+   "test_v29_probabilistic_coin_state.py",
+   "test_v29_probabilistic_generated_attribution.py",
+   "test_v29_probabilistic_hp_stagger.py",
+   "test_v29_probabilistic_state_axes.py",
+   "test_v29_probabilistic_trigger_activation_persistence.py",
+   "test_v29_probabilistic_triggers.py"
+  ],
+  "renames": {
+   "test_v29_probabilistic_hp_stagger": {
+    "_catalog": "_catalog__v29_probabilistic"
+   },
+   "test_v29_probabilistic_state_axes": {
+    "_catalog": "_catalog__v29_probabilistic_2"
+   },
+   "test_v29_probabilistic_triggers": {
+    "_catalog": "_catalog__v29_probabilistic_3"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v29_probabilistic_clash_coin_resources",
+    "original": "test_clash_loss_consumes_removed_coin_resource_and_next_coin_keeps_remaining",
+    "merged": "test_clash_loss_consumes_removed_coin_resource_and_next_coin_keeps_remaining"
+   },
+   {
+    "source": "test_v29_probabilistic_clash_effects",
+    "original": "test_probabilistic_clash_win_skill_effect_changes_branch_state",
+    "merged": "test_probabilistic_clash_win_skill_effect_changes_branch_state"
+   },
+   {
+    "source": "test_v29_probabilistic_clash_effects",
+    "original": "test_generated_action_applies_skill_effects_before_coins",
+    "merged": "test_generated_action_applies_skill_effects_before_coins"
+   },
+   {
+    "source": "test_v29_probabilistic_coin_state",
+    "original": "test_probabilistic_terminal_suffix_records_coin_state_changes",
+    "merged": "test_probabilistic_terminal_suffix_records_coin_state_changes"
+   },
+   {
+    "source": "test_v29_probabilistic_generated_attribution",
+    "original": "test_generated_after_coin_action_is_attributed_to_generated_identity",
+    "merged": "test_generated_after_coin_action_is_attributed_to_generated_identity"
+   },
+   {
+    "source": "test_v29_probabilistic_hp_stagger",
+    "original": "test_probabilistic_turn_carries_enemy_hp_between_actions",
+    "merged": "test_probabilistic_turn_carries_enemy_hp_between_actions"
+   },
+   {
+    "source": "test_v29_probabilistic_hp_stagger",
+    "original": "test_probabilistic_terminal_state_records_new_stagger",
+    "merged": "test_probabilistic_terminal_state_records_new_stagger"
+   },
+   {
+    "source": "test_v29_probabilistic_state_axes",
+    "original": "test_probabilistic_turn_carries_sp_between_actions",
+    "merged": "test_probabilistic_turn_carries_sp_between_actions"
+   },
+   {
+    "source": "test_v29_probabilistic_state_axes",
+    "original": "test_probabilistic_turn_carries_special_resource_cost",
+    "merged": "test_probabilistic_turn_carries_special_resource_cost"
+   },
+   {
+    "source": "test_v29_probabilistic_trigger_activation_persistence",
+    "original": "test_probabilistic_clash_trigger_max_activation_persists_across_exchanges",
+    "merged": "test_probabilistic_clash_trigger_max_activation_persists_across_exchanges"
+   },
+   {
+    "source": "test_v29_probabilistic_triggers",
+    "original": "test_probabilistic_branch_trigger_queues_generated_attack_and_carries_flag",
+    "merged": "test_probabilistic_branch_trigger_queues_generated_attack_and_carries_flag"
+   },
+   {
+    "source": "test_v29_probabilistic_triggers",
+    "original": "test_probabilistic_generated_action_can_trigger_another_generated_action",
+    "merged": "test_probabilistic_generated_action_can_trigger_another_generated_action"
+   },
+   {
+    "source": "test_v29_probabilistic_triggers",
+    "original": "test_probabilistic_generated_coin_trigger_applies_extra_damage",
+    "merged": "test_probabilistic_generated_coin_trigger_applies_extra_damage"
+   },
+   {
+    "source": "test_v29_probabilistic_triggers",
+    "original": "test_probabilistic_after_clash_changes_next_exchange_probability_state",
+    "merged": "test_probabilistic_after_clash_changes_next_exchange_probability_state"
+   },
+   {
+    "source": "test_v29_probabilistic_triggers",
+    "original": "test_probabilistic_terminal_key_keeps_all_trigger_mutated_states",
+    "merged": "test_probabilistic_terminal_key_keeps_all_trigger_mutated_states"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_coin_reuse_forced.py": {
+  "sources": [
+   "test_v29_coin_reuse.py",
+   "test_v29_coin_trigger_chain.py",
+   "test_v29_kill_reuse.py",
+   "test_v41_multitarget_reuse.py",
+   "test_v29_forced_skill.py"
+  ],
+  "renames": {},
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v29_coin_reuse",
+    "original": "test_parser_recognizes_unconditional_coin_reuse",
+    "merged": "test_parser_recognizes_unconditional_coin_reuse"
+   },
+   {
+    "source": "test_v29_coin_reuse",
+    "original": "test_unopposed_coin_reuse_executes_immediately",
+    "merged": "test_unopposed_coin_reuse_executes_immediately"
+   },
+   {
+    "source": "test_v29_coin_reuse",
+    "original": "test_parser_recognizes_last_coin_reuse_with_resource_threshold",
+    "merged": "test_parser_recognizes_last_coin_reuse_with_resource_threshold"
+   },
+   {
+    "source": "test_v29_coin_reuse",
+    "original": "test_parser_recognizes_critical_and_front_reuse_conditions",
+    "merged": "test_parser_recognizes_critical_and_front_reuse_conditions"
+   },
+   {
+    "source": "test_v29_coin_trigger_chain",
+    "original": "test_after_coin_trigger_changes_next_coin_same_skill",
+    "merged": "test_after_coin_trigger_changes_next_coin_same_skill"
+   },
+   {
+    "source": "test_v29_coin_trigger_chain",
+    "original": "test_unopposed_trigger_receives_real_ammo_before_after_values",
+    "merged": "test_unopposed_trigger_receives_real_ammo_before_after_values"
+   },
+   {
+    "source": "test_v29_kill_reuse",
+    "original": "test_kill_reuse_hits_next_aggregate_target_and_does_not_recurse",
+    "merged": "test_kill_reuse_hits_next_aggregate_target_and_does_not_recurse"
+   },
+   {
+    "source": "test_v29_kill_reuse",
+    "original": "test_kill_reuse_is_not_used_when_only_one_target_is_requested",
+    "merged": "test_kill_reuse_is_not_used_when_only_one_target_is_requested"
+   },
+   {
+    "source": "test_v41_multitarget_reuse",
+    "original": "test_coin_reuse_repeats_same_mapped_targets_and_attacker_resource_once_per_reuse",
+    "merged": "test_coin_reuse_repeats_same_mapped_targets_and_attacker_resource_once_per_reuse"
+   },
+   {
+    "source": "test_v41_multitarget_reuse",
+    "original": "test_last_coin_reuse_applies_to_explicitly_mapped_targets",
+    "merged": "test_last_coin_reuse_applies_to_explicitly_mapped_targets"
+   },
+   {
+    "source": "test_v41_multitarget_reuse",
+    "original": "test_kill_reuse_is_target_aware_and_does_not_resurrect_dead_target",
+    "merged": "test_kill_reuse_is_target_aware_and_does_not_resurrect_dead_target"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_forced_self_skill_is_compiled",
+    "merged": "test_forced_self_skill_is_compiled"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_ambiguous_received_hit_and_ally_target_are_not_auto_compiled",
+    "merged": "test_ambiguous_received_hit_and_ally_target_are_not_auto_compiled"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_forced_followup_propagates_target_policy",
+    "merged": "test_forced_followup_propagates_target_policy"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_captain_ishmael_support_command_is_deterministic_and_right_ally",
+    "merged": "test_captain_ishmael_support_command_is_deterministic_and_right_ally"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_clash_loss_followup_is_compiled_for_forecast_skill",
+    "merged": "test_clash_loss_followup_is_compiled_for_forecast_skill"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_defense_clash_loss_followup_requires_haste",
+    "merged": "test_defense_clash_loss_followup_requires_haste"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_catalog_includes_defense_skill_for_generated_forecast",
+    "merged": "test_catalog_includes_defense_skill_for_generated_forecast"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_catalog_compiles_forecast_clash_loss_rule",
+    "merged": "test_catalog_compiles_forecast_clash_loss_rule"
+   },
+   {
+    "source": "test_v29_forced_skill",
+    "original": "test_support_default_selects_next_requested_skill_without_consuming_it",
+    "merged": "test_support_default_selects_next_requested_skill_without_consuming_it"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_target_selection.py": {
+  "sources": [
+   "test_v29_explicit_multitarget.py",
+   "test_v29_target_count.py",
+   "test_v29_target_selection.py",
+   "test_v38_target_request_metadata.py",
+   "test_v39_coin_target_assignment.py",
+   "test_v39_trigger_target_inheritance.py",
+   "test_v40_multitarget_shared_coin_state.py",
+   "test_v42_target_death_multitarget.py",
+   "test_v43_coin_target_roles.py",
+   "test_v45_random_target_selection.py",
+   "test_v46_random_target_override.py",
+   "test_v47_ally_target_selection.py",
+   "test_v48_ally_rank_condition.py"
+  ],
+  "renames": {
+   "test_v43_coin_target_roles": {
+    "_ident": "_ident__v43_coin"
+   },
+   "test_v48_ally_rank_condition": {
+    "fighter": "fighter__v48_ally"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v29_explicit_multitarget",
+    "original": "test_explicit_targets_resolve_independent_hp_and_damage",
+    "merged": "test_explicit_targets_resolve_independent_hp_and_damage"
+   },
+   {
+    "source": "test_v29_target_count",
+    "original": "test_target_count_splits_main_and_additional_damage",
+    "merged": "test_target_count_splits_main_and_additional_damage"
+   },
+   {
+    "source": "test_v29_target_selection",
+    "original": "test_action_request_preserves_target_selection_metadata",
+    "merged": "test_action_request_preserves_target_selection_metadata"
+   },
+   {
+    "source": "test_v29_target_selection",
+    "original": "test_target_selector_supports_speed_and_hp_policies",
+    "merged": "test_target_selector_supports_speed_and_hp_policies"
+   },
+   {
+    "source": "test_v29_target_selection",
+    "original": "test_target_selector_supports_highest_status_policy",
+    "merged": "test_target_selector_supports_highest_status_policy"
+   },
+   {
+    "source": "test_v38_target_request_metadata",
+    "original": "test_generated_request_target_metadata_is_more_specific_than_scenario",
+    "merged": "test_generated_request_target_metadata_is_more_specific_than_scenario"
+   },
+   {
+    "source": "test_v39_coin_target_assignment",
+    "original": "test_coin_target_ids_assign_each_coin_to_its_own_target",
+    "merged": "test_coin_target_ids_assign_each_coin_to_its_own_target"
+   },
+   {
+    "source": "test_v39_coin_target_assignment",
+    "original": "test_coin_target_ids_can_use_target_indices",
+    "merged": "test_coin_target_ids_can_use_target_indices"
+   },
+   {
+    "source": "test_v39_trigger_target_inheritance",
+    "original": "test_triggered_action_inherits_explicit_source_target_metadata",
+    "merged": "test_triggered_action_inherits_explicit_source_target_metadata"
+   },
+   {
+    "source": "test_v39_trigger_target_inheritance",
+    "original": "test_explicit_trigger_target_overrides_source",
+    "merged": "test_explicit_trigger_target_overrides_source"
+   },
+   {
+    "source": "test_v40_multitarget_shared_coin_state",
+    "original": "test_multi_target_coin_resource_cost_is_spent_once",
+    "merged": "test_multi_target_coin_resource_cost_is_spent_once"
+   },
+   {
+    "source": "test_v40_multitarget_shared_coin_state",
+    "original": "test_multi_target_crit_is_one_logical_poise_consumption",
+    "merged": "test_multi_target_crit_is_one_logical_poise_consumption"
+   },
+   {
+    "source": "test_v40_multitarget_shared_coin_state",
+    "original": "test_multi_target_coin_runs_attacker_bleed_once_per_logical_coin",
+    "merged": "test_multi_target_coin_runs_attacker_bleed_once_per_logical_coin"
+   },
+   {
+    "source": "test_v40_multitarget_shared_coin_state",
+    "original": "test_explicit_coin_multitarget_runs_special_callback_for_each_target_with_same_ammo_context",
+    "merged": "test_explicit_coin_multitarget_runs_special_callback_for_each_target_with_same_ammo_context"
+   },
+   {
+    "source": "test_v42_target_death_multitarget",
+    "original": "test_multitarget_death_is_recorded_for_the_actual_target_only",
+    "merged": "test_multitarget_death_is_recorded_for_the_actual_target_only"
+   },
+   {
+    "source": "test_v42_target_death_multitarget",
+    "original": "test_target_death_callback_fires_once_per_dead_target",
+    "merged": "test_target_death_callback_fires_once_per_dead_target"
+   },
+   {
+    "source": "test_v43_coin_target_roles",
+    "original": "test_parser_compiles_main_and_sub_target_coin_roles",
+    "merged": "test_parser_compiles_main_and_sub_target_coin_roles"
+   },
+   {
+    "source": "test_v43_coin_target_roles",
+    "original": "test_coin_target_roles_are_resolved_per_coin_without_duplicate_attacker_state",
+    "merged": "test_coin_target_roles_are_resolved_per_coin_without_duplicate_attacker_state"
+   },
+   {
+    "source": "test_v45_random_target_selection",
+    "original": "test_seeded_random_target_selection_is_reproducible",
+    "merged": "test_seeded_random_target_selection_is_reproducible"
+   },
+   {
+    "source": "test_v45_random_target_selection",
+    "original": "test_seeded_random_selection_can_pick_multiple_without_duplicates",
+    "merged": "test_seeded_random_selection_can_pick_multiple_without_duplicates"
+   },
+   {
+    "source": "test_v45_random_target_selection",
+    "original": "test_solver_initializes_persistent_target_rng",
+    "merged": "test_solver_initializes_persistent_target_rng"
+   },
+   {
+    "source": "test_v45_random_target_selection",
+    "original": "test_random_target_ignores_dead_targets_when_alive_targets_exist",
+    "merged": "test_random_target_ignores_dead_targets_when_alive_targets_exist"
+   },
+   {
+    "source": "test_v46_random_target_override",
+    "original": "test_random_policy_can_be_overridden_by_explicit_target_ids",
+    "merged": "test_random_policy_can_be_overridden_by_explicit_target_ids"
+   },
+   {
+    "source": "test_v46_random_target_override",
+    "original": "test_action_schema_supports_random_target_override",
+    "merged": "test_action_schema_supports_random_target_override"
+   },
+   {
+    "source": "test_v46_random_target_override",
+    "original": "test_override_multiple_random_targets_preserves_requested_order",
+    "merged": "test_override_multiple_random_targets_preserves_requested_order"
+   },
+   {
+    "source": "test_v47_ally_target_selection",
+    "original": "test_fastest_ally_target_gets_damage_up",
+    "merged": "test_fastest_ally_target_gets_damage_up"
+   },
+   {
+    "source": "test_v47_ally_target_selection",
+    "original": "test_lowest_hp_excluding_owner",
+    "merged": "test_lowest_hp_excluding_owner"
+   },
+   {
+    "source": "test_v47_ally_target_selection",
+    "original": "test_multiple_lowest_charge_allies",
+    "merged": "test_multiple_lowest_charge_allies"
+   },
+   {
+    "source": "test_v47_ally_target_selection",
+    "original": "test_self_plus_lowest_max_hp_target",
+    "merged": "test_self_plus_lowest_max_hp_target"
+   },
+   {
+    "source": "test_v48_ally_rank_condition",
+    "original": "test_fastest_ally_damage_condition_only_fires_for_fastest",
+    "merged": "test_fastest_ally_damage_condition_only_fires_for_fastest"
+   },
+   {
+    "source": "test_v48_ally_rank_condition",
+    "original": "test_lowest_hp_ally_condition",
+    "merged": "test_lowest_hp_ally_condition"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_damage_modifiers.py": {
+  "sources": [
+   "test_v29_skill_damage_scaling.py",
+   "test_v32_dynamic_damage_modifiers.py",
+   "test_v33_generic_dynamic_damage_scaling.py",
+   "test_v34_conditional_clash_power.py",
+   "test_v34_generic_coin_conditions.py",
+   "test_v35_flat_additional_damage.py",
+   "test_v35_generic_final_power_conditions.py",
+   "test_v35_generic_status_clash_conditions.py",
+   "test_v36_batch_damage_patterns.py",
+   "test_v36_status_burst_and_resource_coin_power.py",
+   "test_v37_attack_weight_target_scaling.py",
+   "test_v44_named_stack_damage.py",
+   "test_v66_named_resource_damage_scaling.py"
+  ],
+  "renames": {
+   "test_v33_generic_dynamic_damage_scaling": {
+    "parse": "parse__v33_generic"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v29_skill_damage_scaling",
+    "original": "test_skill_status_potency_scaling_is_parsed",
+    "merged": "test_skill_status_potency_scaling_is_parsed"
+   },
+   {
+    "source": "test_v29_skill_damage_scaling",
+    "original": "test_skill_coin_extra_damage_scale_is_parsed",
+    "merged": "test_skill_coin_extra_damage_scale_is_parsed"
+   },
+   {
+    "source": "test_v29_skill_damage_scaling",
+    "original": "test_status_threshold_damage_marker_uses_status_presence_and_potency",
+    "merged": "test_status_threshold_damage_marker_uses_status_presence_and_potency"
+   },
+   {
+    "source": "test_v32_dynamic_damage_modifiers",
+    "original": "test_speed_difference_times_target_rupture_damage",
+    "merged": "test_speed_difference_times_target_rupture_damage"
+   },
+   {
+    "source": "test_v32_dynamic_damage_modifiers",
+    "original": "test_self_lost_hp_damage_scaling",
+    "merged": "test_self_lost_hp_damage_scaling"
+   },
+   {
+    "source": "test_v32_dynamic_damage_modifiers",
+    "original": "test_enemy_lost_hp_ratio_damage_scaling",
+    "merged": "test_enemy_lost_hp_ratio_damage_scaling"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_status_sum_damage_parser_and_cap",
+    "merged": "test_status_sum_damage_parser_and_cap"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_single_status_damage_per_one_parser",
+    "merged": "test_single_status_damage_per_one_parser"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_status_sum_damage_dynamic",
+    "merged": "test_status_sum_damage_dynamic"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_self_resource_per_damage_dynamic",
+    "merged": "test_self_resource_per_damage_dynamic"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_enemy_current_hp_threshold_damage_dynamic",
+    "merged": "test_enemy_current_hp_threshold_damage_dynamic"
+   },
+   {
+    "source": "test_v33_generic_dynamic_damage_scaling",
+    "original": "test_enemy_current_hp_threshold_not_met",
+    "merged": "test_enemy_current_hp_threshold_not_met"
+   },
+   {
+    "source": "test_v34_conditional_clash_power",
+    "original": "test_status_threshold_clash_power",
+    "merged": "test_status_threshold_clash_power"
+   },
+   {
+    "source": "test_v34_conditional_clash_power",
+    "original": "test_self_resource_clash_power",
+    "merged": "test_self_resource_clash_power"
+   },
+   {
+    "source": "test_v34_conditional_clash_power",
+    "original": "test_status_sum_clash_power",
+    "merged": "test_status_sum_clash_power"
+   },
+   {
+    "source": "test_v34_generic_coin_conditions",
+    "original": "test_main_target_status_threshold_coin_power",
+    "merged": "test_main_target_status_threshold_coin_power"
+   },
+   {
+    "source": "test_v34_generic_coin_conditions",
+    "original": "test_self_lost_hp_coin_power",
+    "merged": "test_self_lost_hp_coin_power"
+   },
+   {
+    "source": "test_v34_generic_coin_conditions",
+    "original": "test_coin_roll_uses_current_lost_hp",
+    "merged": "test_coin_roll_uses_current_lost_hp"
+   },
+   {
+    "source": "test_v34_generic_coin_conditions",
+    "original": "test_self_status_threshold_coin_power_parser",
+    "merged": "test_self_status_threshold_coin_power_parser"
+   },
+   {
+    "source": "test_v34_generic_coin_conditions",
+    "original": "test_speed_threshold_coin_power_parser",
+    "merged": "test_speed_threshold_coin_power_parser"
+   },
+   {
+    "source": "test_v35_flat_additional_damage",
+    "original": "test_flat_additional_damage_head_only_is_parsed",
+    "merged": "test_flat_additional_damage_head_only_is_parsed"
+   },
+   {
+    "source": "test_v35_flat_additional_damage",
+    "original": "test_flat_additional_damage_does_not_become_percent_modifier",
+    "merged": "test_flat_additional_damage_does_not_become_percent_modifier"
+   },
+   {
+    "source": "test_v35_generic_final_power_conditions",
+    "original": "test_status_sum_final_power_parser",
+    "merged": "test_status_sum_final_power_parser"
+   },
+   {
+    "source": "test_v35_generic_final_power_conditions",
+    "original": "test_status_sum_final_power_is_applied_dynamically",
+    "merged": "test_status_sum_final_power_is_applied_dynamically"
+   },
+   {
+    "source": "test_v35_generic_status_clash_conditions",
+    "original": "test_self_status_count_gain_at_use_is_parsed_as_self_effect",
+    "merged": "test_self_status_count_gain_at_use_is_parsed_as_self_effect"
+   },
+   {
+    "source": "test_v35_generic_status_clash_conditions",
+    "original": "test_clash_win_status_count_gain_is_executable_skill_effect",
+    "merged": "test_clash_win_status_count_gain_is_executable_skill_effect"
+   },
+   {
+    "source": "test_v35_generic_status_clash_conditions",
+    "original": "test_speed_difference_exact_coin_power_condition",
+    "merged": "test_speed_difference_exact_coin_power_condition"
+   },
+   {
+    "source": "test_v36_batch_damage_patterns",
+    "original": "test_charge_per_damage_is_parsed",
+    "merged": "test_charge_per_damage_is_parsed"
+   },
+   {
+    "source": "test_v36_batch_damage_patterns",
+    "original": "test_static_crit_damage_bonus_is_parsed",
+    "merged": "test_static_crit_damage_bonus_is_parsed"
+   },
+   {
+    "source": "test_v36_batch_damage_patterns",
+    "original": "test_ammo_to_base_power_is_parsed",
+    "merged": "test_ammo_to_base_power_is_parsed"
+   },
+   {
+    "source": "test_v36_status_burst_and_resource_coin_power",
+    "original": "test_tremor_burst_parses",
+    "merged": "test_tremor_burst_parses"
+   },
+   {
+    "source": "test_v36_status_burst_and_resource_coin_power",
+    "original": "test_status_burst_deals_potency_and_consumes_count",
+    "merged": "test_status_burst_deals_potency_and_consumes_count"
+   },
+   {
+    "source": "test_v36_status_burst_and_resource_coin_power",
+    "original": "test_resource_consumption_coin_power_parses",
+    "merged": "test_resource_consumption_coin_power_parses"
+   },
+   {
+    "source": "test_v37_attack_weight_target_scaling",
+    "original": "test_attack_weight_gap_damage_parser",
+    "merged": "test_attack_weight_gap_damage_parser"
+   },
+   {
+    "source": "test_v37_attack_weight_target_scaling",
+    "original": "test_one_target_damage_parser",
+    "merged": "test_one_target_damage_parser"
+   },
+   {
+    "source": "test_v37_attack_weight_target_scaling",
+    "original": "test_attack_weight_gap_dynamic_modifier",
+    "merged": "test_attack_weight_gap_dynamic_modifier"
+   },
+   {
+    "source": "test_v37_attack_weight_target_scaling",
+    "original": "test_attack_weight_gap_zero_when_full_weight_is_hit",
+    "merged": "test_attack_weight_gap_zero_when_full_weight_is_hit"
+   },
+   {
+    "source": "test_v44_named_stack_damage",
+    "original": "test_named_self_stack_damage_scaling_is_parsed",
+    "merged": "test_named_self_stack_damage_scaling_is_parsed"
+   },
+   {
+    "source": "test_v44_named_stack_damage",
+    "original": "test_named_self_status_stack_damage_scaling_is_parsed",
+    "merged": "test_named_self_status_stack_damage_scaling_is_parsed"
+   },
+   {
+    "source": "test_v44_named_stack_damage",
+    "original": "test_named_target_stack_damage_scaling_is_parsed",
+    "merged": "test_named_target_stack_damage_scaling_is_parsed"
+   },
+   {
+    "source": "test_v44_named_stack_damage",
+    "original": "test_named_stack_damage_dynamic_from_resource_and_status",
+    "merged": "test_named_stack_damage_dynamic_from_resource_and_status"
+   },
+   {
+    "source": "test_v66_named_resource_damage_scaling",
+    "original": "test_named_resource_damage_is_per_stack_not_flat",
+    "merged": "test_named_resource_damage_is_per_stack_not_flat"
+   },
+   {
+    "source": "test_v66_named_resource_damage_scaling",
+    "original": "test_named_resource_damage_respects_cap",
+    "merged": "test_named_resource_damage_respects_cap"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_kill_death_stagger_gimmicks.py": {
+  "sources": [
+   "test_v29_kill_gimmicks.py",
+   "test_v29_support_conditions.py",
+   "test_v29_special_gimmicks.py",
+   "test_v29_stagger_coin_conditions.py",
+   "test_v29_stagger_legacy_queue.py",
+   "test_v29_stagger_trigger_bridge.py",
+   "test_v30_ally_death.py",
+   "test_v30_target_death.py",
+   "test_v30_conditional_cross_assist.py",
+   "test_v30_support_command_generic.py",
+   "test_v31_deferred_effects.py",
+   "test_v31_enemy_death_effects.py",
+   "test_v45_kill_resource_distribution.py",
+   "test_v46_kill_charge_variants.py",
+   "test_v50_charge_kill_priority.py"
+  ],
+  "renames": {
+   "test_v29_special_gimmicks": {
+    "GimmickRegistry": "GimmickRegistry__v29_special"
+   },
+   "test_v29_stagger_trigger_bridge": {
+    "_ident": "_ident__v29_stagger"
+   },
+   "test_v30_target_death": {
+    "_ident": "_ident__v30_target"
+   },
+   "test_v31_deferred_effects": {
+    "PassiveTrigger": "PassiveTrigger__v31_deferred"
+   },
+   "test_v31_enemy_death_effects": {
+    "_ident": "_ident__v31_enemy"
+   },
+   "test_v46_kill_charge_variants": {
+    "F": "F__v46_kill"
+   }
+  },
+  "deduped": [
+   [
+    "test_v46_kill_charge_variants",
+    [
+     "I"
+    ]
+   ],
+   [
+    "test_v50_charge_kill_priority",
+    [
+     "F"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v29_kill_gimmicks",
+    "original": "test_kill_charge_gain_rule_compiles",
+    "merged": "test_kill_charge_gain_rule_compiles"
+   },
+   {
+    "source": "test_v29_kill_gimmicks",
+    "original": "test_kill_lowest_ally_heal_rule_compiles",
+    "merged": "test_kill_lowest_ally_heal_rule_compiles"
+   },
+   {
+    "source": "test_v29_support_conditions",
+    "original": "test_cross_identity_assist_requires_source_owner_and_target_present",
+    "merged": "test_cross_identity_assist_requires_source_owner_and_target_present"
+   },
+   {
+    "source": "test_v29_support_conditions",
+    "original": "test_captain_high_roll_still_requires_nonzero_resonance",
+    "merged": "test_captain_high_roll_still_requires_nonzero_resonance"
+   },
+   {
+    "source": "test_v29_special_gimmicks",
+    "original": "test_assist_rule_detected_and_queued",
+    "merged": "test_assist_rule_detected_and_queued"
+   },
+   {
+    "source": "test_v29_special_gimmicks",
+    "original": "test_stagger_damage_is_not_hp_damage",
+    "merged": "test_stagger_damage_is_not_hp_damage"
+   },
+   {
+    "source": "test_v29_stagger_coin_conditions",
+    "original": "test_simulate_coin_applies_stagger_damage_ratio_runtime",
+    "merged": "test_simulate_coin_applies_stagger_damage_ratio_runtime"
+   },
+   {
+    "source": "test_v29_stagger_coin_conditions",
+    "original": "test_staggered_target_damage_bonus_is_dynamic_for_later_coins",
+    "merged": "test_staggered_target_damage_bonus_is_dynamic_for_later_coins"
+   },
+   {
+    "source": "test_v29_stagger_legacy_queue",
+    "original": "test_legacy_stagger_passive_queue_action_is_not_dropped",
+    "merged": "test_legacy_stagger_passive_queue_action_is_not_dropped"
+   },
+   {
+    "source": "test_v29_stagger_trigger_bridge",
+    "original": "test_stagger_trigger_fires_between_coins_and_can_queue_followup",
+    "merged": "test_stagger_trigger_fires_between_coins_and_can_queue_followup"
+   },
+   {
+    "source": "test_v30_ally_death",
+    "original": "test_unit_death_event_marks_ally_scope_and_dead_identity",
+    "merged": "test_unit_death_event_marks_ally_scope_and_dead_identity"
+   },
+   {
+    "source": "test_v30_ally_death",
+    "original": "test_ally_death_immediate_passive_compiles",
+    "merged": "test_ally_death_immediate_passive_compiles"
+   },
+   {
+    "source": "test_v30_ally_death",
+    "original": "test_ally_death_future_turn_effect_is_not_applied_immediately",
+    "merged": "test_ally_death_future_turn_effect_is_not_applied_immediately"
+   },
+   {
+    "source": "test_v30_target_death",
+    "original": "test_target_death_resource_gain_rule_compiles_and_fires",
+    "merged": "test_target_death_resource_gain_rule_compiles_and_fires"
+   },
+   {
+    "source": "test_v30_conditional_cross_assist",
+    "original": "TestConditionalCrossAssist",
+    "merged": "TestConditionalCrossAssist"
+   },
+   {
+    "source": "test_v30_support_command_generic",
+    "original": "test_support_command_is_generic_and_keeps_captain_100_percent_rule",
+    "merged": "test_support_command_is_generic_and_keeps_captain_100_percent_rule"
+   },
+   {
+    "source": "test_v30_support_command_generic",
+    "original": "test_support_right_effect_selects_adjacent_ally_and_default_skill",
+    "merged": "test_support_right_effect_selects_adjacent_ally_and_default_skill"
+   },
+   {
+    "source": "test_v31_deferred_effects",
+    "original": "test_hit_next_turn_is_compiled_as_causal_hit_with_deferred_flag",
+    "merged": "test_hit_next_turn_is_compiled_as_causal_hit_with_deferred_flag"
+   },
+   {
+    "source": "test_v31_deferred_effects",
+    "original": "test_deferred_effect_is_scheduled_not_applied_on_causal_event",
+    "merged": "test_deferred_effect_is_scheduled_not_applied_on_causal_event"
+   },
+   {
+    "source": "test_v31_deferred_effects",
+    "original": "test_deferred_turn_is_consumed_at_next_turn_start",
+    "merged": "test_deferred_turn_is_consumed_at_next_turn_start"
+   },
+   {
+    "source": "test_v31_enemy_death_effects",
+    "original": "test_enemy_death_heals_lowest_ally_even_when_other_identity_kills",
+    "merged": "test_enemy_death_heals_lowest_ally_even_when_other_identity_kills"
+   },
+   {
+    "source": "test_v31_enemy_death_effects",
+    "original": "test_enemy_death_heal_respects_turn_limit",
+    "merged": "test_enemy_death_heal_respects_turn_limit"
+   },
+   {
+    "source": "test_v45_kill_resource_distribution",
+    "original": "test_parser_compiles_dynamic_kill_charge_distribution",
+    "merged": "test_parser_compiles_dynamic_kill_charge_distribution"
+   },
+   {
+    "source": "test_v45_kill_resource_distribution",
+    "original": "test_after_kill_distributes_to_owner_and_lowest_charge_ally",
+    "merged": "test_after_kill_distributes_to_owner_and_lowest_charge_ally"
+   },
+   {
+    "source": "test_v46_kill_charge_variants",
+    "original": "test_owner_charge_copy_variant",
+    "merged": "test_owner_charge_copy_variant"
+   },
+   {
+    "source": "test_v50_charge_kill_priority",
+    "original": "test_kill_charge_distribution_prefers_charge_capable_low_charge_ally",
+    "merged": "test_kill_charge_distribution_prefers_charge_capable_low_charge_ally"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_identity_specific.py": {
+  "sources": [
+   "test_v47_dawn-cross-identity.py",
+   "test_v60_cross_identity_catalog.py",
+   "test_v60_cross_identity_reactions.py",
+   "test_v61_high_impact_gimmicks.py",
+   "test_v62_foresight_eye.py",
+   "test_v63_user_afterimage_input.py",
+   "test_v64_middle_revenge_ledger.py",
+   "test_v65_revenge_tattoo_transform.py",
+   "test_v72_blade_lineage_module.py",
+   "test_v74_blade_hongmaehwa_runtime.py",
+   "test_v75_blade_survival_runtime.py",
+   "test_v75_blade_transfer_runtime.py"
+  ],
+  "renames": {
+   "test_v75_blade_survival_runtime": {
+    "_state": "_state__v75_blade"
+   },
+   "test_v75_blade_transfer_runtime": {
+    "ident": "ident__v75_blade"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v47_dawn-cross-identity",
+    "original": "test_dawn_stagger_followup_requires_dawn_actor_and_new_stagger",
+    "merged": "test_dawn_stagger_followup_requires_dawn_actor_and_new_stagger"
+   },
+   {
+    "source": "test_v47_dawn-cross-identity",
+    "original": "test_dawn_reused_coin_burn_damage_is_capped_and_requires_reuse",
+    "merged": "test_dawn_reused_coin_burn_damage_is_capped_and_requires_reuse"
+   },
+   {
+    "source": "test_v47_dawn-cross-identity",
+    "original": "test_dawn_reused_coin_damage_has_turn_cap_20",
+    "merged": "test_dawn_reused_coin_damage_has_turn_cap_20"
+   },
+   {
+    "source": "test_v60_cross_identity_catalog",
+    "original": "test_catalog_hongwon_passive_is_compiled",
+    "merged": "test_catalog_hongwon_passive_is_compiled"
+   },
+   {
+    "source": "test_v60_cross_identity_catalog",
+    "original": "test_received_attack_bridge_queues_hongwon_s3",
+    "merged": "test_received_attack_bridge_queues_hongwon_s3"
+   },
+   {
+    "source": "test_v60_cross_identity_reactions",
+    "original": "test_hongwon_ally_hit_followup_compiles",
+    "merged": "test_hongwon_ally_hit_followup_compiles"
+   },
+   {
+    "source": "test_v60_cross_identity_reactions",
+    "original": "test_hongwon_does_not_self_trigger",
+    "merged": "test_hongwon_does_not_self_trigger"
+   },
+   {
+    "source": "test_v60_cross_identity_reactions",
+    "original": "test_received_attack_bridge_handles_death_or_hp_threshold",
+    "merged": "test_received_attack_bridge_handles_death_or_hp_threshold"
+   },
+   {
+    "source": "test_v61_high_impact_gimmicks",
+    "original": "test_lccb_mast_compiles_lowest_ammo_poise_and_final_ammo_damage",
+    "merged": "test_lccb_mast_compiles_lowest_ammo_poise_and_final_ammo_damage"
+   },
+   {
+    "source": "test_v61_high_impact_gimmicks",
+    "original": "test_lccb_poise_is_once_per_turn",
+    "merged": "test_lccb_poise_is_once_per_turn"
+   },
+   {
+    "source": "test_v61_high_impact_gimmicks",
+    "original": "test_bio_material_initializes_from_ring_finger_count_and_gains_on_damage_kill",
+    "merged": "test_bio_material_initializes_from_ring_finger_count_and_gains_on_damage_kill"
+   },
+   {
+    "source": "test_v61_high_impact_gimmicks",
+    "original": "test_blackcloud_prefers_s4_on_death_or_low_hp_and_caps_two_per_turn",
+    "merged": "test_blackcloud_prefers_s4_on_death_or_low_hp_and_caps_two_per_turn"
+   },
+   {
+    "source": "test_v62_foresight_eye",
+    "original": "test_foresight_eye_initializes_and_spends_one_per_clash",
+    "merged": "test_foresight_eye_initializes_and_spends_one_per_clash"
+   },
+   {
+    "source": "test_v62_foresight_eye",
+    "original": "test_foresight_eye_enters_overheat_only_when_last_stack_is_spent",
+    "merged": "test_foresight_eye_enters_overheat_only_when_last_stack_is_spent"
+   },
+   {
+    "source": "test_v63_user_afterimage_input",
+    "original": "TestV63UserAfterimageInput",
+    "merged": "TestV63UserAfterimageInput"
+   },
+   {
+    "source": "test_v64_middle_revenge_ledger",
+    "original": "test_middle_hit_adds_revenge_target_and_ledger_once_per_skill",
+    "merged": "test_middle_hit_adds_revenge_target_and_ledger_once_per_skill"
+   },
+   {
+    "source": "test_v64_middle_revenge_ledger",
+    "original": "test_middle_ally_death_adds_three_ledger",
+    "merged": "test_middle_ally_death_adds_three_ledger"
+   },
+   {
+    "source": "test_v65_revenge_tattoo_transform",
+    "original": "test_revenge_tattoo_transforms_selected_basic_skill_to_execution",
+    "merged": "test_revenge_tattoo_transforms_selected_basic_skill_to_execution"
+   },
+   {
+    "source": "test_v65_revenge_tattoo_transform",
+    "original": "test_revenge_tattoo_transform_is_exposed_in_catalog_and_resource_name_is_supported",
+    "merged": "test_revenge_tattoo_transform_is_exposed_in_catalog_and_resource_name_is_supported"
+   },
+   {
+    "source": "test_v72_blade_lineage_module",
+    "original": "test_blade_bonguk_start_targets_other_blade_members",
+    "merged": "test_blade_bonguk_start_targets_other_blade_members"
+   },
+   {
+    "source": "test_v72_blade_lineage_module",
+    "original": "test_blade_bonguk_poise_support_scales_at_six_members",
+    "merged": "test_blade_bonguk_poise_support_scales_at_six_members"
+   },
+   {
+    "source": "test_v72_blade_lineage_module",
+    "original": "test_blade_boss_dead_threshold_adds_self_poise_bonus",
+    "merged": "test_blade_boss_dead_threshold_adds_self_poise_bonus"
+   },
+   {
+    "source": "test_v74_blade_hongmaehwa_runtime",
+    "original": "test_hongmaehwa_crit_adds_one_before_ten",
+    "merged": "test_hongmaehwa_crit_adds_one_before_ten"
+   },
+   {
+    "source": "test_v74_blade_hongmaehwa_runtime",
+    "original": "test_hongmaehwa_ten_converts_crit_to_defense_down",
+    "merged": "test_hongmaehwa_ten_converts_crit_to_defense_down"
+   },
+   {
+    "source": "test_v74_blade_hongmaehwa_runtime",
+    "original": "test_hongmaehwa_defense_down_caps_at_six",
+    "merged": "test_hongmaehwa_defense_down_caps_at_six"
+   },
+   {
+    "source": "test_v75_blade_survival_runtime",
+    "original": "test_bonguk_fatal_damage_is_prevented_once_when_registered",
+    "merged": "test_bonguk_fatal_damage_is_prevented_once_when_registered"
+   },
+   {
+    "source": "test_v75_blade_survival_runtime",
+    "original": "test_bonguk_second_fatal_damage_is_not_prevented",
+    "merged": "test_bonguk_second_fatal_damage_is_not_prevented"
+   },
+   {
+    "source": "test_v75_blade_survival_runtime",
+    "original": "test_bonguk_status_grants_one_use_fatal_prevention",
+    "merged": "test_bonguk_status_grants_one_use_fatal_prevention"
+   },
+   {
+    "source": "test_v75_blade_transfer_runtime",
+    "original": "test_blade_transfer_marks_slowest_members_and_six_member_boost",
+    "merged": "test_blade_transfer_marks_slowest_members_and_six_member_boost"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_affiliation_modules.py": {
+  "sources": [
+   "test_v66_module_loading.py",
+   "test_v67_identity_module_manifest.py",
+   "test_v68_combat_affiliation_classification.py",
+   "test_v68_keyword_affiliation_file_split.py",
+   "test_v69_affiliation_keyword_classification.py",
+   "test_v70_rule_module_split.py",
+   "test_v71_full_combat_affiliation_axis.py",
+   "test_v72_affiliation_runtime.py",
+   "test_v95_generic_affiliation_resource.py"
+  ],
+  "renames": {
+   "test_v69_affiliation_keyword_classification": {
+    "ROOT": "ROOT__v69_affiliation"
+   },
+   "test_v70_rule_module_split": {
+    "ident": "ident__v70_rule"
+   },
+   "test_v72_affiliation_runtime": {
+    "ident": "ident__v72_affiliation"
+   }
+  },
+  "deduped": [
+   [
+    "test_v68_combat_affiliation_classification",
+    [
+     "ROOT"
+    ]
+   ],
+   [
+    "test_v71_full_combat_affiliation_axis",
+    [
+     "ROOT"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_bio_material_is_charge_keyword_and_ring_is_identity_module",
+    "merged": "test_bio_material_is_charge_keyword_and_ring_is_identity_module"
+   },
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_only_selected_identity_modules_are_loaded",
+    "merged": "test_only_selected_identity_modules_are_loaded"
+   },
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_middle_and_pequod_are_identity_modules_not_global_rules",
+    "merged": "test_middle_and_pequod_are_identity_modules_not_global_rules"
+   },
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_registry_exposes_active_module_manifest",
+    "merged": "test_registry_exposes_active_module_manifest"
+   },
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_keywords_and_affiliations_are_independent_axes",
+    "merged": "test_keywords_and_affiliations_are_independent_axes"
+   },
+   {
+    "source": "test_v66_module_loading",
+    "original": "test_manifest_summary_exposes_two_axes_separately",
+    "merged": "test_manifest_summary_exposes_two_axes_separately"
+   },
+   {
+    "source": "test_v67_identity_module_manifest",
+    "original": "test_all_identities_have_independent_keyword_and_affiliation_axes",
+    "merged": "test_all_identities_have_independent_keyword_and_affiliation_axes"
+   },
+   {
+    "source": "test_v67_identity_module_manifest",
+    "original": "test_keyword_counts_are_not_mutually_exclusive",
+    "merged": "test_keyword_counts_are_not_mutually_exclusive"
+   },
+   {
+    "source": "test_v67_identity_module_manifest",
+    "original": "test_bio_material_is_charge_and_ring_is_separate",
+    "merged": "test_bio_material_is_charge_and_ring_is_separate"
+   },
+   {
+    "source": "test_v68_combat_affiliation_classification",
+    "original": "test_combat_affiliation_is_separate_from_raw_affiliation",
+    "merged": "test_combat_affiliation_is_separate_from_raw_affiliation"
+   },
+   {
+    "source": "test_v68_combat_affiliation_classification",
+    "original": "test_known_combat_groups_are_multilabel_and_not_exclusive",
+    "merged": "test_known_combat_groups_are_multilabel_and_not_exclusive"
+   },
+   {
+    "source": "test_v68_combat_affiliation_classification",
+    "original": "test_spider_house_cross_identity_members_are_combat_participants",
+    "merged": "test_spider_house_cross_identity_members_are_combat_participants"
+   },
+   {
+    "source": "test_v68_combat_affiliation_classification",
+    "original": "test_pequod_membership_is_combat_relevant_because_captain_targets_pequod_allies",
+    "merged": "test_pequod_membership_is_combat_relevant_because_captain_targets_pequod_allies"
+   },
+   {
+    "source": "test_v68_combat_affiliation_classification",
+    "original": "test_custom_identity_uses_known_combat_affiliation_axis",
+    "merged": "test_custom_identity_uses_known_combat_affiliation_axis"
+   },
+   {
+    "source": "test_v68_keyword_affiliation_file_split",
+    "original": "test_identity_keyword_affiliation_matrix_covers_catalog",
+    "merged": "test_identity_keyword_affiliation_matrix_covers_catalog"
+   },
+   {
+    "source": "test_v68_keyword_affiliation_file_split",
+    "original": "test_affiliation_rule_ownership_is_module_local",
+    "merged": "test_affiliation_rule_ownership_is_module_local"
+   },
+   {
+    "source": "test_v69_affiliation_keyword_classification",
+    "original": "test_affiliation_taxonomy_confirms_cross_identity_groups",
+    "merged": "test_affiliation_taxonomy_confirms_cross_identity_groups"
+   },
+   {
+    "source": "test_v69_affiliation_keyword_classification",
+    "original": "test_lore_only_groups_are_not_auto_promoted_by_membership_alone",
+    "merged": "test_lore_only_groups_are_not_auto_promoted_by_membership_alone"
+   },
+   {
+    "source": "test_v69_affiliation_keyword_classification",
+    "original": "test_bio_material_is_charge_equivalent_only",
+    "merged": "test_bio_material_is_charge_equivalent_only"
+   },
+   {
+    "source": "test_v69_affiliation_keyword_classification",
+    "original": "test_manifest_marks_bio_material_identities",
+    "merged": "test_manifest_marks_bio_material_identities"
+   },
+   {
+    "source": "test_v70_rule_module_split",
+    "original": "test_common_and_identity_specific_providers_are_separate",
+    "merged": "test_common_and_identity_specific_providers_are_separate"
+   },
+   {
+    "source": "test_v70_rule_module_split",
+    "original": "test_registry_routes_non_affiliation_rules_to_split_providers",
+    "merged": "test_registry_routes_non_affiliation_rules_to_split_providers"
+   },
+   {
+    "source": "test_v70_rule_module_split",
+    "original": "test_module_resolver_deepcopy_keeps_provider_modules_shallow",
+    "merged": "test_module_resolver_deepcopy_keeps_provider_modules_shallow"
+   },
+   {
+    "source": "test_v70_rule_module_split",
+    "original": "test_affiliation_rules_still_precede_generic_split_rules",
+    "merged": "test_affiliation_rules_still_precede_generic_split_rules"
+   },
+   {
+    "source": "test_v71_full_combat_affiliation_axis",
+    "original": "test_all_confirmed_affiliations_are_present_on_manifest_axis",
+    "merged": "test_all_confirmed_affiliations_are_present_on_manifest_axis"
+   },
+   {
+    "source": "test_v71_full_combat_affiliation_axis",
+    "original": "test_confirmed_affiliation_membership_matches_taxonomy",
+    "merged": "test_confirmed_affiliation_membership_matches_taxonomy"
+   },
+   {
+    "source": "test_v71_full_combat_affiliation_axis",
+    "original": "test_custom_identity_fallback_recognizes_expanded_affiliation_axis",
+    "merged": "test_custom_identity_fallback_recognizes_expanded_affiliation_axis"
+   },
+   {
+    "source": "test_v72_affiliation_runtime",
+    "original": "test_members_and_count_are_formation_stable",
+    "merged": "test_members_and_count_are_formation_stable"
+   },
+   {
+    "source": "test_v72_affiliation_runtime",
+    "original": "test_lowest_selection_reuses_generic_affiliation_axis",
+    "merged": "test_lowest_selection_reuses_generic_affiliation_axis"
+   },
+   {
+    "source": "test_v72_affiliation_runtime",
+    "original": "test_dead_filter_and_exclusion",
+    "merged": "test_dead_filter_and_exclusion"
+   },
+   {
+    "source": "test_v95_generic_affiliation_resource",
+    "original": "test_affiliation_count_resource_effect_is_generic",
+    "merged": "test_affiliation_count_resource_effect_is_generic"
+   },
+   {
+    "source": "test_v95_generic_affiliation_resource",
+    "original": "test_affiliation_count_resource_executes_through_common_executor",
+    "merged": "test_affiliation_count_resource_executes_through_common_executor"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_support_runtime.py": {
+  "sources": [
+   "test_v71_support_runtime.py",
+   "test_v73_support_passive_runtime.py",
+   "test_v98_support_action_effect_runtime.py"
+  ],
+  "renames": {},
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v71_support_runtime",
+    "original": "test_support_resolver_resolves_left_and_right_without_identity_specific_code",
+    "merged": "test_support_resolver_resolves_left_and_right_without_identity_specific_code"
+   },
+   {
+    "source": "test_v71_support_runtime",
+    "original": "test_generic_right_support_command_uses_support_runtime",
+    "merged": "test_generic_right_support_command_uses_support_runtime"
+   },
+   {
+    "source": "test_v71_support_runtime",
+    "original": "test_named_assist_is_still_resolved_through_common_provider",
+    "merged": "test_named_assist_is_still_resolved_through_common_provider"
+   },
+   {
+    "source": "test_v73_support_passive_runtime",
+    "original": "test_generic_support_passive_sasa_ryoshu_grants_poise_to_formation_first",
+    "merged": "test_generic_support_passive_sasa_ryoshu_grants_poise_to_formation_first"
+   },
+   {
+    "source": "test_v73_support_passive_runtime",
+    "original": "test_generic_support_passive_sasa_yisang_adds_poise_count_to_highest_sp_actor",
+    "merged": "test_generic_support_passive_sasa_yisang_adds_poise_count_to_highest_sp_actor"
+   },
+   {
+    "source": "test_v98_support_action_effect_runtime",
+    "original": "test_support_action_requested_next_queues_selected_ally_placeholder",
+    "merged": "test_support_action_requested_next_queues_selected_ally_placeholder"
+   },
+   {
+    "source": "test_v98_support_action_effect_runtime",
+    "original": "test_support_action_named_resolves_common_skill_and_preserves_target_policy",
+    "merged": "test_support_action_named_resolves_common_skill_and_preserves_target_policy"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_rule_ir_foundation.py": {
+  "sources": [
+   "test_v78_rule_ir_bridge.py",
+   "test_v79_condition_effect_ir.py",
+   "test_v80_rule_runtime.py",
+   "test_v81_target_effect_foundation.py",
+   "test_v82_rule_ir_migration.py",
+   "test_v83_activation_runtime.py",
+   "test_v84_effect_executor.py",
+   "test_v118_rule_ir_metadata.py"
+  ],
+  "renames": {
+   "test_v118_rule_ir_metadata": {
+    "TriggerRule": "TriggerRule__v118_rule",
+    "TriggerCondition": "TriggerCondition__v118_rule",
+    "TriggerEffect": "TriggerEffect__v118_rule"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v78_rule_ir_bridge",
+    "original": "test_trigger_rule_bridge_preserves_core_fields",
+    "merged": "test_trigger_rule_bridge_preserves_core_fields"
+   },
+   {
+    "source": "test_v78_rule_ir_bridge",
+    "original": "test_gimmick_rule_bridge_is_loss_aware",
+    "merged": "test_gimmick_rule_bridge_is_loss_aware"
+   },
+   {
+    "source": "test_v79_condition_effect_ir",
+    "original": "test_condition_ir_common_comparisons",
+    "merged": "test_condition_ir_common_comparisons"
+   },
+   {
+    "source": "test_v79_condition_effect_ir",
+    "original": "test_condition_ir_negation",
+    "merged": "test_condition_ir_negation"
+   },
+   {
+    "source": "test_v79_condition_effect_ir",
+    "original": "test_effect_runtime_unregistered_is_safe_command",
+    "merged": "test_effect_runtime_unregistered_is_safe_command"
+   },
+   {
+    "source": "test_v79_condition_effect_ir",
+    "original": "test_effect_runtime_registered_handler",
+    "merged": "test_effect_runtime_registered_handler"
+   },
+   {
+    "source": "test_v80_rule_runtime",
+    "original": "test_rule_runtime_matches_and_emits_commands",
+    "merged": "test_rule_runtime_matches_and_emits_commands"
+   },
+   {
+    "source": "test_v80_rule_runtime",
+    "original": "test_rule_runtime_rejects_condition_without_side_effect",
+    "merged": "test_rule_runtime_rejects_condition_without_side_effect"
+   },
+   {
+    "source": "test_v80_rule_runtime",
+    "original": "test_disabled_rule_does_not_evaluate_conditions",
+    "merged": "test_disabled_rule_does_not_evaluate_conditions"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_target_runtime_self_resolution",
+    "merged": "test_target_runtime_self_resolution"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_target_runtime_affiliation_and_alive_filter",
+    "merged": "test_target_runtime_affiliation_and_alive_filter"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_rule_runtime_requires_resolvable_target",
+    "merged": "test_rule_runtime_requires_resolvable_target"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_effect_categories_are_explicit",
+    "merged": "test_effect_categories_are_explicit"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_rule_dependency_execution_order_is_deterministic",
+    "merged": "test_rule_dependency_execution_order_is_deterministic"
+   },
+   {
+    "source": "test_v81_target_effect_foundation",
+    "original": "test_rule_dependency_order_rejects_cycle_and_missing_dependency",
+    "merged": "test_rule_dependency_order_rejects_cycle_and_missing_dependency"
+   },
+   {
+    "source": "test_v82_rule_ir_migration",
+    "original": "test_gimmick_bridge_uses_stable_id_and_common_conditions",
+    "merged": "test_gimmick_bridge_uses_stable_id_and_common_conditions"
+   },
+   {
+    "source": "test_v82_rule_ir_migration",
+    "original": "test_migration_report_counts_compiled_rules",
+    "merged": "test_migration_report_counts_compiled_rules"
+   },
+   {
+    "source": "test_v83_activation_runtime",
+    "original": "test_activation_runtime_global_limit",
+    "merged": "test_activation_runtime_global_limit"
+   },
+   {
+    "source": "test_v83_activation_runtime",
+    "original": "test_activation_runtime_per_identity_scope",
+    "merged": "test_activation_runtime_per_identity_scope"
+   },
+   {
+    "source": "test_v84_effect_executor",
+    "original": "test_generic_resource_effect_executes_through_rule_runtime",
+    "merged": "test_generic_resource_effect_executes_through_rule_runtime"
+   },
+   {
+    "source": "test_v84_effect_executor",
+    "original": "test_generic_status_effect_executes",
+    "merged": "test_generic_status_effect_executes"
+   },
+   {
+    "source": "test_v84_effect_executor",
+    "original": "test_action_effect_remains_deferred",
+    "merged": "test_action_effect_remains_deferred"
+   },
+   {
+    "source": "test_v118_rule_ir_metadata",
+    "original": "test_trigger_rule_metadata_survives_ir_bridge",
+    "merged": "test_trigger_rule_metadata_survives_ir_bridge"
+   },
+   {
+    "source": "test_v118_rule_ir_metadata",
+    "original": "test_per_target_activation_honors_turn_cap",
+    "merged": "test_per_target_activation_honors_turn_cap"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_rule_migration.py": {
+  "sources": [
+   "test_v85_rule_runtime_trigger_migration.py",
+   "test_v86_rule_migration_runtime.py",
+   "test_v87_migration_parity.py",
+   "test_v88_rule_migration_execution.py",
+   "test_v89_migration_safety.py",
+   "test_v91_rule_migration_integration.py",
+   "test_v92_probabilistic_rule_ir_migration.py",
+   "test_v92_production_migration_boundary.py",
+   "test_v93_golden_rule_parity.py"
+  ],
+  "renames": {
+   "test_v88_rule_migration_execution": {
+    "Fighter": "Fighter__v88_rule"
+   },
+   "test_v89_migration_safety": {
+    "Fighter": "Fighter__v89_migration",
+    "State": "State__v89_migration"
+   },
+   "test_v93_golden_rule_parity": {
+    "_rule": "_rule__v93_golden"
+   }
+  },
+  "deduped": [
+   [
+    "test_v86_rule_migration_runtime",
+    [
+     "Fighter"
+    ]
+   ]
+  ],
+  "tests": [
+   {
+    "source": "test_v85_rule_runtime_trigger_migration",
+    "original": "test_trigger_rule_generic_resource_executes_through_ir",
+    "merged": "test_trigger_rule_generic_resource_executes_through_ir"
+   },
+   {
+    "source": "test_v85_rule_runtime_trigger_migration",
+    "original": "test_trigger_rule_generic_status_executes_through_ir",
+    "merged": "test_trigger_rule_generic_status_executes_through_ir"
+   },
+   {
+    "source": "test_v85_rule_runtime_trigger_migration",
+    "original": "test_trigger_rule_wrong_event_does_not_execute",
+    "merged": "test_trigger_rule_wrong_event_does_not_execute"
+   },
+   {
+    "source": "test_v86_rule_migration_runtime",
+    "original": "test_migration_planner_separates_generic_and_deferred_effects",
+    "merged": "test_migration_planner_separates_generic_and_deferred_effects"
+   },
+   {
+    "source": "test_v86_rule_migration_runtime",
+    "original": "test_execute_generic_reports_action_rules_as_runtime_deferred_without_queue",
+    "merged": "test_execute_generic_reports_action_rules_as_runtime_deferred_without_queue"
+   },
+   {
+    "source": "test_v87_migration_parity",
+    "original": "test_parity_preserves_effect_payload",
+    "merged": "test_parity_preserves_effect_payload"
+   },
+   {
+    "source": "test_v87_migration_parity",
+    "original": "test_parity_audit_counts_exact_rules",
+    "merged": "test_parity_audit_counts_exact_rules"
+   },
+   {
+    "source": "test_v87_migration_parity",
+    "original": "test_evaluate_parity_does_not_execute_effect",
+    "merged": "test_evaluate_parity_does_not_execute_effect"
+   },
+   {
+    "source": "test_v88_rule_migration_execution",
+    "original": "test_migrated_resource_gain_updates_core_charge_not_legacy_resource_dict",
+    "merged": "test_migrated_resource_gain_updates_core_charge_not_legacy_resource_dict"
+   },
+   {
+    "source": "test_v88_rule_migration_execution",
+    "original": "test_migrated_forsight_consume_preserves_overheat_transition",
+    "merged": "test_migrated_forsight_consume_preserves_overheat_transition"
+   },
+   {
+    "source": "test_v88_rule_migration_execution",
+    "original": "test_migrated_extra_damage_scale_matches_legacy_timing_shape",
+    "merged": "test_migrated_extra_damage_scale_matches_legacy_timing_shape"
+   },
+   {
+    "source": "test_v88_rule_migration_execution",
+    "original": "test_migrated_status_potency_damage_uses_turn_cap",
+    "merged": "test_migrated_status_potency_damage_uses_turn_cap"
+   },
+   {
+    "source": "test_v89_migration_safety",
+    "original": "test_migration_uses_rule_owner_for_untargeted_resource_effect",
+    "merged": "test_migration_uses_rule_owner_for_untargeted_resource_effect"
+   },
+   {
+    "source": "test_v89_migration_safety",
+    "original": "test_unsupported_condition_is_not_migration_safe",
+    "merged": "test_unsupported_condition_is_not_migration_safe"
+   },
+   {
+    "source": "test_v89_migration_safety",
+    "original": "test_target_resolution_failure_does_not_consume_activation",
+    "merged": "test_target_resolution_failure_does_not_consume_activation"
+   },
+   {
+    "source": "test_v91_rule_migration_integration",
+    "original": "test_registry_executes_migration_safe_resource_rule_once",
+    "merged": "test_registry_executes_migration_safe_resource_rule_once"
+   },
+   {
+    "source": "test_v91_rule_migration_integration",
+    "original": "test_registry_executes_migration_safe_extra_damage_and_returns_amount",
+    "merged": "test_registry_executes_migration_safe_extra_damage_and_returns_amount"
+   },
+   {
+    "source": "test_v92_probabilistic_rule_ir_migration",
+    "original": "test_probabilistic_event_uses_rule_ir_for_generic_effect_once",
+    "merged": "test_probabilistic_event_uses_rule_ir_for_generic_effect_once"
+   },
+   {
+    "source": "test_v92_probabilistic_rule_ir_migration",
+    "original": "test_probabilistic_scoped_activation_state_preserves_bucket_across_branch_event",
+    "merged": "test_probabilistic_scoped_activation_state_preserves_bucket_across_branch_event"
+   },
+   {
+    "source": "test_v92_production_migration_boundary",
+    "original": "test_production_boundary_rejects_deferred_effect_inside_live_queue",
+    "merged": "test_production_boundary_rejects_deferred_effect_inside_live_queue"
+   },
+   {
+    "source": "test_v92_production_migration_boundary",
+    "original": "test_compatibility_context_may_still_return_deferred_payload",
+    "merged": "test_compatibility_context_may_still_return_deferred_payload"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_resource_gain_golden_parity",
+    "merged": "test_resource_gain_golden_parity"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_status_gain_golden_parity",
+    "merged": "test_status_gain_golden_parity"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_modifier_golden_parity",
+    "merged": "test_modifier_golden_parity"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_flag_golden_parity",
+    "merged": "test_flag_golden_parity"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_scoped_activation_golden_parity",
+    "merged": "test_scoped_activation_golden_parity"
+   },
+   {
+    "source": "test_v93_golden_rule_parity",
+    "original": "test_failed_condition_does_not_consume_activation",
+    "merged": "test_failed_condition_does_not_consume_activation"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_effect_action_runtime.py": {
+  "sources": [
+   "test_v96_queue_action_effect_runtime.py",
+   "test_v97_queue_action_registry_integration.py",
+   "test_v99_targeted_effect_runtime.py",
+   "test_v100_generic_special_effects.py",
+   "test_v100_special_effect_generic_runtime.py"
+  ],
+  "renames": {
+   "test_v100_generic_special_effects": {
+    "_ctx": "_ctx__v100_generic"
+   },
+   "test_v100_special_effect_generic_runtime": {
+    "_state": "_state__v100_special"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v96_queue_action_effect_runtime",
+    "original": "test_queue_action_is_generic_and_materializes_into_shared_queue",
+    "merged": "test_queue_action_is_generic_and_materializes_into_shared_queue"
+   },
+   {
+    "source": "test_v96_queue_action_effect_runtime",
+    "original": "test_queue_action_without_live_queue_is_deferred_and_does_not_consume_activation",
+    "merged": "test_queue_action_without_live_queue_is_deferred_and_does_not_consume_activation"
+   },
+   {
+    "source": "test_v97_queue_action_registry_integration",
+    "original": "test_registry_migrated_queue_action_uses_turnstate_queue_boundary",
+    "merged": "test_registry_migrated_queue_action_uses_turnstate_queue_boundary"
+   },
+   {
+    "source": "test_v99_targeted_effect_runtime",
+    "original": "test_lowest_ally_poise_preserves_formation_tiebreak_and_count",
+    "merged": "test_lowest_ally_poise_preserves_formation_tiebreak_and_count"
+   },
+   {
+    "source": "test_v99_targeted_effect_runtime",
+    "original": "test_lowest_affiliation_poise_selects_lowest_and_boosts_at_member_threshold",
+    "merged": "test_lowest_affiliation_poise_selects_lowest_and_boosts_at_member_threshold"
+   },
+   {
+    "source": "test_v99_targeted_effect_runtime",
+    "original": "test_resource_lowest_allies_includes_owner_and_uses_charge_value",
+    "merged": "test_resource_lowest_allies_includes_owner_and_uses_charge_value"
+   },
+   {
+    "source": "test_v99_targeted_effect_runtime",
+    "original": "test_heal_lowest_ally_caps_at_max_hp",
+    "merged": "test_heal_lowest_ally_caps_at_max_hp"
+   },
+   {
+    "source": "test_v100_generic_special_effects",
+    "original": "test_support_poise_gain_generic_uses_highest_sp_target",
+    "merged": "test_support_poise_gain_generic_uses_highest_sp_target"
+   },
+   {
+    "source": "test_v100_generic_special_effects",
+    "original": "test_support_poise_count_bonus_generic_targets_current_actor",
+    "merged": "test_support_poise_count_bonus_generic_targets_current_actor"
+   },
+   {
+    "source": "test_v100_generic_special_effects",
+    "original": "test_fatal_prevention_and_highest_poise_modifier_are_generic",
+    "merged": "test_fatal_prevention_and_highest_poise_modifier_are_generic"
+   },
+   {
+    "source": "test_v100_generic_special_effects",
+    "original": "test_status_gain_affiliation_generic_targets_live_members",
+    "merged": "test_status_gain_affiliation_generic_targets_live_members"
+   },
+   {
+    "source": "test_v100_special_effect_generic_runtime",
+    "original": "test_hongmaehwa_crit_executes_through_generic_effect_executor",
+    "merged": "test_hongmaehwa_crit_executes_through_generic_effect_executor"
+   },
+   {
+    "source": "test_v100_special_effect_generic_runtime",
+    "original": "test_enemy_status_count_gain_executes_through_generic_effect_executor",
+    "merged": "test_enemy_status_count_gain_executes_through_generic_effect_executor"
+   }
+  ],
+  "provenance_problems": []
+ },
+ "test_triggers_actions_queue.py": {
+  "sources": [
+   "test_v29_action_queue_v1.py",
+   "test_v29_triggered_action_queue.py",
+   "test_v29_after_hit_trigger.py",
+   "test_v29_trigger_runtime.py",
+   "test_v29_generated_damage_attribution.py",
+   "test_v29_passive_optimization.py",
+   "test_v29_scenario_flow.py",
+   "test_v29_trace_detail.py",
+   "test_v29_preparation.py",
+   "test_v29_parallel_engine_upgrades.py",
+   "test_v29_parallel_upgrades.py"
+  ],
+  "renames": {
+   "test_v29_preparation": {
+    "load": "load__v29_preparation"
+   },
+   "test_v29_parallel_engine_upgrades": {
+    "ident": "ident__v29_parallel"
+   }
+  },
+  "deduped": [],
+  "tests": [
+   {
+    "source": "test_v29_action_queue_v1",
+    "original": "test_trigger_is_inserted_without_changing_requested_order",
+    "merged": "test_trigger_is_inserted_without_changing_requested_order"
+   },
+   {
+    "source": "test_v29_action_queue_v1",
+    "original": "test_trigger_chain_depth_is_carried",
+    "merged": "test_trigger_chain_depth_is_carried"
+   },
+   {
+    "source": "test_v29_triggered_action_queue",
+    "original": "test_player_order_and_triggered_action_are_separate",
+    "merged": "test_player_order_and_triggered_action_are_separate"
+   },
+   {
+    "source": "test_v29_triggered_action_queue",
+    "original": "test_newly_staggered_triggers_only_when_not_staggered_at_start",
+    "merged": "test_newly_staggered_triggers_only_when_not_staggered_at_start"
+   },
+   {
+    "source": "test_v29_triggered_action_queue",
+    "original": "test_mid_turn_resource_can_transform_later_player_action",
+    "merged": "test_mid_turn_resource_can_transform_later_player_action"
+   },
+   {
+    "source": "test_v29_triggered_action_queue",
+    "original": "test_triggered_assist_resource_changes_later_player_resolution",
+    "merged": "test_triggered_assist_resource_changes_later_player_resolution"
+   },
+   {
+    "source": "test_v29_after_hit_trigger",
+    "original": "test_after_hit_fires_only_when_coin_deals_damage_and_affects_next_coin",
+    "merged": "test_after_hit_fires_only_when_coin_deals_damage_and_affects_next_coin"
+   },
+   {
+    "source": "test_v29_after_hit_trigger",
+    "original": "test_after_hit_trigger_is_not_fired_for_zero_damage_coin",
+    "merged": "test_after_hit_trigger_is_not_fired_for_zero_damage_coin"
+   },
+   {
+    "source": "test_v29_trigger_runtime",
+    "original": "test_generic_trigger_event_condition_effect",
+    "merged": "test_generic_trigger_event_condition_effect"
+   },
+   {
+    "source": "test_v29_trigger_runtime",
+    "original": "test_generic_trigger_does_not_fire_for_already_staggered",
+    "merged": "test_generic_trigger_does_not_fire_for_already_staggered"
+   },
+   {
+    "source": "test_v29_passive_optimization",
+    "original": "test_builtin_ammo_does_not_overwrite_explicit_higher_value",
+    "merged": "test_builtin_ammo_does_not_overwrite_explicit_higher_value"
+   },
+   {
+    "source": "test_v29_passive_optimization",
+    "original": "test_builtin_ammo_initializes_empty_magazine",
+    "merged": "test_builtin_ammo_initializes_empty_magazine"
+   },
+   {
+    "source": "test_v29_passive_optimization",
+    "original": "test_speed_difference_condition",
+    "merged": "test_speed_difference_condition"
+   },
+   {
+    "source": "test_v29_passive_optimization",
+    "original": "test_status_gain_parser",
+    "merged": "test_status_gain_parser"
+   },
+   {
+    "source": "test_v29_scenario_flow",
+    "original": "test_sequential_actions_and_identity_damage",
+    "merged": "test_sequential_actions_and_identity_damage"
+   },
+   {
+    "source": "test_v29_scenario_flow",
+    "original": "test_initial_stagger_is_supported",
+    "merged": "test_initial_stagger_is_supported"
+   },
+   {
+    "source": "test_v29_trace_detail",
+    "original": "test_action_trace_contains_coin_and_resource_state",
+    "merged": "test_action_trace_contains_coin_and_resource_state"
+   },
+   {
+    "source": "test_v29_preparation",
+    "original": "test_explicit_preparation_levels_and_flags",
+    "merged": "test_explicit_preparation_levels_and_flags"
+   },
+   {
+    "source": "test_v29_preparation",
+    "original": "test_mid_turn_dawn_transformation",
+    "merged": "test_mid_turn_dawn_transformation"
+   },
+   {
+    "source": "test_v29_parallel_engine_upgrades",
+    "original": "test_bleed_deals_self_damage_and_consumes_count",
+    "merged": "test_bleed_deals_self_damage_and_consumes_count"
+   },
+   {
+    "source": "test_v29_parallel_engine_upgrades",
+    "original": "test_sinking_sp_damage_is_clamped",
+    "merged": "test_sinking_sp_damage_is_clamped"
+   },
+   {
+    "source": "test_v29_parallel_engine_upgrades",
+    "original": "test_fixed_damage_effect_can_trigger_stagger_threshold",
+    "merged": "test_fixed_damage_effect_can_trigger_stagger_threshold"
+   },
+   {
+    "source": "test_v29_parallel_engine_upgrades",
+    "original": "test_defense_level_bonus_is_part_of_fighter_state_and_output",
+    "merged": "test_defense_level_bonus_is_part_of_fighter_state_and_output"
+   },
+   {
+    "source": "test_v29_parallel_upgrades",
+    "original": "test_conditional_damage_modifier_is_applied",
+    "merged": "test_conditional_damage_modifier_is_applied"
+   },
+   {
+    "source": "test_v29_parallel_upgrades",
+    "original": "test_resource_consumption_damage_bonus_uses_actual_spent_amount",
+    "merged": "test_resource_consumption_damage_bonus_uses_actual_spent_amount"
+   },
+   {
+    "source": "test_v29_parallel_upgrades",
+    "original": "test_damage_by_skill_breakdown_is_present",
+    "merged": "test_damage_by_skill_breakdown_is_present"
+   },
+   {
+    "source": "test_v29_parallel_upgrades",
+    "original": "test_cross_identity_resource_gain_targets_rule_owner",
+    "merged": "test_cross_identity_resource_gain_targets_rule_owner"
+   }
+  ],
+  "provenance_problems": []
+ }
+}

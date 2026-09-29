@@ -1,0 +1,156 @@
+{
+  "stage": "E25",
+  "source": "GIMMICK_GAP_REPORT_v4.md.json",
+  "all_gap_records": 360,
+  "raw_conversion_candidate_records": 14,
+  "unique_conversion_candidate_texts": 14,
+  "candidate_kind_counts": {
+    "fixed_or_proportional_conversion": 7,
+    "transfer": 3,
+    "substitution": 4
+  },
+  "confirmed_patterns": [
+    {
+      "kind": "fixed_or_proportional_conversion",
+      "examples": [
+        "포자탄[기본] 2 소모하여, 포자탄[산탄] 1 얻음",
+        "가속탄 소모한 수치 1당, 호흡 2 얻음"
+      ]
+    },
+    {
+      "kind": "substitution",
+      "examples": [
+        "충전 횟수를 획득할 때, 대신 깊은 눈물을 얻음",
+        "충전 횟수를 획득할 때, 대신 적안 또는 참회를 얻음",
+        "충전 역장을 얻을 때, 고전압 외피로 전환되어 얻음"
+      ]
+    },
+    {
+      "kind": "transfer",
+      "examples": [
+        "작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함",
+        "초과 충전 횟수를 소모하고 ... 아군의 충전 횟수 증가"
+      ]
+    }
+  ],
+  "decision": {
+    "new_primitive_required": true,
+    "primitive": "RESOURCE_CONVERSION",
+    "reason": "Existing SkillTextParserV19 already has resource_convert/resource_gain_from_consumed executable effect kinds, but resource_primitive_v1.py did not normalize those kinds into the common ResourcePrimitive registry.",
+    "not_a_new_runtime": "Conversion is represented as a composable primitive; execution remains in existing Effect/Resource runtime paths."
+  },
+  "records": [
+    {
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "불안정한 자아의 껍질",
+      "source_text": "턴 시작 시 정신력이 40 이상이면, 정신력을 20 소모하여 불안정 E.G.O::밀랍날개 상태가 됨. (이후 턴 시작 시 효과가 추가로 발동되지 않음)\n또는 한 턴에 아군이 2명 이상 사망했을 때, 턴 종료 시 정신력이 -45가 아니면, 정신력을 20으로 변경한 후 불안정 E.G.O::밀랍날개 상태가 됨. (두 조건이 동시에 발생한 경우, 정신력 결과 값은 높은 쪽으로 결정됨.)\n\n불안정 E.G.O 상태가 될 때, 피해나 흐트러짐 손상으로 흐트러짐 상태가 된 경우, 흐트러짐 상태를 해제함. 해제할 수 없는 흐트러짐 상태인 경우, 불안정 E.G.O 상태가 될 수 없음.\n\n불안정 E.G.O 상태동안 불안정한 격정을 얻음.\n\n턴 시작 시 정신력이 0 이하면, 불안정 E.G.O 상태가 해제됨.",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "LCE E.G.O::차원찢개",
+      "passive_name": "뚫린 골목",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10 소모할 때마다 충전 위력 1 얻음\n자신을 제외한 아군의 스킬이 적에게 적중하면, 해당 공격 종료시 차원 표류를 1 소모하여 대상에게 '차원 베기'를 발동한 후, 사색 차원 1 얻음",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "해금/개화 E.G.O::대행",
+      "source_text": "턴 종료 시 지령의 가호가 3/6/9이면, 해금 - I/해금 - II/해금 - III 얻음\n\n해금 - I을 얻으면, 정신력을 15 소모하여 개화 E.G.O::대행 상태가 됨\n- 정신력 소모 전 정신력이 25까지 증가하고 (증가한 정신력/5)만큼 카르마 얻음 (소수점 올림)\n- 이후 턴 시작 시 해금이 있고, 정신력이 25 이상이면,\n정신력을 15 소모하여 해당 상태가 됨\n\n개화 E.G.O::대행 상태가 될 때,\n- 해당 턴의 흐트러짐 해제\n(해제할 수 없는 흐트러짐이면 해당 상태가 될 수 없음)\n- 해당 상태일 때, 당연한 믿음 얻음\n\n턴 시작 시 정신력이 0 이하면, 해당 상태 해제",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "source_text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 3개) (전투당 1회)\n\n- 탄환을 보급 받는 인격이 자신보다 계급이 높은 엄지 소속 인격이면, 해당 인격이 사용하는 탄환을 1개 더 보급함\n- 위력, 횟수가 분리된 탄환은 위력, 횟수를 무작위로 보급함\n- 만약 위력 또는 횟수가 최댓값인 경우, 최댓값이 아닌 쪽의 탄환으로 보급함",
+      "conversion_candidates": [
+        "transfer"
+      ]
+    },
+    {
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "source_text": "탄환을 쓰는 인격 중 편성 순서가 가장 빠른 아군 1명의 공격이 종료 되었을 때, 해당 인격의 현재 보유 탄환이 절반 미만이면 (소수점 올림), 해당 인격이 소모한 탄환 수 만큼 자신의 작열 추진탄을 소모하고, 작열 추진탄을 소모한 만큼 해당 인격이 사용하는 탄환을 보급함. (최대 소모 값: 5개) (전투당 1회)\n\n- 탄환을 보급 받는 인격이 자신보다 계급이 높은 엄지 소속 인격이면, 해당 인격이 사용하는 탄환을 1개 더 보급함\n- 위력, 횟수가 분리된 탄환은 위력, 횟수를 무작위로 보급함\n- 만약 위력 또는 횟수가 최댓값인 경우, 최댓값이 아닌 쪽의 탄환으로 보급함",
+      "conversion_candidates": [
+        "transfer"
+      ]
+    },
+    {
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "총검술",
+      "source_text": "상시 적용: 작열 추진탄 15개 보유\n\n스킬이나 패시브로 작열 추진탄을 소모했다면, 다음 턴에 소모한 만큼 피해량 증가를 얻음 (최대 3)\n\n작열 추진탄을 소모하는 코인을 굴릴 때, 작열 추진탄이 없는 경우에도 공격이 취소되지 않는 대신 해당 코인의 적중 시 화상 부여, 화상 횟수 증가 효과가 발동하지 않음",
+      "conversion_candidates": [
+        "transfer"
+      ]
+    },
+    {
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "source_text": "- 출혈이 부여된 대상에게 앞면 적중시 부당 수익을 얻음. (최대 4)\n- 탄환이 없는 경우, 대신 크리티컬 적중 시 부당 수익을 전부 소모하여, 피해량의 (5 x 소모한 부당 수익)% 만큼 추가 피해를 줌.",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "눈물로 벼려낸 검 - !E.G.O 장비 동기화율 초과주의!",
+      "source_text": "턴 시작 시 정신력이 0 이상이면, 가호 얻음\n- 사용하는 기본 스킬이 더하기 코인을 사용하는 스킬로 적용됨\n\n턴 시작 시 정신력이 0 미만이면, 절망 얻음\n- 사용하는 기본 스킬이 빼기 코인을 사용하는 스킬로 적용됨\n\n충전 횟수를 획득할 때, 대신 깊은 눈물을 얻음\n- 깊은 눈물은 충전 위력의 영향을 받지 않음",
+      "conversion_candidates": [
+        "substitution"
+      ]
+    },
+    {
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "source_text": "- 상시 적용 : 탄환 7개 보유\n- 출혈이 부여된 대상에게 앞면 적중시 부당 수익을 얻음. (최대 4)\n- 탄환 소모하는 코인 적중 시 부당 수익을 전부 소모하여, 피해량의 (25 x 소모한 부당 수익)% 만큼 추가 피해를 줌.\n- 탄환이 없는 경우, 대신 크리티컬 적중 시 부당 수익을 전부 소모하여, (5 x 소모한 부당 수익)%만큼 추가 피해를 줌",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "로보토미 E.G.O:: 여우비",
+      "passive_name": "눈물비",
+      "source_text": "전투 시작 시 침잠 횟수를 1 소모하여 침잠 만큼 정신력 감소\n피격 전 자신의 침잠 만큼 보호를 얻음.(턴 당 획득 가능한 보호 : 최대 5)\n피격 시 다음 턴에 타격 피해량 증가 1을 얻음 (턴 당 최대 3)",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "source_text": "상시 적용: 포자탄[기본] 10개, 포자탄[산탄] 6개 보유\n\n포자탄을 소모하는 코인 적중 시\n- 포자탄[기본]을 소모했으면, 포자 2 부여\n- 포자탄[산탄]을 소모했으면, 포자 3 부여\n- 이 효과는 스킬에서 부정적인 효과를 부여하는 것으로 취급됨\n\n포자탄[산탄]을 소모하는 코인 사용 전 포자탄[산탄]이 없으면,\n정신력 2, 포자탄[기본] 2 소모하여, 포자탄[산탄] 1 얻음\n\n스킬 사용 중 포자탄이 부족하면, 다음 코인을 모두 취소하고 재장전[포자보충]\n\n포자가 있는 대상 사망 시 충성 페로몬 1 얻음",
+      "conversion_candidates": [
+        "fixed_or_proportional_conversion"
+      ]
+    },
+    {
+      "identity_name": "로보토미 E.G.O:: 램프",
+      "passive_name": "현혹의 램프",
+      "source_text": "턴 시작 시 램프 1 얻음\n\n속도의 최솟값과 최댓값이 외부 효과의 영향으로 변동되지 않음\n\n스킬 지정 시 속도에 관계 없이 공격 스킬의 공격 대상을 자신으로 변경할 수 있음 (집중 전투 전용)\n\n신속을 얻을 때, 대신 합 위력 증가 1 얻음 (턴당 1회)\n- 이후 이번 턴에 신속을 얻을 수 없음",
+      "conversion_candidates": [
+        "substitution"
+      ]
+    },
+    {
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "passive_name": "E.G.O 동화",
+      "source_text": "충전 횟수를 획득할 때, 대신 적안 또는 참회를 얻음\n- 적안과 참회는 충전 위력의 영향을 받지 않음",
+      "conversion_candidates": [
+        "substitution"
+      ]
+    },
+    {
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "끈질긴 생명력",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음\n충전 역장을 얻을 때, 고전압 외피로 전환되어 얻음\n\n자신의 충전이 3 이상이면, 속도 최솟값, 최댓값 +1\n\n이번 전투에서 체력이 0이 되는 피해를 받았을 때,\n(5 + 자신의 충전x3)만큼 자가 충전 얻음 (최대 20, 전투당 1회)",
+      "conversion_candidates": [
+        "substitution"
+      ]
+    }
+  ]
+}

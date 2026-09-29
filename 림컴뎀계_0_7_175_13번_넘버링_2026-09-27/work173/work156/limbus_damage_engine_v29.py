@@ -1,0 +1,2094 @@
+"""Limbus Company One-Turn Damage Calculator - v0.5.1
+
+Battle engine upgrade from v0.3.
+
+Verified against current Limbus Company Wiki pages during development:
+- Damage Formula
+- Battles / Offense & Defense Levels
+- Poise
+- Burn
+- Coin / Unbreakable Coin behavior
+
+Important: this is still a simulator framework, not a complete clone of every
+identity/passive/status in the game. Unsupported mechanics remain explicit
+placeholders rather than silently approximated.
+"""
+from __future__ import annotations
+from legacy_condition_combinators_v1 import evaluate_composite_condition
+from dataclasses import dataclass, field
+from copy import deepcopy
+from enum import Enum
+from itertools import product
+from math import floor, trunc
+from typing import Any, Callable, Dict, List, Optional, Tuple
+from damage_modifier_runtime_v1 import DamageModifierRuntime
+from passive_runtime_v29_base import PassiveTrigger
+from activation_ledger_v1 import ActivationLedger
+
+
+class EventType(str, Enum):
+    ENCOUNTER_START = "EncounterStart"
+    COMBAT_START = "CombatStart"
+    TURN_START = "TurnStart"
+    BEFORE_USE = "BeforeUse"
+    ON_USE = "OnUse"
+    SKILL_START = "SkillStart"
+    COIN_START = "CoinStart"
+    BEFORE_HIT = "BeforeHit"
+    HIT = "Hit"
+    DAMAGE = "Damage"
+    STAGGER_CHECK = "StaggerCheck"
+    STAGGER = "Stagger"
+    UNIT_DEATH = "UnitDeath"
+    SKILL_END = "SkillEnd"
+    TURN_END = "TurnEnd"
+    CLASH_START = "ClashStart"
+    CLASH_WIN = "ClashWin"
+    CLASH_LOSE = "ClashLose"
+    BEFORE_ATTACK = "BeforeAttack"
+    ON_UNOPPOSED_ATTACK = "OnUnopposedAttack"
+    ON_KILL = "OnKill"
+    ATTACK_END = "AttackEnd"
+    HEADS_HIT = "HeadsHit"
+    TAILS_HIT = "TailsHit"
+    HIT_AFTER_CLASH_WIN = "HitAfterClashWin"
+    COMBAT_END = "CombatEnd"
+
+
+@dataclass
+class Status:
+    potency: int = 0
+    count: int = 0
+    data: Dict[str, Any] = field(default_factory=dict)
+
+    def clone(self):
+        return deepcopy(self)
+
+
+@dataclass
+class EnemyState:
+    hp: float
+    max_hp: float
+    sp: int = 0
+    level: int = 60
+    speed: int = 0
+    stagger_thresholds: List[float] = field(default_factory=list)
+    stagger_index: int = 0
+    stagger_level: int = 0
+    staggered_turns: int = 0
+    stagger_source: str = ""
+    defense_level: int = 0
+    defense_level_bonus: int = 0
+    physical_res: Dict[str, float] = field(default_factory=lambda: {
+        "slash": 1.0, "pierce": 1.0, "blunt": 1.0
+    })
+    sin_res: Dict[str, float] = field(default_factory=dict)
+    # Optional per-keyword damage-taken multipliers. 1.0 = normal, 0.5 = 50% damage.
+    # This is separate from Sin/Gloom affinity resistance.
+    keyword_damage_modifiers: Dict[str, float] = field(default_factory=dict)
+    # Sinking on SP targets normally affects SP only. Overflow to HP is opt-in.
+    sinking_sp_overflow_to_hp: bool = False
+    statuses: Dict[str, Status] = field(default_factory=dict)
+    # Per-unit combat classification selected by the scenario/user.
+    # Abnormalities do not use the ordinary SP-based Sinking path.
+    is_abnormality: bool = False
+
+    @property
+    def staggered(self) -> bool:
+        return self.stagger_level > 0
+
+    def clone(self):
+        return deepcopy(self)
+
+
+@dataclass
+class FighterState:
+    level: int = 60
+    speed: int = 0
+    sp: int = 0
+    hp: float = 999999.0
+    max_hp: float = 999999.0
+    sin_resources: Dict[str, int] = field(default_factory=dict)
+    poise: Status = field(default_factory=Status)
+    charge: int = 0
+    # Charge is a two-axis resource: Count (spendable quantity) and Potency
+    # (persistent strength used by Charge-specific clauses).
+    charge_potency: int = 0
+    ammo: int = 0
+    defense_level_bonus: int = 0
+    shield: float = 0.0
+    charge_barrier_shield: float = 0.0
+    is_wcorp: bool = False
+    resources: Dict[str, int] = field(default_factory=dict)
+    statuses: Dict[str, Status] = field(default_factory=dict)
+
+    def clone(self):
+        return deepcopy(self)
+
+
+@dataclass
+class CoinData:
+    coin_power: int
+    damage_type: str
+    sin: str
+    # plus = normal positive coin; minus = negative coin behavior.
+    coin_type: str = "plus"
+    unbreakable: bool = False
+    super_coin: bool = False
+    damage_bonus: float = 0.0
+    crit_damage_bonus: float = 0.0
+    stagger_damage_ratio: float = 0.0
+    final_power_bonus: int = 0
+    heads_effects: List[Dict[str, Any]] = field(default_factory=list)
+    tails_effects: List[Dict[str, Any]] = field(default_factory=list)
+    effects: List[Dict[str, Any]] = field(default_factory=list)
+    resource_cost: Dict[str, int] = field(default_factory=dict)
+    resource_cost_max: Dict[str, int] = field(default_factory=dict)
+    resource_cost_all: List[str] = field(default_factory=list)
+    # Declarative coin reuse rules. Each rule: {condition, max_reuses, mode}.
+    # mode is "same" for this coin or "last" for the skill's last coin.
+    reuse_rules: List[Dict[str, Any]] = field(default_factory=list)
+    # Conditional per-coin damage modifiers. Each rule is evaluated at the
+    # exact coin timing after any resource consumption tied to that coin.
+    damage_conditions: List[Dict[str, Any]] = field(default_factory=list)
+
+
+@dataclass
+class ClashData:
+    """Optional opponent-side clash description.
+
+    This layer intentionally models clash resolution separately from damage.
+    It is not a complete recreation of every special coin rule yet.
+    """
+    skill_power: int
+    coins: List[CoinData] = field(default_factory=list)
+    clash_result: Optional[str] = None
+
+
+@dataclass
+class SkillData:
+    id: str
+    name: str
+    base_power: int
+    coins: List[CoinData]
+    attack_type: str
+    sin: str
+    effects_on_use: List[Dict[str, Any]] = field(default_factory=list)
+    effects_on_hit: List[Dict[str, Any]] = field(default_factory=list)
+    effects_on_clash_win: List[Dict[str, Any]] = field(default_factory=list)
+    effects_on_clash_lose: List[Dict[str, Any]] = field(default_factory=list)
+    effects_before_use: List[Dict[str, Any]] = field(default_factory=list)
+    conditions: List[Dict[str, Any]] = field(default_factory=list)
+    resource_cost: Dict[str, int] = field(default_factory=dict)
+    resource_gain: Dict[str, int] = field(default_factory=dict)
+    resource_cost_max: Dict[str, int] = field(default_factory=dict)
+    resource_cost_all: List[str] = field(default_factory=list)
+    resource_conditional_costs: List[Dict[str, Any]] = field(default_factory=list)
+    resource_conditional_cost_max: List[Dict[str, Any]] = field(default_factory=list)
+    resource_consumption_damage_per: Dict[str, float] = field(default_factory=dict)
+    resource_consumption_damage_max: Dict[str, float] = field(default_factory=dict)
+    damage_bonus: float = 0.0
+    dynamic_damage_bonus: float = 0.0
+    coin_power_bonus: int = 0
+    final_power_bonus: int = 0
+    offense_level_bonus: int = 0
+    base_power_bonus: int = 0
+    crit_damage_bonus: float = 0.0
+    # Explicit static formula bonus. Useful for reference calculators where
+    # the input field "Critical" is supplied directly as 0.2 rather than as
+    # a boolean crit event. In normal combat this should remain 0.0.
+    static_damage_bonus: float = 0.0
+    unopposed_damage_bonus: float = 0.0
+    # Optional per-coin ammo spending/damage amplification hooks.
+    coin_ammo_spend: Dict[int, int] = field(default_factory=dict)
+    coin_ammo_damage_bonus: Dict[int, float] = field(default_factory=dict)
+    clash_power: int = 0
+    final_power: int = 0
+    clash_count: int = 0
+    # Base attack weight (maximum number of targets this skill can hit).
+    attack_weight: int = 1
+    # Per-coin target roles compiled from explicit skill text.
+    coin_target_policies: List[Optional[str]] = field(default_factory=list)
+    # Optional flat adders, kept separate from the main coin-roll component.
+    attack_adder: float = 0.0
+    attack_hp_adder: float = 0.0
+    clash_result: str = "unopposed"  # unopposed / win / lose
+    clash: Optional[ClashData] = None
+    last_coin_reuse_rules: List[Dict[str, Any]] = field(default_factory=list)
+    # Skill-level modifiers whose target is explicitly the skill's final coin.
+    last_coin_damage_rules: List[Dict[str, Any]] = field(default_factory=list)
+    kill_reuse_rules: List[Dict[str, Any]] = field(default_factory=list)
+    added_coin_rules: List[Dict[str, Any]] = field(default_factory=list)
+
+
+@dataclass
+class IdentityData:
+    id: str
+    name: str
+    offense_level: int
+    skills: Dict[str, SkillData]
+    passives: List[Dict[str, Any]] = field(default_factory=list)
+
+
+@dataclass
+class BattleState:
+    enemy: EnemyState
+    fighters: Dict[str, FighterState]
+    turn_damage: float = 0.0
+    event_log: List[Dict[str, Any]] = field(default_factory=list)
+    # Lightweight runtime context for one-turn derived conditions such as resonance.
+    runtime: Dict[str, Any] = field(default_factory=dict)
+    # Single mutable owner for production rule activation budgets. Deepcopying
+    # BattleState therefore also forks activation state for probability branches.
+    activation_ledger: ActivationLedger = field(default_factory=ActivationLedger)
+
+    def clone(self):
+        return deepcopy(self)
+
+
+class EventBus:
+    def __init__(self):
+        self._handlers: Dict[EventType, List[Callable]] = {e: [] for e in EventType}
+
+    def subscribe(self, event_type: EventType, handler: Callable):
+        self._handlers[event_type].append(handler)
+
+    def emit(self, event_type: EventType, ctx: Dict[str, Any]):
+        for handler in self._handlers[event_type]:
+            handler(ctx)
+
+
+class DamageEngine:
+    """Coin-by-coin battle simulator.
+
+    Damage formula implemented here follows the current simplified formula:
+        Final = floor(CoinRoll * (1 + Static) * (1 + Dynamic))
+    with a 5% of CoinRoll minimum before the final >=1 floor.
+
+    Static = sin resistance + damage resistance + offense/defense advantage
+             + crit + clash count*0.03 + observation modifier.
+    """
+
+    def __init__(self, bus: Optional[EventBus] = None):
+        self.bus = bus or EventBus()
+
+    @staticmethod
+    def offense_defense_modifier(offense: int, defense: int) -> float:
+        """Return the offense-vs-defense level modifier used by damage.
+
+        The combat value is truncated toward zero at two decimal places before
+        it enters the static damage modifier.  Keep this truncation here, at
+        the shared boundary, so every coin uses the same attack/defense-level
+        calculation.
+        """
+        diff = offense - defense
+        raw = diff / (abs(diff) + 25.0)
+        return trunc(raw * 100.0) / 100.0
+
+    @staticmethod
+    def static_modifier(state: BattleState, identity: IdentityData,
+                        skill: SkillData, coin: CoinData, is_crit: bool,
+                        unopposed: bool = True, attack_level_bonus: int = 0, crit_damage_bonus: float = 0.0) -> float:
+        fighter = state.fighters[identity.id]
+        modifier_values = DamageModifierRuntime.resolve(state, identity, skill, coin, False, timing="before_coin")
+        offense = fighter.level + identity.offense_level + skill.offense_level_bonus
+        offense += int(state.runtime.get("current_resonance_offense_bonus", 0))
+        offense += fighter.statuses.get("Offense Level Up", Status()).potency + attack_level_bonus
+        offense += int(modifier_values.get("attack_level_bonus", 0.0))
+        # One-turn calculator scenarios may provide Defense Level as an absolute
+        # combat input, separate from the target's unit level.
+        if state.runtime.get("defense_level_is_absolute", False):
+            defense = state.enemy.defense_level + state.enemy.defense_level_bonus
+        else:
+            defense = state.enemy.level + state.enemy.defense_level + state.enemy.defense_level_bonus
+        defense += int(getattr(fighter, "defense_level_bonus", 0))
+        defense += int(modifier_values.get("defense_level_bonus", 0.0))
+        defense -= state.enemy.statuses.get("Defense Level Down", Status()).potency
+        return (
+            DamageEngine.sin_resistance_modifier(state.enemy, coin.sin)
+            + DamageEngine.damage_resistance_modifier(state.enemy, coin.damage_type)
+            + DamageEngine.offense_defense_modifier(offense, defense)
+            + DamageEngine.crit_modifier(is_crit)
+            + skill.static_damage_bonus
+            + skill.clash_count * 0.03
+            + (skill.unopposed_damage_bonus if unopposed else 0.0)
+        )
+
+    @staticmethod
+    def _skill_condition_state(state: BattleState) -> BattleState:
+        """Return the state captured at this skill's initial resolution.
+
+        Skill-level conditions are evaluated once when the skill is first used.
+        Coin-level conditions remain evaluated against the live state at each
+        coin timing.
+        """
+        return state.runtime.get("_skill_condition_snapshot") or state
+
+    @staticmethod
+    def dynamic_modifier(state: BattleState, identity: IdentityData, skill: SkillData, coin_index: int, coin: Optional[CoinData] = None, is_crit: bool = False) -> float:
+        dealt = state.fighters[identity.id].statuses.get("Damage Up")
+        taken = state.enemy.statuses.get("Damage Taken Up")
+        dealt_bonus = dealt.potency / 100.0 if dealt else 0.0
+        taken_bonus = taken.potency / 100.0 if taken else 0.0
+        typed = state.fighters[identity.id].statuses.get({
+            "slash": "Slash Damage Up", "pierce": "Pierce Damage Up", "blunt": "Blunt Damage Up"
+        }.get(str(getattr(coin, "damage_type", "")), ""))
+        typed_bonus = typed.potency / 100.0 if typed else 0.0
+        sin_name = str(getattr(coin, "sin", ""))
+        sin_status = state.fighters[identity.id].statuses.get(sin_name + " Damage Up")
+        sin_bonus = sin_status.potency / 100.0 if sin_status else 0.0
+        modifier_values = DamageModifierRuntime.resolve(state, identity, skill, coin, is_crit, timing="damage")
+        conditional_damage = modifier_values['damage_percent']
+        condition_state = DamageEngine._skill_condition_state(state)
+        condition_fighter = condition_state.fighters[identity.id]
+        # Base crit (+20%) is static; additional crit-damage bonuses are dynamic.
+        crit_dynamic = 0.0
+        if is_crit:
+            crit_dynamic += float(getattr(skill, "crit_damage_bonus", 0.0))
+            crit_dynamic += float(getattr(coin, "crit_damage_bonus", 0.0))
+            crit_dynamic += float(modifier_values.get("critical_damage_percent", 0.0))
+            for cond in getattr(skill, "conditions", []) or []:
+                if cond.get("effect") != "crit_damage_bonus":
+                    continue
+                c = cond.get("condition") or {}
+                if c.get('coin_index') is not None and int(c.get('coin_index')) != int(coin_index):
+                    continue
+                if c.get("type") == "enemy_staggered" and condition_state.enemy.staggered:
+                    crit_dynamic += float(c.get("amount", 0.0))
+                elif c.get("type") == "enemy_not_staggered" and not condition_state.enemy.staggered:
+                    crit_dynamic += float(c.get("amount", 0.0))
+                elif c.get("type") == "cross_status_crit_damage_per":
+                    self_st = condition_fighter.statuses.get(str(c.get("self_status", "")))
+                    enemy_st = condition_state.enemy.statuses.get(str(c.get("enemy_status", "")))
+                    total = (float(getattr(self_st, "potency", 0)) if self_st else 0.0) + (float(getattr(enemy_st, "potency", 0)) if enemy_st else 0.0)
+                    per = max(1.0, float(c.get("per", 1)))
+                    crit_dynamic += min(float(c.get("max", 999999.0)), (total // per) * float(c.get("amount", 0.0)))
+                elif c.get("type") == "status_count_per":
+                    target = condition_fighter if c.get("target", "self") == "self" else condition_state.enemy
+                    name = str(c.get("name", ""))
+                    if name == 'Poise':
+                        st = getattr(target, 'poise', None)
+                    else:
+                        st = target.statuses.get(name)
+                    if st:
+                        per = max(1.0, float(c.get("per", 1)))
+                        raw = float(getattr(st, 'potency' if c.get('use_potency', False) else 'count', 0))
+                        crit_dynamic += min(float(c.get("max", 999999.0)), (raw // per) * float(c.get("amount", 0.0)))
+        negative_names = {"Bleed","Burn","Rupture","Sinking","Tremor","Bind","Vulnerable","Defense Level Down","Attack Power Down","Offense Level Down","Damage Taken Up","Paralyze","Nails","Talisman","Dark Flame","Butterfly","Tremor - Scorch","Tremor Burst"}
+        negative_count = sum(1 for name,st in state.enemy.statuses.items() if name in negative_names and (st.potency > 0 or (state.runtime.get('virtual_bleed_count', st.count) > 0 if name == 'Bleed' else st.count > 0)))
+        fighter = state.fighters[identity.id]
+        for cond in skill.conditions:
+            if cond.get("effect") == "damage_bonus":
+                c = cond.get("condition") or {}
+                if c.get("type") == "speed_diff_status_damage":
+                    diff = max(0.0, float(getattr(condition_fighter, 'speed', 0)) - float(getattr(condition_state.enemy, 'speed', 0)))
+                    st = condition_state.enemy.statuses.get(str(c.get('status', '')))
+                    conditional_damage += min(float(c.get('cap', 999999)), diff * (float(getattr(st, 'potency', 0)) / 100.0) if st else 0.0)
+                elif c.get("type") == "self_lost_hp_per":
+                    missing = max(0.0, 1.0 - (condition_fighter.hp / condition_fighter.max_hp if condition_fighter.max_hp else 0.0))
+                    conditional_damage += min(float(c.get('max', 999999)), missing * 100.0 * float(c.get('amount', 0.0)))
+                elif c.get("type") == "enemy_lost_hp_per":
+                    missing_pct = max(0.0, 100.0 * (1.0 - (condition_state.enemy.hp / condition_state.enemy.max_hp if condition_state.enemy.max_hp else 0.0)))
+                    per = max(0.000001, float(c.get("per", 1.0)))
+                    conditional_damage += min(float(c.get("max", 999999)), (missing_pct // per) * float(c.get("amount", 0.0)))
+                elif c.get("type") == "enemy_lost_hp_ratio":
+                    missing = max(0.0, 1.0 - (condition_state.enemy.hp / condition_state.enemy.max_hp if condition_state.enemy.max_hp else 0.0))
+                    conditional_damage += min(float(c.get('cap', 999999)), missing)
+                elif c.get("type") in ("enemy_hp_pct_lte", "enemy_hp_pct_gte"):
+                    hp_pct = (condition_state.enemy.hp / condition_state.enemy.max_hp * 100.0) if condition_state.enemy.max_hp else 0.0
+                    value = float(c.get("value", 0.0))
+                    strict = bool(c.get("strict", False))
+                    if c.get("type") == "enemy_hp_pct_lte":
+                        met = hp_pct < value if strict else hp_pct <= value
+                    else:
+                        met = hp_pct > value if strict else hp_pct >= value
+                    if met:
+                        conditional_damage += float(cond.get("amount", 0.0))
+                elif c.get("type") == "status_sum_per":
+                    total = 0
+                    target = condition_state.enemy if c.get("target", "enemy") == "enemy" else condition_fighter
+                    for name in c.get("names", []):
+                        st = target.statuses.get(str(name))
+                        if st:
+                            total += int(st.potency if c.get("use_potency", False) else st.count)
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_damage += min(float(c.get("max", 999999)), (total // per) * float(c.get("amount", 0)))
+                elif c.get("type") == "cross_lost_hp_sum_per":
+                    self_lost = max(0.0, 100.0 * (1.0 - float(getattr(condition_fighter, 'hp', 0.0)) / float(getattr(condition_fighter, 'max_hp', 1.0)))) if float(getattr(condition_fighter, 'max_hp', 0.0)) > 0 else 0.0
+                    enemy_lost = max(0.0, 100.0 * (1.0 - float(getattr(condition_state.enemy, 'hp', 0.0)) / float(getattr(condition_state.enemy, 'max_hp', 1.0)))) if float(getattr(condition_state.enemy, 'max_hp', 0.0)) > 0 else 0.0
+                    total = self_lost + enemy_lost
+                    per = float(c.get('per', 1.0))
+                    conditional_damage += min(float(c.get('max', 999999)), (total // per) * float(c.get('amount', 0)))
+                elif c.get("type") == "cross_status_count_sum_per":
+                    self_st = condition_fighter.statuses.get(str(c.get('self_status', '')))
+                    enemy_st = condition_state.enemy.statuses.get(str(c.get('enemy_status', '')))
+                    total = float(getattr(self_st, 'count', 0)) + float(getattr(enemy_st, 'count', 0))
+                    per = max(1, int(c.get('per', 1)))
+                    conditional_damage += min(float(c.get('max', 999999)), (total // per) * float(c.get('amount', 0)))
+                elif c.get("type") == "resonance_per":
+                    current = state.runtime.get('current_resonance', {}) or {}
+                    value = int(current.get(str(c.get('sin', '')), 0) or 0)
+                    per = max(1, int(c.get('per', 1)))
+                    conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+                elif c.get("type") == "negative_status_count_per":
+                    names = {"Bleed","Burn","Rupture","Sinking","Tremor","Bind","Vulnerable","Defense Level Down","Attack Power Down","Offense Level Down","Damage Taken Up","Paralyze","Nails","Talisman","Dark Flame","Butterfly","Tremor - Scorch","Tremor Burst"}
+                    target = condition_state.enemy if c.get("target", "enemy") == "enemy" else condition_fighter
+                    count = sum(1 for name, st in target.statuses.items() if name in names and (st.potency > 0 or st.count > 0))
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_damage += min(float(c.get("max", 999999)), (count // per) * float(c.get("amount", 0)))
+                elif c.get("type") == "speed_difference_per":
+                    diff = max(0.0, float(getattr(state.enemy, 'speed', 0)) - float(getattr(fighter, 'speed', 0))) if c.get('direction') == 'lower' else max(0.0, float(getattr(fighter, 'speed', 0)) - float(getattr(state.enemy, 'speed', 0)))
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_damage += min(float(c.get("max", 999999)), (diff // per) * float(c.get("amount", 0)))
+                elif c.get("type") == "resource_per":
+                    gate = c.get('gate')
+                    if gate and not self.condition_met(state, identity, gate, skill):
+                        continue
+                    target = condition_fighter if c.get("target", "self") == "self" else condition_state.enemy
+                    rname = str(c.get('resource', ''))
+                    if rname == '충전':
+                        value = int(getattr(target, 'charge', 0))
+                    elif rname == '충전 위력':
+                        value = int(getattr(target, 'charge_potency', 0))
+                    elif rname == '탄환':
+                        value = int(getattr(target, 'ammo', 0))
+                    elif rname == '호흡':
+                        value = int(getattr(getattr(target, 'poise', None), 'potency', 0))
+                    elif rname in ('보호막', '보호막 수치'):
+                        value = int(getattr(target, 'shield', 0))
+                    else:
+                        value = int(getattr(target, 'resources', {}).get(rname, 0))
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_damage += min(float(c.get("max", 999999)), (value // per) * float(c.get("amount", 0)))
+                elif c.get("type") == "cumulative_resource_consumed_per":
+                    bucket = state.runtime.get('cumulative_resource_consumed', {}) or {}
+                    resource = str(c.get('resource', ''))
+                    if c.get('scope') == 'shared':
+                        value = sum(int(v or 0) for (iid, rname), v in bucket.items() if str(rname) == resource)
+                    else:
+                        value = int(bucket.get((str(identity.id), resource), 0) or 0)
+                    min_value = int(c.get('min_value', 0) or 0)
+                    if value < min_value:
+                        continue
+                    per = max(1, int(c.get('per', 1)))
+                    conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+                elif c.get("type") == "resource_consumed_sum_per":
+                    consumed = state.runtime.get('current_action_resource_consumption', {}) or {}
+                    value = sum(int(consumed.get(str(name), 0) or 0) for name in c.get('resources', []))
+                    per = max(1, int(c.get('per', 1)))
+                    conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+                elif c.get("type") == "named_stack_per":
+                    target = condition_fighter if c.get("target", "self") == "self" else condition_state.enemy
+                    name = str(c.get('name', ''))
+                    # Named resources and named statuses share the same declarative
+                    # damage-scaling interface, but remain separate storage models.
+                    if name == '충전':
+                        value = int(getattr(target, 'charge', 0))
+                    elif name == '충전 위력':
+                        value = int(getattr(target, 'charge_potency', 0))
+                    elif name == '탄환':
+                        value = int(getattr(target, 'ammo', 0))
+                    elif name == '호흡':
+                        value = int(getattr(getattr(target, 'poise', None), 'potency', 0))
+                    else:
+                        value = int(getattr(target, 'resources', {}).get(name, 0))
+                        if value == 0:
+                            st = getattr(target, 'statuses', {}).get(name)
+                            if st is not None:
+                                field = str(c.get('field', 'potency'))
+                                value = int(getattr(st, field, 0))
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_damage += min(float(c.get("max", 999999)), (value // per) * float(c.get("amount", 0)))
+                elif c.get("type") == "attack_weight_gap_damage":
+                    weight = int(getattr(skill, "attack_weight", 1) or 1)
+                    count = int(state.runtime.get("current_target_count", 1) or 1)
+                    gap = max(0, weight - count)
+                    conditional_damage += gap * float(c.get("amount", 0.0))
+                elif c.get("type") == "target_count_eq":
+                    count = int(state.runtime.get("current_target_count", 1) or 1)
+                    if count == int(c.get("value", 1)):
+                        conditional_damage += float(c.get("amount", 0.0))
+                elif c.get("type") == "negative_status_count_per":
+                    conditional_damage += min(float(c.get("max",999999)), (negative_count // max(1,int(c.get("per",1)))) * float(c.get("amount",0)))
+                elif c.get("type") == "enemy_staggered" and condition_state.enemy.staggered:
+                    conditional_damage += float(c.get("amount",0))
+                elif c.get("type") == "enemy_not_staggered" and not condition_state.enemy.staggered:
+                    conditional_damage += float(c.get("amount",0))
+        # Conditional damage modifiers are evaluated at the exact coin timing,
+        # after prior-coin effects/status changes.  Older versions calculated
+        # `conditional_damage` but accidentally dropped it from the return value.
+        # Keep all dynamic multipliers additive in this layer so later coins can
+        # observe state changes immediately.
+        # Rodion (identity-10916): Accelerating Future (Rodion) applies only
+        # to Base Skills.  It is a source-defined status variant, so do not
+        # merge it with the generic Accelerating Future (+1 Clash / 5 stacks).
+        if str(getattr(identity, 'id', '')) == 'identity-10916' and str(getattr(skill, '_slot', '')).upper() in ('S1','S2','S3'):
+            af = state.fighters[identity.id].statuses.get('가속하는 미래')
+            if af:
+                stacks = min(5, int(getattr(af, 'count', 0)))
+                conditional_damage += min(0.03 * stacks, 0.15)
+
+        damage_down = state.fighters[identity.id].statuses.get("Damage Down")
+        taken_down = state.enemy.statuses.get("Damage Taken Down")
+        damage_down_bonus = -(damage_down.potency / 100.0) if damage_down else 0.0
+        taken_down_bonus = -(taken_down.potency / 100.0) if taken_down else 0.0
+        # Coin-local conditional damage modifiers must not be flattened into
+        # `coin.damage_bonus`: doing so makes conditional text unconditional.
+        # Evaluate them here at the same timing as other dynamic modifiers.
+        for rule in getattr(coin, 'damage_conditions', []) or []:
+            c = rule.get('condition') or {}
+            kind = c.get('type')
+            if rule.get('effect') == 'crit_damage_bonus':
+                if not is_crit:
+                    continue
+                target = fighter if c.get('target', 'self') == 'self' else state.enemy
+                name = str(c.get('name', ''))
+                if c.get('type') == 'status':
+                    st = getattr(target, 'statuses', {}).get(name)
+                    if not st:
+                        continue
+                    field = str(c.get('field', 'count'))
+                    current = float(getattr(st, field, 0))
+                    if current < float(c.get('count_gte', 1)):
+                        continue
+                    crit_dynamic += float(rule.get('amount', 0.0))
+                    continue
+                if name == '호흡':
+                    value = int(getattr(getattr(target, 'poise', None), 'potency', 0))
+                else:
+                    value = int(getattr(target, 'resources', {}).get(name, 0))
+                    if value == 0:
+                        st = getattr(target, 'statuses', {}).get(name)
+                        value = int(getattr(st, c.get('field', 'potency'), 0)) if st is not None else 0
+                per = max(1, int(c.get('per', 1)))
+                crit_dynamic += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+                continue
+            if kind == 'or':
+                def _damage_condition_matches(cond):
+                    k = (cond or {}).get('type')
+                    if k == 'enemy_hp_pct_lte':
+                        hp = float(getattr(condition_state.enemy, 'hp', 0.0))
+                        max_hp = float(getattr(condition_state.enemy, 'max_hp', 0.0))
+                        pct = (100.0 * hp / max_hp) if max_hp > 0 else 0.0
+                        value = float(cond.get('value', 0.0))
+                        return pct < value if cond.get('strict') else pct <= value
+                    if k == 'enemy_hp_pct_gte':
+                        hp = float(getattr(condition_state.enemy, 'hp', 0.0))
+                        max_hp = float(getattr(condition_state.enemy, 'max_hp', 0.0))
+                        pct = (100.0 * hp / max_hp) if max_hp > 0 else 0.0
+                        value = float(cond.get('value', 0.0))
+                        return pct > value if cond.get('strict') else pct >= value
+                    if k == 'status':
+                        st = condition_state.enemy.statuses.get(str(cond.get('name', '')))
+                        return st is not None and float(getattr(st, 'count', 0)) >= float(cond.get('count_gte', 1))
+                    return False
+                if any(_damage_condition_matches(x) for x in c.get('conditions', [])):
+                    conditional_damage += float(rule.get('amount', 0.0))
+            elif kind == 'status_threshold':
+                target = fighter if c.get('target') == 'self' else state.enemy
+                st = target.statuses.get(str(c.get('name', '')))
+                field = str(c.get('field', 'potency'))
+                if st is not None and float(getattr(st, field, 0)) >= float(c.get('value', 0)):
+                    conditional_damage += float(rule.get('amount', 0.0))
+            elif kind == 'speed_diff_status_damage':
+                diff = max(0.0, float(getattr(condition_fighter, 'speed', 0)) - float(getattr(condition_state.enemy, 'speed', 0)))
+                st = condition_state.enemy.statuses.get(str(c.get('status', '')))
+                conditional_damage += min(float(c.get('cap', 999999)), diff * (float(getattr(st, 'potency', 0)) / 100.0) if st else 0.0)
+            elif kind == 'target_damaged_this_turn':
+                # In the current one-turn engine, `turn_damage` is damage actually
+                # dealt to the active enemy target. This condition is therefore
+                # true after any prior successful damage to that target during the
+                # current turn, including damage from an earlier coin.
+                if float(getattr(state, 'turn_damage', 0.0)) > 0.0:
+                    conditional_damage += float(rule.get('amount', 0.0))
+            elif kind == 'negative_status_count_per':
+                count = sum(1 for name, st in state.enemy.statuses.items() if name in negative_names and (st.potency > 0 or st.count > 0))
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (count // per) * float(c.get('amount', 0)))
+            elif kind == 'speed_difference_per':
+                diff = max(0.0, float(getattr(state.enemy, 'speed', 0)) - float(getattr(fighter, 'speed', 0))) if c.get('direction') == 'lower' else max(0.0, float(getattr(fighter, 'speed', 0)) - float(getattr(state.enemy, 'speed', 0)))
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (diff // per) * float(c.get('amount', 0)))
+            elif kind == 'cross_status_sum_per':
+                self_name = str(c.get('self_status', ''))
+                self_st = fighter.poise if self_name == 'Poise' else fighter.statuses.get(self_name)
+                enemy_st = condition_state.enemy.statuses.get(str(c.get('enemy_status', '')))
+                total = (float(getattr(self_st, 'potency', 0)) if self_st else 0.0) + (float(getattr(enemy_st, 'potency', 0)) if enemy_st else 0.0)
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (total // per) * float(c.get('amount', 0)))
+            elif kind == 'cumulative_resource_consumed_per':
+                bucket = state.runtime.get('cumulative_resource_consumed', {}) or {}
+                resource = str(c.get('resource', ''))
+                if c.get('scope') == 'shared':
+                    value = sum(int(v or 0) for (iid, rname), v in bucket.items() if str(rname) == resource)
+                else:
+                    value = int(bucket.get((str(identity.id), resource), 0) or 0)
+                min_value = int(c.get('min_value', 0) or 0)
+                if value < min_value:
+                    continue
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+            elif kind == 'resource_consumed_sum_per':
+                consumed = state.runtime.get('current_action_resource_consumption', {}) or {}
+                value = sum(int(consumed.get(str(name), 0) or 0) for name in c.get('resources', []))
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+            elif kind == 'self_lost_hp_per':
+                max_hp = float(getattr(fighter, 'max_hp', 0.0))
+                hp = float(getattr(fighter, 'hp', 0.0))
+                lost = max(0.0, 100.0 * (1.0 - hp / max_hp)) if max_hp > 0 else 0.0
+                per = max(0.0001, float(c.get('per', 1.0)))
+                conditional_damage += min(float(c.get('max', 999999)), (lost // per) * float(c.get('amount', 0)))
+            elif kind == 'self_lost_hp_flat_per':
+                max_hp = float(getattr(fighter, 'max_hp', 0.0))
+                hp = float(getattr(fighter, 'hp', 0.0))
+                lost = max(0.0, max_hp - hp)
+                per = max(0.0001, float(c.get('per', 1.0)))
+                conditional_damage += min(float(c.get('max', 999999)), (lost // per) * float(c.get('amount', 0)))
+            elif kind == 'cross_lost_hp_sum_per':
+                self_lost = max(0.0, 100.0 * (1.0 - float(getattr(condition_fighter, 'hp', 0.0)) / float(getattr(condition_fighter, 'max_hp', 1.0)))) if float(getattr(condition_fighter, 'max_hp', 0.0)) > 0 else 0.0
+                enemy_lost = max(0.0, 100.0 * (1.0 - float(getattr(condition_state.enemy, 'hp', 0.0)) / float(getattr(condition_state.enemy, 'max_hp', 1.0)))) if float(getattr(condition_state.enemy, 'max_hp', 0.0)) > 0 else 0.0
+                total = self_lost + enemy_lost
+                per = float(c.get('per', 1.0))
+                conditional_damage += min(float(c.get('max', 999999)), (total // per) * float(c.get('amount', 0)))
+            elif kind == 'cross_status_count_sum_per':
+                self_st = condition_fighter.statuses.get(str(c.get('self_status', '')))
+                enemy_st = condition_state.enemy.statuses.get(str(c.get('enemy_status', '')))
+                total = float(getattr(self_st, 'count', 0)) + float(getattr(enemy_st, 'count', 0))
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (total // per) * float(c.get('amount', 0)))
+            elif kind == 'resonance_per':
+                current = state.runtime.get('current_resonance', {}) or {}
+                value = int(current.get(str(c.get('sin', '')), 0) or 0)
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+            elif kind == 'named_stack_per':
+                target = fighter if c.get('target', 'self') == 'self' else state.enemy
+                name = str(c.get('name', ''))
+                if name == '충전': value = int(getattr(target, 'charge', 0))
+                elif name == '충전 위력': value = int(getattr(target, 'charge_potency', 0))
+                elif name == '탄환': value = int(getattr(target, 'ammo', 0))
+                elif name == '호흡': value = int(getattr(getattr(target, 'poise', None), 'potency', 0))
+                else:
+                    value = int(getattr(target, 'resources', {}).get(name, 0))
+                    if value == 0:
+                        st = getattr(target, 'statuses', {}).get(name)
+                        value = int(getattr(st, c.get('field', 'potency'), 0)) if st is not None else 0
+                per = max(1, int(c.get('per', 1)))
+                conditional_damage += min(float(c.get('max', 999999)), (value // per) * float(c.get('amount', 0)))
+            elif DamageEngine.condition_met(state, identity, c, skill):
+                conditional_damage += float(rule.get('amount', 0.0))
+
+        # Skill-level effects that explicitly target the final coin are evaluated
+        # only while resolving that final coin.
+        if coin_index == len(skill.coins):
+            for rule in getattr(skill, 'last_coin_damage_rules', []) or []:
+                c = rule.get('condition') or {}
+                trigger_ok = True
+                trigger_index = rule.get('trigger_coin_index')
+                if trigger_index is not None:
+                    trigger_faces = state.runtime.get('coin_trigger_faces', {}) or {}
+                    if c.get('type') == 'front_hit':
+                        trigger_ok = trigger_faces.get((str(skill.id), int(trigger_index))) == 'H'
+                    elif c.get('type') == 'clash_result':
+                        trigger_ok = str(getattr(skill, 'clash_result', '')) == str(c.get('value'))
+                    else:
+                        trigger_ok = True
+                elif c.get('type') == 'status':
+                    trigger_ok = DamageEngine.condition_met(state, identity, c, skill)
+                if trigger_ok:
+                    if rule.get('status_scaling'):
+                        sc = rule['status_scaling']
+                        name = str(sc.get('name', ''))
+                        # Final-coin scaling can reference either a status stack
+                        # (e.g. 발각) or a named resource (e.g. 딜리버리 캐리어 - 싱클레어).
+                        # Resolve the resource axis first so named resources are not
+                        # silently treated as absent statuses.
+                        if name in getattr(fighter, 'resources', {}):
+                            raw = float(fighter.resources.get(name, 0))
+                        else:
+                            st = fighter.statuses.get(name)
+                            raw = (float(getattr(st, 'count', 0)) if not sc.get('use_potency', True)
+                                   else float(getattr(st, 'potency', 0))) if st else 0.0
+                        per = max(1.0, float(sc.get('per', 1)))
+                        conditional_damage += min(float(sc.get('max', 999999.0)), (raw // per) * float(sc.get('amount', 0.0)))
+                    elif c.get('type') == 'status_count_per':
+                        st = fighter.statuses.get(str(c.get('name', '')))
+                        if st:
+                            per = max(1, int(c.get('per', 1)))
+                            raw = float(getattr(st, 'count', 0)) if not c.get('use_potency', False) else float(getattr(st, 'potency', 0))
+                            conditional_damage += min(float(c.get('max', 999999.0)), (raw // per) * float(c.get('amount', 0.0)))
+                    else:
+                        conditional_damage += float(rule.get('amount', 0.0))
+
+        return (
+            skill.damage_bonus
+            + skill.dynamic_damage_bonus
+            + float(state.runtime.get('current_action_dynamic_damage_bonus', 0.0))
+            + float(getattr(coin, 'damage_bonus', 0.0))
+            + skill.coin_ammo_damage_bonus.get(coin_index, 0.0)
+            + dealt_bonus + taken_bonus + typed_bonus + sin_bonus
+            + conditional_damage + damage_down_bonus + taken_down_bonus + crit_dynamic
+        )
+
+    @staticmethod
+    def resistance_modifier(value: float) -> float:
+        if value <= 0:
+            return -0.5
+        if value < 1:
+            return (value - 1.0) / 2.0
+        return value - 1.0
+
+    @classmethod
+    def damage_resistance_modifier(cls, enemy: EnemyState, damage_type: str) -> float:
+        if enemy.staggered:
+            # Stagger overrides the ordinary damage-type resistance modifier.
+            return 0.5 + 0.5 * enemy.stagger_level
+        return cls.resistance_modifier(enemy.physical_res.get(damage_type, 1.0))
+
+    @classmethod
+    def sin_resistance_modifier(cls, enemy: EnemyState, sin: str) -> float:
+        return cls.resistance_modifier(enemy.sin_res.get(sin, 1.0))
+
+    @staticmethod
+    def crit_modifier(is_crit: bool, static_crit_bonus: float = 0.0) -> float:
+        return (0.2 + static_crit_bonus) if is_crit else 0.0
+
+    def coin_roll(self, state: BattleState, identity: IdentityData, skill: SkillData, coin: CoinData, result: str, prior_heads: int = 0, coin_power_bonus: int = 0) -> int:
+        """Return the displayed skill-power result used by the damage formula.
+
+        For positive coins, each Heads adds the effective coin power to the
+        current skill power. `final_power_bonus` is intentionally NOT added
+        here: Final Power is a separate combat stat and must not be silently
+        treated as a per-coin damage-power bonus.
+
+        This separation is required to reproduce the reference calculator:
+        base 10 + effective coin power 7 gives 17, 24, 31, 38, 45.
+        """
+        heads = prior_heads + (1 if result == "H" else 0)
+        modifier_values = DamageModifierRuntime.resolve(state, identity, skill, coin, False, timing="before_coin")
+        base = (skill.base_power + skill.base_power_bonus + skill.final_power_bonus
+                + int(state.runtime.get('current_action_base_power_bonus', 0))
+                + int(modifier_values.get("base_power_bonus", 0.0))
+                + int(modifier_values.get("skill_power", 0.0)))
+        conditional_coin_bonus = int(modifier_values.get("coin_power", 0.0))
+        condition_state = DamageEngine._skill_condition_state(state)
+        # Source distinguishes Plus Coin Power and Minus Coin Power.
+        # They apply only to the corresponding coin polarity; collapsing them
+        # into generic coin_power changes the meaning of the opposite coin type.
+        if coin.coin_type == "minus":
+            conditional_coin_bonus += int(modifier_values.get("minus_coin_power", 0.0))
+        else:
+            conditional_coin_bonus += int(modifier_values.get("plus_coin_power", 0.0))
+        conditional_final_power = 0
+        for cond in skill.conditions:
+            if cond.get("effect") == "final_power":
+                c = cond.get("condition") or {}
+                met = False
+                if c.get("type") == "status_sum_per":
+                    target = condition_state.enemy if c.get("target", "enemy") == "enemy" else condition_state.fighters[identity.id]
+                    units = 0
+                    for n in c.get("names", []):
+                        st = target.statuses.get(str(n))
+                        if st: units += int(st.potency if c.get("use_potency", False) else st.count)
+                    per = max(1, int(c.get("per", 1)))
+                    conditional_final_power += min(int(c.get("max", 999999)), max(0, units // per) * int(c.get("amount", 0)))
+                elif c.get("type") == "status_threshold":
+                    target = condition_state.enemy if c.get("target", "enemy") == "enemy" else condition_state.fighters[identity.id]
+                    st = target.statuses.get(str(c.get("name", "")))
+                    if st and float(getattr(st, c.get("field", "potency"), 0)) >= float(c.get("value", 0)):
+                        conditional_final_power += int(c.get("amount", 0))
+                elif self.condition_met(condition_state, identity, c, skill):
+                    conditional_final_power += int(cond.get("amount", 0))
+                conditional_final_power = min(conditional_final_power, int(cond.get("max", 999999)))
+                continue
+            if cond.get("effect") != "coin_power":
+                continue
+            c = cond.get("condition") or {}
+            if c.get("type") in ("status_count_per", "status_sum_per"):
+                def units_for(name, target_name, use_potency=False):
+                    target = state.enemy if target_name == "enemy" else state.fighters[identity.id]
+                    st = target.statuses.get(str(name))
+                    if not st: return 0
+                    return int(st.potency if use_potency else st.count)
+                if c.get("type") == "status_sum_per":
+                    units = 0
+                    for n in c.get("names", []):
+                        target_name = "self" if n == "Poise" else "enemy"
+                        units += units_for(n, target_name, c.get("use_potency", False))
+                else:
+                    units = units_for(c.get("name", ""), c.get("target", "enemy"), c.get("use_potency", False))
+                per = max(1, int(c.get("per", 1)))
+                conditional_coin_bonus += min(int(c.get("max", 999999)), max(0, units // per) * int(c.get("amount", 1)))
+            elif c.get("type") == "speed_difference_per":
+                diff = condition_state.fighters[identity.id].speed - state.enemy.speed
+                if c.get("direction") == "lower": diff = -diff
+                if diff > 0:
+                    conditional_coin_bonus += min(int(c.get("max", 999999)), (diff // max(1,int(c.get("per",1)))) * int(c.get("amount",1)))
+            elif c.get("type") == "self_lost_hp_per_coin":
+                f = condition_state.fighters[identity.id]
+                missing_pct = max(0.0, 100.0 * (1.0 - (f.hp / f.max_hp if f.max_hp else 0.0)))
+                per_pct = max(0.000001, float(c.get("per_pct", 1.0)))
+                conditional_coin_bonus += min(int(c.get("max", 999999)), int(missing_pct // per_pct) * int(c.get("amount", 1)))
+            elif c.get("type") == "status_threshold":
+                target = condition_state.enemy if c.get("target", "enemy") == "enemy" else condition_state.fighters[identity.id]
+                st = target.statuses.get(str(c.get("name", "")))
+                if st:
+                    field = str(c.get("field", "potency"))
+                    current = getattr(st, field, 0)
+                    if c.get("name") == "Bleed" and target is state.enemy and field == "count":
+                        current = state.runtime.get('virtual_bleed_count', st.count)
+                    if float(current) >= float(c.get("value", 0)):
+                        conditional_coin_bonus += int(c.get("amount", 0))
+            elif self.condition_met(condition_state, identity, c, skill):
+                conditional_coin_bonus += int(cond.get("amount", 0))
+        # Rodion Accelerating Future: Base Skill Coin Power +1 at 5 stacks.
+        af_coin_bonus = 0
+        if str(getattr(identity, 'id', '')) == 'identity-10916' and str(getattr(skill, '_slot', '')).upper() in ('S1','S2','S3'):
+            af = condition_state.fighters[identity.id].statuses.get('가속하는 미래')
+            if af and int(getattr(af, 'count', 0)) >= 5:
+                af_coin_bonus = 1
+        effective_coin_power = coin.coin_power + skill.coin_power_bonus + conditional_coin_bonus + coin_power_bonus + af_coin_bonus
+        # Final-power conditions are skill-level power additions; they are applied
+        # once to the displayed roll rather than as coin power.
+        base += conditional_final_power
+        if coin.coin_type == "minus":
+            # Minus Coin support: Heads reduce the power by Coin Power;
+            # Tails leave the current power unchanged.
+            return base - effective_coin_power * heads
+        return base + effective_coin_power * heads
+
+    @staticmethod
+    def crit_possible(fighter: FighterState) -> bool:
+        return fighter.poise.potency > 0 and fighter.poise.count > 0
+
+    @staticmethod
+    def crit_guaranteed(fighter: FighterState) -> bool:
+        return fighter.poise.potency >= 20 and fighter.poise.count > 0
+
+    @staticmethod
+    def apply_status(statuses: Dict[str, Status], name: str,
+                     potency: int = 0, count: int = 0,
+                     data: Optional[Dict[str, Any]] = None):
+        st = statuses.setdefault(name, Status())
+        st.potency += potency
+        st.count += count
+        if data:
+            st.data.update(data)
+        if st.potency <= 0 and st.count <= 0:
+            statuses.pop(name, None)
+
+    @staticmethod
+    def condition_met(state: BattleState, identity: IdentityData, condition: Optional[Dict[str, Any]],
+                     skill: Optional[SkillData] = None) -> bool:
+        if not condition:
+            return True
+        kind = condition.get("type")
+        composite = evaluate_composite_condition(
+            condition, lambda child: DamageEngine.condition_met(state, identity, child, skill)
+        )
+        if composite is not None:
+            return composite
+        fighter = state.fighters[identity.id]
+        enemy = state.enemy
+        if kind == "always":
+            return True
+        if kind == "flag":
+            flags = state.runtime.get("condition_flags", {})
+            return bool(flags.get(str(condition.get("name", "")), False))
+        if kind == "reuse_hit":
+            return int(state.runtime.get("_current_coin_effect_ctx", {}).get("reuse_index", 0) or 0) > 0
+        if kind == "target_has_sp":
+            return enemy.sp is not None
+        if kind == "added_coin_hit":
+            return bool((state.runtime.get("_current_coin_effect_ctx") or {}).get("is_added_coin", False))
+        if kind == "loneliness_present_current_or_next_turn":
+            st = enemy.statuses.get("고독")
+            return bool(st and (st.count > 0 or st.potency > 0)) or bool(state.runtime.get("pending_next_turn_statuses", {}).get("고독"))
+        if kind == "speed_gte":
+            return fighter.speed >= int(condition.get("value", 0))
+        if kind == "clash_result":
+            return bool(skill and skill.clash_result == condition.get("value"))
+        if kind == "speed_difference_gte":
+            return (fighter.speed - enemy.speed) >= int(condition.get("value", 0))
+        if kind == "speed_difference_lte":
+            return (fighter.speed - enemy.speed) <= int(condition.get("value", 0))
+        if kind in ("resonance_gte", "sin_resonance_gte"):
+            sin = SIN_NAME = condition.get("sin")
+            current = state.runtime.get("current_resonance", {})
+            count = int(current.get(sin, 0))
+            return count >= int(condition.get("value", 0))
+        if kind in ("absolute_resonance_gte", "a_resonance_gte"):
+            sin = condition.get("sin")
+            current = state.runtime.get("current_absolute_resonance", {})
+            count = int(current.get(sin, 0))
+            return count >= int(condition.get("value", 0))
+        if kind == "highest_resonance_gte":
+            current = state.runtime.get("current_resonance", {})
+            highest = max([int(v) for v in current.values()] or [0])
+            return highest >= int(condition.get("value", 0))
+        if kind == "speed_lte":
+            return fighter.speed <= int(condition.get("value", 0))
+        if kind == "hp_pct_lte":
+            return enemy.max_hp > 0 and enemy.hp / enemy.max_hp * 100 <= float(condition.get("value", 0))
+        if kind == "hp_pct_gte":
+            return enemy.max_hp > 0 and enemy.hp / enemy.max_hp * 100 >= float(condition.get("value", 0))
+        if kind == "self_hp_pct_lte":
+            return fighter.max_hp > 0 and fighter.hp / fighter.max_hp * 100 <= float(condition.get("value", 0))
+        if kind == "self_hp_pct_gte":
+            return fighter.max_hp > 0 and fighter.hp / fighter.max_hp * 100 >= float(condition.get("value", 0))
+        if kind == "negative_status_count_per":
+            names = {"Bleed","Burn","Rupture","Sinking","Tremor","Bind","Vulnerable","Defense Level Down","Attack Power Down","Offense Level Down","Damage Taken Up","Paralyze","Nails","Talisman","Dark Flame","Butterfly","Tremor - Scorch","Tremor Burst"}
+            target = enemy if condition.get("target", "enemy") == "enemy" else fighter
+            count = sum(1 for name, st in target.statuses.items() if name in names and (st.potency > 0 or st.count > 0))
+            return (count // max(1, int(condition.get("per", 1)))) > 0
+        if kind == "speed_difference_per":
+            if condition.get('direction') == 'lower':
+                diff = max(0.0, float(enemy.speed) - float(fighter.speed))
+            else:
+                diff = max(0.0, float(fighter.speed) - float(enemy.speed))
+            return diff >= max(1, int(condition.get("per", 1)))
+        if kind in ("resource_gte", "resource_lte"):
+            value = int(condition.get("value", 0))
+            resource = str(condition.get("resource", condition.get("name", "")))
+            if resource == '충전':
+                current = int(getattr(fighter, 'charge', 0))
+            elif resource == '충전 위력':
+                current = int(getattr(fighter, 'charge_potency', 0))
+            elif resource == '탄환':
+                current = int(getattr(fighter, 'ammo', 0))
+            elif resource == '호흡':
+                current = int(getattr(getattr(fighter, 'poise', None), 'potency', 0))
+            else:
+                current = int(fighter.resources.get(resource, 0))
+            return current >= value if kind == "resource_gte" else current <= value
+        if kind == "resource_held_or_consumed_this_coin":
+            resource = str(condition.get("resource", ""))
+            current = int(fighter.resources.get(resource, 0))
+            consumed = int((state.runtime.get("current_coin_resource_consumption", {}) or {}).get(resource, 0))
+            return current > 0 or consumed > 0
+        if kind in ("charge_gte", "charge_lte"):
+            value = int(condition.get("value", 0))
+            return fighter.charge >= value if kind == "charge_gte" else fighter.charge <= value
+        if kind in ("ammo_gte", "ammo_lte"):
+            value = int(condition.get("value", 0))
+            return fighter.ammo >= value if kind == "ammo_gte" else fighter.ammo <= value
+        if kind in ("poise_potency_gte", "poise_count_gte"):
+            value = int(condition.get("value", 0))
+            current = fighter.poise.potency if kind == "poise_potency_gte" else fighter.poise.count
+            return current >= value
+        if kind == "poise_gte":
+            return fighter.poise.potency >= int(condition.get("value", 0))
+        if kind == "enemy_staggered":
+            return enemy.stagger_level > 0
+        if kind == "has_amplitude_state":
+            from amplitude_runtime_v1 import AmplitudeRuntime
+            target = enemy if condition.get("target", "enemy") == "enemy" else fighter
+            return AmplitudeRuntime().has_state(target, condition.get("amplitude"), condition.get("mode"))
+        if kind == "tremor_potency_count_sum_gte":
+            target = enemy if condition.get("target", "enemy") == "enemy" else fighter
+            tremor = target.statuses.get("Tremor")
+            if not tremor:
+                return False
+            return int(tremor.potency) + int(tremor.count) >= int(condition.get("value", 0))
+        if kind in ("enemy_stagger_level_gte", "enemy_stagger_index_gte"):
+            value = int(condition.get("value", 0))
+            current = enemy.stagger_level if kind.endswith("level_gte") else enemy.stagger_index
+            return current >= value
+        if kind == "status":
+            target = enemy if condition.get("target", "enemy") == "enemy" else fighter
+            st = target.statuses.get(condition.get("name", ""))
+            if not st:
+                return False
+            effective_count = float(state.runtime.get('virtual_bleed_count', st.count)) if condition.get('name') == 'Bleed' and target is enemy else float(st.count)
+            if "potency_gte" in condition and st.potency < int(condition["potency_gte"]):
+                return False
+            if "count_gte" in condition and effective_count < int(condition["count_gte"]):
+                return False
+            return True
+        if kind == "status_count_per":
+            target = enemy if condition.get("target") == "enemy" else fighter
+            st = target.statuses.get(str(condition.get("name", "")))
+            if not st: return False
+            per = max(1, int(condition.get("per", 1)))
+            amount = int(condition.get("amount", 1))
+            cap = int(condition.get("max", 999999))
+            raw = st.potency if condition.get("use_potency", False) else (state.runtime.get('virtual_bleed_count', st.count) if condition.get('name') == 'Bleed' and target is enemy else st.count)
+            return min(cap, max(0, raw) // per * amount) > 0
+        if kind == "front_hit":
+            return str(state.runtime.get("last_coin_face", "")) in ("H", "head", "heads", "앞면")
+        if kind == "critical_hit":
+            return bool(state.runtime.get("last_coin_critical", False))
+        if kind == "clash_result":
+            return bool(skill and skill.clash_result == condition.get("value"))
+        return False
+
+    def apply_trigger_effects(self, state: BattleState, identity: IdentityData, effects: List[Dict[str, Any]],
+                              skill: Optional[SkillData] = None):
+        for effect in effects:
+            if self.condition_met(state, identity, effect.get("condition"), skill):
+                self.apply_effect(state, identity.id, effect.get("target", "self"), effect)
+
+    def combat_start(self, state: BattleState, identities: List[IdentityData]):
+        self.bus.emit(EventType.ENCOUNTER_START, {"state": state, "identities": identities})
+        self.bus.emit(EventType.COMBAT_START, {"state": state, "identities": identities})
+        for identity in identities:
+            for p in identity.passives:
+                if p.get("trigger") == "Combat Start" and self.condition_met(state, identity, p.get("condition")):
+                    self.apply_trigger_effects(state, identity, p.get("effects", []))
+
+    def turn_start(self, state: BattleState, identities: List[IdentityData]):
+        state.runtime['turn_defense_skill_used_enemy'] = False
+        state.runtime['turn_defense_skill_used_ids'] = set()
+        state.runtime['current_action_dynamic_damage_bonus'] = 0.0
+        state.runtime['current_action_attack_level_bonus'] = 0
+        self.bus.emit(EventType.TURN_START, {"state": state, "identities": identities})
+        for identity in identities:
+            for p in identity.passives:
+                if p.get("trigger") == "Turn Start" and self.condition_met(state, identity, p.get("condition")):
+                    self.apply_trigger_effects(state, identity, p.get("effects", []))
+
+    def apply_effect(self, state: BattleState, source_id: str,
+                     target: str, effect: Dict[str, Any]):
+        kind = effect.get("type")
+        if kind == "tremor_apply_from_self_count_div":
+            source_fighter = state.fighters[source_id]
+            st = source_fighter.statuses.get('Tremor')
+            source_count = int(getattr(st, 'count', 0) if st else 0)
+            amount = min(int(effect.get('cap', source_count)), source_count // max(1, int(effect.get('divisor', 2))))
+            if amount > 0:
+                target_statuses = state.enemy.statuses if target == 'enemy' else source_fighter.statuses
+                self.apply_status(target_statuses, 'Tremor', 0, amount, effect.get('data'))
+            return
+        if kind == "tremor_consume_target_to_self":
+            source_fighter = state.fighters[source_id]
+            target_statuses = state.enemy.statuses if target == 'enemy' else source_fighter.statuses
+            st = target_statuses.get('Tremor')
+            available = int(getattr(st, 'count', 0) if st else 0)
+            amount = min(available, int(effect.get('cap', available)))
+            if st:
+                st.count = max(0, available - amount)
+                if st.count <= 0:
+                    target_statuses.pop('Tremor', None)
+            if amount > 0:
+                self.apply_status(source_fighter.statuses, 'Tremor', 0, amount * int(effect.get('multiplier', 1)), effect.get('data'))
+            state.event_log.append({'event':'tremor_consume_target_to_self','source_id':source_id,'amount':amount})
+            return
+        if kind == "tremor_consume_self_to_target":
+            source_fighter = state.fighters[source_id]
+            st = source_fighter.statuses.get('Tremor')
+            available = int(getattr(st, 'count', 0) if st else 0)
+            amount = min(available, int(effect.get('cap', available)))
+            if st:
+                st.count = max(0, available - amount)
+                if st.count <= 0:
+                    source_fighter.statuses.pop('Tremor', None)
+            if amount > 0:
+                target_statuses = state.enemy.statuses if target == 'enemy' else source_fighter.statuses
+                self.apply_status(target_statuses, 'Tremor', 0, amount, effect.get('data'))
+            state.event_log.append({'event':'tremor_consume_self_to_target','source_id':source_id,'amount':amount})
+            return
+        if kind == "tremor_apply_from_self_count_all":
+            source_fighter = state.fighters[source_id]
+            st = source_fighter.statuses.get('Tremor')
+            amount = int(getattr(st, 'count', 0) if st else 0)
+            cap = effect.get('cap')
+            if cap is not None:
+                amount = min(amount, int(cap))
+            if st:
+                st.count = max(0, int(st.count) - amount)
+            if amount > 0:
+                target_statuses = state.enemy.statuses if target == 'enemy' else source_fighter.statuses
+                self.apply_status(target_statuses, 'Tremor', 0, amount, effect.get('data'))
+            return
+        if target == "enemy":
+            statuses = state.enemy.statuses
+        else:
+            statuses = state.fighters[source_id].statuses
+
+        if kind in ("sin_resource_gte", "resource_gte", "resource_lte"):
+            # These are condition types, not executable effects.
+            return
+        if kind == "status":
+            name = str(effect.get("name", ""))
+            potency = int(effect.get("potency", 0) or 0)
+            count = int(effect.get("count", 0) or 0)
+            if name == 'Burn':
+                from keyword_runtime_v1 import KeywordRuntime
+                ctx = state.runtime.get('_current_coin_effect_ctx') or {}
+                KeywordRuntime.add(state.enemy if target == 'enemy' else state.fighters[source_id], name, potency, count, state=state, event=type('_E', (), {'ctx': ctx})(), source_id=source_id)
+                return
+            if name in ("Tremor", "Rupture"):
+                # Identity-local coin rules can carry an explicit multiplier on
+                # the exact status effect. The condition is checked here at the
+                # same hit/coin timing as the source clause.
+                mcond = effect.get('multiplier_condition')
+                multiplier_active = not mcond or (mcond.get('type') == 'critical_hit' and bool((state.runtime.get('_current_coin_effect_ctx') or {}).get('is_crit', False)))
+                if not multiplier_active:
+                    potency_multiplier = 1
+                    count_multiplier = 1
+                else:
+                    potency_multiplier = float(effect.get('potency_multiplier', 1))
+                    count_multiplier = float(effect.get('count_multiplier', 1))
+                potency = int(potency * potency_multiplier)
+                count = int(count * count_multiplier)
+                # 20구 유로지비 료슈 '제.지': only the generated S1 support
+                # action gets +1 to Tremor Count obtained through coin effects.
+                # Skill-level/use effects are intentionally outside this hook.
+                req = state.runtime.get('current_action_request')
+                if (name == 'Tremor' and target != 'enemy' and count > 0 and
+                        getattr(req, 'trigger_kind', None) == 'ryoshu_10409_stagger_assist' and
+                        str(source_id) == 'identity-10409'):
+                    count += 1
+            self.apply_status(statuses, name, potency, count, effect.get("data"))
+        elif kind in ("remove_status", "status_remove"):
+            statuses.pop(str(effect.get("name", "")), None)
+        elif kind == "poise":
+            p = state.fighters[source_id].poise
+            p.potency += effect.get("potency", 0)
+            p.count += effect.get("count", 0)
+        elif kind == "charge":
+            fighter = state.fighters[source_id]
+            before = fighter.charge
+            fighter.charge = max(0, fighter.charge + int(effect.get("amount", 0)))
+            state.event_log.append({"event":"charge_change", "identity_id":source_id, "delta":fighter.charge-before,
+                                    "before":before, "after":fighter.charge, "reason":effect.get("reason","effect")})
+        elif kind == "ammo":
+            fighter = state.fighters[source_id]
+            before = fighter.ammo
+            fighter.ammo = max(0, fighter.ammo + int(effect.get("amount", 0)))
+            state.event_log.append({"event":"ammo_change", "identity_id":source_id, "delta":fighter.ammo-before,
+                                    "before":before, "after":fighter.ammo, "reason":effect.get("reason","effect")})
+        elif kind == "defense_level":
+            if target == "enemy":
+                state.enemy.defense_level += int(effect.get("amount", 0))
+            else:
+                fighter = state.fighters[source_id]
+                fighter.defense_level_bonus += int(effect.get("amount", 0))
+        elif kind == "offense_level":
+            state.fighters[source_id].statuses.setdefault("Offense Level Up", Status()).potency += effect.get("amount", 0)
+        elif kind == "damage_up":
+            state.fighters[source_id].statuses.setdefault("Damage Up", Status()).potency += effect.get("percent", 0)
+        elif kind == "damage_taken_up":
+            state.enemy.statuses.setdefault("Damage Taken Up", Status()).potency += effect.get("percent", 0)
+        elif kind == "gain_poise":
+            p = state.fighters[source_id].poise
+            p.potency += effect.get("potency", 0)
+            p.count += effect.get("count", 0)
+        elif kind == "gain_charge":
+            state.fighters[source_id].charge += effect.get("amount", 0)
+        elif kind == "sp":
+            # Clamp SP through the same bounds used by the one-turn core.
+            amount = int(effect.get("amount", 0))
+            fighter = state.fighters[source_id]
+            before = fighter.sp
+            fighter.sp = max(-45, min(45, fighter.sp + amount))
+            state.event_log.append({"event":"sp_change", "identity_id":source_id, "reason":effect.get("reason", "effect"),
+                                    "delta":fighter.sp-before,"sp_before":before,"sp_after":fighter.sp})
+        elif kind in ("heal", "heal_hp"):
+            fighter = state.fighters[source_id]
+            amount = max(0, int(effect.get("amount", 0)))
+            before = fighter.hp
+            fighter.hp = min(fighter.max_hp, fighter.hp + amount)
+            state.event_log.append({"event":"heal","identity_id":source_id,"amount":fighter.hp-before,"hp_before":before,"hp_after":fighter.hp})
+        elif kind in ("sp_damage", "damage_sp"):
+            amount = max(0, int(effect.get("amount", 0)))
+            if target == "enemy":
+                before = state.enemy.sp
+                state.enemy.sp = max(-45, min(45, state.enemy.sp - amount))
+                state.event_log.append({"event":"sp_damage", "target":"enemy", "amount":before-state.enemy.sp,
+                                        "sp_before":before, "sp_after":state.enemy.sp})
+            else:
+                fighter = state.fighters[source_id]
+                before = fighter.sp
+                fighter.sp = max(-45, min(45, fighter.sp - amount))
+                state.event_log.append({"event":"sp_damage", "target":source_id, "amount":before-fighter.sp,
+                                        "sp_before":before, "sp_after":fighter.sp})
+        elif kind in ("sp_heal", "sanity_heal"):
+            amount = int(effect.get("amount", 0))
+            if target == "enemy":
+                before = state.enemy.sp; state.enemy.sp = max(-45, min(45, state.enemy.sp + amount))
+                state.event_log.append({"event":"sp_heal", "target":"enemy", "amount":state.enemy.sp-before, "sp_before":before, "sp_after":state.enemy.sp})
+            else:
+                fighter = state.fighters[source_id]; before = fighter.sp; fighter.sp = max(-45, min(45, fighter.sp + amount))
+                state.event_log.append({"event":"sp_heal", "target":source_id, "amount":fighter.sp-before, "sp_before":before, "sp_after":fighter.sp})
+        elif kind in ("resource", "resource_gain", "resource_consume"):
+            rr = state.runtime.get("resource_runtime")
+            rname = str(effect.get("resource", effect.get("name", "")))
+            amount = max(0, int(effect.get("amount", 0)))
+            fighter = state.fighters[source_id]
+            if rr is not None and rname:
+                if kind == "resource_consume": rr.consume(fighter, rname, amount, state=state, reason=effect.get("reason","effect"))
+                else: rr.gain(fighter, rname, amount, state=state, reason=effect.get("reason","effect"))
+        elif kind in ("damage_down", "damage_taken_down"):
+            target_statuses = state.enemy.statuses if kind == "damage_taken_down" or target == "enemy" else state.fighters[source_id].statuses
+            self.apply_status(target_statuses, "Damage Taken Down" if target == "enemy" else "Damage Down",
+                              int(effect.get("percent", effect.get("amount", 0))))
+        elif kind in ("amplitude_conversion", "amplitude_entanglement"):
+            from amplitude_runtime_v1 import AmplitudeRuntime
+            rt = AmplitudeRuntime()
+            amplitude = str(effect.get("amplitude", ""))
+            mode = "conversion" if kind == "amplitude_conversion" else "entanglement"
+            target_obj = state.enemy if target == "enemy" else state.fighters[source_id]
+            before = rt.get_states(target_obj)
+            if amplitude == "current_tremor" and mode == "entanglement":
+                after_entry = rt.entangle_current_tremor(state, target_obj, owner_id=source_id)
+            else:
+                after_entry = rt.set_state(state, target_obj, amplitude, mode, source="Tremor", owner_id=source_id)
+            state.event_log.append({"event": kind, "target": "enemy" if target == "enemy" else source_id,
+                                    "amplitude": amplitude, "mode": mode,
+                                    "before": before, "after": rt.get_states(target_obj),
+                                    "source_id": source_id})
+        elif kind in ("tremor_burst", "status_burst"):
+            name = str(effect.get("name", "Tremor"))
+            st = state.enemy.statuses.get(name)
+            if name == "Tremor" and st and st.potency > 0 and st.count > 0:
+                # Fire the dedicated Burst trigger before resolving the Burst so
+                # passives can consume resources / modify this Burst only.
+                state.runtime['tremor_burst_stagger_bonus'] = 0.0
+                burst_counts = state.runtime.setdefault('tremor_burst_counts', {})
+                burst_counts[str(source_id)] = int(burst_counts.get(str(source_id), 0)) + 1
+                pr = getattr(self, 'passive_runtime', None) or state.runtime.get('passive_runtime')
+                if pr is not None:
+                    pr.emit(PassiveTrigger.TREMOR_BURST, {'state':state, 'identity':source_id, 'target':state.enemy}, state)
+                burst_count = max(1, int(effect.get("burst_count", 1)))
+                amount = int(st.potency)
+                bonus = max(0.0, float(state.runtime.get('tremor_burst_stagger_bonus', 0.0)))
+                amount = int(amount * (1.0 + bonus) + 0.5)
+                # Explicit multi-Burst clauses are repeated Burst events; the
+                # source may independently specify a Count cost, so do not
+                # derive Count consumption from burst_count.
+                for _ in range(burst_count):
+                    state.enemy.stagger_thresholds = [x + amount for x in state.enemy.stagger_thresholds]
+                # Secondary Sin damage is derived from the final Burst stagger
+                # damage and uses the target's Sin resistance independently.
+                for sec in list(state.runtime.get('tremor_burst_secondary_damage', [])):
+                    raw = min(float(sec.get('cap', 10**9)), float(amount) * max(0.0, float(sec.get('scale', 0.0))))
+                    sin = str(sec.get('sin', ''))
+                    resistance = 1.0 + self.sin_resistance_modifier(state.enemy, sin)
+                    sin_damage = int(raw * max(0.0, resistance))
+                    actual = min(sin_damage, state.enemy.hp)
+                    if actual > 0:
+                        state.enemy.hp -= actual
+                        state.turn_damage += actual
+                    state.event_log.append({'event':'tremor_burst_secondary_damage','source_id':source_id,
+                                            'sin':sin,'base_stagger_damage':amount,'scale':float(sec.get('scale',0.0)),
+                                            'cap':float(sec.get('cap',10**9)),'raw_damage':sin_damage,
+                                            'actual_damage':actual,'enemy_hp_after':state.enemy.hp})
+                    if actual > 0:
+                        self.check_stagger(state)
+                state.runtime['tremor_burst_secondary_damage'] = []
+                # Burst and Count consumption are separate mechanics.
+                # Only consume Count when the source rule explicitly carries
+                # a count_cost; a plain "진동 폭발" does not consume Count.
+                count_cost = effect.get("count_cost", None)
+                if count_cost is not None and int(count_cost) > 0:
+                    self.consume_status_count(state.enemy.statuses, name, int(count_cost))
+                state.event_log.append({"event": "tremor_burst", "status": name,
+                                        "stagger_threshold_raised": amount * burst_count,
+                                        "burst_count": burst_count,
+                                        "stagger_bonus": bonus,
+                                        "count_after": state.enemy.statuses.get(name, Status()).count,
+                                        "stagger_thresholds_after": list(state.enemy.stagger_thresholds)})
+                # Emit a resolved event after the final Burst damage is known.
+                # Effects depending on actual Burst stagger damage must observe
+                # the modified final value, not the pre-burst Tremor potency.
+                if pr is not None:
+                    pr.emit(PassiveTrigger.TREMOR_BURST_RESOLVED, {
+                        'state': state, 'identity': source_id, 'target': state.enemy,
+                        'burst_stagger_damage': amount,
+                    }, state)
+                state.runtime['tremor_burst_stagger_bonus'] = 0.0
+        elif kind == "extra_damage_scale":
+            scale = max(0.0, float(effect.get("scale", 0.0)))
+            base = max(0.0, float(effect.get("base_damage", 0.0)))
+            amount = int(base * scale + 0.5)
+            actual = min(amount, state.enemy.hp)
+            state.enemy.hp -= actual
+            state.turn_damage += actual
+            state.event_log.append({"event":"extra_damage_scale","source_id":source_id,
+                                    "scale":scale,"base_damage":base,"raw_damage":amount,
+                                    "actual_damage":actual,"enemy_hp_after":state.enemy.hp})
+            if actual > 0: self.check_stagger(state)
+        elif kind == "resource_final_damage_scale":
+            # Coin-final-damage-derived typed damage.  The base is the direct
+            # coin damage already dealt; only the additional component receives
+            # the requested physical damage-type resistance.
+            scale = max(0.0, float(effect.get("scale", 0.0)))
+            base = max(0.0, float(effect.get("base_damage", 0.0)))
+            raw = int(base * scale + 0.5)
+            damage_type = str(effect.get('damage_type', 'slash'))
+            resistance = 1.0 + self.damage_resistance_modifier(state.enemy, damage_type)
+            amount = int(raw * max(0.0, resistance) + 0.5)
+            actual = min(amount, state.enemy.hp)
+            if actual > 0:
+                state.enemy.hp -= actual
+                state.turn_damage += actual
+                state.event_log.append({
+                    'event':'resource_final_damage_scale',
+                    'source_id':source_id,
+                    'resource':str(effect.get('resource','')),
+                    'resource_value':int(getattr(state.fighters[source_id], 'charge_potency', 0)) if str(effect.get('resource','')) == '충전 위력' else None,
+                    'base_damage':base, 'scale':scale, 'damage_type':damage_type,
+                    'resistance_multiplier':resistance, 'raw_damage':raw,
+                    'actual_damage':actual, 'enemy_hp_after':state.enemy.hp,
+                })
+                self.check_stagger(state)
+        elif kind == "damage_fixed":
+            amount = max(0, int(effect.get("amount", 0)))
+            actual = min(amount, state.enemy.hp)
+            state.enemy.hp -= actual
+            state.turn_damage += actual
+            state.event_log.append({"event":"damage_fixed", "source_id":source_id, "raw_damage":amount,
+                                    "actual_damage":actual, "enemy_hp_after":state.enemy.hp})
+            if state.enemy.hp > 0:
+                self.check_stagger(state)
+        elif kind == "stagger_damage":
+            self.apply_stagger_damage(state, int(effect.get("amount", 0)), "passive")
+        elif kind == "raise_stagger_threshold":
+            # Explicitly model threshold shift as runtime data.
+            amount = effect.get("amount", 0)
+            state.enemy.stagger_thresholds = [x + amount for x in state.enemy.stagger_thresholds]
+
+    def apply_stagger_damage(self, state: BattleState, amount: int, reason: str = "effect") -> int:
+        amount=max(0,int(amount))
+        if amount<=0: return 0
+        state.runtime['stagger_damage'] = int(state.runtime.get('stagger_damage',0)) + amount
+        state.event_log.append({'event':'stagger_damage','amount':amount,'reason':reason,
+                                'stagger_damage_total':state.runtime['stagger_damage'],
+                                'stagger_index':state.enemy.stagger_index})
+        return amount
+
+    def check_stagger(self, state: BattleState, *, source: str = "damage", forced: bool = False):
+        """Resolve Stagger thresholds and record the resulting transition semantics.
+
+        ``newly_staggered`` is reserved for the actual non-Stagger -> Stagger
+        transition.  Increasing an existing Stagger level, advancing a threshold
+        index while already Staggered, or reaching a capped threshold does not
+        create another transition. ``forced`` is explicit metadata only; this
+        method does not infer forced Stagger from damage/effect shape.
+        """
+        enemy = state.enemy
+        before_level = int(enemy.stagger_level)
+        before_index = int(enemy.stagger_index)
+        before_staggered = before_level > 0
+        while (enemy.stagger_index < len(enemy.stagger_thresholds)
+               and enemy.hp <= enemy.stagger_thresholds[enemy.stagger_index]):
+            enemy.stagger_index += 1
+            enemy.stagger_level = min(3, enemy.stagger_level + 1)
+        after_level = int(enemy.stagger_level)
+        after_index = int(enemy.stagger_index)
+        after_staggered = after_level > 0
+        newly_staggered = (not before_staggered) and after_staggered
+
+        if after_level > before_level:
+            enemy.staggered_turns = max(enemy.staggered_turns, 1)
+
+        event = {
+            'event': 'stagger_transition',
+            'before_staggered': before_staggered,
+            'after_staggered': after_staggered,
+            'newly_staggered': newly_staggered,
+            'stagger_forced': bool(forced),
+            'stagger_level_before': before_level,
+            'stagger_level_after': after_level,
+            'stagger_index_before': before_index,
+            'stagger_index_after': after_index,
+            'source': str(source),
+            'forced': bool(forced),
+        }
+        state.runtime['last_stagger_event'] = event
+        if newly_staggered or after_level != before_level or after_index != before_index:
+            state.event_log.append(dict(event))
+        return event
+
+    def enumerate_coin_outcomes(self, state: BattleState, identity: IdentityData,
+                                coin: CoinData) -> List[Tuple[str, bool]]:
+        fighter = state.fighters[identity.id]
+        if not self.crit_possible(fighter):
+            return [(r, False) for r in ("H", "T")]
+        if self.crit_guaranteed(fighter):
+            return [(r, True) for r in ("H", "T")]
+        # MAX mode includes the favorable crit branch. Probability is not used.
+        return [(r, False) for r in ("H", "T")] + [(r, True) for r in ("H", "T")]
+
+    def consume_status_count(self, statuses: Dict[str, Status], name: str, amount: int = 1):
+        st = statuses.get(name)
+        if not st:
+            return
+        st.count -= amount
+        if st.count <= 0:
+            statuses.pop(name, None)
+
+    def apply_ally_damage(self, state: BattleState, target_id: str, amount: float, reason: str = "incoming") -> float:
+        """Apply explicit damage to an ally, honoring one-use fatal prevention.
+
+        Enemy/incoming attacks are not fabricated by the one-turn solver.  Callers
+        that explicitly provide an ally-damage event use this bridge so passive
+        survival mechanics remain in the same state/log pipeline.
+        """
+        target_id = str(target_id)
+        fighter = state.fighters.get(target_id)
+        if fighter is None:
+            return 0.0
+        raw = max(0.0, float(amount))
+        if raw <= 0.0 or float(fighter.hp) <= 0.0:
+            return 0.0
+        # Charge Barrier is a real defensive resource: its shield absorbs
+        # incoming damage before HP, and spending a full barrier shield unit
+        # removes one Charge Barrier stack.
+        rr = state.runtime.get("resource_runtime")
+        shield = float(getattr(fighter, "shield", 0.0))
+        if shield > 0 and rr is not None:
+            absorbed = rr.consume_shield(fighter, raw, state=state, reason=reason)
+            raw -= absorbed
+            if raw <= 0:
+                return 0.0
+        before = float(fighter.hp)
+        fatal = raw >= before
+        uses = int((state.runtime.get('fatal_prevention', {}) or {}).get(target_id, 0))
+        if uses <= 0:
+            survival_status = fighter.statuses.get('본국검술')
+            if survival_status is not None and bool(getattr(survival_status, 'data', {}).get('fatal_prevention_once', False)):
+                used = bool(getattr(survival_status, 'data', {}).get('fatal_prevention_used', False))
+                if not used:
+                    uses = 1
+        if fatal and uses > 0:
+            state.runtime.setdefault('fatal_prevention', {})[target_id] = uses - 1
+            survival_status = fighter.statuses.get('본국검술')
+            if survival_status is not None and bool(getattr(survival_status, 'data', {}).get('fatal_prevention_once', False)):
+                survival_status.data['fatal_prevention_used'] = True
+            fighter.hp = 1.0
+            state.event_log.append({
+                'event':'fatal_damage_prevented', 'identity_id':target_id,
+                'raw_damage':raw, 'actual_damage':0.0, 'hp_before':before,
+                'hp_after':1.0, 'uses_before':uses, 'uses_after':uses-1,
+                'reason':reason,
+            })
+            return 0.0
+        actual = min(raw, before)
+        fighter.hp = before - actual
+        state.event_log.append({
+            'event':'ally_damage', 'identity_id':target_id,
+            'raw_damage':raw, 'actual_damage':actual,
+            'hp_before':before, 'hp_after':float(fighter.hp), 'reason':reason,
+        })
+        if fighter.hp <= 0:
+            state.event_log.append({'event':'ally_death','identity_id':target_id,'reason':reason})
+        return actual
+
+    def before_coin(self, state: BattleState, identity: IdentityData):
+        """Apply statuses whose trigger is tied to throwing an attack Coin."""
+        fighter = state.fighters[identity.id]
+        bleed = fighter.statuses.get("Bleed")
+        if bleed and bleed.count > 0 and bleed.potency > 0:
+            # Bleed is fixed self-damage when this unit tosses an Attack Skill Coin.
+            raw = float(bleed.potency)
+            actual = self.apply_ally_damage(state, identity.id, raw, reason="Bleed")
+            self.consume_status_count(fighter.statuses, "Bleed")
+            state.event_log.append({"event":"bleed_self_damage", "identity_id":identity.id,
+                                    "raw_damage":raw, "actual_damage":actual,
+                                    "hp_after":fighter.hp, "bleed_count_after":fighter.statuses.get("Bleed", Status()).count})
+            if fighter.hp <= 0:
+                self.bus.emit(EventType.UNIT_DEATH, {"state":state, "identity":identity,
+                                                     "target":fighter, "killed":True, "reason":"Bleed", "death_scope":"ally", "dead_identity_id":identity.id})
+
+    def on_target_hit(self, state: BattleState):
+        """Resolve target-side keyword effects through the common KeywordRuntime."""
+        from keyword_runtime_v1 import KeywordRuntime
+        KeywordRuntime.on_target_hit(state)
+
+        # Generic damage-taken modifier status used by the simulator and data layer.
+        # Potency is stored as percentage points (e.g. 15 = +15%).
+
+    def calculate_coin_damage(self, state: BattleState, identity: IdentityData,
+                              skill: SkillData, coin: CoinData,
+                              result: str, is_crit: bool, prior_heads: int = 0, coin_index: int = 0,
+                              damage_ctx: Optional[Dict[str, Any]] = None) -> Tuple[float, float]:
+        fighter = state.fighters[identity.id]
+        damage_ctx = damage_ctx or {}
+        roll = self.coin_roll(state, identity, skill, coin, result, prior_heads, int(damage_ctx.get("coin_power_bonus", 0)))
+        # Unbreakable Coins that lost a Clash become Cracked and attack later
+        # with fixed Coin Power (+1 for Plus, -1 for Minus). In this engine the
+        # explicit clash_result marks the skill as having lost its clash.
+        if skill.clash_result == "lose" and coin.unbreakable:
+            roll = skill.base_power + (1 if coin.coin_type != "minus" else -1)
+        static = self.static_modifier(state, identity, skill, coin, is_crit,
+                                      unopposed=(skill.clash_result == "unopposed"),
+                                      attack_level_bonus=int(damage_ctx.get("attack_level_bonus", 0)),
+                                      crit_damage_bonus=float(damage_ctx.get("crit_damage_bonus", 0.0)))
+        dynamic = self.dynamic_modifier(state, identity, skill, coin_index, coin, is_crit=is_crit) + float(damage_ctx.get("dynamic_damage_bonus", 0.0))
+        main = roll * max(1.0 + static, 0.0) * max(1.0 + dynamic, 0.0)
+        raw = floor(main)
+        minimum = floor(0.05 * roll)
+        if raw < minimum:
+            raw = minimum
+        if raw < 1:
+            raw = 1
+
+        generic_flat = DamageModifierRuntime.resolve(state, identity, skill, coin, is_crit, timing="damage")['flat_damage']
+        if generic_flat:
+            raw += float(generic_flat)
+        if damage_ctx.get("flat_damage_bonus", 0):
+            raw += float(damage_ctx["flat_damage_bonus"])
+
+        # Attack adders are deliberately kept outside the crit/clash part of
+        # the main component. Attack HP adders are flat.
+        if skill.attack_adder:
+            raw += floor(skill.attack_adder * max(1.0 + max(static - self.crit_modifier(is_crit) - skill.clash_count * 0.03, 0.0), 0.0))
+        if skill.attack_hp_adder:
+            raw += floor(skill.attack_hp_adder)
+        return float(raw), float(roll)
+
+    def calculate_and_apply_coin_with_context(self, state: BattleState, identity: IdentityData,
+                                              skill: SkillData, coin: CoinData, result: str,
+                                              is_crit: bool, coin_index: int, prior_heads: int = 0,
+                                              damage_ctx: Optional[Dict[str, Any]] = None) -> float:
+        """Context-aware coin execution used by the v17 one-turn layer.
+
+        It preserves the normal event sequence while allowing a Clash result
+        to carry passive-produced damage/level/coin modifiers into the
+        surviving attack coin.
+        """
+        fighter = state.fighters[identity.id]
+        is_crit = bool(is_crit and fighter.poise.count > 0)
+        ctx = {"state": state, "identity": identity, "skill": skill,
+               "coin": coin, "coin_index": coin_index, "result": result,
+               "is_crit": is_crit, "target": state.enemy,
+               "attacker": state.fighters[identity.id],
+               "coin_power_bonus": 0, "final_power_bonus": 0,
+               "attack_level_bonus": 0, "dynamic_damage_bonus": 0.0,
+               "flat_damage_bonus": 0.0}
+        if damage_ctx:
+            ctx.update(damage_ctx)
+        self.bus.emit(EventType.COIN_START, ctx)
+        if state.enemy.hp <= 0: return 0.0
+        self.before_coin(state, identity)
+        cumulative_before = dict(state.runtime.get('cumulative_resource_consumed', {}) or {})
+        state.runtime['current_coin_resource_consumption'] = {}
+        spend = min(state.fighters[identity.id].ammo, skill.coin_ammo_spend.get(coin_index, 0))
+        if spend: state.fighters[identity.id].ammo -= spend
+        cumulative_after = state.runtime.get('cumulative_resource_consumed', {}) or {}
+        identity_key = str(identity.id)
+        current_consumed = {}
+        for (iid, rname), after in cumulative_after.items():
+            if str(iid) != identity_key:
+                continue
+            before = int(cumulative_before.get((iid, rname), 0))
+            delta = int(after) - before
+            if delta > 0:
+                current_consumed[str(rname)] = delta
+        state.runtime['current_coin_resource_consumption'] = current_consumed
+        state.runtime['last_coin_face'] = result
+        state.runtime['last_coin_critical'] = bool(is_crit)
+        state.runtime.setdefault('coin_trigger_faces', {})[(str(skill.id), int(coin_index))] = result
+        self.bus.emit(EventType.BEFORE_HIT, ctx)
+        raw, roll = self.calculate_coin_damage(state, identity, skill, coin, result, is_crit, prior_heads, coin_index, ctx)
+        actual = min(raw, state.enemy.hp)
+        state.enemy.hp -= actual; state.turn_damage += actual
+        self.bus.emit(EventType.HIT, ctx)
+        if actual > 0:
+            self.bus.emit(EventType.HEADS_HIT if result == "H" else EventType.TAILS_HIT, ctx)
+            if skill.clash_result == "win": self.bus.emit(EventType.HIT_AFTER_CLASH_WIN, ctx)
+            self.on_target_hit(state)
+            if getattr(coin, "stagger_damage_ratio", 0.0) > 0:
+                sd = int(actual * float(coin.stagger_damage_ratio) + 0.5)
+                self.apply_stagger_damage(state, sd, "coin_ratio")
+        self.bus.emit(EventType.DAMAGE, {**ctx, "raw_damage": raw, "actual_damage": actual, "coin_roll": roll})
+        return float(actual)
+
+    def simulate_coin(self, state: BattleState, identity: IdentityData,
+                      skill: SkillData, coin: CoinData, result: str,
+                      is_crit: bool, coin_index: int, prior_heads: int = 0,
+                      consume_attacker_state: bool = True,
+                      run_special_after_coin: bool = True,
+                      consume_poise: bool = True,
+                      allow_crit_without_poise: bool = False,
+                      attacker_ammo_context=None, reuse_index: int = 0, is_added_coin: bool = False) -> float:
+        fighter = state.fighters[identity.id]
+        # A caller may request a crit branch, but a critical hit is only valid
+        # while Poise Count is available. This keeps branch simulation from
+        # producing repeated crits after the first successful critical.
+        is_crit = bool(is_crit and (allow_crit_without_poise or fighter.poise.count > 0))
+        ctx = {"state": state, "identity": identity, "skill": skill,
+               "coin": coin, "coin_index": coin_index, "result": result,
+               "is_crit": is_crit, "reuse_index": int(reuse_index), "is_added_coin": bool(is_added_coin), "target": state.enemy, "attacker": fighter, "coin_power_bonus": 0,
+               "final_power_bonus": 0, "attack_level_bonus": 0,
+               "dynamic_damage_bonus": 0.0, "flat_damage_bonus": 0.0,
+               "target_count": int(state.runtime.get("current_target_count", 1))}
+        self.bus.emit(EventType.COIN_START, ctx)
+        if state.enemy.hp <= 0:
+            return 0.0
+
+        if consume_attacker_state:
+            self.before_coin(state, identity)
+        # Snapshot cumulative resource consumption so coin-local conditions can
+        # distinguish a resource that is merely absent from one actually spent
+        # during this coin.
+        cumulative_before = dict(state.runtime.get('cumulative_resource_consumed', {}) or {})
+        state.runtime['current_coin_resource_consumption'] = {}
+        # Identity-specific per-coin resources are applied immediately before
+        # the coin resolves, so later coins see the updated value.
+        rr = state.runtime.get('resource_runtime')
+        if consume_attacker_state and rr is not None:
+            fighter = state.fighters[identity.id]
+            for rname, amount in getattr(coin, 'resource_cost', {}).items():
+                rr.consume(fighter, rname, min(rr.get(fighter,rname,0), int(amount)), state=state, reason=f'coin:{skill.id}:{coin_index}:cost')
+            for rname, max_amount in getattr(coin, 'resource_cost_max', {}).items():
+                rr.consume(fighter, rname, min(rr.get(fighter,rname,0), int(max_amount)), state=state, reason=f'coin:{skill.id}:{coin_index}:cost_max')
+            for rname in getattr(coin, 'resource_cost_all', []):
+                rr.consume(fighter, rname, rr.get(fighter,rname,0), state=state, reason=f'coin:{skill.id}:{coin_index}:cost_all')
+        if consume_attacker_state:
+            ammo_before = state.fighters[identity.id].ammo
+            spend = min(ammo_before, skill.coin_ammo_spend.get(coin_index, 0))
+            if spend:
+                state.fighters[identity.id].ammo -= spend
+            ammo_after = state.fighters[identity.id].ammo
+        elif attacker_ammo_context is not None:
+            ammo_before, ammo_after, spend = attacker_ammo_context
+        else:
+            ammo_before = ammo_after = state.fighters[identity.id].ammo
+            spend = 0
+        ctx.update({'ammo_before':ammo_before,'ammo_spent':spend,'ammo_after':ammo_after})
+        cumulative_after = state.runtime.get('cumulative_resource_consumed', {}) or {}
+        identity_key = str(identity.id)
+        current_consumed = {}
+        for (iid, rname), after in cumulative_after.items():
+            if str(iid) != identity_key:
+                continue
+            before = int(cumulative_before.get((iid, rname), 0))
+            delta = int(after) - before
+            if delta > 0:
+                current_consumed[str(rname)] = delta
+        state.runtime['current_coin_resource_consumption'] = current_consumed
+        state.runtime['last_coin_face'] = result
+        state.runtime['last_coin_critical'] = bool(is_crit)
+        self.bus.emit(EventType.BEFORE_HIT, ctx)
+        raw, roll = self.calculate_coin_damage(state, identity, skill, coin, result, is_crit, prior_heads, coin_index, ctx)
+        actual = min(raw, state.enemy.hp)
+        state.enemy.hp -= actual
+        state.turn_damage += actual
+
+        self.bus.emit(EventType.HIT, ctx)
+        if actual > 0:
+            self.bus.emit(EventType.HEADS_HIT if result == "H" else EventType.TAILS_HIT, ctx)
+            if skill.clash_result == "win":
+                self.bus.emit(EventType.HIT_AFTER_CLASH_WIN, ctx)
+            self.on_target_hit(state)
+            if getattr(coin, "stagger_damage_ratio", 0.0) > 0:
+                sd = int(actual * float(coin.stagger_damage_ratio) + 0.5)
+                self.apply_stagger_damage(state, sd, "coin_ratio")
+        self.bus.emit(EventType.DAMAGE, {**ctx, "raw_damage": raw,
+                                         "actual_damage": actual,
+                                         "coin_roll": roll})
+        special_cb = state.runtime.get('special_after_coin')
+        if run_special_after_coin and special_cb:
+            special_cb(state, identity, skill, coin_index, actual, ammo_before, ammo_after, spend, reuse_index=reuse_index, is_crit=is_crit)
+
+        # Poise count is consumed by a successful critical hit only once per
+        # logical coin. Secondary target resolutions must not consume it again.
+        if consume_poise and is_crit:
+            from keyword_runtime_v1 import KeywordRuntime
+            KeywordRuntime.on_critical(state, identity.id, successful=True)
+
+        previous_stagger = state.enemy.stagger_level
+        previous_index = state.enemy.stagger_index
+        previous_hp = state.enemy.hp + actual
+        self.check_stagger(state)
+        self.bus.emit(EventType.STAGGER_CHECK, {**ctx,
+            "enemy_hp_before": previous_hp, "enemy_hp_after": state.enemy.hp,
+            "stagger_level_before": previous_stagger, "stagger_level_after": state.enemy.stagger_level,
+            "stagger_index_before": previous_index, "stagger_index_after": state.enemy.stagger_index})
+        if state.enemy.stagger_level > previous_stagger:
+            self.bus.emit(EventType.STAGGER, {**ctx, "stagger_level": state.enemy.stagger_level,
+                                               "stagger_index": state.enemy.stagger_index})
+        # Direct damage can kill the target, but hit-attached effects below can
+        # also finish it.  Notify the target-death bridge exactly once per
+        # concrete EnemyState so multi-target attacks do not collapse all deaths
+        # into the primary target.
+        death_key = id(state.enemy)
+        death_notified = state.runtime.setdefault("_enemy_death_notified", set())
+        if state.enemy.hp <= 0 and actual > 0 and death_key not in death_notified:
+            death_notified.add(death_key)
+            state.event_log.append({"event":"unit_death", "death_scope":"enemy",
+                                    "target_id":state.runtime.get("current_target_id", "main"),
+                                    "identity":identity.id, "skill":skill.id, "coin":coin_index,
+                                    "via":"direct_damage"})
+            self.bus.emit(EventType.UNIT_DEATH, {**ctx, "killed": True, "death_scope": "enemy", "dead_identity_id": None,
+                                                  "target_id": state.runtime.get("current_target_id", "main")})
+
+        effects = coin.heads_effects if result == "H" else coin.tails_effects
+        state.runtime['_current_coin_effect_ctx'] = ctx
+        try:
+            for effect in coin.effects + effects:
+                if not self.condition_met(state, identity, effect.get("condition"), skill):
+                    continue
+                # A source rule of the form "this coin's final damage × X%
+                # Slash damage" is resolved from the already-finalized coin
+                # damage.  Keep it typed and coin-local so it does not become a
+                # generic damage multiplier or accidentally read Charge Count.
+                if effect.get('type') == 'resource_final_damage_scale':
+                    resolved = dict(effect)
+                    resource = str(resolved.get('resource', ''))
+                    if resource == '충전 위력':
+                        resource_value = int(getattr(state.fighters[identity.id], 'charge_potency', 0))
+                    else:
+                        resource_value = int(getattr(state.fighters[identity.id], 'resources', {}).get(resource, 0))
+                    scale = min(float(resolved.get('cap', 999999.0)),
+                                max(0, resource_value) * float(resolved.get('scale_per', 0.0)))
+                    resolved['base_damage'] = float(actual)
+                    resolved['scale'] = scale
+                    self.apply_effect(state, identity.id, resolved.get('target', 'enemy'), resolved)
+                else:
+                    replacement = next((r for r in (getattr(skill, 'effects_on_use', []) or [])
+                                        if r.get('type') == 'tremor_burst_replacement'
+                                        and r.get('replacement_status') == str(effect.get('name', ''))), None)
+                    if effect.get('type') == 'status' and replacement and self.condition_met(state, identity, replacement.get('condition'), skill):
+                        burst = dict(replacement)
+                        burst['type'] = 'tremor_burst'
+                        burst['condition'] = None
+                        self.apply_effect(state, identity.id, burst.get('target', 'enemy'), burst)
+                        continue
+                    self.apply_effect(state, identity.id, effect.get("target", "self"), effect)
+        finally:
+            state.runtime.pop('_current_coin_effect_ctx', None)
+
+        # 20구 유로지비 료슈 '제.지': the generated S1's final coin triggers
+        # Tremor Burst.  Burst itself carries no implicit Tremor Count cost.
+        req = state.runtime.get('current_action_request')
+        if (getattr(req, 'trigger_kind', None) == 'ryoshu_10409_stagger_assist' and
+                str(identity.id) == 'identity-10409' and coin_index == len(skill.coins) and
+                state.enemy.hp > 0):
+            self.apply_effect(state, identity.id, 'enemy', {'type':'tremor_burst','name':'Tremor','target':'enemy','condition':None,'count_cost':0,'source':'passive:제.지'})
+
+        # Effects attached to the hit (e.g. fixed damage) can themselves push
+        # the target across a stagger threshold. Re-evaluate after all coin
+        # effects so the next coin sees the updated stagger state.
+        post_effect_stagger = state.enemy.stagger_level
+        post_effect_index = state.enemy.stagger_index
+        self.check_stagger(state)
+        if state.enemy.stagger_level > post_effect_stagger:
+            self.bus.emit(EventType.STAGGER, {**ctx, "stagger_level": state.enemy.stagger_level,
+                                               "stagger_index": state.enemy.stagger_index,
+                                               "via": "coin_effect"})
+
+        # Re-check after coin effects.  Rupture/fixed-damage/status effects can
+        # kill a target even when the direct coin damage itself was non-lethal.
+        if state.enemy.hp <= 0 and death_key not in death_notified:
+            death_notified.add(death_key)
+            state.event_log.append({"event":"unit_death", "death_scope":"enemy",
+                                    "target_id":state.runtime.get("current_target_id", "main"),
+                                    "identity":identity.id, "skill":skill.id, "coin":coin_index,
+                                    "via":"coin_effect"})
+            self.bus.emit(EventType.UNIT_DEATH, {**ctx, "killed": True, "death_scope": "enemy", "dead_identity_id": None,
+                                                  "target_id": state.runtime.get("current_target_id", "main"),
+                                                  "via": "coin_effect"})
+
+        state.event_log.append({
+            "event": "coin", "action_index": state.runtime.get("current_action_index"),
+            "identity": identity.id, "skill": skill.id,
+            "coin": coin_index, "result": result, "crit": is_crit,
+            "is_added_coin": bool(is_added_coin),
+            "coin_origin": ("added" if is_added_coin else "base"),
+            "coin_roll": roll, "raw_damage": raw, "actual_damage": actual,
+            "enemy_hp_after": state.enemy.hp,
+            "stagger_level_after": state.enemy.stagger_level,
+            "poise_after": state.fighters[identity.id].poise.__dict__.copy(),
+        })
+        return actual
+
+    @staticmethod
+    def coin_clash_power(base_power: int, coin: CoinData, result: str) -> int:
+        return base_power + (coin.coin_power if result == "H" else 0)
+
+    def resolve_clash_coin(self, attacker_base: int, attacker_coin: CoinData,
+                           defender_base: int, defender_coin: CoinData,
+                           attacker_face: str = "H", defender_face: str = "H") -> str:
+        """Resolve one clash exchange. Returns win/lose/tie.
+
+        Ties are exposed instead of silently selecting a winner. The caller
+        decides how a tie should be handled for a particular battle rule.
+        """
+        ap = self.coin_clash_power(attacker_base, attacker_coin, attacker_face)
+        dp = self.coin_clash_power(defender_base, defender_coin, defender_face)
+        if ap > dp:
+            return "win"
+        if ap < dp:
+            return "lose"
+        return "tie"
+
+    def resolve_clash(self, attacker: SkillData, defender: ClashData,
+                      attacker_faces: Optional[List[str]] = None,
+                      defender_faces: Optional[List[str]] = None) -> Dict[str, Any]:
+        """Resolve a normal coin-by-coin clash sequence.
+
+        Each side starts with its first available coin. On a loss, the losing
+        coin is removed; the winner proceeds against the next opposing coin.
+        Unbreakable coins are retained as an explicit result rather than being
+        converted into an ordinary damage coin implicitly.
+        """
+        af = attacker_faces or ["H"] * len(attacker.coins)
+        df = defender_faces or ["H"] * len(defender.coins)
+        ai = di = 0
+        exchanges = []
+        # A clash can repeat on draws, so the shared hard cap prevents an
+        # otherwise endless equal-power sequence. At the 99th exchange the
+        # defender wins, matching the probabilistic clash rule.
+        max_exchanges = 99
+        while ai < len(attacker.coins) and di < len(defender.coins) and len(exchanges) < max_exchanges:
+            ac, dc = attacker.coins[ai], defender.coins[di]
+            defender_before = len(defender.coins) - di
+            attacker_before = len(attacker.coins) - ai
+            attacker_face = af[ai] if ai < len(af) else "H"
+            defender_face = df[di] if di < len(df) else "H"
+            attacker_power = self.coin_clash_power(attacker.base_power, ac, attacker_face)
+            defender_power = self.coin_clash_power(defender.skill_power, dc, defender_face)
+            outcome = self.resolve_clash_coin(attacker.base_power, ac,
+                                               defender.skill_power, dc,
+                                               attacker_face, defender_face)
+            if len(exchanges) + 1 == max_exchanges:
+                outcome = "lose"
+            if outcome == "win":
+                di += 1
+            elif outcome == "lose":
+                ai += 1
+            else:
+                # A draw does not remove either active coin.  The same pair
+                # therefore clashes again on the next exchange.
+                pass
+            defender_after = len(defender.coins) - di
+            attacker_after = len(attacker.coins) - ai
+            exchanges.append({
+                "attacker_coin": ai if outcome == "lose" else (ai + 1),
+                "defender_coin": di if outcome == "win" else (di + 1),
+                "attacker_power": attacker_power,
+                "defender_power": defender_power,
+                "outcome": outcome,
+                "attacker_coins_before": attacker_before,
+                "attacker_coins_after": attacker_after,
+                "defender_coins_before": defender_before,
+                "defender_coins_rolled": defender_before,
+                "defender_coins_after": defender_after,
+                "bleed_procs": defender_before,
+                "unopposed_after": defender_after == 0,
+            })
+        return {"exchanges": exchanges, "attacker_remaining_coins": len(attacker.coins) - ai,
+                "defender_remaining_coins": len(defender.coins) - di,
+                "total_bleed_procs": sum(x["bleed_procs"] for x in exchanges)}
+
+    def _capture_skill_condition_snapshot(self, state: BattleState) -> None:
+        snapshot = state.clone()
+        snapshot.runtime.pop("_skill_condition_snapshot", None)
+        state.runtime["_skill_condition_snapshot"] = snapshot
+
+    def simulate_skill(self, state: BattleState, identity: IdentityData,
+                       skill: SkillData, outcomes: Tuple[Tuple[str, bool], ...]) -> float:
+        self.bus.emit(EventType.SKILL_START, {"state": state, "identity": identity,
+                                             "skill": skill})
+        # Record defense-skill usage as turn-scoped history.  Enemy-side
+        # integrations can seed the same runtime flag when their action is
+        # resolved outside this one-turn identity action queue.
+        if str(getattr(skill, 'attack_type', '')) in ('방어', 'defense', 'guard'):
+            state.runtime['turn_defense_skill_used_ids'] = set(state.runtime.get('turn_defense_skill_used_ids', set()))
+            state.runtime['turn_defense_skill_used_ids'].add(str(identity.id))
+            if str(identity.id) not in state.fighters:
+                state.runtime['turn_defense_skill_used_enemy'] = True
+        if skill.clash_result in ("win", "lose"):
+            self.bus.emit(EventType.CLASH_START, {"state": state, "identity": identity, "skill": skill})
+            self.bus.emit(EventType.CLASH_WIN if skill.clash_result == "win" else EventType.CLASH_LOSE,
+                          {"state": state, "identity": identity, "skill": skill})
+        for effect in skill.effects_on_use:
+            self.apply_effect(state, identity.id, effect.get("target", "self"), effect)
+
+        self._capture_skill_condition_snapshot(state)
+
+        # BEFORE_ATTACK is a once-per-skill boundary.  Passive modifiers from
+        # this event are copied into the action-scoped damage context so every
+        # coin of the same attack sees the same attack-start condition.
+        before_attack_ctx = {"state": state, "identity": identity, "skill": skill,
+                             "target": state.enemy, "attacker": state.fighters.get(identity.id),
+                             "skill_slot": str(getattr(skill, '_slot', ''))}
+        self.bus.emit(EventType.BEFORE_ATTACK, before_attack_ctx)
+        state.runtime['current_action_dynamic_damage_bonus'] = float(before_attack_ctx.get('dynamic_damage_bonus', 0.0))
+        state.runtime['current_action_attack_level_bonus'] = int(before_attack_ctx.get('attack_level_bonus', 0))
+
+        prior_heads = 0
+        for i, (coin, outcome) in enumerate(zip(skill.coins, outcomes), start=1):
+            if state.enemy.hp <= 0:
+                break
+            result, is_crit = outcome
+            self.simulate_coin(state, identity, skill, coin, result, is_crit, i, prior_heads)
+            if result == "H":
+                prior_heads += 1
+
+        for effect in skill.effects_on_hit:
+            if state.enemy.hp > 0:
+                self.apply_effect(state, identity.id, effect.get("target", "self"), effect)
+
+        self.bus.emit(EventType.SKILL_END, {"state": state, "identity": identity,
+                                           "skill": skill})
+        return state.turn_damage
+
+    def turn_end(self, state: BattleState):
+        """Apply turn-end keyword effects through the common KeywordRuntime."""
+        self.bus.emit(EventType.TURN_END, {"state": state})
+        from keyword_runtime_v1 import KeywordRuntime
+        hp_before = float(state.enemy.hp)
+        burn_result = KeywordRuntime.turn_end(state)
+
+        # Preserve the existing native stagger/death lifecycle around the
+        # shared Burn calculation.  The shared runtime owns damage/count.
+        if state.enemy.hp < hp_before:
+            previous_level = state.enemy.stagger_level
+            previous_index = state.enemy.stagger_index
+            self.check_stagger(state)
+            if state.enemy.stagger_level > previous_level:
+                self.bus.emit(EventType.STAGGER, {"state":state, "target":state.enemy,
+                                                   "stagger_level":state.enemy.stagger_level,
+                                                   "stagger_index":state.enemy.stagger_index, "via":"turn_end_burn"})
+            if state.enemy.hp <= 0:
+                self.bus.emit(EventType.UNIT_DEATH, {"state":state, "target":state.enemy,
+                                                     "killed":True, "reason":"Burn",
+                                                     "death_scope":"enemy", "dead_identity_id":None})
+
+        # Poise and Charge turn-lifecycle consumption is owned by the common
+        # KeywordRuntime. Do not duplicate it here.
+        for fighter in state.fighters.values():
+            for name in ("Damage Up", "Offense Level Up", "Defense Level Up"):
+                fighter.statuses.pop(name, None)
+        for name in ("Damage Taken Up", "Offense Level Down", "Defense Level Down"):
+            state.enemy.statuses.pop(name, None)
+
+    def enumerate_skill_outcomes(self, initial: BattleState,
+                                 identity: IdentityData,
+                                 skill: SkillData):
+        states = [(initial.clone(), [])]
+        for coin in skill.coins:
+            next_states = []
+            for state, outcomes in states:
+                for result, crit in self.enumerate_coin_outcomes(state, identity, coin):
+                    next_states.append((state.clone(), outcomes + [(result, crit)]))
+            # This helper only constructs outcome space; actual sequential state
+            # branching happens in simulate_skill branches below.
+            states = next_states
+        return [outcomes for _, outcomes in states]
+
+    def simulate_turn(self, initial: BattleState,
+                      actions: List[Tuple[IdentityData, SkillData]],
+                      mode: str = "MAX") -> Dict[str, Any]:
+        # Exact branch simulation: every action and every coin is simulated on
+        # its own cloned runtime state. Combat/Turn start are resolved before
+        # the first action so start-of-turn passives can affect the turn.
+        identities = []
+        for identity, _skill in actions:
+            if identity.id not in [x.id for x in identities]:
+                identities.append(identity)
+        initial_state = initial.clone()
+        self.combat_start(initial_state, identities)
+        self.turn_start(initial_state, identities)
+        branches = [(initial_state, [], 0)]
+        for identity, skill in actions:
+            new_branches = []
+            for state, action_outcomes, _ in branches:
+                if state.enemy.hp <= 0:
+                    new_branches.append((state, action_outcomes, 0))
+                    continue
+
+                self.bus.emit(EventType.SKILL_START, {"state": state, "identity": identity, "skill": skill})
+                self.bus.emit(EventType.BEFORE_USE, {"state": state, "identity": identity, "skill": skill})
+                self.apply_trigger_effects(state, identity, skill.effects_before_use, skill)
+                self.apply_trigger_effects(state, identity, skill.effects_on_use, skill)
+                self.bus.emit(EventType.ON_USE, {"state": state, "identity": identity, "skill": skill})
+
+                if skill.clash_result in ("win", "lose"):
+                    self.bus.emit(EventType.CLASH_START, {"state": state, "identity": identity, "skill": skill})
+                    event = EventType.CLASH_WIN if skill.clash_result == "win" else EventType.CLASH_LOSE
+                    self.bus.emit(event, {"state": state, "identity": identity, "skill": skill})
+                    clash_effects = skill.effects_on_clash_win if skill.clash_result == "win" else skill.effects_on_clash_lose
+                    self.apply_trigger_effects(state, identity, clash_effects, skill)
+                    for p in identity.passives:
+                        if p.get("trigger") == ("Clash Win" if skill.clash_result == "win" else "Clash Lose"):
+                            self.apply_trigger_effects(state, identity, p.get("effects", []), skill)
+
+                self._capture_skill_condition_snapshot(state)
+
+                before_attack_ctx = {"state": state, "identity": identity, "skill": skill,
+                                     "target": state.enemy, "attacker": state.fighters.get(identity.id),
+                                     "skill_slot": str(getattr(skill, '_slot', ''))}
+                self.bus.emit(EventType.BEFORE_ATTACK, before_attack_ctx)
+                state.runtime['current_action_dynamic_damage_bonus'] = float(before_attack_ctx.get('dynamic_damage_bonus', 0.0))
+                state.runtime['current_action_attack_level_bonus'] = int(before_attack_ctx.get('attack_level_bonus', 0))
+
+                partial = [(state, [], 0)]
+                for coin_index, coin in enumerate(skill.coins, start=1):
+                    expanded = []
+                    for pstate, outs, prior_heads in partial:
+                        # On Clash Lose, only explicitly unbreakable coins are
+                        # retained as cracked follow-up attacks. Exact clash
+                        # sequencing remains a documented extension point.
+                        if skill.clash_result == "lose" and not coin.unbreakable:
+                            expanded.append((pstate.clone(), outs + [("SKIP", False)]))
+                            continue
+                        for outcome in self.enumerate_coin_outcomes(pstate, identity, coin):
+                            child = pstate.clone()
+                            self.simulate_coin(child, identity, skill, coin,
+                                               outcome[0], outcome[1], coin_index, prior_heads)
+                            next_heads = prior_heads + (1 if outcome[0] == "H" else 0)
+                            expanded.append((child, outs + [outcome], next_heads))
+                    partial = expanded
+
+                for pstate, outs, _prior_heads in partial:
+                    if pstate.enemy.hp > 0:
+                        for effect in skill.effects_on_hit:
+                            self.apply_effect(pstate, identity.id, effect.get("target", "self"), effect)
+                    self.bus.emit(EventType.SKILL_END, {"state": pstate, "identity": identity, "skill": skill})
+                    new_branches.append((pstate, action_outcomes + [(identity.id, skill.id, outs)], 0))
+            branches = new_branches
+
+        candidates = []
+        for state, action_outcomes, _ in branches:
+            self.turn_end(state)
+            candidates.append({"damage": state.turn_damage,
+                               "remaining_hp": state.enemy.hp,
+                               "state": state,
+                               "coin_results": action_outcomes})
+        if not candidates:
+            return {"damage": 0.0, "remaining_hp": initial.enemy.hp,
+                    "state": initial.clone(), "coin_results": []}
+        return max(candidates, key=lambda x: x["damage"])
+
+
+class ActionSpec:
+    def __init__(self, identity_id: Optional[str] = None,
+                 skill_id: Optional[str] = None):
+        self.identity_id = identity_id
+        self.skill_id = skill_id
+
+    @property
+    def fixed(self):
+        return self.identity_id is not None and self.skill_id is not None
+
+
+def build_candidate_actions(identities: Dict[str, IdentityData], spec: ActionSpec):
+    if spec.fixed:
+        ident = identities[spec.identity_id]
+        return [(ident, ident.skills[spec.skill_id])]
+    return [(ident, skill) for ident in identities.values() for skill in ident.skills.values()]
+
+
+def optimize_turn(initial: BattleState, identities: Dict[str, IdentityData],
+                  slots: List[ActionSpec]) -> Dict[str, Any]:
+    engine = DamageEngine()
+    best = None
+    choices = [build_candidate_actions(identities, s) for s in slots]
+    for actions in product(*choices):
+        result = engine.simulate_turn(initial, list(actions), mode="MAX")
+        if best is None or result["damage"] > best["damage"]:
+            best = {
+                "damage": result["damage"],
+                "actions": [(i.id, s.id) for i, s in actions],
+                "remaining_hp": result["remaining_hp"],
+                "state": result["state"],
+                "coin_results": result["coin_results"],
+            }
+    return best

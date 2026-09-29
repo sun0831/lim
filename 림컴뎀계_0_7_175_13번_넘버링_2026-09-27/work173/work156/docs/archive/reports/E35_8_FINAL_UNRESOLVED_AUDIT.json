@@ -1,0 +1,77 @@
+{
+  "version": "E35-8",
+  "scope": "GIMMICK_GAP_REPORT_v4.json / gaps",
+  "record_count": 360,
+  "total_clauses": 1103,
+  "converted_clauses": 314,
+  "unsupported_clauses": 789,
+  "conversion_rate_percent": 28.47,
+  "record_state_counts": {
+    "partial_lowering": 167,
+    "no_lowering": 170,
+    "fully_lowered": 23
+  },
+  "unsupported_reason_counts": {
+    "effect": 337,
+    "trigger": 452
+  },
+  "categories": {
+    "action_trigger": {
+      "clauses": 871,
+      "converted": 253,
+      "unsupported": 618,
+      "conversion_rate_percent": 29.05
+    },
+    "target_selection": {
+      "clauses": 358,
+      "converted": 110,
+      "unsupported": 248,
+      "conversion_rate_percent": 30.73
+    },
+    "resource_transform": {
+      "clauses": 829,
+      "converted": 228,
+      "unsupported": 601,
+      "conversion_rate_percent": 27.5
+    },
+    "skill_transform": {
+      "clauses": 146,
+      "converted": 38,
+      "unsupported": 108,
+      "conversion_rate_percent": 26.03
+    },
+    "probability_random": {
+      "clauses": 137,
+      "converted": 26,
+      "unsupported": 111,
+      "conversion_rate_percent": 18.98
+    },
+    "multi_target": {
+      "clauses": 149,
+      "converted": 67,
+      "unsupported": 82,
+      "conversion_rate_percent": 44.97
+    },
+    "stack_threshold": {
+      "clauses": 149,
+      "converted": 45,
+      "unsupported": 104,
+      "conversion_rate_percent": 30.2
+    },
+    "cross_identity": {
+      "clauses": 489,
+      "converted": 165,
+      "unsupported": 324,
+      "conversion_rate_percent": 33.74
+    },
+    "special_state": {
+      "clauses": 244,
+      "converted": 58,
+      "unsupported": 186,
+      "conversion_rate_percent": 23.77
+    }
+  },
+  "new_primitive_required": false,
+  "new_runtime_required": false,
+  "scope_outcome": "E35 compiler/lowering contract is frozen for E36 integration; remaining clauses are retained as explicit unsupported/parser-contract gaps."
+}

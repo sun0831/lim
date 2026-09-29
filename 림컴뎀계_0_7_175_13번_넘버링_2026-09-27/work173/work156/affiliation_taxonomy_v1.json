@@ -1,0 +1,2800 @@
+{
+  "version": "0.6.15",
+  "principle": "Affiliation taxonomy is independent from seven generic keywords. combat_relevance=confirmed is conservative and only means an implemented cross-identity combat rule exists; unverified groups are not auto-loaded.",
+  "categories": [
+    "association",
+    "beast_group",
+    "corporation",
+    "crew_faction",
+    "finger_faction",
+    "group",
+    "location_group",
+    "office",
+    "organization",
+    "syndicate"
+  ],
+  "affiliations": {
+    "limbus_company": {
+      "id": "limbus_company",
+      "aliases": [
+        "림버스 컴퍼니",
+        "LCB",
+        "LIMBUS COMPANY LCC",
+        "LIMBUS COMPANY LCA"
+      ],
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10101",
+        "identity-10111",
+        "identity-10201",
+        "identity-10211",
+        "identity-10301",
+        "identity-10401",
+        "identity-10406",
+        "identity-10501",
+        "identity-10601",
+        "identity-10701",
+        "identity-10801",
+        "identity-10804",
+        "identity-10901",
+        "identity-10903",
+        "identity-11001",
+        "identity-11101",
+        "identity-11114",
+        "identity-11201",
+        "identity-11214",
+        "identity-11215"
+      ],
+      "member_count": 20
+    },
+    "blade_lineage": {
+      "id": "blade_lineage",
+      "aliases": [
+        "BLADE LINEAGE"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "blade_lineage",
+      "members": [
+        "identity-10103",
+        "identity-10208",
+        "identity-10308",
+        "identity-10508",
+        "identity-11002",
+        "identity-11102"
+      ],
+      "member_count": 6
+    },
+    "thumb": {
+      "id": "thumb",
+      "aliases": [
+        "THUMB FINGER"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "thumb",
+      "members": [
+        "identity-10512",
+        "identity-11013"
+      ],
+      "member_count": 2
+    },
+    "middle": {
+      "id": "middle",
+      "aliases": [
+        "MIDDLE FINGER"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "middle",
+      "members": [
+        "identity-10306",
+        "identity-10507",
+        "identity-10715",
+        "identity-10814",
+        "identity-11012",
+        "identity-11115"
+      ],
+      "member_count": 6
+    },
+    "ring": {
+      "id": "ring",
+      "aliases": [
+        "RING FINGER",
+        "RING FINGER POINTILLISM",
+        "RING FINGER PHYSICAL",
+        "RING FINGER FAUVISM"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "ring",
+      "members": [
+        "identity-10109",
+        "identity-10215",
+        "identity-10515",
+        "identity-10614",
+        "identity-10915",
+        "identity-11109"
+      ],
+      "member_count": 6
+    },
+    "index": {
+      "id": "index",
+      "aliases": [
+        "INDEX FINGER"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "index",
+      "members": [
+        "identity-10115",
+        "identity-10214",
+        "identity-10314"
+      ],
+      "member_count": 3
+    },
+    "pinky": {
+      "id": "pinky",
+      "aliases": [
+        "PINKY"
+      ],
+      "category": "finger_faction",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [],
+      "member_count": 0
+    },
+    "pequod": {
+      "id": "pequod",
+      "aliases": [
+        "PEQUOD CREW"
+      ],
+      "category": "crew_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "pequod",
+      "members": [
+        "identity-10107",
+        "identity-10707",
+        "identity-10808"
+      ],
+      "member_count": 3
+    },
+    "black_cloud": {
+      "id": "black_cloud",
+      "aliases": [
+        "BLACK CLOUD"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "black_cloud",
+      "members": [
+        "identity-10403",
+        "identity-10602",
+        "identity-10712",
+        "identity-10811",
+        "identity-10902",
+        "identity-11208"
+      ],
+      "member_count": 6
+    },
+    "spider_house": {
+      "id": "spider_house",
+      "aliases": [
+        "SPIDER HOUSE"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "spider_house",
+      "members": [
+        "identity-10115",
+        "identity-10215",
+        "identity-10314",
+        "identity-10415",
+        "identity-10614",
+        "identity-10716",
+        "identity-10814",
+        "identity-10916",
+        "identity-11015",
+        "identity-11115"
+      ],
+      "member_count": 10
+    },
+    "seven": {
+      "id": "seven",
+      "aliases": [
+        "SEVEN"
+      ],
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "seven",
+      "members": [
+        "identity-10102",
+        "identity-10206",
+        "identity-10402",
+        "identity-10706",
+        "identity-11104"
+      ],
+      "member_count": 5
+    },
+    "cinq": {
+      "id": "cinq",
+      "aliases": [
+        "CINQ"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10305",
+        "identity-10311",
+        "identity-10511",
+        "identity-11008",
+        "identity-11106"
+      ],
+      "member_count": 5
+    },
+    "zwei": {
+      "id": "zwei",
+      "aliases": [
+        "ZWEI"
+      ],
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "zwei",
+      "members": [
+        "identity-10205",
+        "identity-10810",
+        "identity-10906",
+        "identity-11003",
+        "identity-11010",
+        "identity-11206"
+      ],
+      "member_count": 6
+    },
+    "liu": {
+      "id": "liu",
+      "aliases": [
+        "LIU"
+      ],
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "liu",
+      "members": [
+        "identity-10112",
+        "identity-10407",
+        "identity-10502",
+        "identity-10604",
+        "identity-10806",
+        "identity-10908",
+        "identity-11202"
+      ],
+      "member_count": 7
+    },
+    "dieci": {
+      "id": "dieci",
+      "aliases": [
+        "DIECI"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10108",
+        "identity-10510",
+        "identity-10608",
+        "identity-10907"
+      ],
+      "member_count": 4
+    },
+    "shi": {
+      "id": "shi",
+      "aliases": [
+        "SHI"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10213",
+        "identity-10303",
+        "identity-10702",
+        "identity-10803"
+      ],
+      "member_count": 4
+    },
+    "n_corp": {
+      "id": "n_corp",
+      "aliases": [
+        "N사",
+        "N사 광신도"
+      ],
+      "category": "corporation",
+      "combat_relevance": "confirmed",
+      "combat_module": "n_corp",
+      "members": [
+        "identity-10113",
+        "identity-10204",
+        "identity-10304",
+        "identity-10412",
+        "identity-10504",
+        "identity-10704",
+        "identity-10904",
+        "identity-11005"
+      ],
+      "member_count": 8
+    },
+    "w_corp": {
+      "id": "w_corp",
+      "aliases": [
+        "W CORP"
+      ],
+      "category": "corporation",
+      "combat_relevance": "confirmed",
+      "combat_module": "w_corp",
+      "members": [
+        "identity-10106",
+        "identity-10202",
+        "identity-10302",
+        "identity-10405",
+        "identity-10503",
+        "identity-10606",
+        "identity-10713",
+        "identity-11110"
+      ],
+      "member_count": 8
+    },
+    "h_corp": {
+      "id": "h_corp",
+      "aliases": [
+        "H CORP"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10114",
+        "identity-10212",
+        "identity-10313",
+        "identity-10411",
+        "identity-10413",
+        "identity-10613",
+        "identity-10714",
+        "identity-10812",
+        "identity-10912",
+        "identity-11014",
+        "identity-11112",
+        "identity-11212"
+      ],
+      "member_count": 12
+    },
+    "l_corp": {
+      "id": "l_corp",
+      "aliases": [
+        "L CORP"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10110",
+        "identity-10203",
+        "identity-10207",
+        "identity-10307",
+        "identity-10312",
+        "identity-10410",
+        "identity-10414",
+        "identity-10514",
+        "identity-10913",
+        "identity-11107"
+      ],
+      "member_count": 10
+    },
+    "r_corp": {
+      "id": "r_corp",
+      "aliases": [
+        "R사"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10506",
+        "identity-10612",
+        "identity-10703",
+        "identity-10802",
+        "identity-10914"
+      ],
+      "member_count": 5
+    },
+    "t_corp": {
+      "id": "t_corp",
+      "aliases": [
+        "T사"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10309",
+        "identity-10909",
+        "identity-11113"
+      ],
+      "member_count": 3
+    },
+    "g_corp": {
+      "id": "g_corp",
+      "aliases": [
+        "G CORP"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11103",
+        "identity-11203"
+      ],
+      "member_count": 2
+    },
+    "k_corp": {
+      "id": "k_corp",
+      "aliases": [
+        "K사"
+      ],
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10605"
+      ],
+      "member_count": 1
+    },
+    "lce": {
+      "id": "lce",
+      "aliases": [
+        "LCE"
+      ],
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10111",
+        "identity-10211",
+        "identity-11214",
+        "identity-11215"
+      ],
+      "member_count": 4
+    },
+    "oufi": {
+      "id": "oufi",
+      "aliases": [
+        "OUFI",
+        "OUFI COOP"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10708",
+        "identity-10813"
+      ],
+      "member_count": 2
+    },
+    "devyat": {
+      "id": "devyat",
+      "aliases": [
+        "DEVYAT"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10910",
+        "identity-11011"
+      ],
+      "member_count": 2
+    },
+    "family_ga": {
+      "id": "family_ga",
+      "aliases": [
+        "FAMILY GA",
+        "FAMILY GA CANCELED"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10114",
+        "identity-10613",
+        "identity-10812"
+      ],
+      "member_count": 3
+    },
+    "multi_crack": {
+      "id": "multi_crack",
+      "aliases": [
+        "MULTI CRACK"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10210",
+        "identity-10709"
+      ],
+      "member_count": 2
+    },
+    "full_stop": {
+      "id": "full_stop",
+      "aliases": [
+        "FULL STOP"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "full_stop",
+      "members": [
+        "identity-10611",
+        "identity-10711"
+      ],
+      "member_count": 2
+    },
+    "molar": {
+      "id": "molar",
+      "aliases": [
+        "MOLAR"
+      ],
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10105",
+        "identity-10807",
+        "identity-11007",
+        "identity-11105"
+      ],
+      "member_count": 4
+    },
+    "hook_office": {
+      "id": "hook_office",
+      "aliases": [
+        "HOOK OFFICE"
+      ],
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10607"
+      ],
+      "member_count": 1
+    },
+    "jeong_office": {
+      "id": "jeong_office",
+      "aliases": [
+        "JEONG OFFICE"
+      ],
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10813"
+      ],
+      "member_count": 1
+    },
+    "firepunch_office": {
+      "id": "firepunch_office",
+      "aliases": [
+        "FIREPUNCH OFFICE"
+      ],
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11211"
+      ],
+      "member_count": 1
+    },
+    "trouble_shooter": {
+      "id": "trouble_shooter",
+      "aliases": [
+        "TROUBLE SHOOTER"
+      ],
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10505",
+        "identity-10905",
+        "identity-11205"
+      ],
+      "member_count": 3
+    },
+    "fang_hunt": {
+      "id": "fang_hunt",
+      "aliases": [
+        "FANG HUNT"
+      ],
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10610"
+      ],
+      "member_count": 1
+    },
+    "mariachi": {
+      "id": "mariachi",
+      "aliases": [
+        "MARIACHI"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11004"
+      ],
+      "member_count": 1
+    },
+    "kong_kong": {
+      "id": "kong_kong",
+      "aliases": [
+        "KONG KONG"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10603"
+      ],
+      "member_count": 1
+    },
+    "backstreet_cook": {
+      "id": "backstreet_cook",
+      "aliases": [
+        "BACKSTREET COOK"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10404",
+        "identity-11204"
+      ],
+      "member_count": 2
+    },
+    "linton": {
+      "id": "linton",
+      "aliases": [
+        "LINTON"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10408",
+        "identity-10809",
+        "identity-11209"
+      ],
+      "member_count": 3
+    },
+    "wuthering_heights": {
+      "id": "wuthering_heights",
+      "aliases": [
+        "WUTHERING HEIGHTS"
+      ],
+      "category": "location_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10209",
+        "identity-10710",
+        "identity-11108"
+      ],
+      "member_count": 3
+    },
+    "wild_hunt": {
+      "id": "wild_hunt",
+      "aliases": [
+        "WILD HUNT"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10710"
+      ],
+      "member_count": 1
+    },
+    "la_mancha_land": {
+      "id": "la_mancha_land",
+      "aliases": [
+        "LA MANCHA LAND"
+      ],
+      "category": "location_group",
+      "combat_relevance": "confirmed",
+      "combat_module": "la_mancha_land",
+      "members": [
+        "identity-10310",
+        "identity-10513",
+        "identity-10911",
+        "identity-11111",
+        "identity-11210"
+      ],
+      "member_count": 5
+    },
+    "atl": {
+      "id": "atl",
+      "aliases": [
+        "ATL"
+      ],
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10104",
+        "identity-10705",
+        "identity-10805",
+        "identity-11006"
+      ],
+      "member_count": 4
+    },
+    "lca": {
+      "id": "lca",
+      "aliases": [
+        "LIMBUS COMPANY LCA"
+      ],
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11114"
+      ],
+      "member_count": 1
+    },
+    "nightstiletto": {
+      "id": "nightstiletto",
+      "aliases": [
+        "NIGHTSTILETTO"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11213"
+      ],
+      "member_count": 1
+    },
+    "dual_hook_pirate": {
+      "id": "dual_hook_pirate",
+      "aliases": [
+        "DUAL HOOK PIRATE"
+      ],
+      "category": "crew_faction",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11207"
+      ],
+      "member_count": 1
+    },
+    "dead_rabbits": {
+      "id": "dead_rabbits",
+      "aliases": [
+        "DEAD RABBITS"
+      ],
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10509"
+      ],
+      "member_count": 1
+    },
+    "black_beast_rabbit": {
+      "id": "black_beast_rabbit",
+      "aliases": [
+        "BLACK BEAST RABBIT"
+      ],
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10212",
+        "identity-10411",
+        "identity-11112"
+      ],
+      "member_count": 3
+    },
+    "black_beast_chicken": {
+      "id": "black_beast_chicken",
+      "aliases": [
+        "BLACK BEAST CHICKEN"
+      ],
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10714",
+        "identity-11014"
+      ],
+      "member_count": 2
+    },
+    "black_beast_snake": {
+      "id": "black_beast_snake",
+      "aliases": [
+        "BLACK BEAST SNAKE"
+      ],
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10912",
+        "identity-11212"
+      ],
+      "member_count": 2
+    },
+    "black_beast_horse": {
+      "id": "black_beast_horse",
+      "aliases": [
+        "BLACK BEAST HORSE"
+      ],
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10114"
+      ],
+      "member_count": 1
+    },
+    "black_beast_sheep": {
+      "id": "black_beast_sheep",
+      "aliases": [
+        "BLACK BEAST SHEEP"
+      ],
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10313"
+      ],
+      "member_count": 1
+    },
+    "yurodivy": {
+      "id": "yurodivy",
+      "aliases": [
+        "YURODIVY"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-10409",
+        "identity-10609"
+      ],
+      "member_count": 2
+    },
+    "mari": {
+      "id": "mari",
+      "aliases": [
+        "MARIACHI"
+      ],
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "members": [
+        "identity-11004"
+      ],
+      "member_count": 1
+    },
+    "dawn_office": {
+      "id": "dawn_office",
+      "aliases": [
+        "DAWN"
+      ],
+      "category": "office",
+      "combat_relevance": "confirmed",
+      "combat_module": "dawn_office",
+      "members": [
+        "identity-10216",
+        "identity-11009",
+        "identity-11216"
+      ],
+      "member_count": 3
+    }
+  },
+  "identities": {
+    "identity-10101": {
+      "identity_id": "identity-10101",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10102": {
+      "identity_id": "identity-10102",
+      "full_name": "남부 세븐 협회 6과",
+      "affiliation_raw": [
+        "SEVEN"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ]
+    },
+    "identity-10103": {
+      "identity_id": "identity-10103",
+      "full_name": "검계 살수",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-10104": {
+      "identity_id": "identity-10104",
+      "full_name": "개화 E.G.O:: 동백",
+      "affiliation_raw": [
+        "ATL"
+      ],
+      "affiliation_tags": [
+        "atl"
+      ]
+    },
+    "identity-10105": {
+      "identity_id": "identity-10105",
+      "full_name": "어금니 사무소 해결사",
+      "affiliation_raw": [
+        "MOLAR"
+      ],
+      "affiliation_tags": [
+        "molar"
+      ]
+    },
+    "identity-10106": {
+      "identity_id": "identity-10106",
+      "full_name": "W사 3등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10107": {
+      "identity_id": "identity-10107",
+      "full_name": "피쿼드호 일등 항해사",
+      "affiliation_raw": [
+        "PEQUOD CREW"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ]
+    },
+    "identity-10108": {
+      "identity_id": "identity-10108",
+      "full_name": "남부 디에치 협회 4과",
+      "affiliation_raw": [
+        "DIECI"
+      ],
+      "affiliation_tags": [
+        "dieci"
+      ]
+    },
+    "identity-10109": {
+      "identity_id": "identity-10109",
+      "full_name": "약지 점묘파 스튜던트",
+      "affiliation_raw": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ]
+    },
+    "identity-10110": {
+      "identity_id": "identity-10110",
+      "full_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10111": {
+      "identity_id": "identity-10111",
+      "full_name": "LCE E.G.O:: 초롱",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ]
+    },
+    "identity-10112": {
+      "identity_id": "identity-10112",
+      "full_name": "남부 리우 협회 3과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10113": {
+      "identity_id": "identity-10113",
+      "full_name": "N사 E.G.O:: 흉탄",
+      "affiliation_raw": [
+        "N사"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10114": {
+      "identity_id": "identity-10114",
+      "full_name": "흑수 - 오 필두",
+      "affiliation_raw": [
+        "FAMILY GA",
+        "BLACK BEAST HORSE",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_horse",
+        "family_ga",
+        "h_corp"
+      ]
+    },
+    "identity-10115": {
+      "identity_id": "identity-10115",
+      "full_name": "거미집 검지 아비",
+      "affiliation_raw": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "index",
+        "spider_house"
+      ]
+    },
+    "identity-10116": {
+      "identity_id": "identity-10116",
+      "full_name": "LCE E.G.O::차원찢개",
+      "affiliation_raw": [],
+      "affiliation_tags": []
+    },
+    "identity-10201": {
+      "identity_id": "identity-10201",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10202": {
+      "identity_id": "identity-10202",
+      "full_name": "W사 2등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10203": {
+      "identity_id": "identity-10203",
+      "full_name": "살아남은 로보토미 직원",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10204": {
+      "identity_id": "identity-10204",
+      "full_name": "쥐는 자",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10205": {
+      "identity_id": "identity-10205",
+      "full_name": "남부 츠바이 협회 4과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-10206": {
+      "identity_id": "identity-10206",
+      "full_name": "남부 세븐 협회 4과",
+      "affiliation_raw": [
+        "SEVEN"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ]
+    },
+    "identity-10207": {
+      "identity_id": "identity-10207",
+      "full_name": "로보토미 E.G.O:: 후회",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10208": {
+      "identity_id": "identity-10208",
+      "full_name": "검계 살수",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-10209": {
+      "identity_id": "identity-10209",
+      "full_name": "워더링하이츠 버틀러",
+      "affiliation_raw": [
+        "WUTHERING HEIGHTS"
+      ],
+      "affiliation_tags": [
+        "wuthering_heights"
+      ]
+    },
+    "identity-10210": {
+      "identity_id": "identity-10210",
+      "full_name": "멀티크랙 사무소 대표",
+      "affiliation_raw": [
+        "MULTI CRACK"
+      ],
+      "affiliation_tags": [
+        "multi_crack"
+      ]
+    },
+    "identity-10211": {
+      "identity_id": "identity-10211",
+      "full_name": "LCE E.G.O:: 홍염살",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ]
+    },
+    "identity-10212": {
+      "identity_id": "identity-10212",
+      "full_name": "흑수 - 묘 필두",
+      "affiliation_raw": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ]
+    },
+    "identity-10213": {
+      "identity_id": "identity-10213",
+      "full_name": "동부 시 협회 3과",
+      "affiliation_raw": [
+        "SHI"
+      ],
+      "affiliation_tags": [
+        "shi"
+      ]
+    },
+    "identity-10214": {
+      "identity_id": "identity-10214",
+      "full_name": "검지 수행자: 【쪽지】",
+      "affiliation_raw": [
+        "INDEX FINGER"
+      ],
+      "affiliation_tags": [
+        "index"
+      ]
+    },
+    "identity-10215": {
+      "identity_id": "identity-10215",
+      "full_name": "거미집 약지 제자",
+      "affiliation_raw": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "ring",
+        "spider_house"
+      ]
+    },
+    "identity-10216": {
+      "identity_id": "identity-10216",
+      "full_name": "새벽 사무소 해결사",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "dawn_office"
+      ]
+    },
+    "identity-10301": {
+      "identity_id": "identity-10301",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10302": {
+      "identity_id": "identity-10302",
+      "full_name": "W사 3등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10303": {
+      "identity_id": "identity-10303",
+      "full_name": "남부 시 협회 5과 부장",
+      "affiliation_raw": [
+        "SHI"
+      ],
+      "affiliation_tags": [
+        "shi"
+      ]
+    },
+    "identity-10304": {
+      "identity_id": "identity-10304",
+      "full_name": "N사 중간 망치",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10305": {
+      "identity_id": "identity-10305",
+      "full_name": "남부 섕크 협회 5과 부장",
+      "affiliation_raw": [
+        "CINQ"
+      ],
+      "affiliation_tags": [
+        "cinq"
+      ]
+    },
+    "identity-10306": {
+      "identity_id": "identity-10306",
+      "full_name": "중지 작은 아우",
+      "affiliation_raw": [
+        "MIDDLE FINGER"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ]
+    },
+    "identity-10307": {
+      "identity_id": "identity-10307",
+      "full_name": "로보토미 E.G.O:: 초롱",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10308": {
+      "identity_id": "identity-10308",
+      "full_name": "검계 살수",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-10309": {
+      "identity_id": "identity-10309",
+      "full_name": "T사 3등급 징수직 직원",
+      "affiliation_raw": [
+        "T사"
+      ],
+      "affiliation_tags": [
+        "t_corp"
+      ]
+    },
+    "identity-10310": {
+      "identity_id": "identity-10310",
+      "full_name": "라만차랜드 실장",
+      "affiliation_raw": [
+        "LA MANCHA LAND"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ]
+    },
+    "identity-10311": {
+      "identity_id": "identity-10311",
+      "full_name": "동부 섕크 협회 3과",
+      "affiliation_raw": [
+        "CINQ"
+      ],
+      "affiliation_tags": [
+        "cinq"
+      ]
+    },
+    "identity-10312": {
+      "identity_id": "identity-10312",
+      "full_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10313": {
+      "identity_id": "identity-10313",
+      "full_name": "흑수 - 미",
+      "affiliation_raw": [
+        "BLACK BEAST SHEEP",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_sheep",
+        "h_corp"
+      ]
+    },
+    "identity-10314": {
+      "identity_id": "identity-10314",
+      "full_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "affiliation_raw": [
+        "INDEX FINGER",
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "index",
+        "spider_house"
+      ]
+    },
+    "identity-10401": {
+      "identity_id": "identity-10401",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10402": {
+      "identity_id": "identity-10402",
+      "full_name": "남부 세븐 협회 6과",
+      "affiliation_raw": [
+        "SEVEN"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ]
+    },
+    "identity-10403": {
+      "identity_id": "identity-10403",
+      "full_name": "흑운회 와카슈",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-10404": {
+      "identity_id": "identity-10404",
+      "full_name": "료. 고. 파. 주방장",
+      "affiliation_raw": [
+        "BACKSTREET COOK"
+      ],
+      "affiliation_tags": [
+        "backstreet_cook"
+      ]
+    },
+    "identity-10405": {
+      "identity_id": "identity-10405",
+      "full_name": "W사 3등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10406": {
+      "identity_id": "identity-10406",
+      "full_name": "LCCB 대리",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10407": {
+      "identity_id": "identity-10407",
+      "full_name": "남부 리우 협회 4과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10408": {
+      "identity_id": "identity-10408",
+      "full_name": "에드가 가문 치프 버틀러",
+      "affiliation_raw": [
+        "LINTON"
+      ],
+      "affiliation_tags": [
+        "linton"
+      ]
+    },
+    "identity-10409": {
+      "identity_id": "identity-10409",
+      "full_name": "20구 유로지비",
+      "affiliation_raw": [
+        "YURODIVY"
+      ],
+      "affiliation_tags": [
+        "yurodivy"
+      ]
+    },
+    "identity-10410": {
+      "identity_id": "identity-10410",
+      "full_name": "로보토미 E.G.O:: 적안・참회",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10411": {
+      "identity_id": "identity-10411",
+      "full_name": "흑수 - 묘",
+      "affiliation_raw": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ]
+    },
+    "identity-10412": {
+      "identity_id": "identity-10412",
+      "full_name": "N사 E.G.O:: 경멸, 경외",
+      "affiliation_raw": [
+        "N사"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10413": {
+      "identity_id": "identity-10413",
+      "full_name": "홍원 방랑무사",
+      "affiliation_raw": [
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "h_corp"
+      ]
+    },
+    "identity-10414": {
+      "identity_id": "identity-10414",
+      "full_name": "로보토미 E.G.O:: 잔향・외로움",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10415": {
+      "identity_id": "identity-10415",
+      "full_name": "거미집의 검",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "spider_house"
+      ]
+    },
+    "identity-10501": {
+      "identity_id": "identity-10501",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10502": {
+      "identity_id": "identity-10502",
+      "full_name": "남부 리우 협회 6과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10503": {
+      "identity_id": "identity-10503",
+      "full_name": "W사 2등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10504": {
+      "identity_id": "identity-10504",
+      "full_name": "N사 큰 망치",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10505": {
+      "identity_id": "identity-10505",
+      "full_name": "장미스패너 공방 해결사",
+      "affiliation_raw": [
+        "TROUBLE SHOOTER"
+      ],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ]
+    },
+    "identity-10506": {
+      "identity_id": "identity-10506",
+      "full_name": "R사 제 4무리 코뿔소팀",
+      "affiliation_raw": [
+        "R사"
+      ],
+      "affiliation_tags": [
+        "r_corp"
+      ]
+    },
+    "identity-10507": {
+      "identity_id": "identity-10507",
+      "full_name": "중지 작은 아우",
+      "affiliation_raw": [
+        "MIDDLE FINGER"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ]
+    },
+    "identity-10508": {
+      "identity_id": "identity-10508",
+      "full_name": "검계 우두머리",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-10509": {
+      "identity_id": "identity-10509",
+      "full_name": "데드레빗츠 보스",
+      "affiliation_raw": [
+        "DEAD RABBITS"
+      ],
+      "affiliation_tags": [
+        "dead_rabbits"
+      ]
+    },
+    "identity-10510": {
+      "identity_id": "identity-10510",
+      "full_name": "남부 디에치 협회 4과 부장",
+      "affiliation_raw": [
+        "DIECI"
+      ],
+      "affiliation_tags": [
+        "dieci"
+      ]
+    },
+    "identity-10511": {
+      "identity_id": "identity-10511",
+      "full_name": "서부 섕크 협회 3과",
+      "affiliation_raw": [
+        "CINQ"
+      ],
+      "affiliation_tags": [
+        "cinq"
+      ]
+    },
+    "identity-10512": {
+      "identity_id": "identity-10512",
+      "full_name": "동부 엄지 카포IIII",
+      "affiliation_raw": [
+        "THUMB FINGER"
+      ],
+      "affiliation_tags": [
+        "thumb"
+      ]
+    },
+    "identity-10513": {
+      "identity_id": "identity-10513",
+      "full_name": "라만차랜드 왕자",
+      "affiliation_raw": [
+        "LA MANCHA LAND"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ]
+    },
+    "identity-10514": {
+      "identity_id": "identity-10514",
+      "full_name": "로보토미 E.G.O:: 호넷【변조】",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10515": {
+      "identity_id": "identity-10515",
+      "full_name": "약지 야수파 스튜던트",
+      "affiliation_raw": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ]
+    },
+    "identity-10601": {
+      "identity_id": "identity-10601",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10602": {
+      "identity_id": "identity-10602",
+      "full_name": "흑운회 와카슈",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-10603": {
+      "identity_id": "identity-10603",
+      "full_name": "콩콩이파 두목",
+      "affiliation_raw": [
+        "KONG KONG"
+      ],
+      "affiliation_tags": [
+        "kong_kong"
+      ]
+    },
+    "identity-10604": {
+      "identity_id": "identity-10604",
+      "full_name": "남부 리우 협회 5과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10605": {
+      "identity_id": "identity-10605",
+      "full_name": "K사 3등급 적출직 직원",
+      "affiliation_raw": [
+        "K사"
+      ],
+      "affiliation_tags": [
+        "k_corp"
+      ]
+    },
+    "identity-10606": {
+      "identity_id": "identity-10606",
+      "full_name": "W사 2등급 정리 요원",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10607": {
+      "identity_id": "identity-10607",
+      "full_name": "갈고리 사무소 해결사",
+      "affiliation_raw": [
+        "HOOK OFFICE"
+      ],
+      "affiliation_tags": [
+        "hook_office"
+      ]
+    },
+    "identity-10608": {
+      "identity_id": "identity-10608",
+      "full_name": "남부 디에치 협회 4과",
+      "affiliation_raw": [
+        "DIECI"
+      ],
+      "affiliation_tags": [
+        "dieci"
+      ]
+    },
+    "identity-10609": {
+      "identity_id": "identity-10609",
+      "full_name": "20구 유로지비",
+      "affiliation_raw": [
+        "YURODIVY"
+      ],
+      "affiliation_tags": [
+        "yurodivy"
+      ]
+    },
+    "identity-10610": {
+      "identity_id": "identity-10610",
+      "full_name": "송곳니 사냥 사무소 해결사",
+      "affiliation_raw": [
+        "FANG HUNT"
+      ],
+      "affiliation_tags": [
+        "fang_hunt"
+      ]
+    },
+    "identity-10611": {
+      "identity_id": "identity-10611",
+      "full_name": "마침표 사무소 대표",
+      "affiliation_raw": [
+        "FULL STOP"
+      ],
+      "affiliation_tags": [
+        "full_stop"
+      ]
+    },
+    "identity-10612": {
+      "identity_id": "identity-10612",
+      "full_name": "R사 제 4무리 순록팀",
+      "affiliation_raw": [
+        "R사"
+      ],
+      "affiliation_tags": [
+        "r_corp"
+      ]
+    },
+    "identity-10613": {
+      "identity_id": "identity-10613",
+      "full_name": "홍원 군주",
+      "affiliation_raw": [
+        "H CORP",
+        "FAMILY GA CANCELED"
+      ],
+      "affiliation_tags": [
+        "family_ga",
+        "h_corp"
+      ]
+    },
+    "identity-10614": {
+      "identity_id": "identity-10614",
+      "full_name": "거미집 약지 아비",
+      "affiliation_raw": [
+        "RING FINGER PHYSICAL",
+        "RING FINGER",
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "ring",
+        "spider_house"
+      ]
+    },
+    "identity-10615": {
+      "identity_id": "identity-10615",
+      "full_name": "S사 추노꾼",
+      "affiliation_raw": [],
+      "affiliation_tags": []
+    },
+    "identity-10701": {
+      "identity_id": "identity-10701",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10702": {
+      "identity_id": "identity-10702",
+      "full_name": "남부 시 협회 5과",
+      "affiliation_raw": [
+        "SHI"
+      ],
+      "affiliation_tags": [
+        "shi"
+      ]
+    },
+    "identity-10703": {
+      "identity_id": "identity-10703",
+      "full_name": "R사 제 4무리 토끼팀",
+      "affiliation_raw": [
+        "R사"
+      ],
+      "affiliation_tags": [
+        "r_corp"
+      ]
+    },
+    "identity-10704": {
+      "identity_id": "identity-10704",
+      "full_name": "N사 작은 망치",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10705": {
+      "identity_id": "identity-10705",
+      "full_name": "로보토미 E.G.O:: 여우비",
+      "affiliation_raw": [
+        "ATL"
+      ],
+      "affiliation_tags": [
+        "atl"
+      ]
+    },
+    "identity-10706": {
+      "identity_id": "identity-10706",
+      "full_name": "남부 세븐 협회 4과",
+      "affiliation_raw": [
+        "SEVEN"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ]
+    },
+    "identity-10707": {
+      "identity_id": "identity-10707",
+      "full_name": "피쿼드호 작살잡이",
+      "affiliation_raw": [
+        "PEQUOD CREW"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ]
+    },
+    "identity-10708": {
+      "identity_id": "identity-10708",
+      "full_name": "남부 외우피 협회 3과",
+      "affiliation_raw": [
+        "OUFI"
+      ],
+      "affiliation_tags": [
+        "oufi"
+      ]
+    },
+    "identity-10709": {
+      "identity_id": "identity-10709",
+      "full_name": "멀티크랙 사무소 해결사",
+      "affiliation_raw": [
+        "MULTI CRACK"
+      ],
+      "affiliation_tags": [
+        "multi_crack"
+      ]
+    },
+    "identity-10710": {
+      "identity_id": "identity-10710",
+      "full_name": "와일드헌트",
+      "affiliation_raw": [
+        "WILD HUNT",
+        "WUTHERING HEIGHTS"
+      ],
+      "affiliation_tags": [
+        "wild_hunt",
+        "wuthering_heights"
+      ]
+    },
+    "identity-10711": {
+      "identity_id": "identity-10711",
+      "full_name": "마침표 사무소 해결사",
+      "affiliation_raw": [
+        "FULL STOP"
+      ],
+      "affiliation_tags": [
+        "full_stop"
+      ]
+    },
+    "identity-10712": {
+      "identity_id": "identity-10712",
+      "full_name": "흑운회 와카슈",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-10713": {
+      "identity_id": "identity-10713",
+      "full_name": "W사 4등급 정리 요원 - CCA",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-10714": {
+      "identity_id": "identity-10714",
+      "full_name": "흑수 - 유 필두",
+      "affiliation_raw": [
+        "H CORP",
+        "BLACK BEAST CHICKEN"
+      ],
+      "affiliation_tags": [
+        "black_beast_chicken",
+        "h_corp"
+      ]
+    },
+    "identity-10715": {
+      "identity_id": "identity-10715",
+      "full_name": "중지 작은 형님",
+      "affiliation_raw": [
+        "MIDDLE FINGER"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ]
+    },
+    "identity-10716": {
+      "identity_id": "identity-10716",
+      "full_name": "거미집 엄지 제자",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "spider_house"
+      ]
+    },
+    "identity-10801": {
+      "identity_id": "identity-10801",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10802": {
+      "identity_id": "identity-10802",
+      "full_name": "R사 제 4무리 순록팀",
+      "affiliation_raw": [
+        "R사"
+      ],
+      "affiliation_tags": [
+        "r_corp"
+      ]
+    },
+    "identity-10803": {
+      "identity_id": "identity-10803",
+      "full_name": "남부 시 협회 5과",
+      "affiliation_raw": [
+        "SHI"
+      ],
+      "affiliation_tags": [
+        "shi"
+      ]
+    },
+    "identity-10804": {
+      "identity_id": "identity-10804",
+      "full_name": "LCCB 대리",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10805": {
+      "identity_id": "identity-10805",
+      "full_name": "로보토미 E.G.O:: 출렁임",
+      "affiliation_raw": [
+        "ATL"
+      ],
+      "affiliation_tags": [
+        "atl"
+      ]
+    },
+    "identity-10806": {
+      "identity_id": "identity-10806",
+      "full_name": "남부 리우 협회 4과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10807": {
+      "identity_id": "identity-10807",
+      "full_name": "어금니 보트 센터 해결사",
+      "affiliation_raw": [
+        "MOLAR"
+      ],
+      "affiliation_tags": [
+        "molar"
+      ]
+    },
+    "identity-10808": {
+      "identity_id": "identity-10808",
+      "full_name": "피쿼드호 선장",
+      "affiliation_raw": [
+        "PEQUOD CREW"
+      ],
+      "affiliation_tags": [
+        "pequod"
+      ]
+    },
+    "identity-10809": {
+      "identity_id": "identity-10809",
+      "full_name": "에드가 가문 버틀러",
+      "affiliation_raw": [
+        "LINTON"
+      ],
+      "affiliation_tags": [
+        "linton"
+      ]
+    },
+    "identity-10810": {
+      "identity_id": "identity-10810",
+      "full_name": "서부 츠바이 협회 3과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-10811": {
+      "identity_id": "identity-10811",
+      "full_name": "흑운회 부조장",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-10812": {
+      "identity_id": "identity-10812",
+      "full_name": "가주 후보",
+      "affiliation_raw": [
+        "FAMILY GA",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "family_ga",
+        "h_corp"
+      ]
+    },
+    "identity-10813": {
+      "identity_id": "identity-10813",
+      "full_name": "정사무소 대표",
+      "affiliation_raw": [
+        "JEONG OFFICE",
+        "OUFI COOP"
+      ],
+      "affiliation_tags": [
+        "jeong_office",
+        "oufi"
+      ]
+    },
+    "identity-10814": {
+      "identity_id": "identity-10814",
+      "full_name": "거미집 중지 제자",
+      "affiliation_raw": [
+        "MIDDLE FINGER",
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "middle",
+        "spider_house"
+      ]
+    },
+    "identity-10815": {
+      "identity_id": "identity-10815",
+      "full_name": "LCD 현장추리팀",
+      "affiliation_raw": [],
+      "affiliation_tags": []
+    },
+    "identity-10901": {
+      "identity_id": "identity-10901",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10902": {
+      "identity_id": "identity-10902",
+      "full_name": "흑운회 와카슈",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-10903": {
+      "identity_id": "identity-10903",
+      "full_name": "LCCB 대리",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCC"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-10904": {
+      "identity_id": "identity-10904",
+      "full_name": "N사 중간 망치",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-10905": {
+      "identity_id": "identity-10905",
+      "full_name": "장미스패너 공방 대표",
+      "affiliation_raw": [
+        "TROUBLE SHOOTER"
+      ],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ]
+    },
+    "identity-10906": {
+      "identity_id": "identity-10906",
+      "full_name": "남부 츠바이 협회 5과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-10907": {
+      "identity_id": "identity-10907",
+      "full_name": "남부 디에치 협회 4과",
+      "affiliation_raw": [
+        "DIECI"
+      ],
+      "affiliation_tags": [
+        "dieci"
+      ]
+    },
+    "identity-10908": {
+      "identity_id": "identity-10908",
+      "full_name": "남부 리우 협회 4과 부장",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-10909": {
+      "identity_id": "identity-10909",
+      "full_name": "T사 2등급 징수직 직원",
+      "affiliation_raw": [
+        "T사"
+      ],
+      "affiliation_tags": [
+        "t_corp"
+      ]
+    },
+    "identity-10910": {
+      "identity_id": "identity-10910",
+      "full_name": "북부 제뱌찌 협회 3과",
+      "affiliation_raw": [
+        "DEVYAT"
+      ],
+      "affiliation_tags": [
+        "devyat"
+      ]
+    },
+    "identity-10911": {
+      "identity_id": "identity-10911",
+      "full_name": "라만차랜드 공주",
+      "affiliation_raw": [
+        "LA MANCHA LAND"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ]
+    },
+    "identity-10912": {
+      "identity_id": "identity-10912",
+      "full_name": "흑수 - 사",
+      "affiliation_raw": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_snake",
+        "h_corp"
+      ]
+    },
+    "identity-10913": {
+      "identity_id": "identity-10913",
+      "full_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-10914": {
+      "identity_id": "identity-10914",
+      "full_name": "R사 제 4무리 순록팀",
+      "affiliation_raw": [
+        "R사"
+      ],
+      "affiliation_tags": [
+        "r_corp"
+      ]
+    },
+    "identity-10915": {
+      "identity_id": "identity-10915",
+      "full_name": "약지 야수파 도슨트",
+      "affiliation_raw": [
+        "RING FINGER",
+        "RING FINGER FAUVISM"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ]
+    },
+    "identity-10916": {
+      "identity_id": "identity-10916",
+      "full_name": "거미집 엄지 아비",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "spider_house"
+      ]
+    },
+    "identity-11001": {
+      "identity_id": "identity-11001",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-11002": {
+      "identity_id": "identity-11002",
+      "full_name": "검계 살수",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-11003": {
+      "identity_id": "identity-11003",
+      "full_name": "남부 츠바이 협회 6과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-11004": {
+      "identity_id": "identity-11004",
+      "full_name": "마리아치 보스",
+      "affiliation_raw": [
+        "MARIACHI"
+      ],
+      "affiliation_tags": [
+        "mari",
+        "mariachi"
+      ]
+    },
+    "identity-11005": {
+      "identity_id": "identity-11005",
+      "full_name": "쥐어들 자",
+      "affiliation_raw": [
+        "N사",
+        "N사 광신도"
+      ],
+      "affiliation_tags": [
+        "n_corp"
+      ]
+    },
+    "identity-11006": {
+      "identity_id": "identity-11006",
+      "full_name": "로보토미 E.G.O:: 홍적",
+      "affiliation_raw": [
+        "ATL"
+      ],
+      "affiliation_tags": [
+        "atl"
+      ]
+    },
+    "identity-11007": {
+      "identity_id": "identity-11007",
+      "full_name": "어금니 보트 센터 해결사",
+      "affiliation_raw": [
+        "MOLAR"
+      ],
+      "affiliation_tags": [
+        "molar"
+      ]
+    },
+    "identity-11008": {
+      "identity_id": "identity-11008",
+      "full_name": "남부 섕크 협회 4과 부장",
+      "affiliation_raw": [
+        "CINQ"
+      ],
+      "affiliation_tags": [
+        "cinq"
+      ]
+    },
+    "identity-11009": {
+      "identity_id": "identity-11009",
+      "full_name": "새벽 사무소 해결사",
+      "affiliation_raw": [
+        "DAWN"
+      ],
+      "affiliation_tags": [
+        "dawn_office"
+      ]
+    },
+    "identity-11010": {
+      "identity_id": "identity-11010",
+      "full_name": "서부 츠바이 협회 3과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-11011": {
+      "identity_id": "identity-11011",
+      "full_name": "북부 제뱌찌 협회 3과",
+      "affiliation_raw": [
+        "DEVYAT"
+      ],
+      "affiliation_tags": [
+        "devyat"
+      ]
+    },
+    "identity-11012": {
+      "identity_id": "identity-11012",
+      "full_name": "중지 작은 아우",
+      "affiliation_raw": [
+        "MIDDLE FINGER"
+      ],
+      "affiliation_tags": [
+        "middle"
+      ]
+    },
+    "identity-11013": {
+      "identity_id": "identity-11013",
+      "full_name": "동부 엄지 솔다토II",
+      "affiliation_raw": [
+        "THUMB FINGER"
+      ],
+      "affiliation_tags": [
+        "thumb"
+      ]
+    },
+    "identity-11014": {
+      "identity_id": "identity-11014",
+      "full_name": "흑수 - 유",
+      "affiliation_raw": [
+        "BLACK BEAST CHICKEN",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_chicken",
+        "h_corp"
+      ]
+    },
+    "identity-11015": {
+      "identity_id": "identity-11015",
+      "full_name": "거미집 소지 제자",
+      "affiliation_raw": [
+        "SPIDER HOUSE"
+      ],
+      "affiliation_tags": [
+        "spider_house"
+      ]
+    },
+    "identity-11101": {
+      "identity_id": "identity-11101",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-11102": {
+      "identity_id": "identity-11102",
+      "full_name": "검계 살수",
+      "affiliation_raw": [
+        "BLADE LINEAGE"
+      ],
+      "affiliation_tags": [
+        "blade_lineage"
+      ]
+    },
+    "identity-11103": {
+      "identity_id": "identity-11103",
+      "full_name": "G사 부장",
+      "affiliation_raw": [
+        "G CORP"
+      ],
+      "affiliation_tags": [
+        "g_corp"
+      ]
+    },
+    "identity-11104": {
+      "identity_id": "identity-11104",
+      "full_name": "남부 세븐 협회 6과 부장",
+      "affiliation_raw": [
+        "SEVEN"
+      ],
+      "affiliation_tags": [
+        "seven"
+      ]
+    },
+    "identity-11105": {
+      "identity_id": "identity-11105",
+      "full_name": "어금니 사무소 해결사",
+      "affiliation_raw": [
+        "MOLAR"
+      ],
+      "affiliation_tags": [
+        "molar"
+      ]
+    },
+    "identity-11106": {
+      "identity_id": "identity-11106",
+      "full_name": "남부 섕크 협회 4과",
+      "affiliation_raw": [
+        "CINQ"
+      ],
+      "affiliation_tags": [
+        "cinq"
+      ]
+    },
+    "identity-11107": {
+      "identity_id": "identity-11107",
+      "full_name": "로보토미 E.G.O:: 마탄",
+      "affiliation_raw": [
+        "L CORP"
+      ],
+      "affiliation_tags": [
+        "l_corp"
+      ]
+    },
+    "identity-11108": {
+      "identity_id": "identity-11108",
+      "full_name": "워더링하이츠 치프 버틀러",
+      "affiliation_raw": [
+        "WUTHERING HEIGHTS"
+      ],
+      "affiliation_tags": [
+        "wuthering_heights"
+      ]
+    },
+    "identity-11109": {
+      "identity_id": "identity-11109",
+      "full_name": "약지 점묘파 스튜던트",
+      "affiliation_raw": [
+        "RING FINGER POINTILLISM",
+        "RING FINGER"
+      ],
+      "affiliation_tags": [
+        "ring"
+      ]
+    },
+    "identity-11110": {
+      "identity_id": "identity-11110",
+      "full_name": "W사 3등급 정리 요원 팀장",
+      "affiliation_raw": [
+        "W CORP"
+      ],
+      "affiliation_tags": [
+        "w_corp"
+      ]
+    },
+    "identity-11111": {
+      "identity_id": "identity-11111",
+      "full_name": "라만차랜드 이발사",
+      "affiliation_raw": [
+        "LA MANCHA LAND"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ]
+    },
+    "identity-11112": {
+      "identity_id": "identity-11112",
+      "full_name": "흑수 - 묘",
+      "affiliation_raw": [
+        "BLACK BEAST RABBIT",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_rabbit",
+        "h_corp"
+      ]
+    },
+    "identity-11113": {
+      "identity_id": "identity-11113",
+      "full_name": "T사 3등급 강력징수직 직원",
+      "affiliation_raw": [
+        "T사"
+      ],
+      "affiliation_tags": [
+        "t_corp"
+      ]
+    },
+    "identity-11114": {
+      "identity_id": "identity-11114",
+      "full_name": "LCA 우제트 선봉 3팀 팀장",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LIMBUS COMPANY LCA"
+      ],
+      "affiliation_tags": [
+        "lca",
+        "limbus_company"
+      ]
+    },
+    "identity-11115": {
+      "identity_id": "identity-11115",
+      "full_name": "거미집 중지 아비",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "middle",
+        "spider_house"
+      ]
+    },
+    "identity-11201": {
+      "identity_id": "identity-11201",
+      "full_name": "LCB 수감자",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCB"
+      ],
+      "affiliation_tags": [
+        "limbus_company"
+      ]
+    },
+    "identity-11202": {
+      "identity_id": "identity-11202",
+      "full_name": "남부 리우 협회 6과",
+      "affiliation_raw": [
+        "LIU"
+      ],
+      "affiliation_tags": [
+        "liu"
+      ]
+    },
+    "identity-11203": {
+      "identity_id": "identity-11203",
+      "full_name": "G사 일등대리",
+      "affiliation_raw": [
+        "G CORP"
+      ],
+      "affiliation_tags": [
+        "g_corp"
+      ]
+    },
+    "identity-11204": {
+      "identity_id": "identity-11204",
+      "full_name": "료. 고. 파. 조수",
+      "affiliation_raw": [
+        "BACKSTREET COOK"
+      ],
+      "affiliation_tags": [
+        "backstreet_cook"
+      ]
+    },
+    "identity-11205": {
+      "identity_id": "identity-11205",
+      "full_name": "장미스패너 공방 해결사",
+      "affiliation_raw": [
+        "TROUBLE SHOOTER"
+      ],
+      "affiliation_tags": [
+        "trouble_shooter"
+      ]
+    },
+    "identity-11206": {
+      "identity_id": "identity-11206",
+      "full_name": "남부 츠바이 협회 4과",
+      "affiliation_raw": [
+        "ZWEI"
+      ],
+      "affiliation_tags": [
+        "zwei"
+      ]
+    },
+    "identity-11207": {
+      "identity_id": "identity-11207",
+      "full_name": "쌍갈고리 해적단 부선장",
+      "affiliation_raw": [
+        "DUAL HOOK PIRATE"
+      ],
+      "affiliation_tags": [
+        "dual_hook_pirate"
+      ]
+    },
+    "identity-11208": {
+      "identity_id": "identity-11208",
+      "full_name": "흑운회 부조장",
+      "affiliation_raw": [
+        "BLACK CLOUD"
+      ],
+      "affiliation_tags": [
+        "black_cloud"
+      ]
+    },
+    "identity-11209": {
+      "identity_id": "identity-11209",
+      "full_name": "에드가 가문 승계자",
+      "affiliation_raw": [
+        "LINTON"
+      ],
+      "affiliation_tags": [
+        "linton"
+      ]
+    },
+    "identity-11210": {
+      "identity_id": "identity-11210",
+      "full_name": "라만차랜드 신부",
+      "affiliation_raw": [
+        "LA MANCHA LAND"
+      ],
+      "affiliation_tags": [
+        "la_mancha_land"
+      ]
+    },
+    "identity-11211": {
+      "identity_id": "identity-11211",
+      "full_name": "불주먹 사무소 생존자",
+      "affiliation_raw": [
+        "FIREPUNCH OFFICE"
+      ],
+      "affiliation_tags": [
+        "firepunch_office"
+      ]
+    },
+    "identity-11212": {
+      "identity_id": "identity-11212",
+      "full_name": "흑수 - 사",
+      "affiliation_raw": [
+        "BLACK BEAST SNAKE",
+        "H CORP"
+      ],
+      "affiliation_tags": [
+        "black_beast_snake",
+        "h_corp"
+      ]
+    },
+    "identity-11213": {
+      "identity_id": "identity-11213",
+      "full_name": "밤의 송곳 카피타노",
+      "affiliation_raw": [
+        "NIGHTSTILETTO"
+      ],
+      "affiliation_tags": [
+        "nightstiletto"
+      ]
+    },
+    "identity-11214": {
+      "identity_id": "identity-11214",
+      "full_name": "로보토미 E.G.O:: 램프",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ]
+    },
+    "identity-11215": {
+      "identity_id": "identity-11215",
+      "full_name": "LCE E.G.O:: AEDD",
+      "affiliation_raw": [
+        "림버스 컴퍼니",
+        "LCE"
+      ],
+      "affiliation_tags": [
+        "lce",
+        "limbus_company"
+      ]
+    },
+    "identity-11216": {
+      "identity_id": "identity-11216",
+      "full_name": "새벽 사무소 대표",
+      "affiliation_raw": [],
+      "affiliation_tags": [
+        "dawn_office"
+      ]
+    }
+  }
+}
