@@ -1,0 +1,583 @@
+{
+  "version": "0.5.17",
+  "identity_count": 184,
+  "resource_skill_records": 27,
+  "use_effect_counts": {
+    "final_power_marker": 5,
+    "resource_gain": 5,
+    "_skill_condition_marker": 4,
+    "resource_conditional_cost": 3,
+    "resource_cost_max": 4,
+    "_skill_damage_condition_marker": 2,
+    "poise": 8,
+    "status": 6,
+    "resource_cost": 1
+  },
+  "coin_resource_skill_records": 14,
+  "conditional_cost_records": 3,
+  "dynamic_max_records": 4,
+  "all_consume_records": 0,
+  "records": [
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "skill_id": "1011403",
+      "skill_name": "선봉주파",
+      "use_resource_effects": {
+        "final_power_marker": 1,
+        "resource_gain": 1,
+        "_skill_condition_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_gain",
+          "resource": "각력【오】",
+          "amount": 3
+        }
+      ],
+      "unparsed_effects": [
+        "- (자신의 적진 주파 x 20)%만큼 피해량이 증가 (최대 80%)",
+        "자신의 (보호막 수치 x 2)% 만큼 피해량이 증가 (최대 50%)",
+        "[사용전] 자신의 적진 주파가 5면, 전부 소모하여 ‘흑풍마각월참’으로 발동됨",
+        "2코인 - 자신의 적진 주파가 3 이상이면, 속박 1 추가 부여",
+        "3코인 [적중시] 진동 폭발. 대상의 진동 횟수 1 감소.",
+        "3코인 [적중시] 자신의 각력【오】가 2 이상이면, 뇌진탕 2 부여"
+      ]
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "skill_id": "1011405",
+      "skill_name": "흑풍마각월참 [黑風馬脚月斬]",
+      "use_resource_effects": {
+        "resource_gain": 1,
+        "_skill_condition_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_gain",
+          "resource": "각력【오】",
+          "amount": 3
+        }
+      ],
+      "unparsed_effects": [
+        "자신의 속도가 대상보다 높으면, 최종 위력 +1",
+        "[사용시] 다음 턴에 자신을 제외한 모든 아군에게 호령 1 부여 (턴 당 1회)",
+        "[합 승리시] 자신의 속도가 대상보다 높으면, 피해량 +50%",
+        "[합 승리시] 메인 타겟에게 뇌진탕 1 부여",
+        "3코인 [적중시] 뇌진탕 1 부여",
+        "4코인 [적중시] 진동 폭발. 대상의 진동 횟수 1 감소.",
+        "4코인 [적중시] 진동 폭발. 대상의 진동 횟수 1 감소."
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "skill_id": "1021502",
+      "skill_name": "파시아가 굶주렸어",
+      "use_resource_effects": {
+        "resource_conditional_cost": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_conditional_cost",
+          "resource": "생체 재료",
+          "threshold": 10,
+          "amount": 5,
+          "operator": ">="
+        }
+      ],
+      "unparsed_effects": [
+        "아이언 메이든 전용 스킬",
+        "[사용시] 대상의 부정적인 효과 1개당, 합 위력 +1 (최대 2)",
+        "[사용시] 대상의 출혈 4당, 최종 위력 +1 (최대 4)",
+        "- 합 위력 +1",
+        "3코인 [적중시] 자신의 생체 재료 횟수 4 증가"
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "skill_id": "1021503",
+      "skill_name": "억압당한 육체",
+      "use_resource_effects": {
+        "resource_cost_max": 1,
+        "final_power_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_cost_max",
+          "resource": "생체 재료",
+          "amount": 20
+        }
+      ],
+      "unparsed_effects": [
+        "아이언 메이든 전용 스킬",
+        "[사용시] 대상의 출혈 4당, 최종 위력 +1 (최대 3)",
+        "- 소모한 수치 1당, 피해량 +3%",
+        "3코인 [적중시] 다음 턴에 피해량 감소 1 부여 (턴당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "skill_id": "1021506",
+      "skill_name": "파시아 식사 시간이네요",
+      "use_resource_effects": {
+        "_skill_damage_condition_marker": 1,
+        "resource_conditional_cost": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_conditional_cost",
+          "resource": "생체 재료",
+          "threshold": 10,
+          "amount": 5,
+          "operator": ">="
+        }
+      ],
+      "unparsed_effects": [
+        "구속 해제 - 창작 몰입 전용 스킬",
+        "[사용시] 대상의 출혈 4당, 최종 위력 +1 (최대 4)",
+        "- 합 위력 +1",
+        "2코인 [적중시] 다음 턴에 신속 1 얻음 (턴당 1회)",
+        "3코인 [적중시] 자신의 생체 재료 횟수 4 증가"
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "skill_id": "1021507",
+      "skill_name": "억압당한 육체의 해방",
+      "use_resource_effects": {
+        "resource_cost_max": 1,
+        "final_power_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_cost_max",
+          "resource": "생체 재료",
+          "amount": 20
+        }
+      ],
+      "unparsed_effects": [
+        "구속 해제 - 창작 몰입 전용 스킬",
+        "[사용시] 이 스킬 공격 가중치보다 낮은 공격 대상 1당, 피해량 +30% (집중 전투인 경우, 부위로 판정)",
+        "[사용시] 메인 타겟의 출혈 4당, 최종 위력 +1 (최대 3)",
+        "- 소모한 수치 1당, 피해량 +1%",
+        "- 생체 재료가 3/5 이상이면, 공격 가중치 +1/+2",
+        "2코인 [적중시] 다음 턴에 신속 1 얻음 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 피해량 감소 1 부여 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 참격 피해량 증가 1 얻음 (턴당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "skill_id": "102161",
+      "skill_name": "여명의 섬광",
+      "use_resource_effects": {
+        "resource_gain": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_gain",
+          "resource": "불꽃나비의 관",
+          "amount": 4
+        }
+      ],
+      "unparsed_effects": [
+        "[사용시] 대상의 화상과 진동의 합 4당, 최종 위력 +1 (최대 3)",
+        "[사용시] 불꽃나비의 관 10당, 합 위력 +1 (최대 3)",
+        "[사용시] 불꽃나비의 관이 20 이상이면, 마지막 코인 재사용 (스킬당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "skill_id": "102162",
+      "skill_name": "나비 베기",
+      "use_resource_effects": {
+        "resource_gain": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_gain",
+          "resource": "불꽃나비의 관",
+          "amount": 6
+        }
+      ],
+      "unparsed_effects": [
+        "[사용시] 대상의 화상과 진동의 합 4당, 최종 위력 +1 (최대 3)",
+        "[사용시] 불꽃나비의 관 10당, 다음 효과가 적용됨",
+        "- 합 위력 +1 (최대 3)",
+        "- 마지막 코인 재사용 (스킬당 최대 2회)",
+        "[적중시] 불꽃나비의 관 10당,",
+        "- 화상 횟수 1 증가 (최대 2)",
+        "- 진동 횟수 1 증가 (최대 2)",
+        "[재사용 적중시] 화상 1 부여",
+        "[재사용 적중시] 진동 폭발. 대상의 진동 횟수 1 감소 (스킬당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "skill_id": "102163",
+      "skill_name": "사출",
+      "use_resource_effects": {
+        "_skill_condition_marker": 1,
+        "resource_gain": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_gain",
+          "resource": "불꽃나비의 관",
+          "amount": 8
+        }
+      ],
+      "unparsed_effects": [
+        "[사용전] 불꽃나비의 관이 30이면, '사출-정오'로 발동됨",
+        "[사용시] 불꽃나비의 관 10당,",
+        "- 합 위력 +1 (최대 3)",
+        "- 대상의 화상 횟수 1 증가 (최대 3)",
+        "- 대상의 진동 횟수 1 증가 (최대 3)",
+        "- 마지막 코인 재사용 (스킬당 최대 2회)",
+        "[적중시] 진동 - 작열로 진폭 변환",
+        "[적중시] 진동 폭발. 대상의 진동 횟수 1 감소 (스킬당 2회)",
+        "[재사용 적중시] 화상 1 부여"
+      ]
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "skill_id": "1040603",
+      "skill_name": "대.박",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1,
+        "_skill_condition_marker": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "1코인 [크리티컬 적중 시] 자신의 호흡 횟수 1 증가",
+        "2코인 [크리티컬 적중 시] 자신의 호흡 횟수 1 증가",
+        "3코인 [크리티컬 적중 시] 진동, 파열 의 위력과 횟수가 2배로 부여됨",
+        "3코인 [적중시] 진동 폭발"
+      ]
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "skill_id": "1061101",
+      "skill_name": "발사",
+      "use_resource_effects": {
+        "poise": 1
+      },
+      "coin_resource_cost_entries": 3,
+      "parsed_resource_effects": [],
+      "unparsed_effects": []
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "skill_id": "1061103",
+      "skill_name": "삶의 마침표",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "이 스킬에서 소모할 탄환 1 당 기본 위력 +1",
+        "[사용시] 마침표 사무소 해결사 히스클리프 인격이 전투에 등장해 있으면, 타겟 포착 발동",
+        "[합 승리시] 자신의 호흡 횟수 2 증가",
+        "1코인 피해량 + (소모한 탄환 x 15)%",
+        "2코인 탄환 최대 2 소모",
+        "2코인 피해량 + (소모한 탄환 x 15)%"
+      ]
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "skill_id": "1061106",
+      "skill_name": "연계: 삶의 마침표",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "이 스킬에서 소모할 탄환 1 당 기본 위력 +1",
+        "[합 승리시] 자신의 호흡 횟수 2 증가",
+        "[합 패배] 최종 위력 +5",
+        "1코인 피해량 + (소모한 탄환 x 15)%",
+        "2코인 탄환 최대 2 소모",
+        "2코인 피해량 + (소모한 탄환 x 15)%",
+        "4코인 피해량 + (대상의 관통 내성 x 50)%"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "skill_id": "1061402",
+      "skill_name": "재료획득 - 피로 목욕하는 오브제",
+      "use_resource_effects": {
+        "_skill_damage_condition_marker": 1,
+        "resource_conditional_cost": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_conditional_cost",
+          "resource": "생체 재료",
+          "threshold": 10,
+          "amount": 5,
+          "operator": ">="
+        }
+      ],
+      "unparsed_effects": [
+        "[사용시] 대상의 출혈 4당, 최종 위력 +1 (최대 4)",
+        "- 합 위력 +1",
+        "2코인 [적중시] 다음 턴에 신속 1 얻음 (턴당 1회)",
+        "3코인 [적중시] 자신의 생체 재료 횟수 4 증가",
+        "3코인 [적중시] 대상의 부정적인 효과가 5개 이상이면, 대상에게 ‘설치 미술 제 3호 ‘간이늑골’’ 사용 (턴당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "skill_id": "1061403",
+      "skill_name": "티비아의 멜로디 - 해체된 것이 해체되지 않은 것을 해체하는 것",
+      "use_resource_effects": {
+        "resource_cost_max": 1,
+        "final_power_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_cost_max",
+          "resource": "생체 재료",
+          "amount": 20
+        }
+      ],
+      "unparsed_effects": [
+        "[사용시] 이 스킬 공격 가중치보다 낮은 공격 대상 1당, 피해량 +30% (집중 전투인 경우, 부위로 판정)",
+        "[사용시] 메인 타겟의 출혈 4당, 최종 위력 +1 (최대 3)",
+        "- 소모한 수치 1당, 피해량 +1%",
+        "- 생체 재료가 3/5 이상이면, 공격 가중치 +1/+2",
+        "2코인 [적중시] 다음 턴에 신속 1 얻음 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 피해량 감소 1 부여 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 참격 피해량 증가 1 얻음 (턴당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "skill_id": "1061408",
+      "skill_name": "설치 미술 제 3호 ‘간이늑골’",
+      "use_resource_effects": {
+        "resource_cost": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_cost",
+          "resource": "생체 재료",
+          "amount": 4
+        }
+      ],
+      "unparsed_effects": [
+        "[합 불가능]",
+        "이 스킬은 수비 스킬을 발동시키지 않음",
+        "2코인 [적중시] 정신력 피해 5",
+        "2코인 [적중시] 자신의 정신력 5 회복",
+        "2코인 [적중시] 신체관극 부여"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "skill_id": "1061406",
+      "skill_name": "폐장 - 설치미술 제 1호 ‘여러분이 흩뿌린 살과 뼈가 객석이 되어’",
+      "use_resource_effects": {
+        "resource_cost_max": 1,
+        "final_power_marker": 1
+      },
+      "coin_resource_cost_entries": 0,
+      "parsed_resource_effects": [
+        {
+          "type": "resource_cost_max",
+          "resource": "생체 재료",
+          "amount": 20
+        }
+      ],
+      "unparsed_effects": [
+        "[사용시] 이 스킬 공격 가중치보다 낮은 공격 대상 1당, 피해량 +30% (집중 전투인 경우, 부위로 판정)",
+        "- 공격 대상이 1이면, 추가로 피해량 +100%",
+        "- 소모한 수치 1당, 피해량 +1%",
+        "- 생체 재료가 3/5 이상이면, 공격 가중치 +1/+2",
+        "[공격 종료시] 약지 소속 인격의 정신력을 10 회복하고, 해당 아군에게 신체가 울리는 선율 부여",
+        "2코인 [적중시] 다음 턴에 신속 1 얻음 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 피해량 감소 1 부여 (턴당 1회)",
+        "3코인 [적중시] 다음 턴에 참격 피해량 증가 1 얻음 (턴당 1회)",
+        "5코인 [적중시] 신체관극 부여"
+      ]
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "skill_id": "1070301",
+      "skill_name": "풀뜯기",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 2,
+      "parsed_resource_effects": [],
+      "unparsed_effects": []
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "skill_id": "1070302",
+      "skill_name": "집중 사격",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 3,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "속도가 6 이상이면, 코인 위력 + 1"
+      ]
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "skill_id": "1070303",
+      "skill_name": "신속한 제압",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 2,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "속도가 6 이상이면, 코인 위력 + 2"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "skill_id": "1071101",
+      "skill_name": "응사",
+      "use_resource_effects": {
+        "poise": 1
+      },
+      "coin_resource_cost_entries": 3,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "[사용시] 다음 턴에 신속 2 얻음 (턴 당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "skill_id": "1071102",
+      "skill_name": "헤드샷",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "대상의 속도가 자신보다 느리면, 대상과의 속도 차이 1 당 피해량 +10% (최대 50%)",
+        "[사용시] 다음 턴에 신속 2 얻음 (턴 당 1회)",
+        "1코인 [크리티컬 적중 시] 다음 턴에 관통 취약 1 부여 (턴 당 1회)"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "skill_id": "1071103",
+      "skill_name": "한 점만 노린다",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "[사용전] 자신에게 탄환 - 로직 아틀리에가 있으면, '로직 아틀리에제 고속분쇄탄'으로 발동",
+        "대상의 속도가 자신보다 느리면, 대상과의 속도 차이 1 당 피해량 +10% (최대 50%)",
+        "[사용시] 집중【저격】을 전부 소모하여 (소모한 수치 x 2)만큼 호흡 위력을 얻고, 피해량 +(소모한 수치 x 12.5)%",
+        "[공격 종료시] 자신의 호흡 횟수 2 증가",
+        "1코인 크리티컬 피해량 +(대상의 관통 내성 x 50)%",
+        "1코인 [크리티컬 적중 시] 자신의 호흡 위력이 30을 초과하면, 30을 초과하는 호흡 위력을 최대 10까지 소모하여 피해량 +(소모한 호흡 위력 x 10)%"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "skill_id": "1071105",
+      "skill_name": "로직 아틀리에제 고속분쇄탄",
+      "use_resource_effects": {
+        "poise": 1,
+        "status": 1
+      },
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "대상의 속도가 자신보다 느리면, 대상과의 속도 차이 1당 피해량 +10% (최대 50%)",
+        "[사용시] 집중【저격】을 전부 소모하여, (소모한 수치 x 2)만큼 호흡 위력을 얻고, 피해량 +(소모한 수치 x 25)%",
+        "[공격 종료시] 자신의 호흡 횟수 5 증가",
+        "1코인 크리티컬 피해량 +(대상의 관통 내성 x 50)%",
+        "1코인 [크리티컬 적중 시] 자신의 호흡 위력이 30을 초과하면, 30을 초과하는 호흡 위력을 최대 10까지 소모하여 피해량 +(소모한 호흡 위력 x 10)%"
+      ]
+    },
+    {
+      "identity_id": "identity-10804",
+      "identity_name": "LCCB 대리",
+      "skill_id": "1080402",
+      "skill_name": "진동탄",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 2,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "1코인 [적중시] 공격 위력 감소 1 부여"
+      ]
+    },
+    {
+      "identity_id": "identity-10804",
+      "identity_name": "LCCB 대리",
+      "skill_id": "1080403",
+      "skill_name": "제압",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 3,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "대상의 진동 횟수가 5 이상이면, 코인 위력 +1",
+        "1코인 [적중시] 진동 폭발"
+      ]
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "skill_id": "1120703",
+      "skill_name": "예정된 결렬",
+      "use_resource_effects": {},
+      "coin_resource_cost_entries": 1,
+      "parsed_resource_effects": [],
+      "unparsed_effects": [
+        "[사용시] 대상의 출혈 3당 호흡 1을 얻음 (최대 10)",
+        "자신의 호흡 7 당 코인 위력 +1 (최대 3)",
+        "1코인 [크리티컬 적중 시] 출혈 횟수 2 증가",
+        "2코인 [적 처치 시] 다음 턴에 더하기 코인 강화 1을 얻음"
+      ]
+    }
+  ]
+}

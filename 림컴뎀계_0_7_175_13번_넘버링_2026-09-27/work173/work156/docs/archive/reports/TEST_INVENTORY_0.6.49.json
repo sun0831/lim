@@ -1,0 +1,695 @@
+{
+  "test_files": 134,
+  "tests": 371,
+  "category_counts": {
+    "probability_bleed": 34,
+    "combat_runtime": 91,
+    "affiliation_gimmick": 114,
+    "architecture": 97,
+    "other": 35
+  },
+  "files": [
+    {
+      "file": "test_clash_exchange_runtime_v1.py",
+      "tests": 9,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v100_generic_special_effects.py",
+      "tests": 4,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v29_action_queue_v1.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_after_hit_trigger.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_bleed_finalization.py",
+      "tests": 3,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_bleed_probability.py",
+      "tests": 9,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_clash_event_consistency.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_clash_exchange_integration.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_clash_lifecycle_alignment.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_coin_reuse.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_coin_trigger_chain.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_cumulative_resource_consumption.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_explicit_multitarget.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_forced_skill.py",
+      "tests": 9,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_generated_damage_attribution.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_joint_bleed_damage_trim.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_kill_gimmicks.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_kill_reuse.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_parallel_accuracy.py",
+      "tests": 3,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_parallel_engine_upgrades.py",
+      "tests": 4,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_parallel_upgrades.py",
+      "tests": 4,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_passive_optimization.py",
+      "tests": 4,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_preparation.py",
+      "tests": 2,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_probabilistic_clash_coin_resources.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_clash_effects.py",
+      "tests": 2,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_coin_state.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_generated_attribution.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_hp_stagger.py",
+      "tests": 2,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_state_axes.py",
+      "tests": 2,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_trigger_activation_persistence.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_probabilistic_triggers.py",
+      "tests": 5,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_resource_conversion.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_resource_runtime.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_resource_runtime_lifecycle.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_resource_trigger_integration.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_reuse_probability.py",
+      "tests": 3,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v29_scenario_flow.py",
+      "tests": 2,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_skill_damage_scaling.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_special_gimmicks.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_special_resource_analyzer.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_special_resource_analyzer_v2.py",
+      "tests": 4,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_special_resource_lifecycle.py",
+      "tests": 7,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_special_resource_skill_parser.py",
+      "tests": 1,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v29_stagger_coin_conditions.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v29_stagger_legacy_queue.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_stagger_trigger_bridge.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_support_conditions.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v29_target_count.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_target_selection.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_trace_detail.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_trigger_runtime.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_triggered_action_queue.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v29_trim_scope.py",
+      "tests": 3,
+      "category": "other"
+    },
+    {
+      "file": "test_v29_turn_bleed_state.py",
+      "tests": 1,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v30_ally_death.py",
+      "tests": 3,
+      "category": "other"
+    },
+    {
+      "file": "test_v30_conditional_cross_assist.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v30_support_command_generic.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v30_target_death.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v31_deferred_effects.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v31_enemy_death_effects.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v32_dynamic_damage_modifiers.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v33_generic_dynamic_damage_scaling.py",
+      "tests": 6,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v34_conditional_clash_power.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v34_generic_coin_conditions.py",
+      "tests": 5,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v35_flat_additional_damage.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v35_generic_final_power_conditions.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v35_generic_status_clash_conditions.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v36_batch_damage_patterns.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v36_status_burst_and_resource_coin_power.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v37_attack_weight_target_scaling.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v38_target_request_metadata.py",
+      "tests": 1,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v39_coin_target_assignment.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v39_trigger_target_inheritance.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v40_multitarget_shared_coin_state.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v41_multitarget_reuse.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v42_target_death_multitarget.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v43_coin_target_roles.py",
+      "tests": 2,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v44_named_stack_damage.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v45_kill_resource_distribution.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v45_random_target_selection.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v46_kill_charge_variants.py",
+      "tests": 1,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v46_random_target_override.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v47_ally_target_selection.py",
+      "tests": 4,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v47_dawn-cross-identity.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v48_ally_rank_condition.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v48_architecture_contract.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v49_architecture_state_trace.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v50_charge_kill_priority.py",
+      "tests": 1,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v60_cross_identity_catalog.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v60_cross_identity_reactions.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v61_high_impact_gimmicks.py",
+      "tests": 4,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v62_foresight_eye.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v63_user_afterimage_input.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v64_middle_revenge_ledger.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v65_revenge_tattoo_transform.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v66_module_loading.py",
+      "tests": 6,
+      "category": "other"
+    },
+    {
+      "file": "test_v66_named_resource_damage_scaling.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v67_identity_module_manifest.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v68_combat_affiliation_classification.py",
+      "tests": 5,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v68_keyword_affiliation_file_split.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v69_affiliation_keyword_classification.py",
+      "tests": 4,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v70_rule_module_split.py",
+      "tests": 4,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v71_full_combat_affiliation_axis.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v71_support_runtime.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v72_affiliation_runtime.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v72_blade_lineage_module.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v73_support_passive_runtime.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v74_blade_hongmaehwa_runtime.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v75_blade_survival_runtime.py",
+      "tests": 3,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v75_blade_transfer_runtime.py",
+      "tests": 1,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v76_damage_modifier_runtime.py",
+      "tests": 3,
+      "category": "combat_runtime"
+    },
+    {
+      "file": "test_v77_architecture_foundations.py",
+      "tests": 4,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v78_rule_ir_bridge.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v79_condition_effect_ir.py",
+      "tests": 4,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v80_rule_runtime.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v81_target_effect_foundation.py",
+      "tests": 6,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v82_rule_ir_migration.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v83_activation_runtime.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v84_effect_executor.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v85_rule_runtime_trigger_migration.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v86_rule_migration_runtime.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v87_migration_parity.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v88_rule_migration_execution.py",
+      "tests": 4,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v89_migration_safety.py",
+      "tests": 3,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v90_runtime_registry_consistency.py",
+      "tests": 3,
+      "category": "other"
+    },
+    {
+      "file": "test_v91_rule_migration_integration.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v92_probabilistic_rule_ir_migration.py",
+      "tests": 2,
+      "category": "probability_bleed"
+    },
+    {
+      "file": "test_v93_golden_rule_parity.py",
+      "tests": 6,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v94_catalog_rule_golden_parity.py",
+      "tests": 1,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v95_generic_affiliation_resource.py",
+      "tests": 2,
+      "category": "affiliation_gimmick"
+    },
+    {
+      "file": "test_v96_queue_action_effect_runtime.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v97_queue_action_registry_integration.py",
+      "tests": 1,
+      "category": "other"
+    },
+    {
+      "file": "test_v98_support_action_effect_runtime.py",
+      "tests": 2,
+      "category": "architecture"
+    },
+    {
+      "file": "test_v99_targeted_effect_runtime.py",
+      "tests": 4,
+      "category": "architecture"
+    }
+  ],
+  "exact_body_duplicate_groups": [
+    [
+      [
+        "test_v29_special_resource_analyzer.py",
+        "test_analyzer_excludes_ego_and_sin_candidates"
+      ],
+      [
+        "test_v29_special_resource_analyzer_v2.py",
+        "test_normalizer_keeps_ego_and_sin_excluded"
+      ]
+    ]
+  ]
+}

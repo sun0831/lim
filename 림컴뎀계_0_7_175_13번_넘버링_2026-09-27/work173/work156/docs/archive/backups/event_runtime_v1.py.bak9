@@ -1,0 +1,646 @@
+"""Production event handlers for migrated trigger execution.
+
+These handlers sit on the production side of the Legacy/Generic boundary.
+They use GimmickRegistry._fire_migrated_event() and only retain specialized
+effect application that is not yet represented by EffectExecutor.
+"""
+
+# Imported lazily through the already-loaded registry module; this file is only
+# imported from GimmickRegistry callback methods after module initialization.
+from special_gimmick_v2 import DamageModifierRuntime, GimmickAction, Status, re
+from support_runtime_v1 import command_from_effect
+from buff_debuff_runtime_v1 import BuffDebuffRuntime
+
+def after_skill(registry,identity,skill,ctx=None):
+        """Evaluate action-end triggers through the generic trigger runtime."""
+        ctx=dict(ctx or {})
+        ctx.update({'identity_id':identity.id,'skill_id':skill.id,'skill_name':str(skill.name),
+                    'skill_slot':str(getattr(skill,'_slot','')),
+                    'available_identity_ids':list(registry.available_identity_ids),
+                    'resources':dict(getattr(ctx.get('fighter'), 'resources', {}) if ctx.get('fighter') is not None else ctx.get('resources', {})),
+                    'current_resonance':dict(ctx.get('current_resonance', {}) or {}),
+                    'enemy_hp':float(ctx.get('enemy_hp', 0)), 'enemy_max_hp':float(ctx.get('enemy_max_hp', 0)),
+                    'actual_damage':float(ctx.get('actual_damage',0)),
+                    'is_formation_first_actor': bool(registry.available_identity_ids and str(identity.id)==str(registry.available_identity_ids[0])),
+                    'support_target_match': registry._support_target_match(identity, ctx),
+                    'action_ammo_spent':int(ctx.get('action_ammo_spent',0)),
+                    'is_lowest_ammo_identity':bool(ctx.get('is_lowest_ammo_identity',False))})
+        out=[]
+        # Runtime rules own the trigger decision.  Legacy GimmickRule remains the
+        # source/lookup record so existing catalog parsing and reports stay stable.
+        for fired in registry._fire_migrated_event('after_skill',ctx):
+            if fired.get('executed_generic'):
+                continue
+            eff=fired['effect']
+            if eff.get('type')=='poise_gain':
+                live_state=ctx.get('state')
+                target_id=str(eff.get('identity_id') or fired.get('owner_id') or identity.id)
+                if live_state is not None and target_id in live_state.fighters:
+                    f=live_state.fighters[target_id]; amount=int(eff.get('amount',0)); before=int(getattr(f.poise,'potency',0)); f.poise.potency=before+amount
+                    live_state.event_log.append({'event':'poise_gain','identity_id':target_id,'amount':amount,'before':before,'after':f.poise.potency,'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='poise_gain_lowest_affiliation':
+                affiliation=str(eff.get('affiliation','')); owner_id=str(eff.get('owner_id') or fired.get('owner_id') or identity.id)
+                count=int(eff.get('count',1)); amount=int(eff.get('amount',1)); use_count=bool(eff.get('use_count',True))
+                live_state=ctx.get('state')
+                if live_state is None: continue
+                member_count=registry.affiliation_resolver.count(affiliation, include_dead=False, state=live_state)
+                if member_count >= int(eff.get('member_count_threshold',10**9)):
+                    amount=int(eff.get('amount_high',amount))
+                def _poise_value(ident, fid):
+                    f=live_state.fighters.get(str(fid)); return int(getattr(getattr(f,'poise',None),'potency',0)) if f else 10**9
+                members=registry.affiliation_resolver.select_lowest_n(affiliation,count,_poise_value,include_dead=False,state=live_state,exclude_ids=[owner_id] if eff.get('exclude_owner') else [])
+                for member in members:
+                    f=live_state.fighters.get(member.identity_id)
+                    if f is None: continue
+                    before=(int(f.poise.potency),int(f.poise.count)); f.poise.potency += amount
+                    if use_count: f.poise.count += amount
+                    live_state.event_log.append({'event':'poise_gain','identity_id':member.identity_id,'amount':amount,'count_amount':amount if use_count else 0,'before':before,'after':(int(f.poise.potency),int(f.poise.count)),'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='poise_gain_lowest_ally':
+                owner_id=str(eff.get('owner_id') or fired.get('owner_id') or identity.id); amount=int(eff.get('amount',1)); use_count=bool(eff.get('use_count',True))
+                candidates=[]
+                for fid in registry.available_identity_ids:
+                    if str(fid)==owner_id: continue
+                    f=live_state.fighters.get(str(fid))
+                    if f is None or float(getattr(f,'hp',0))<=0: continue
+                    candidates.append((int(getattr(getattr(f,'poise',None),'potency',0)), registry.available_identity_ids.index(str(fid)), str(fid), f))
+                if candidates:
+                    _,_,tid,f=min(candidates,key=lambda x:(x[0],x[1])); before=(int(f.poise.potency),int(f.poise.count)); f.poise.potency += amount
+                    if use_count: f.poise.count += amount
+                    live_state.event_log.append({'event':'poise_gain','identity_id':tid,'amount':amount,'count_amount':amount if use_count else 0,'before':before,'after':(int(f.poise.potency),int(f.poise.count)),'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='poise_gain_self_bonus':
+                target_id=str(eff.get('owner_id') or fired.get('owner_id') or identity.id); f=live_state.fighters.get(target_id)
+                if f is not None:
+                    amount=int(eff.get('amount',1))
+                    affiliation=str(eff.get('affiliation',''))
+                    dead_count=max(0, registry.affiliation_resolver.count(affiliation, include_dead=True, state=live_state) - registry.affiliation_resolver.count(affiliation, include_dead=False, state=live_state)) if affiliation else 0
+                    if dead_count >= int(eff.get('dead_threshold',10**9)):
+                        amount=int(eff.get('amount_high',amount))
+                    if dead_count < int(eff.get('member_count_threshold',0)):
+                        continue
+                    before=(int(f.poise.potency),int(f.poise.count)); f.poise.potency += amount
+                    if eff.get('use_count',True): f.poise.count += amount
+                    live_state.event_log.append({'event':'poise_gain','identity_id':target_id,'amount':amount,'count_amount':amount if eff.get('use_count',True) else 0,'before':before,'after':(int(f.poise.potency),int(f.poise.count)),'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='support_poise_bonus_lowest':
+                live_state=ctx.get('state')
+                if live_state is None: continue
+                owner_id=str(fired.get('owner_id') or identity.id)
+                candidates=[]
+                for fid in registry.available_identity_ids:
+                    if str(fid)==owner_id: continue
+                    f=live_state.fighters.get(str(fid))
+                    if f is None or float(getattr(f,'hp',0))<=0: continue
+                    potency=int(getattr(getattr(f,'poise',None),'potency',0))
+                    if potency <= 0:
+                        continue
+                    candidates.append((potency,registry.available_identity_ids.index(str(fid)),str(fid),f))
+                if not candidates: continue
+                _,_,tid,f=min(candidates,key=lambda x:(x[0],x[1]))
+                start=int(ctx.get('target_poise_start_potency', potency)) if ctx.get('target_poise_start_potency') is not None else None
+                # The solver can provide an exact target delta; otherwise use the
+                # action-end delta captured by target_poise_gain in the context.
+                gain=int(ctx.get('target_poise_gain',0))
+                if gain<=0: continue
+                amount=min(gain,int(eff.get('amount',1)))
+                f.poise.potency += amount
+                live_state.event_log.append({'event':'support_poise_bonus','identity_id':tid,'amount':amount,'before_gain':gain,'after_gain':gain+amount,'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='support_poise_gain':
+                live_state=ctx.get('state')
+                if live_state is None: continue
+                policy=str(eff.get('target_policy','formation_first')); targets=[]
+                if policy=='formation_first' and registry.available_identity_ids:
+                    targets=[str(registry.available_identity_ids[0])]
+                elif policy=='highest_sp':
+                    fighters=getattr(live_state,'fighters',{}) or {}; cand=[(float(getattr(f,'sp',0)),idx,str(fid)) for idx,fid in enumerate(registry.available_identity_ids) if (f:=fighters.get(str(fid))) is not None and float(getattr(f,'hp',0))>0]
+                    if cand: targets=[min(cand,key=lambda x:(-x[0],x[1]))[2]]
+                for tid in targets:
+                    f=live_state.fighters.get(tid)
+                    if f is None: continue
+                    amount=int(eff.get('amount',2)); before=(int(f.poise.potency),int(f.poise.count)); f.poise.potency += amount
+                    if eff.get('use_count',False): f.poise.count += amount
+                    live_state.event_log.append({'event':'support_poise_gain','identity_id':tid,'amount':amount,'count_amount':amount if eff.get('use_count',False) else 0,'before':before,'after':(int(f.poise.potency),int(f.poise.count)),'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='support_poise_count_bonus':
+                live_state=ctx.get('state'); f=live_state.fighters.get(str(identity.id)) if live_state is not None else None
+                if f is not None:
+                    amount=int(eff.get('amount',1)); before=int(f.poise.count); f.poise.count += amount
+                    live_state.event_log.append({'event':'support_poise_count_bonus','identity_id':str(identity.id),'amount':amount,'before':before,'after':int(f.poise.count),'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type')=='resource_gain':
+                target_id=str(eff.get('identity_id') or identity.id)
+                live_state=ctx.get('state')
+                if live_state is not None and target_id in live_state.fighters:
+                    lf=live_state.fighters[target_id]; resource=str(eff.get('resource','')); amount=int(eff.get('amount',0))
+                    before=int(lf.resources.get(resource,0)); lf.resources[resource]=before+amount
+                    live_state.event_log.append({'event':'target_death_resource_gain','identity_id':target_id,'resource':resource,'amount':amount,'before':before,'after':lf.resources[resource],'trigger_rule_id':fired['rule_id']})
+                continue
+            if eff.get('type') not in ('queue_action','support_action'): continue
+            meta=fired.get('metadata',{})
+            legacy_kind=meta.get('legacy_kind',eff.get('trigger_kind','assist'))
+            if eff.get('type') == 'support_action':
+                command=command_from_effect(eff, str(ctx.get('identity_id','')))
+                target=registry.support_resolver.resolve_identity(command, str(ctx.get('identity_id','')))
+                if target is None or str(target.id) not in registry.available_identity_ids: continue
+                if command.skill_policy == 'requested_next' or command.skill_name == '__support_default__':
+                    skill_id='__support_default__'
+                else:
+                    s=registry.support_resolver.resolve_skill(target, command)
+                    if s is None: continue
+                    skill_id=s.id
+                out.append(GimmickAction(target.id,skill_id,fired.get('source_text',''),legacy_kind,
+                    source_action_index=ctx.get('action_index'),trigger_kind=command.trigger_kind,
+                    target_policy=command.target_policy, target_index=eff.get('target_index'), target_ids=eff.get('target_ids'), coin_target_ids=eff.get('coin_target_ids')))
+                continue
+            target=registry._find_identity(eff.get('identity_id','')) if eff.get('identity_id') else None
+            if not target or str(target.id) not in registry.available_identity_ids: continue
+            s=registry._find_skill(target,eff.get('skill_name',''))
+            if not s: continue
+            out.append(GimmickAction(target.id,s.id,fired.get('source_text',''),legacy_kind,
+                source_action_index=ctx.get('action_index'),trigger_kind=legacy_kind,
+                target_policy=eff.get('target_policy'), target_index=eff.get('target_index'), target_ids=eff.get('target_ids'), coin_target_ids=eff.get('coin_target_ids')))
+        BuffDebuffRuntime.consume_on_event(ctx.get("state"), event="after_skill",
+                                            target_id=str(identity.id), context=ctx)
+        return out
+
+
+def after_received_attack(registry, state, ctx=None):
+    """Resolve passives that react after an enemy attack on an ally.
+
+    The caller must provide a normalized incoming-attack context.  No enemy
+    attack is fabricated by the calculator; this bridge only evaluates an
+    explicitly supplied event and can queue the resulting ally follow-up.
+    """
+    c=dict(ctx or {})
+    c.update({
+        'available_identity_ids': list(registry.available_identity_ids),
+        'received_target_hp': float(c.get('received_target_hp',0)),
+        'received_target_max_hp': float(c.get('received_target_max_hp',0)),
+        'received_target_died': bool(c.get('received_target_died',False)),
+        'attacker_id': str(c.get('attacker_id','')),
+        'target_id': str(c.get('received_target_id', c.get('target_id',''))),
+        'received_target_damaged': bool(c.get('received_target_damaged', c.get('received_target_hp_before',0) > c.get('received_target_hp',0))),
+        'middle_finger_identity_ids': [str(x.id) for x in registry.identities if 'MIDDLE FINGER' in [str(a).upper() for a in (getattr(x,'affiliation',[]) or [])]],
+    })
+    out=[]
+    for fired in registry._fire_migrated_event('after_received_attack',c):
+        if fired.get('executed_generic'):
+            continue
+        eff=fired.get('effect',{})
+        et=eff.get('type')
+        if et=='enemy_status_count_gain':
+            attacker_id=str(c.get('attacker_id',''))
+            # Enemy attacks are represented by the active EnemyState in the
+            # current one-turn model.  Apply the mark to that attacker state.
+            enemy=state.enemy if state is not None else None
+            if enemy is not None and (not attacker_id or attacker_id == str(getattr(enemy,'id','')) or attacker_id == 'enemy_1'):
+                status=str(eff.get('status','복수 대상')); amount=int(eff.get('amount',0))
+                st=enemy.statuses.get(status)
+                if st is None:
+                    st=Status(potency=0,count=0); enemy.statuses[status]=st
+                before=int(st.count); st.count=max(0,before+amount)
+                if state is not None:
+                    state.event_log.append({'event':'middle_revenge_target_gain','status':status,'amount':amount,'before':before,'after':st.count,'attacker_id':attacker_id,'trigger_rule_id':fired['rule_id']})
+            continue
+        if et=='resource_gain':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if state is not None and target_id in state.fighters:
+                f=state.fighters[target_id]; resource=str(eff.get('resource','')); amount=int(eff.get('amount',0))
+                rr=state.runtime.get('resource_runtime')
+                before=int(f.resources.get(resource,0))
+                if rr is not None: rr.gain(f,resource,amount,state=state,reason=f'trigger:{fired["rule_id"]}')
+                else: f.resources[resource]=before+amount
+                state.event_log.append({'event':'resource_gain','resource':resource,'amount':amount,'identity_id':target_id,'before':before,'after':int(f.resources.get(resource,0)),'trigger_rule_id':fired['rule_id']})
+            continue
+        if et!='queue_action':
+            continue
+        target=registry._find_identity(eff.get('identity_id',''))
+        if not target or str(target.id) not in registry.available_identity_ids:
+            continue
+        skill=registry._find_skill(target,eff.get('skill_name',''))
+        if not skill:
+            continue
+        attacker_id=str(c.get('attacker_id',''))
+        out.append(GimmickAction(target.id,skill.id,fired.get('source_text',''),fired.get('metadata',{}).get('legacy_kind','received_attack_followup'),
+            source_action_index=c.get('action_index'),trigger_kind='received_attack_followup',target_policy=eff.get('target_policy'),
+            target_ids=[attacker_id] if attacker_id else None))
+    return out
+
+def after_kill(registry, state, identity, skill, ctx=None):
+    """Resolve explicit ``적 처치 시`` passive effects after a real kill.
+
+    Targeted effects use the live fighter roster; no target is fabricated if
+    the requested ally cannot be resolved.
+    """
+    c=dict(ctx or {})
+    c.update({'state': state, 'killer_id':identity.id,'identity_id':identity.id,
+              'skill_id':skill.id,'skill_name':str(skill.name),
+              'available_identity_ids':list(registry.available_identity_ids),
+              'enemy_killed':True})
+    out=[]
+    for fired in registry._fire_migrated_event('after_kill',c):
+        if fired.get('executed_generic'):
+            continue
+        eff=fired['effect']; et=eff.get('type')
+        if et=='resource_gain':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id') or identity.id)
+            f=state.fighters.get(target_id)
+            if f is None: continue
+            amount=int(eff.get('amount',0)); resource=str(eff.get('resource',''))
+            if resource=='충전':
+                before=int(getattr(f,'charge',0)); f.charge=max(0,before+amount)
+                state.event_log.append({'event':'kill_resource_gain','identity_id':target_id,'resource':resource,'amount':amount,'before':before,'after':f.charge,'trigger_rule_id':fired['rule_id']})
+        elif et=='resource_gain_lowest_allies':
+            resource=str(eff.get('resource','충전')); count=max(0,int(eff.get('count',1))); base=int(eff.get('amount_base',0)); expr_resource=str(eff.get('amount_resource',''))
+            cap=eff.get('cap',None); cap=int(cap) if cap is not None else None
+            candidates=[]
+            for fid in registry.available_identity_ids:
+                f=state.fighters.get(str(fid))
+                if f is None or float(getattr(f,'hp',0))<=0: continue
+                candidates.append((int(getattr(f,'charge',0)) if resource=='충전' else int(f.resources.get(resource,0)), str(fid), f))
+            # "자신과 가장 적은 아군 N명" means the owner is always included,
+            # then fill the remaining slots from the lowest-resource allies.
+            owner_id=str(fired.get('owner_id') or identity.id)
+            owner_f=state.fighters.get(owner_id)
+            selected=[]
+            if owner_f is not None and float(getattr(owner_f,'hp',0))>0:
+                selected.append((int(getattr(owner_f,'charge',0)) if resource=='충전' else int(owner_f.resources.get(resource,0)), owner_id, owner_f))
+            rest=[x for x in candidates if x[1] != owner_id]
+            if resource == '충전':
+                # The catalog's wording gives a preference to allies that can
+                # consume charge or generate it themselves.  Resolve that
+                # preference from the selected identity's own skill text, then
+                # fall back to lowest current charge and roster order.
+                def _charge_capable(fid):
+                    ident=next((z for z in registry.identities if str(getattr(z,'id',''))==str(fid)),None)
+                    if ident is None: return 0
+                    texts=[]
+                    for sk in getattr(ident,'skills',{}).values():
+                        texts.extend([str(x) for x in (getattr(sk,'effects',[]) or [])])
+                        texts.extend([str(x) for x in (getattr(sk,'_source_effects',[]) or [])])
+                    blob='\n'.join(texts)
+                    return int(bool(re.search(r'충전(?: 횟수)?\s*(?:\d+\s*)?(?:소모|감소)|충전(?: 횟수)?\s*(?:\d+\s*)?(?:증가|얻음|획득)',blob)))
+                rest.sort(key=lambda x:(-_charge_capable(x[1]), x[0], registry.available_identity_ids.index(x[1]) if x[1] in registry.available_identity_ids else 10**9))
+            else:
+                rest.sort(key=lambda x:(x[0], registry.available_identity_ids.index(x[1]) if x[1] in registry.available_identity_ids else 10**9))
+            selected.extend(rest[:count])
+            current_expr=int(getattr(owner_f,'charge',0)) if (owner_f is not None and expr_resource=='충전') else int(owner_f.resources.get(expr_resource,0)) if owner_f is not None else 0
+            amount=base+current_expr
+            if cap is not None: amount=min(amount,cap)
+            for _,tid,f in selected:
+                if resource=='충전':
+                    before=int(getattr(f,'charge',0)); f.charge=max(0,before+amount); after=f.charge
+                else:
+                    before=int(f.resources.get(resource,0)); f.resources[resource]=before+amount; after=f.resources[resource]
+                state.event_log.append({'event':'kill_resource_distribution','identity_id':tid,'resource':resource,'amount':amount,'before':before,'after':after,'trigger_rule_id':fired['rule_id'],'source_identity_id':identity.id})
+        elif et=='heal_lowest_ally':
+            amount=int(eff.get('amount',0)); candidates=[]
+            for fid in registry.available_identity_ids:
+                f=state.fighters.get(str(fid))
+                if f is None or float(getattr(f,'hp',0))<=0: continue
+                mx=float(getattr(f,'max_hp',0)); hp=float(getattr(f,'hp',0))
+                candidates.append((hp/max(mx,1.0),hp,str(fid),f))
+            if not candidates: continue
+            _,before,tid,f=min(candidates,key=lambda x:(x[0],x[1],x[2]))
+            mx=float(getattr(f,'max_hp',before)); after=min(mx,before+amount); f.hp=after
+            actual=after-before
+            state.event_log.append({'event':'kill_heal','identity_id':tid,'amount':actual,'requested_amount':amount,'before':before,'after':after,'trigger_rule_id':fired['rule_id']})
+    return out
+
+def after_coin(registry,state,identity,skill,coin_index,actual_damage,ammo_before=0,ammo_after=0,ammo_spent=0,reuse_index=0,is_crit=False):
+    ctx={
+        'identity_id':identity.id,'skill_id':skill.id,'skill_name':str(skill.name),
+        'skill_slot':str(getattr(skill,'_slot','')),'actual_damage':actual_damage,
+        'ammo_before':ammo_before,'ammo_after':ammo_after,'ammo_spent':ammo_spent,
+        'is_lowest_ammo_identity':state.runtime.get('ammo_min_identity')==identity.id,
+        'statuses':{k:v.__dict__ for k,v in state.fighters[identity.id].statuses.items()},
+        'condition_flags':state.runtime.get('condition_flags',{}),
+        'available_identity_ids':list(registry.available_identity_ids),
+        'reuse_index':int(reuse_index),
+        'is_crit':bool(is_crit),
+        'generated':bool(state.runtime.get('generated_action',False)),
+        'enemy_statuses':{k:v.__dict__ for k,v in getattr(state.enemy,'statuses',{}).items()},
+        'state': state,
+        'actor': state.fighters.get(identity.id),
+    }
+    extra=0
+    for fired in registry._fire_migrated_event('after_coin',ctx):
+        eff=fired['effect']; et=eff.get('type')
+        if fired.get('executed_generic'):
+            if et == 'extra_damage_scale':
+                extra += int(fired.get('execution_result') or 0)
+            continue
+        if et=='hongmaehwa_crit':
+            if not bool(is_crit):
+                continue
+            target=state.enemy
+            hm=target.statuses.get('홍매화')
+            if hm is None:
+                hm=Status(); target.statuses['홍매화']=hm
+            current=int(getattr(hm,'count',0))
+            if current >= int(eff.get('threshold',10)):
+                down=target.statuses.get('Defense Level Down')
+                if down is None:
+                    down=Status(); target.statuses['Defense Level Down']=down
+                cap=int(eff.get('defense_down_cap',6))
+                before=int(getattr(down,'potency',0))
+                if before < cap:
+                    down.potency=min(cap,before+int(eff.get('defense_down_amount',1)))
+                    state.event_log.append({'event':'hongmaehwa_defense_down','identity_id':identity.id,'skill_id':skill.id,'coin':coin_index,'before':before,'after':int(down.potency),'hongmaehwa':current,'trigger_rule_id':fired['rule_id']})
+            else:
+                add=min(int(eff.get('hongmaehwa_amount',1)), max(0,int(eff.get('hongmaehwa_cap',3))-int(state.runtime.get('hongmaehwa_gained',0))))
+                if add>0:
+                    hm.count += add; hm.potency += add
+                    state.runtime['hongmaehwa_gained']=int(state.runtime.get('hongmaehwa_gained',0))+add
+                    state.event_log.append({'event':'hongmaehwa_gain','identity_id':identity.id,'skill_id':skill.id,'coin':coin_index,'amount':add,'before':current,'after':int(hm.count),'trigger_rule_id':fired['rule_id']})
+            continue
+        if et=='status_potency_damage':
+            aliases=list(eff.get('status_aliases') or [])
+            status_name=str(eff.get('status','Burn'))
+            fighter=state.fighters.get(identity.id)
+            # The target is the currently resolved enemy state.  Burn may be
+            # represented by its English or Korean catalog key.
+            st=None
+            for key in [status_name] + aliases:
+                if key in state.enemy.statuses:
+                    st=state.enemy.statuses.get(key); break
+            potency=int(getattr(st,'potency',0)) if st is not None else 0
+            per_coin=int(eff.get('max_per_coin',10)); potency=min(potency,per_coin)
+            if potency > 0:
+                used=int(state.runtime.get('dawn_reused_wrath_damage',0))
+                cap=int(eff.get('turn_cap',20)); amount=min(potency,max(0,cap-used),max(0,int(state.enemy.hp)))
+                if amount>0:
+                    before=float(state.enemy.hp); state.enemy.hp-=amount; state.turn_damage+=amount
+                    state.runtime['dawn_reused_wrath_damage']=used+amount
+                    state.event_log.append({'event':'reused_coin_status_damage','identity_id':identity.id,'skill_id':skill.id,
+                        'coin':coin_index,'reuse_index':int(reuse_index),'status':key,'status_potency':potency,
+                        'damage':amount,'damage_type':eff.get('damage_type','wrath'),'enemy_hp_before':before,
+                        'enemy_hp_after':float(state.enemy.hp),'trigger_rule_id':fired['rule_id']})
+            continue
+        if et=='resource_gain':
+            resource=str(eff.get('resource')); amount=int(eff.get('amount',0))
+            # A resource trigger may belong to a different identity than
+            # the identity that caused the event (cross-identity gain).
+            # Prefer an explicit effect target, then the declarative rule
+            # owner, and finally the event source for legacy rules.
+            target_id=str(eff.get('target_identity_id') or fired.get('owner_id') or identity.id)
+            if target_id not in state.fighters:
+                target_id=identity.id
+            f=state.fighters[target_id]
+            # The resource-gain trigger may have an additional turn-start flag.
+            if resource=='새벽불' and not f.statuses.get('새벽맞이') and not state.runtime.get('condition_flags',{}).get('새벽맞이',False):
+                continue
+            rr=state.runtime.get('resource_runtime')
+            if rr is not None:
+                rr.gain(f, resource, amount, state=state, reason=f'trigger:{fired["rule_id"]}')
+            else:
+                f.resources[resource]=f.resources.get(resource,0)+amount
+                state.event_log.append({'event':'resource_gain','resource':resource,'amount':amount,
+                    'identity_id':target_id,'source_identity_id':identity.id,'skill_id':skill.id,'coin':coin_index,'after':f.resources[resource],
+                    'trigger_rule_id':fired['rule_id']})
+        elif et=='extra_damage_scale':
+            scale=float(eff.get('scale',0)); extra_now=min(int(actual_damage*scale+0.5),state.enemy.hp)
+            if extra_now>0:
+                state.enemy.hp-=extra_now; state.turn_damage+=extra_now; extra+=extra_now
+                state.event_log.append({'event':'gimmick_extra_damage','identity_id':identity.id,'skill_id':skill.id,
+                    'coin':coin_index,'base_damage':actual_damage,'scale':scale,'extra_damage':extra_now,
+                    'enemy_hp_after':state.enemy.hp,'trigger_rule_id':fired['rule_id']})
+    BuffDebuffRuntime.consume_on_event(state, event="after_coin",
+                                        target_id=str(identity.id), context=ctx)
+    return extra
+
+def after_resource_event(registry, state, event, identity_map=None, action_index=None):
+    """Evaluate generic resource lifecycle triggers. Returns queueable gimmick actions."""
+    ctx=dict(event or {})
+    ctx['action_index']=action_index
+    ctx['available_identity_ids']=list(registry.available_identity_ids)
+    ctx['state']=state
+    if ctx.get('identity_id') in getattr(state, 'fighters', {}):
+        ctx['actor']=state.fighters.get(str(ctx.get('identity_id')))
+    out=[]
+    event_name=str(ctx.get('event','resource_threshold_reached'))
+    fired_events=[]
+    if event_name == 'resource_overflow':
+        # Declarative support passive: the formation-first ally's skill can
+        # overflow Charge Count; each overflowed count grants one Charge Field
+        # on the next turn, capped at 3. E.G.O skills are included because the
+        # source rule explicitly says so and the event origin is any skill:* event.
+        if str(ctx.get('resource','')) == '충전' and str(ctx.get('reason','')).startswith('skill:'):
+            first_id = str((registry.available_identity_ids or [''])[0])
+            if str(ctx.get('identity_id','')) == first_id:
+                overflow = max(0, int(ctx.get('overflow', 0)))
+                if overflow:
+                    for r in registry.rules:
+                        if r.kind != 'charge_overflow_next_turn_field':
+                            continue
+                        amount = min(overflow, 3)
+                        nxt = state.runtime.setdefault('next_turn_state', {})
+                        nf = nxt.setdefault('fighters', {}).setdefault(first_id, {})
+                        before = int(nf.get('충전 역장', 0))
+                        nf['충전 역장'] = before + amount
+                        state.event_log.append({'event':'next_turn_resource_gain',
+                            'resource':'충전 역장','identity_id':first_id,'amount':amount,
+                            'before':before,'after':before+amount,'source_event':'resource_overflow',
+                            'trigger_rule_id':r.source_text,'overflow':overflow})
+        # Overflow is lifecycle state, not a generic threshold trigger.
+        return out
+    if event_name == 'resource_cumulative_consumed':
+        # One large consumption may cross the same threshold several times
+        # (e.g. 25 cumulative -> two 10-point conversions). Fire once per
+        # newly crossed threshold so each conversion is represented.
+        before=int(ctx.get('cumulative_before',0)); after=int(ctx.get('cumulative_after',before)); resource=str(ctx.get('resource',''))
+        for r in registry.rules:
+            if r.kind != 'cumulative_resource_gain': continue
+            m=re.search(r'자신의\s*([^\s]+(?:\s*횟수)?)\s*(\d+)\s*(?:을\s*)?소모할', r.source_text)
+            if not m: continue
+            src=m.group(1).replace(' 횟수','').strip()
+            if src != resource or r.owner_id != str(ctx.get('identity_id','')): continue
+            step=int(m.group(2)); crossings=max(0, after//step - before//step)
+            for i in range(crossings):
+                sub=dict(ctx); sub['cumulative_before']=max(before, ((before//step)+i)*step)
+                sub['cumulative_after']=sub['cumulative_before']+step
+                fired_events.extend(registry._fire_migrated_event(event_name, sub))
+    else:
+        fired_events=registry._fire_migrated_event(event_name, ctx)
+    for fired in fired_events:
+        if fired.get('executed_generic'):
+            continue
+        eff=fired['effect']; et=eff.get('type')
+        if et=='resource_gain':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if target_id not in state.fighters:
+                target_id=str(event.get('identity_id') or '')
+            if target_id in state.fighters:
+                amount=int(eff.get('amount',0)); resource=str(eff.get('resource',event.get('resource','')))
+                f=state.fighters[target_id]
+                rr=state.runtime.get('resource_runtime')
+                if resource == '충전':
+                    before = int(getattr(f, 'charge', 0)); f.charge = max(0, before + amount)
+                    state.event_log.append({'event':'charge_change','identity_id':target_id,'delta':amount,'before':before,'after':f.charge,'reason':f'trigger:{fired["rule_id"]}'})
+                elif rr is not None:
+                    rr.gain(f, resource, amount, state=state, reason=f'trigger:{fired["rule_id"]}')
+                else:
+                    before=f.resources.get(resource,0); f.resources[resource]=before+amount
+                    state.event_log.append({'event':'resource_gain','resource':resource,'amount':amount,'identity_id':target_id,
+                        'after':f.resources[resource],'trigger_rule_id':fired['rule_id'],'source_event':'resource_threshold_reached'})
+        elif et=='resource_consume':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if target_id not in state.fighters: target_id=str(event.get('identity_id') or '')
+            if target_id in state.fighters:
+                resource=str(eff.get('resource',event.get('resource',''))); amount=int(eff.get('amount',0))
+                f=state.fighters[target_id]; rr=state.runtime.get('resource_runtime')
+                if rr is not None:
+                    rr.consume(f, resource, amount, state=state, reason=f'trigger:{fired["rule_id"]}')
+                else:
+                    before=f.resources.get(resource,0); f.resources[resource]=max(0,before-amount)
+                    state.event_log.append({'event':'resource_consume','resource':resource,'amount':amount,'identity_id':target_id,
+                        'before':before,'after':f.resources[resource],'trigger_rule_id':fired['rule_id'],'source_event':'resource_threshold_reached'})
+        elif et=='resource_set':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if target_id not in state.fighters: target_id=str(event.get('identity_id') or '')
+            if target_id in state.fighters:
+                resource=str(eff.get('resource',event.get('resource',''))); value=int(eff.get('value',0))
+                f=state.fighters[target_id]; before=f.resources.get(resource,0); f.resources[resource]=value
+                state.event_log.append({'event':'resource_set','resource':resource,'identity_id':target_id,'before':before,'after':value,
+                    'trigger_rule_id':fired['rule_id'],'source_event':'resource_threshold_reached'})
+        elif et=='set_flag':
+            flag=str(eff.get('flag','')); value=bool(eff.get('value',True))
+            state.runtime.setdefault('condition_flags',{})[flag]=value
+            state.event_log.append({'event':'condition_flag','flag':flag,'value':value,'trigger_rule_id':fired['rule_id'],
+                'source_event':'resource_threshold_reached'})
+        elif et=='queue_action' and identity_map is not None:
+            target=registry._find_identity(eff.get('identity_id',''))
+            if target and str(target.id) in registry.available_identity_ids:
+                skill=registry._find_skill(target,eff.get('skill_name',''))
+                if skill:
+                    out.append(GimmickAction(target.id,skill.id,fired.get('source_text',''),
+                        str(eff.get('trigger_kind','resource_trigger')),source_action_index=action_index,
+                        trigger_kind=str(eff.get('trigger_kind','resource_trigger'))))
+    return out
+
+def after_lifecycle_event(registry, state, event, identity_map=None, action_index=None):
+    """Apply non-combat lifecycle resource effects (battle/turn start)."""
+    ctx=dict(event or {}); ctx['action_index']=action_index; ctx['available_identity_ids']=list(registry.available_identity_ids)
+    ctx['state']=state
+    if ctx.get('identity_id') in getattr(state, 'fighters', {}):
+        ctx['actor']=state.fighters.get(str(ctx.get('identity_id')))
+    out=[]
+    for fired in registry._fire_migrated_event(str(event.get('event')), ctx):
+        if fired.get('executed_generic'):
+            continue
+        eff=fired['effect']; et=eff.get('type')
+        if et=='resource_gain_affiliation_count':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if target_id not in state.fighters: continue
+            affiliation=str(eff.get('affiliation',''))
+            # Formation membership is resolved by the generic affiliation
+            # runtime.  Keep identity_map as a compatibility fallback for
+            # callers that construct registries with a reduced roster.
+            owner_ids=[m.identity_id for m in registry.affiliation_resolver.members(
+                affiliation, include_dead=False, state=state)]
+            if not owner_ids and identity_map:
+                owner_ids=[str(iid) for iid, ident in identity_map.items()
+                           if iid in state.fighters and float(getattr(state.fighters[iid],'hp',0))>0
+                           and affiliation.upper() in {str(x).upper() for x in (getattr(ident,'affiliation',[]) or [])}]
+            amount=min(int(eff.get('cap',10)), len(owner_ids)*int(eff.get('multiplier',1)))
+            rr=state.runtime.get('resource_runtime'); f=state.fighters[target_id]
+            if rr is not None: rr.gain(f,str(eff.get('resource','')),amount,state=state,reason=f'trigger:{fired["rule_id"]}')
+            else: f.resources[str(eff.get('resource',''))]=f.resources.get(str(eff.get('resource','')),0)+amount
+            continue
+        if et=='register_fatal_prevention':
+            target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+            if target_id in state.fighters:
+                state.runtime.setdefault('fatal_prevention', {})[target_id] = int(eff.get('uses',1))
+                state.event_log.append({'event':'fatal_prevention_registered','identity_id':target_id,'uses':int(eff.get('uses',1)),'reason':eff.get('reason','') ,'trigger_rule_id':fired['rule_id']})
+            continue
+        if et=='register_damage_modifier':
+            # Generic combat modifier registration.  Gimmick modules only
+            # describe who receives a modifier and its conditions; the
+            # DamageEngine applies it at coin timing.
+            target_id=str(eff.get('identity_id') or '')
+            modifier={
+                'source_identity_id': str(fired.get('owner_id','')),
+                'target_identity_id': target_id,
+                'kind': str(eff.get('kind','damage_percent')),
+                'amount': float(eff.get('amount',0.0)),
+                'attack_type': eff.get('attack_type'),
+                'critical_only': bool(eff.get('critical_only',False)),
+                'skill_name': eff.get('skill_name'),
+                'reason': str(eff.get('reason','')),
+                'rule_id': fired.get('rule_id'),
+            }
+            if target_id in state.fighters:
+                DamageModifierRuntime.register(state, **{k:modifier[k] for k in ('target_identity_id','kind','amount','source_identity_id','attack_type','critical_only','skill_name','reason','rule_id')})
+                state.event_log.append({'event':'damage_modifier_registered', **modifier})
+            continue
+        if et=='register_damage_modifier_highest_poise':
+            affiliation=str(eff.get('affiliation',''))
+            if affiliation:
+                members=list(registry.affiliation_resolver.members(affiliation, include_dead=False, state=state))
+            else:
+                members=[type('M',(),{'identity_id':iid,'formation_index':i}) for i,iid in enumerate(state.fighters.keys())]
+            members.sort(key=lambda m:(-int(getattr(state.fighters.get(m.identity_id),'poise',Status()).potency), int(m.formation_index)))
+            target=members[0].identity_id if members else ''
+            if target:
+                DamageModifierRuntime.register(state, target_identity_id=target,
+                    source_identity_id=str(fired.get('owner_id','')),
+                    kind=str(eff.get('kind','critical_damage_percent')),
+                    amount=float(eff.get('amount',0.0)),
+                    attack_type=eff.get('attack_type'),
+                    critical_only=bool(eff.get('critical_only',False)),
+                    skill_name=eff.get('skill_name'),
+                    reason=str(eff.get('reason','')),
+                    rule_id=fired.get('rule_id'))
+                state.event_log.append({'event':'damage_modifier_registered','target_identity_id':target, 'source_identity_id':str(fired.get('owner_id','')), 'kind':str(eff.get('kind','critical_damage_percent')), 'amount':float(eff.get('amount',0.0)), 'reason':str(eff.get('reason','')), 'rule_id':fired.get('rule_id')})
+            continue
+        if et=='status_gain_affiliation':
+            affiliation=str(eff.get('affiliation','')); owner_id=str(eff.get('owner_id') or fired.get('owner_id','')); live_state=state
+            for member in registry.affiliation_resolver.members(affiliation, include_dead=bool(eff.get('include_dead',False)), state=live_state, exclude_ids=[owner_id] if eff.get('exclude_owner') else []):
+                fighter=state.fighters.get(member.identity_id)
+                if fighter is None: continue
+                status=str(eff.get('status','')); amount=int(eff.get('amount',1)); st=fighter.statuses.get(status)
+                if st is None: st=Status(); fighter.statuses[status]=st
+                st.count += amount; st.potency += amount
+                if eff.get('fatal_prevention_once'):
+                    st.data['fatal_prevention_once'] = True
+                state.event_log.append({'event':'affiliation_status_gain','status':status,'identity_id':member.identity_id,'amount':amount,'trigger_rule_id':fired['rule_id']})
+            continue
+        if et=='status_gain_affiliation_ordered':
+            affiliation=str(eff.get('affiliation','')); owner_id=str(eff.get('owner_id') or fired.get('owner_id',''))
+            members=registry.affiliation_resolver.members(affiliation, include_dead=False, state=state, exclude_ids=[owner_id] if eff.get('exclude_owner') else [])
+            order=str(eff.get('order','formation'))
+            if order=='slowest':
+                def speed_key(m):
+                    f=state.fighters.get(m.identity_id); return (float(getattr(f,'speed',0) if f is not None else 0), m.formation_index)
+                members.sort(key=speed_key)
+            else:
+                members.sort(key=lambda m:m.formation_index)
+            base_count=int(eff.get('base_count',1)); max_count=int(eff.get('max_count',base_count));
+            count=min(max_count,base_count)
+            if registry.affiliation_resolver.count(affiliation, include_dead=False, state=state) >= int(eff.get('boost_member_count',10**9)):
+                count=min(max_count,int(eff.get('boost_count',count)))
+            # "최대 완전 공명 수" is supplied by the planner when available.
+            planned_max=int(state.runtime.get('max_resonance_count',count) or count)
+            count=min(count,max(0,planned_max))
+            status=str(eff.get('status','')); amount=int(eff.get('amount',1))
+            if registry.affiliation_resolver.count(affiliation, include_dead=False, state=state) >= int(eff.get('boost_member_count',10**9)):
+                amount=int(eff.get('boost_amount',amount))
+            for member in members[:count]:
+                fighter=state.fighters.get(member.identity_id)
+                if fighter is None: continue
+                st=fighter.statuses.get(status)
+                if st is None: st=Status(); fighter.statuses[status]=st
+                before=int(st.count); st.count += amount; st.potency += amount
+                state.event_log.append({'event':'affiliation_status_gain_ordered','status':status,'identity_id':member.identity_id,'amount':amount,'before':before,'after':int(st.count),'order':order,'trigger_rule_id':fired['rule_id']})
+            continue
+        if et!='resource_gain':
+            continue
+        target_id=str(eff.get('identity_id') or fired.get('owner_id',''))
+        if target_id not in state.fighters: continue
+        resource=str(eff.get('resource','')); amount=int(eff.get('amount',0)); rr=state.runtime.get('resource_runtime'); f=state.fighters[target_id]
+        if rr is not None: rr.gain(f,resource,amount,state=state,reason=f'trigger:{fired["rule_id"]}')
+        else: f.resources[resource]=f.resources.get(resource,0)+amount
+    return out

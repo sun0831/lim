@@ -1,0 +1,1530 @@
+"""Canonical passive compiler (v29).
+
+Merged/optimized successor of passive_compiler_v14/v15/v22.
+- One trigger parser, one condition parser, one effect parser.
+- Fixed and dynamic values use the same Value tree.
+- Parser result cache avoids recompiling repeated passive clauses.
+- Rule templates are structurally reusable; identity/passive ownership stays on instances.
+- Legacy compiler modules remain untouched for regression comparison.
+"""
+from __future__ import annotations
+import json, re
+from dataclasses import dataclass
+from functools import lru_cache
+from typing import Any
+
+from passive_runtime_v29_base import *
+
+
+STATUS = {
+    '출혈':'Bleed','침잠':'Sinking','화상':'Burn','파열':'Rupture',
+    '진동':'Tremor','취약':'Vulnerable','보호':'Protection'
+}
+SIN = {'분노':'wrath','색욕':'lust','나태':'sloth','탐식':'gluttony','우울':'gloom','오만':'pride','질투':'envy'}
+
+# Kept local so the canonical compiler no longer depends on v7/v14/v15 effect parsers.
+class AddSP(Effect):
+    def __init__(self, amount): self.amount = amount
+    def apply(self,event,state,owner_id,targets):
+        state.fighters[owner_id].sp += int(self.amount.resolve(event,state,owner_id))
+
+class AddDefenseLevel(Effect):
+    def __init__(self, amount): self.amount = amount
+    def apply(self,event,state,owner_id,targets):
+        for t in targets:
+            if hasattr(t,'defense_level_bonus'):
+                t.defense_level_bonus += int(self.amount.resolve(event,state,owner_id))
+            elif hasattr(t,'defense_level'):
+                t.defense_level += int(self.amount.resolve(event,state,owner_id))
+
+# Generic dynamic values. These supersede the separate DynamicModifyContext/StatusField/
+# FighterField classes in v22 while preserving their semantics through aliases below.
+@dataclass(frozen=True)
+class FieldValue(Value):
+    field: str
+    target: str = 'self'
+    def resolve(self,event,state,owner_id):
+        u = resolve_unit(self.target,event,state,owner_id)
+        if u is None: return 0
+        if self.field == 'poise_count': return int(getattr(getattr(u,'poise',None),'count',0))
+        if self.field == 'poise_potency': return int(getattr(getattr(u,'poise',None),'potency',0))
+        return getattr(u,self.field,0)
+
+@dataclass(frozen=True)
+class ResourceField(Value):
+    """Read a named fighter resource without conflating it with statuses.
+
+    Catalog passives frequently express damage scaling as `자신의 X 1당`.
+    Resources live in FighterState.resources (while charge/ammo/poise have
+    dedicated fields), so a dedicated Value keeps the compiler data-driven.
+    """
+    name: str
+    target: str = 'self'
+    def resolve(self,event,state,owner_id):
+        u = resolve_unit(self.target,event,state,owner_id)
+        if u is None: return 0
+        if self.name == '충전': return int(getattr(u,'charge',0))
+        if self.name == '충전 위력': return int(getattr(u,'charge_potency',0))
+        if self.name == '탄환': return int(getattr(u,'ammo',0))
+        if self.name == '호흡': return int(getattr(getattr(u,'poise',None),'potency',0))
+        return int(getattr(u,'resources',{}).get(self.name,0))
+
+@dataclass(frozen=True)
+class CumulativeResourceConsumedField(Value):
+    """Read encounter-scoped cumulative resource consumption.
+
+    This is intentionally separate from FighterState.resources: phrases such as
+    `자신의 누적 소모 혈찬` refer to the total amount spent during the
+    encounter, not the resource currently held by the fighter.
+    """
+    name: str
+    target: str = 'self'
+    def resolve(self,event,state,owner_id):
+        u = resolve_unit(self.target,event,state,owner_id)
+        if u is None: return 0
+        iid = str(getattr(u, 'id', getattr(u, 'identity_id', '')))
+        bucket = state.runtime.get('cumulative_resource_consumed', {}) or {}
+        return int(bucket.get((iid, self.name), 0))
+
+@dataclass(frozen=True)
+class StatusField(Value):
+    name: str
+    field: str = 'potency'
+    target: str = 'enemy'
+    def resolve(self,event,state,owner_id):
+        u = resolve_unit(self.target,event,state,owner_id)
+        st = getattr(u,'statuses',{}).get(self.name) if u else None
+        return getattr(st,self.field,0) if st else 0
+
+# Compatibility aliases: all are now one implementation conceptually.
+FighterField = FieldValue
+
+@dataclass(frozen=True)
+class Clamp(Value):
+    inner: Value
+    lo: float = 0
+    hi: float = 999999
+    def resolve(self,event,state,owner_id):
+        return max(self.lo, min(self.hi, self.inner.resolve(event,state,owner_id)))
+
+def mul(a,b): return BinaryValue(a,'*',b)
+def sub(a,b): return BinaryValue(a,'-',b)
+def div(a,b): return BinaryValue(a,'/',b)
+def add(a,b): return BinaryValue(a,'+',b)
+def pct(x): return Const(float(x)/100.0)
+
+def max_of_resonance_value_from_expr(expr: str):
+    """Compile source-backed "A 또는 B 중 높은 공명 수" values."""
+    e=expr.replace(' ','')
+    absolute='완전공명' in e or '완전_공명' in e
+    sins=[]
+    for ko,code in SIN.items():
+        if ko in e and code not in sins:
+            sins.append(code)
+    return MaxOfResonanceValue(tuple(sins), absolute=absolute) if sins else None
+
+def resonance_value_from_expr(expr: str):
+    """Compile source-backed resonance arithmetic, including multi-Sin maxima."""
+    e=expr.replace(' ','')
+    absolute='완전공명' in e or '완전_공명' in e
+    if ('중높은공명수' in e or '중가장높은공명수' in e) and ('또는' in e or ',' in e):
+        sins=[]
+        for ko,code in SIN.items():
+            if ko in e and code not in sins:
+                sins.append(code)
+        base=MaxOfResonanceValue(tuple(sins), absolute=absolute) if sins else Const(0)
+    else:
+        if '최대공명' in e or '가장높은공명' in e:
+            scope='max'
+        else:
+            scope='current'
+        sin=None
+        for ko,code in SIN.items():
+            if ('최대'+ko+'공명' in e) or ('가장높은'+ko+'공명' in e):
+                sin=code; scope='max_sin'; break
+            if ko+'공명' in e:
+                sin=code; break
+        base=ResonanceValue(scope=scope,sin=sin,absolute=absolute)
+    # Apply arithmetic suffixes in source order. The current catalog uses one
+    # suffix for these resonance expressions, but this also supports chained
+    # additions/subtractions followed by multiplication/division.
+    m=re.search(r'([+-])([0-9]+(?:\.[0-9]+)?)$',e)
+    if m:
+        base=BinaryValue(base,m.group(1),Const(float(m.group(2))))
+    m=re.search(r'/([0-9]+(?:\.[0-9]+)?)$',e)
+    if m:
+        base=BinaryValue(base,'/',Const(float(m.group(1))))
+    m=re.search(r'[x×\*]([0-9]+(?:\.[0-9]+)?)$',e)
+    if m:
+        base=BinaryValue(base,'*',Const(float(m.group(1))))
+    return base
+
+
+@dataclass(frozen=True)
+class CompileBundle:
+    rules: list
+    supported: bool
+    reasons: list[str]
+    unsupported_reasons: list[str]
+
+TRIGGERS = (
+    (r'진동\s*폭발\s*(?:(?:발동|발생)\s*)?시', PassiveTrigger.TREMOR_BURST),
+    (r'코인.*적중', PassiveTrigger.COIN_HIT),
+    (r'스킬.*적중', PassiveTrigger.HIT),
+    (r'전투 시작|스테이지에 첫 등장|스테이지 시작', PassiveTrigger.COMBAT_START),
+    (r'상시\s*적용', PassiveTrigger.COMBAT_START),
+    (r'턴 시작|다음 턴 시작', PassiveTrigger.TURN_START),
+    (r'전투 종료', PassiveTrigger.COMBAT_END),
+    (r'턴 종료|다음 턴에', PassiveTrigger.TURN_END),
+    (r'합 승리', PassiveTrigger.CLASH_WIN),
+    (r'합 패배', PassiveTrigger.CLASH_LOSE),
+    (r'합 진행|합 시작', PassiveTrigger.CLASH_START),
+    (r'크리티컬 적중', PassiveTrigger.HEADS_HIT),
+    (r'앞면.*적중', PassiveTrigger.HEADS_HIT),
+    (r'뒷면.*적중', PassiveTrigger.TAILS_HIT),
+    (r'공격 시작|공격 전에|공격 전', PassiveTrigger.BEFORE_ATTACK),
+    (r'공격 종료|공격 후', PassiveTrigger.ATTACK_END),
+    (r'스킬 종료', PassiveTrigger.SKILL_END),
+    (r'처치|적 처치', PassiveTrigger.ON_KILL),
+    (r'사망 시|사망할 때', PassiveTrigger.UNIT_DEATH),
+    (r'피격\s*직전', PassiveTrigger.COIN_HIT),
+    (r'피격', PassiveTrigger.HIT),
+    (r'적중', PassiveTrigger.HIT),
+)
+
+@lru_cache(maxsize=4096)
+def split_clauses(text: str):
+    """Split passive prose only at real line/bullet boundaries.
+
+    The older compiler used ``(?<=[다음])\\s+``, which split after the
+    individual Korean characters 다/음/ㄴ and silently corrupted ordinary
+    sentences.  v25 treats newline and explicit bullet markers as boundaries.
+    """
+    text = text.replace('\r', '').strip()
+    parts = re.split(r'\n+|^\s*[-·]\s+', text, flags=re.M)
+    return tuple(x.strip(' -·\t') for x in parts if x.strip(' -·\t'))
+
+
+@lru_cache(maxsize=4096)
+def parse_trigger(text):
+    # Tremor Burst is a dedicated causal event; do not let its embedded
+    # stagger-damage wording fall through to generic CoinStart damage parsing.
+    if re.search(r'진동\s*폭발\s*(?:(?:발동|발생)\s*)?시|진동\s*폭발\s*(?:로|을\s*통해|에\s*의해)\s*(?:입히|주는)', text):
+        return PassiveTrigger.TREMOR_BURST
+    # "다음 턴에" is temporal metadata, not the causal trigger. Strip only the
+    # temporal marker before selecting the event so clauses such as
+    # "적중시 다음 턴에 ..." remain HIT-triggered and can be scheduled.
+    causal_text = re.sub(r'다음\s*턴(?:에|에?서|부터)', ' ', text)
+    # Damage modifiers without an explicit temporal trigger must be applied to
+    # the coin context before damage is calculated.  The engine exposes
+    # COIN_START with the same mutable context later consumed by DamageEngine.
+    # Without this, phrases such as `상시 적용 : 피해량 +10%` or
+    # `자신의 오혈 1당 스킬 피해량 +3%` can be compiled as COMBAT_START/
+    # BEFORE_ATTACK and their ModifyContext value never reaches coin damage.
+    explicit_damage_trigger = re.search(
+        r'(?:적중\s*시|공격\s*(?:시작|전에|전)|스킬\s*(?:종료|사용)|합\s*(?:승리|패배|진행|시작)|턴\s*(?:시작|종료)|전투\s*(?:시작|종료))',
+        causal_text)
+    if '피해량' in causal_text and not explicit_damage_trigger:
+        if re.search(r'(?:피해량|스킬\s*피해량).*?(?:\+|증가|상승|더)', causal_text):
+            return PassiveTrigger.COIN_START
+    if re.search(r'(?:아군|자신|인격|적).*?사망', causal_text):
+        return PassiveTrigger.UNIT_DEATH
+    for pattern, trigger in TRIGGERS:
+        if re.search(pattern, causal_text): return trigger
+    return None
+
+# Backward-compatible function names.
+trig14 = parse_trigger
+trig = parse_trigger
+
+def _cmp(op, value, target):
+    return {'이하':'lte','미만':'lt','이상':'gte','초과':'gt'}[op], value, target
+
+@lru_cache(maxsize=4096)
+def parse_conditions(text):
+    cs=[]
+    m=re.search(r'(?:적|대상)의?\s*체력.*?(\d+(?:\.\d+)?)\s*%\s*(이하|미만|이상|초과)',text)
+    if m:
+        op,v,t=_cmp(m.group(2),float(m.group(1)),'enemy'); cs.append(HpPercent(v,op,t))
+    m=re.search(r'자신(?:의)?\s*체력.*?(\d+(?:\.\d+)?)\s*%\s*(이하|미만|이상|초과)',text)
+    if m:
+        op,v,t=_cmp(m.group(2),float(m.group(1)),'self'); cs.append(HpPercent(v,op,t))
+    # Target-status presence gates for outgoing damage passives, e.g.
+    # `출혈이 부여된 적 공격 시 피해량 +10%`.  This is a condition on the
+    # current enemy, not an unconditional damage modifier.
+    for ko,en in STATUS.items():
+        if re.search(rf'{re.escape(ko)}\s*(?:이|가)?\s*부여된\s*적(?:을|에게)?\s*(?:공격|타격)', text):
+            cs.append(StatusAtLeast(en, 1, 'enemy'))
+            break
+    m=re.search(r'속도(?:가)?\s*(\d+)\s*이상',text)
+    if m and not re.search(r'대상보다\s*속도가\s*\d+\s*이상', text): cs.append(SpeedAtLeast(int(m.group(1))))
+    m=re.search(r'충전(?:이|은|는)?(?: 횟수)?\s*(\d+)\s*이상',text)
+    if m: cs.append(ChargeAtLeast(int(m.group(1))))
+    m=re.search(r'탄환(?:이|을 보유)?\s*(\d+)\s*이상',text)
+    if m: cs.append(AmmoAtLeast(int(m.group(1))))
+    m=re.search(r'(분노|색욕|나태|탐식|우울|오만|질투)\s*공명\s*(\d+)\s*이상',text)
+    if m: cs.append(ContextCompare(f'resonance_{SIN[m.group(1)]}','gte',int(m.group(2))))
+    # Absolute/complete resonance conditions. These are turn-level summaries
+    # derived from the selected action order, not identity-specific rules.
+    m=re.search(r'(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명\s*(?:수\s*의\s*합|의\s*합)\s*(?:이|가|은|는)?\s*(\d+)\s*이상',text)
+    if m: cs.append(AbsoluteResonanceSumAtLeast(int(m.group(2)), SIN[m.group(1)]))
+    m=re.search(r'최대\s*(?:완전\s*)?공명(?:의)?\s*(\d+)\s*이상',text)
+    if m and '완전' in text: cs.append(MaxAbsoluteResonanceAtLeast(int(m.group(1))))
+    m=re.search(r'가장\s*높은\s*완전\s*공명\s*(?:수\s*)?(?:이|가|은|는)?\s*(\d+)\s*이상',text)
+    if m: cs.append(MaxAbsoluteResonanceAtLeast(int(m.group(1))))
+    m=re.search(r'가장\s*높은\s*완전\s*공명\s*의\s*합(?:이|가|은|는)?\s*(\d+)\s*이상',text)
+    if m: cs.append(AbsoluteResonanceSumAtLeast(int(m.group(1))))
+    m=re.search(r'해당\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명이면',text)
+    if m: cs.append(CurrentAbsoluteResonanceAtLeast(3, SIN[m.group(1)]))
+    elif re.search(r'해당\s*공명이\s*완전\s*공명이면',text): cs.append(CurrentAbsoluteResonanceAtLeast(3))
+    if re.search(r'질투\s*완전\s*공명\s*(?:수의\s*합|의\s*합)',text) and not re.search(r'\d+\s*이상',text):
+        cs.append(HasAbsoluteResonance(SIN['질투']))
+    if re.search(r'해당\s*공명(?:에|이)\s*완전\s*공명(?:이\s*)?포함',text):
+        cs.append(CurrentAbsoluteResonanceAtLeast(3))
+    # Explicit lineup-position conditions.  `편성 순서 1번인 아군` refers to
+    # the passive owner/actor's roster slot, not a target selector.
+    m = re.search(r'편성\s*순서\s*(\d+)\s*번인\s*아군', text)
+    if m:
+        cs.append(RosterPositionCondition(int(m.group(1))))
+
+    # Actor-rank conditions: the currently acting identity must be the fastest/slowest
+    # or highest/lowest member of the living ally roster.  These are distinct from
+    # recipient target selectors and are evaluated against the current FighterState.
+    rank_patterns = [
+        (r'속도가\s*가장\s*(?:빠른|높은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'speed_max'),
+        (r'속도가\s*가장\s*(?:느린|낮은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'speed_min'),
+        (r'(?:현재\s*)?체력\s*비율이\s*가장\s*높은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'hp_percent_max'),
+        (r'(?:현재\s*)?체력\s*비율이\s*가장\s*낮은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'hp_percent_min'),
+        (r'최대\s*체력이\s*가장\s*(?:높은|많은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'max_hp_max'),
+        (r'최대\s*체력이\s*가장\s*(?:낮은|적은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'max_hp_min'),
+        (r'정신력이\s*가장\s*높은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'sp_max'),
+        (r'정신력이\s*가장\s*낮은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'sp_min'),
+        (r'충전(?:\s*횟수)?가\s*가장\s*(?:많은|높은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'charge_max'),
+        (r'충전(?:\s*횟수)?가\s*가장\s*(?:적은|낮은)\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'charge_min'),
+        (r'탄환이\s*가장\s*많은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'ammo_max'),
+        (r'탄환이\s*가장\s*적은\s*아군(?:\s*\d+명)?\s*(?:이|가|은|는)', 'ammo_min'),
+    ]
+    rank_found=False
+    for pat,policy in rank_patterns:
+        if re.search(pat,text):
+            cs.append(AllyRankCondition(policy)); rank_found=True; break
+    # Relative speed conditions are common in damage passives. Do not confuse
+    # roster-rank phrases such as '속도가 가장 빠른 아군' with self-vs-target speed.
+    if (not rank_found) and '가장 빠른 아군' not in text and '가장 느린 아군' not in text and re.search(r'대상(?:의)?\s*속도가\s*자신보다\s*느릴|메인\s*공격\s*대상(?:의)?\s*속도가\s*자신보다\s*느릴', text):
+        # Target slower than self => actor is faster.
+        cs.append(SpeedRelation('faster'))
+    elif (not rank_found) and '가장 빠른 아군' not in text and '가장 느린 아군' not in text and re.search(r'\b빠르면\b|속도가.*(?:빠르|높)', text):
+        cs.append(SpeedRelation('faster'))
+    elif (not rank_found) and '가장 빠른 아군' not in text and '가장 느린 아군' not in text and re.search(r'\b느리면\b|느릴 때|속도가.*(?:느리|낮)', text):
+        cs.append(SpeedRelation('slower'))
+    m=re.search(r'자신의\s*속도가\s*(?:대상|메인\s*공격\s*대상)보다\s*(\d+)\s*이상\s*(?:높\w*|빠\w*)', text)
+    if m:
+        cs.append(SpeedRelation('faster'))
+        cs.append(SpeedDifferenceAtLeast(int(m.group(1))))
+    m=re.search(r'대상보다\s*속도가\s*(\d+)\s*이상\s*(?:높\w*|빠\w*)', text)
+    if m: cs.append(SpeedDifferenceAtLeast(int(m.group(1))))
+    m=re.search(r'대상보다\s*속도가\s*(\d+)\s*이상\s*(?:낮|느리)', text)
+    if m: cs.append(SpeedDifferenceAtLeast(-int(m.group(1)), direction='lower'))
+    m=re.search(r'(\d+)명\s*이상\s*(?:을|를)?\s*공격', text)
+    if m: cs.append(TargetCountAtLeast(int(m.group(1))))
+    # Attack-end target-death conditions are causal conditions, not passive
+    # triggers.  Without this boundary, clauses such as
+    # "[공격 종료시] 대상이 사망하면 ..." were compiled as unconditional
+    # ATTACK_END effects and therefore fired even when the target survived.
+    if re.search(r"공격\s*종료.*?대상이\s*(?:사망|죽)", text):
+        from passive_runtime_v29_base import TargetDeadCondition
+        cs.append(TargetDeadCondition())
+
+    # Source-backed support condition: the lowest-SP ally must actually have
+    # lost SP during this turn. This is distinct from merely being lowest SP.
+    if re.search(r'정신력이\s*가장\s*낮은\s*아군\s*\d+명?\s*이번\s*턴에\s*정신력이\s*감소한\s*경우', text):
+        from passive_runtime_v29_base import LowestAllySPDecreasedThisTurnCondition
+        cs.append(LowestAllySPDecreasedThisTurnCondition())
+
+    # Source-backed identity-death predicate used by Spider House Ryo's
+    # Reconciliation passive. This is intentionally exact-source scoped rather
+    # than a generic name/affiliation guess.
+    if '중지 제자 이스마엘' in text and '기본 스킬로 부여하는 화상 위력 +1' in text:
+        from passive_runtime_v29_base import IdentityDeadCondition
+        cs.append(IdentityDeadCondition('identity-10814'))
+    if '기본 스킬로 부여하는 화상 위력 +1' in text:
+        from passive_runtime_v29_base import BasicAttackSkillCondition
+        cs.append(BasicAttackSkillCondition())
+
+    # Exact source-backed N Corp Tremor application condition.
+    if '못 이 있는 대상에게 부여하는 진동 횟수 +1' in text:
+        cs.append(StatusAtLeast('Nails', 1, 'enemy'))
+
+    # Skill-specific restrictions: these are conditions, not unconditional damage.
+    m=re.search(r'스킬\s*([123])\s*[:：]', text)
+    if m: cs.append(SkillCondition(number=int(m.group(1))))
+    # Attack-property restrictions such as '참격 스킬의 피해량'.
+    for ko,kind in [('참격','slash'),('관통','pierce'),('타격','blunt')]:
+        if re.search(ko+r'\s*(?:속성)?\s*스킬', text): cs.append(AttackTypeIs(kind))
+    if re.search(r'크리티컬(?:로)?\s*적중|크리티컬\s*시', text): cs.append(IsCrit())
+    if re.search(r'모든 아군의 속도가 모든 적보다 높으면', text): cs.append(AllAlliesFasterThanEnemy())
+    # Status thresholds must preserve BOTH owner/target scope and the
+    # distinction between potency and count.  Older parsing only recognized
+    # `대상` and then the generic fallback could duplicate the same threshold
+    # (or silently treat it as count).
+    # Paired status gate: source frequently states potency and count together,
+    # e.g. `대상의 파열이 15, 파열 횟수가 3 이상이면`.  This is one
+    # conjunctive condition, not a single potency threshold.
+    m=re.search(r'(?:메인\s*타겟|대상)(?:에게|의)?\s*(출혈|침잠|파열|화상|진동)\s*(?:위력(?:이|은|는)?|이)?\s*(\d+)\s*,\s*(?:(?:\1)\s*)?(?:횟수)\s*(?:가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        from passive_runtime_v29_base import StatusPairThreshold
+        cs.append(StatusPairThreshold({'출혈':'Bleed','침잠':'Sinking','파열':'Rupture','화상':'Burn','진동':'Tremor'}[m.group(1)], int(m.group(2)), int(m.group(3)), 'enemy'))
+
+    explicit_status_threshold = False
+    m=re.search(r'(?:메인\s*타겟|대상)(?:에게|의)?\s*(출혈|침잠|파열|화상|진동)\s*(?:횟수\s*)?(?:이|가|을|를)?\s*(\d+)\s*이상(?:\s*있으면|\s*이면|\s*일\s*때)?', text)
+    if m:
+        field = 'count' if re.search(rf'{re.escape(m.group(1))}\s*횟수', m.group(0)) else 'potency'
+        cs.append(StatusThreshold({'출혈':'Bleed','침잠':'Sinking','파열':'Rupture','화상':'Burn','진동':'Tremor'}[m.group(1)], int(m.group(2)), field, 'enemy', 'gte'))
+        explicit_status_threshold = True
+    # Self-owned status thresholds are conditions on the passive/skill owner,
+    # not on the current enemy target.  Bare Poise means potency; explicit
+    # `호흡 횟수` means count.
+    m=re.search(r'자신(?:에게|의)?\s*(출혈|침잠|파열|화상|진동)\s*(?:횟수\s*)?(?:이|가|을|를)?\s*(\d+)\s*이상(?:\s*있으면|\s*이면|\s*일\s*때)?', text)
+    if m:
+        field = 'count' if re.search(rf'{re.escape(m.group(1))}\s*횟수', m.group(0)) else 'potency'
+        cs.append(StatusThreshold({'출혈':'Bleed','침잠':'Sinking','파열':'Rupture','화상':'Burn','진동':'Tremor'}[m.group(1)], int(m.group(2)), field, 'self', 'gte'))
+        explicit_status_threshold = True
+    m=re.search(r'자신의\s*호흡\s*(횟수|위력)?\s*(?:이|가|을|를)?\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(PoiseAtLeast(int(m.group(2)), field='count' if m.group(1)=='횟수' else 'potency'))
+        explicit_status_threshold = True
+    m=re.search(r'자신의\s*충전(?:\s*횟수)?\s*(?:이|가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(ChargeAtLeast(int(m.group(1))))
+    # Generic named-resource possession thresholds, e.g. `눈물 벼리기를 3개 보유하였다면`.
+    # Keep this distinct from status thresholds: these values live in FighterState.resources.
+    m=re.search(r'자신(?:이|의)?\s*([가-힣A-Za-z0-9【】\[\]/·・ -]+?)\s*(\d+)\s*개\s*보유(?:하였다면|하고\s*있다면|중이면|하면)', text)
+    if m:
+        cs.append(ResourceAtLeast(m.group(1).strip(), int(m.group(2)), 'self'))
+    else:
+        m=re.search(r'([가-힣A-Za-z0-9【】\[\]/·・ -]+?)(?:을|를)\s*(\d+)\s*개\s*보유(?:하였다면|하고\s*있다면|중이면|하면)', text)
+        if m:
+            cs.append(ResourceAtLeast(m.group(1).strip(), int(m.group(2)), 'self'))
+    m=re.search(r'자신의\s*탄환(?:을\s*보유)?\s*(?:이|가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(AmmoAtLeast(int(m.group(1))))
+    # Same-target status sums, e.g. `대상의 화상과 출혈의 합이 6 이상`.
+    m=re.search(r'(?:메인\s*타겟|대상)(?:의|에게)?\s*(출혈|침잠|파열|화상|진동)\s*과\s*(출혈|침잠|파열|화상|진동)\s*의\s*합(?:이|가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        from passive_runtime_v29_base import StatusSumThreshold
+        mp={'출혈':'Bleed','침잠':'Sinking','파열':'Rupture','화상':'Burn','진동':'Tremor'}
+        cs.append(StatusSumThreshold(mp[m.group(1)], mp[m.group(2)], int(m.group(3)), 'enemy', 'gte'))
+    # Cross-scope sums, e.g. `자신의 호흡과 대상의 출혈의 합이 4 이상`.
+    m=re.search(r'자신의\s*호흡과\s*(?:대상|메인\s*타겟)의\s*(출혈|침잠|파열|화상|진동)\s*의?\s*합(?:이|가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        from passive_runtime_v29_base import CrossStatusSumThreshold
+        cs.append(CrossStatusSumThreshold('Poise','self', {'출혈':'Bleed','침잠':'Sinking','파열':'Rupture','화상':'Burn','진동':'Tremor'}[m.group(1)], 'enemy', int(m.group(2)), 'gte'))
+    # Self + target speed sums.
+    m=re.search(r'(?:자신과\s*(?:대상|메인\s*타겟)|(?:대상|메인\s*타겟)과\s*자신)의\s*속도의\s*합(?:이|가|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        from passive_runtime_v29_base import SpeedSumThreshold
+        cs.append(SpeedSumThreshold(int(m.group(1)), 'enemy', 'gte'))
+
+    # Parenthesized main-target Tremor sum is the same generic target condition.
+    # Source examples: `메인 타겟의 (진동 위력 + 진동 횟수)가 30 이상이면`.
+    m=re.search(r'(?:대상|메인\s*타겟)의\s*\(?\s*진동\s*위력\s*\+\s*진동\s*횟수\s*\)?\s*(?:이|가)\s*(\d+)\s*이상', text)
+    if m: cs.append(TremorSumThreshold(int(m.group(1)), 'enemy', 'gte'))
+    m=re.search(r'진동\s*[-–—:]?\s*(작열|사슬|과다출혈|반향|붕괴|영속|태엽감기|균열)\s*(?:이|가)\s*(\d+)\s*이상', text)
+    if m: cs.append(AmplitudePotencyThreshold(m.group(1), int(m.group(2)), 'enemy', 'gte'))
+    # Generic amplitude-state predicates.
+    # `진폭 변환이나 진폭 얽힘 상태` is an OR predicate over the common
+    # amplitude runtime; do not create per-amplitude Identity conditions.
+    # A source clause such as `진동 - 작열이 없으면` is also a status
+    # predicate: it means the target does not currently carry that named
+    # conversion. Keep this generic so every amplitude name reuses the same
+    # ConditionRuntime contract.
+    m = re.search(r'진동\s*[-–—:]?\s*(작열|사슬|과다출혈|반향|붕괴|영속|태엽감기|균열)\s*(?:이|가)\s*없으면', text)
+    if m:
+        cs.append(Not(HasAmplitudeState('enemy', m.group(1), 'conversion')))
+    if re.search(r'대상에게\s*시선이\s*(?:있으면|있을 때|있는 경우)', text):
+        cs.append(HasStatus('시선', 'enemy'))
+    # Shield is a numeric FighterState field, not a status-map entry.
+    # Preserve ordinary source clauses such as `자신에게 보호막이 있으면` and
+    # `대상에게 보호막이 있으면`; previously these fell through to Always().
+    if re.search(r'자신(?:에게|의)?\s*보호막이\s*(?:있으면|있을 때|있는 경우|보유|있고|있으며)', text):
+        from passive_runtime_v29_base import HasShield
+        cs.append(HasShield('self'))
+    if re.search(r'(?:대상|적|메인\s*타겟)(?:에게|의)?\s*보호막이\s*(?:있으면|있을 때|있는 경우|보유|있고|있으며)', text):
+        from passive_runtime_v29_base import HasShield
+        cs.append(HasShield('enemy'))
+    # `보호막이 있는 동안 피격 시` is also a self-shield gate.
+    if re.search(r'보호막이\s*있는\s*동안\s*피격\s*시', text):
+        from passive_runtime_v29_base import HasShield
+        cs.append(HasShield('self'))
+
+    if re.search(r'진폭\s*변환\s*이나\s*진폭\s*얽힘\s*상태\s*가?\s*아니면', text):
+        cs.append(Not(HasAmplitudeState('enemy')))
+    elif re.search(r'진폭\s*변환\s*이나\s*진폭\s*얽힘\s*상태', text):
+        cs.append(HasAmplitudeState('enemy'))
+    elif re.search(r'진폭\s*변환\s*상태\s*가?\s*아니면', text):
+        cs.append(Not(HasAmplitudeState('enemy', mode='conversion')))
+    elif re.search(r'진폭\s*변환\s*상태', text):
+        cs.append(HasAmplitudeState('enemy', mode='conversion'))
+    elif re.search(r'진폭\s*얽힘\s*상태', text):
+        cs.append(HasAmplitudeState('enemy', mode='entanglement'))
+
+    for ko,en in STATUS.items():
+        m=re.search(ko+r'\s*(?:위력|횟수|이)?\s*(\d+)\s*이상',text)
+        # Bare `진동이 N 이상` is the Tremor potency threshold. It is handled
+        # explicitly above; do not add a second count threshold for the same
+        # clause.
+        if m and not explicit_status_threshold and not (en == 'Tremor' and '위력' not in m.group(0) and '횟수' not in m.group(0)):
+            cs.append(StatusThreshold(en,int(m.group(1)),'potency' if '위력' in m.group(0) else 'count','enemy'))
+        # Presence-only conditions are important for damage passives such as
+        # '출혈이 부여된 적 공격 시 피해량 +10%'.  Without this branch the
+        # damage effect would otherwise be compiled as an unconditional rule.
+        if re.search(ko+r'\s*(?:이|가)?\s*(?:부여된|있는|보유한|존재하는)\s*(?:적|대상)', text):
+            cs.append(HasStatus(en,'enemy'))
+        elif re.search(r'(?:적|대상).*?'+ko+r'\s*(?:이|가)?\s*(?:부여된|있는|보유)', text):
+            cs.append(HasStatus(en,'enemy'))
+        elif re.search(r'자신(?:에게|의)?\s*'+ko+r'\s*(?:이|가)?\s*(?:있으면|있을 때|있는 경우|보유|있고|있으며)', text):
+            cs.append(HasStatus(en,'self'))
+    # Named-state presence gates (outside the 7 common status keywords), e.g.
+    # `자신에게 각력【묘】가 있으면 피해량 +5%` or
+    # `대상에게 주살【신속】이 있으면 피해량 +5%`.  These are state-map
+    # predicates just like ordinary status presence; do not turn them into
+    # unconditional damage modifiers merely because the state has a custom name.
+    _named_state = r'([가-힣A-Za-z0-9\u3400-\u9fff【】\[\]·・_/\- ]+?)'
+    _named_state_tail = r'(?=\s*(?:(?:이|가)\s*)?(?:있으면|있을 때|있는 경우|보유|있고|있으며|상태면|상태일 때|상태인 경우))'
+    for _m in re.finditer(r'자신(?:에게|의)?(?:이|가)?\s*' + _named_state + _named_state_tail, text):
+        _name = _m.group(1).strip()
+        if _name not in STATUS and _name not in {'보호막'}:
+            cs.append(HasStatus(_name, 'self'))
+    for _m in re.finditer(r'(?:대상|적|메인\s*타겟)(?:에게|의)?(?:이|가)?\s*' + _named_state + _named_state_tail, text):
+        _name = _m.group(1).strip()
+        if _name not in STATUS and _name not in {'보호막'}:
+            cs.append(HasStatus(_name, 'enemy'))
+    if re.search(r'약점.*취약|취약.*약점|내성\s*1\.5\s*초과', text):
+        cs.append(TargetWeakToAttackType(1.5))
+    # "해당 공명" means the resonance affinity associated with the
+    # currently executing skill/effect.  The runtime already exposes the
+    # current skill through event.ctx['skill'], so reuse the generic SinIs
+    # predicate instead of inventing a separate per-EGO resonance flag.
+    # Resonance-context conditions.  These are evaluated from the solver's
+    # current action resonance snapshot, not from identity-specific flags.
+    m = re.search(r'해당\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*공명이면', text)
+    if m:
+        cs.append(SinIs(SIN[m.group(1)]))
+    m = re.search(r'해당\s*공명이\s*완전\s*공명이(?:면|라면)', text)
+    if m:
+        cs.append(CurrentAbsoluteResonanceAtLeast(3))
+    m = re.search(r'해당\s*공명이\s*완전\s*공명\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(CurrentAbsoluteResonanceAtLeast(int(m.group(1))))
+    m = re.search(r'해당\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명이(?:면|라면)', text)
+    if m:
+        cs.append(And((SinIs(SIN[m.group(1)]), CurrentAbsoluteResonanceAtLeast(3))))
+    m = re.search(r'해당\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(And((SinIs(SIN[m.group(1)]), CurrentAbsoluteResonanceAtLeast(int(m.group(2))))))
+    m = re.search(r'이\s*스킬을\s*포함하여\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*공명이\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(CurrentResonanceAtLeast(int(m.group(2)), SIN[m.group(1)]))
+    m = re.search(r'해당\s*공명이\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(CurrentResonanceAtLeast(int(m.group(1))))
+    m = re.search(r'(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명(?:이|은|는)?\s*(\d+)\s*이상', text)
+    if m:
+        cs.append(CurrentAbsoluteResonanceAtLeast(int(m.group(2)), SIN[m.group(1)]))
+    m = re.search(r'최대\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*완전\s*공명(?:이|인|이면|이라면|일\s*경우)', text)
+    if m:
+        cs.append(MaxResonanceIs(SIN[m.group(1)], absolute=True, value=3))
+    m = re.search(r'최대\s*공명이\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*공명(?:이|인|이면|이라면|일\s*경우)', text)
+    if m:
+        cs.append(MaxResonanceIs(SIN[m.group(1)], absolute=False, value=1))
+    # Sin-attribute restrictions (e.g. "우울 피해량 증가").
+    for ko,en in SIN.items():
+        if re.search(ko+r'\s*피해량', text):
+            cs.append(SinIs(en))
+    m=re.search(r'부정적인 효과.*?(\d+)개',text)
+    if m: cs.append(ContextCompare('negative_status_count','gte',int(m.group(1))))
+    elif re.search(r'부정적인 효과.*?대상',text): cs.append(ContextCompare('negative_status_count','gte',1))
+    return And(tuple(cs)) if len(cs)>1 else (cs[0] if cs else Always())
+
+conds14 = parse_conditions
+conds = parse_conditions
+
+@dataclass(frozen=True)
+class EffectSpec:
+    effect: Effect
+    reason: str
+
+# The parser is cached at clause level. Effect objects are immutable where possible.
+@lru_cache(maxsize=4096)
+def parse_effects(text: str):
+    out=[]
+    def add(e,r): out.append(EffectSpec(e,r))
+    for m in re.finditer(r'호흡(\s*횟수)?\s*(\d+)\s*(?:증가|얻음)',text):
+        field = 'count' if m.group(1) else 'potency'
+        add(AddPoise(**{field: Const(int(m.group(2)))}),'poise_'+field)
+    for m in re.finditer(r'충전(?: 횟수)?\s*(\d+)\s*(?:증가|얻음)',text): add(AddCharge(Const(int(m.group(1)))),'charge')
+    for m in re.finditer(r'탄환\s*(\d+)\s*(?:증가|얻음)',text): add(AddAmmo(Const(int(m.group(1)))),'ammo')
+    # Catalogs frequently encode an identity's built-in magazine as
+    # '상시 적용 : 탄환 N개 보유'.  Preserve explicit scenario ammo by
+    # taking the maximum instead of overwriting it.
+    m=re.search(r'상시\s*적용\s*[:：]?\s*탄환\s*(\d+)\s*개\s*보유', text)
+    if m: add(EnsureAmmoAtLeast(Const(int(m.group(1)))),'ammo_initial')
+    for m in re.finditer(r'정신력\s*([+-]?\d+)\s*(?:회복|감소|증가)?',text): add(AddSP(Const(int(m.group(1)))),'sp')
+    for ko,en in STATUS.items():
+        # Explicit next-turn status grants are scheduled effects. The older
+        # guard below intentionally excludes them from immediate AddStatus;
+        # preserve the same source semantics here instead of dropping them.
+        m=re.search(r'다음\s*턴(?:에)?\s*(?:에도\s*)?'+ko+r'\s*(?:위력\s*)?(\d+)\s*부여', text)
+        if m:
+            # Generic next-turn target status is a deferred causal effect, not
+            # an already-queued next-turn-state mutation. Keep AddStatus so the
+            # deferred runtime applies it to the retained event target on the
+            # next turn.
+            add(AddStatus(en, potency=Const(int(m.group(1)))), 'deferred_status_target:'+en)
+        m=re.search(r'다음\s*턴(?:에)?\s*(?:에도\s*)?'+ko+r'\s*횟수\s*(\d+)\s*(?:증가|부여)', text)
+        if m:
+            add(AddStatus(en, count=Const(int(m.group(1)))), 'deferred_status_target_count:'+en)
+        m=re.search(ko+r'\s*(?:위력\s*)?(\d+)\s*부여',text)
+        if m and not re.search(r'다음\s*턴', text[max(0,m.start()-20):m.start()]):
+            add(AddStatus(en,potency=Const(int(m.group(1)))),'status:'+en)
+        # Explicit count wording is count; bare/"추가 부여" is potency.
+        m=re.search(ko+r'\s*횟수\s*(\d+)\s*(?:추가|증가|부여)',text)
+        if m and not re.search(r'다음\s*턴', text[max(0,m.start()-20):m.start()]):
+            add(AddStatus(en,count=Const(int(m.group(1)))),'status_count:'+en)
+        m=re.search(ko+r'\s*(\d+)\s*(?:추가\s*)?부여',text)
+        if m and not re.search(r'다음\s*턴', text[max(0,m.start()-20):m.start()]):
+            add(AddStatus(en,potency=Const(int(m.group(1)))),'status:'+en)
+        m=re.search(ko+r'\s*(\d+)\s*(?:얻음|획득)',text)
+        if m and not re.search(r'다음\s*턴', text[max(0,m.start()-20):m.start()]):
+            add(AddStatus(en,potency=Const(int(m.group(1)))),'status:'+en)
+
+    # Parenthesized Charge Potency -> next-turn Haste scaling.
+    # Keep this in the shared parse_effects path as well as passive compilation
+    # so the audit/compiler and the runtime compiler agree on the same source
+    # meaning.
+    m=re.search(r'\(충전\s*위력\s*/\s*(\d+)\)\s*만큼\s*다음\s*턴에\s*신속\s*(?:을|를)?\s*(?:얻음|부여|증가).*?최대\s*(\d+)', text)
+    if m:
+        per, cap = map(int, m.groups())
+        add(ModifyContext('next_turn_haste', Clamp(FloorValue(div(FieldValue('charge_potency','self'), Const(per))), 0, cap)), 'next_turn_status:Haste_charge_potency')
+
+    # Generic resonance-scaled numeric effects. These compile the arithmetic
+    # itself instead of freezing a value per Identity.
+    dyn_res=r'\(([^()]*(?:공명 수|최대 공명 수)[^()]*)\)'
+    # Source-backed count scaling used by effects such as
+    # '최대 공명수 2당 회복 대상 수 1 증가'.  The quotient is floored because
+    # the game text describes discrete target/count increments.
+    m=re.search(r'최대\s*공명\s*수\s*(\d+)\s*당\s*([^\n]*?)\s*수\s*(\d+)\s*증가', text)
+    if m:
+        per=max(1,int(m.group(1))); amount=int(m.group(3))
+        value=FloorValue(div(ResonanceValue(scope='max'), Const(per)))
+        if amount != 1:
+            value=mul(value, Const(amount))
+        add(ModifyContext('target_count_bonus',value), 'resonance_scaled:target_count')
+
+    # Source-backed resonance arithmetic with an explicit floor/cap clause.
+    # Example: '(오만 공명 수 / 2) +1만큼 호흡 얻음 (최대 4. 소수점 버림)'
+    # means floor(Oman resonance / 2) + 1, capped at 4.  Do not feed the
+    # whole parenthesized expression through the generic suffix parser: that
+    # would apply '+1' before '/2' and reverse the source operation order.
+    m = re.search(r'\((분노|색욕|나태|탐식|우울|오만|질투)\s*공명\s*수\s*/\s*(\d+)\)\s*\+\s*(\d+)\s*만큼\s*호흡(?:\s*횟수)?\s*얻음.*?최대\s*(\d+).*?소수점\s*버림', text)
+    if m:
+        base_res = ResonanceValue(scope='current', sin=SIN[m.group(1)])
+        value = Clamp(BinaryValue(FloorValue(div(base_res, Const(int(m.group(2))))), '+', Const(int(m.group(3)))), 0, int(m.group(4)))
+        add(AddPoise(potency=value), 'resonance_scaled:poise_potency_floor_cap')
+    # Dynamic target-count formulas such as '(최대 질투 공명 수 - 2)만큼
+    # 부여 대상 수 증가'.  Keep the formula typed and preserve an explicit
+    # source-side cap when the catalog provides one.
+    target_exprs = [
+        (r'\(([^()]*(?:공명 수|최대 공명 수)[^()]*)\)\s*만큼\s*(?:회복|부여)\s*대상\s*수\s*증가', 'target_count_bonus'),
+        (r'\(([^()]*(?:공명 수|최대 공명 수)[^()]*)\)\s*만큼\s*부여\s*대상\s*수\s*증가', 'target_count_bonus'),
+    ]
+    for pattern, field in target_exprs:
+        m=re.search(pattern, text)
+        if m:
+            value=resonance_value_from_expr(m.group(1))
+            # Avoid duplicating the specialized 'max resonance N per' parser.
+            if not any(r.reason == 'resonance_scaled:target_count' for r in out):
+                add(ModifyContext(field,value), 'resonance_scaled:target_count_expr')
+            cap=re.search(r'\(\s*최대\s*(\d+)\s*(?:명?\s*증가)?\s*\)', text)
+            if cap:
+                add(ModifyContext('target_count_bonus_cap',Const(int(cap.group(1)))), 'resonance_scaled:target_count_cap')
+            break
+    # Plain source-backed target-count increments tied to current resonance.
+    m=re.search(r'이\s*스킬을\s*포함하여\s*(분노|색욕|나태|탐식|우울|오만|질투)\s*공명이\s*(\d+)\s*이상.*?회복\s*대상\s*수\s*\+\s*(\d+)', text)
+    if m:
+        add(ModifyContext('target_count_bonus',Const(int(m.group(3)))), 'resonance_scaled:target_count_conditioned')
+
+    # Probability formulas are retained as an explicit runtime context value.
+    # This does not invent trigger semantics; downstream probabilistic rules can
+    # consume the declared probability without hardcoding an Identity.
+    m=re.search(r'\(([^()]*(?:공명 수|최대 공명 수)[^()]*)\)\s*%\s*확률', text)
+    if m:
+        value=resonance_value_from_expr(m.group(1))
+        value=mul(value, Const(0.01))
+        add(ModifyContext('resonance_probability',value), 'resonance_scaled:probability')
+    m=re.search(r'(?:가장\s*높은\s*공명의\s*공명|최대\s*공명)\s*당\s*(\d+(?:\.\d+)?)%\s*확률', text)
+    if m:
+        value=mul(ResonanceValue(scope='max'), Const(float(m.group(1))/100.0))
+        add(ModifyContext('resonance_probability',value), 'resonance_scaled:probability_per_max_resonance')
+    m=re.search(dyn_res+r'만큼\s*(?:자신의\s*)?충전(?: 횟수)?\s*(?:증가|얻음)', text)
+    if m: add(AddCharge(resonance_value_from_expr(m.group(1))), 'resonance_scaled:charge')
+    m=re.search(dyn_res+r'만큼\s*(?:자신의\s*)?호흡(\s*횟수)?\s*(?:증가|얻음)', text)
+    if m:
+        field = 'count' if m.group(2) else 'potency'
+        add(AddPoise(**{field: resonance_value_from_expr(m.group(1))}), 'resonance_scaled:poise_'+field)
+    m=re.search(dyn_res+r'만큼\s*공격\s*가중치\s*(?:증가|\+)', text)
+    if m: add(ModifyContext('attack_weight_bonus',resonance_value_from_expr(m.group(1))), 'resonance_scaled:attack_weight')
+    for ko,en in STATUS.items():
+        m=re.search(dyn_res+r'만큼\s*'+ko+r'\s*(?:위력\s*)?(?:부여|증가)', text)
+        if m: add(AddStatus(en,potency=resonance_value_from_expr(m.group(1))), 'resonance_scaled:'+en)
+        m=re.search(dyn_res+r'만큼\s*'+ko+r'\s*(?:횟수\s*)?(?:증가|추가)', text)
+        if m: add(AddStatus(en,count=resonance_value_from_expr(m.group(1))), 'resonance_scaled_count:'+en)
+
+    # Amplitude conversion / entanglement are common state effects. The exact
+    # game-side source consumption is deliberately not inferred here; this
+    # primitive records the state transition so later rules can query it.
+    amp_names = r'(작열|사슬|과다출혈|반향|붕괴|영속|태엽감기|균열)'
+    for m in re.finditer(r'(?:진동\s*[-–—:]?\s*)?' + amp_names + r'\s*(?:으로|로)\s*진폭\s*변환', text):
+        add(AmplitudeStateEffect(m.group(1), 'conversion'), 'amplitude_conversion:'+m.group(1))
+    for m in re.finditer(r'(?:진동\s*[-–—:]?\s*)?' + amp_names + r'\s*(?:으로|로)\s*진폭\s*얽힘', text):
+        add(AmplitudeStateEffect(m.group(1), 'entanglement'), 'amplitude_entanglement:'+m.group(1))
+    # Tremor Burst used as an action/coin effect.  `진동 폭발 시` is a
+    # trigger phrase and must NOT itself emit a Burst; every other explicit
+    # `진동 폭발` occurrence is a real Burst effect.  The damage engine owns
+    # the canonical one-count Tremor consumption, so we never add a second
+    # ConsumeStatus effect for the accompanying `횟수 1 감소` wording.
+    # High-point convention: explicit probability branches are executed once
+    # when their non-probabilistic conditions are satisfied. Keep the original
+    # probability in the reason/source text rather than inventing RNG state.
+    extra_burst = bool(re.search(r'25%\s*확률로\s*진동\s*폭발(?:이)?\s*1\s*회\s*추가', text))
+    m = re.search(r'진동\s*폭발\s*(?:(\d+)\s*회)?(?!\s*시)(?!\s*이\s*\d+\s*회\s*추가)(?!\s*(?:(?:발동|발생)\s*)?시)(?!\s*(?:을|를)?\s*시킨)(?!\s*(?:을|를)?\s*시키)', text)
+    if m and not extra_burst:
+        burst_count = int(m.group(1) or 1)
+        count_cost = None
+        # A source clause such as `진동 폭발 시 진동 횟수가 2 감소` is a
+        # total Burst consumption instruction, not an additional arbitrary
+        # status decrement.  A plain Burst has no implicit Count cost.
+        cm = re.search(r'진동\s*폭발\s*(?:\d+\s*회)?\s*\.?\s*(?:진동\s*폭발\s*시\s*)?(?:대상의\s*)?진동\s*횟수\s*(?:가\s*)?(\d+)\s*감소', text)
+        if cm:
+            count_cost = int(cm.group(1))
+        add(TriggerTremorBurst(count=burst_count, count_cost=count_cost), 'tremor_burst_effect')
+    if extra_burst:
+        add(TriggerTremorBurst(count=1, count_cost=1, option_key='enable_extra_tremor_burst'), 'tremor_burst_extra_high_point:25%')
+    m=re.search(r'대상의\s*진동\s*위력\s*(\d+)\s*당\s*피해량\s*\+\s*(\d+(?:\.\d+)?)%.*?최대\s*(\d+(?:\.\d+)?)%', text)
+    if m:
+        value=Clamp(mul(FloorValue(div(StatusField('Tremor','potency','enemy'),Const(int(m.group(1))))),pct(m.group(2))),0,float(m.group(3))/100)
+        add(ModifyContext('dynamic_damage_bonus', value), 'tremor_potency_damage_scaling')
+    # Explicit self Tremor-count consumption must remain an actual state mutation.
+    # Do not infer consumption for plain amplitude conversion text; only clauses
+    # that explicitly say '자신의 진동 횟수를 N 소모' get this effect.
+    m = re.search(r'자신의\s*진동\s*횟수를\s*(\d+)\s*소모하여\s*(?:진동\s*[-–—:]?\s*)?(?:작열|사슬|과다출혈|반향|붕괴|영속|태엽감기|균열)\s*(?:으로|로)\s*진폭\s*변환', text)
+    if m:
+        add(ConsumeStatus('Tremor', Const(int(m.group(1))), 'self'), 'tremor_count_consume:'+m.group(1))
+    if re.search(r'대상의\s*현재\s*진동으로\s*진폭\s*얽힘', text):
+        add(AmplitudeStateEffect('current_tremor', 'entanglement'), 'amplitude_entanglement:current_tremor')
+
+    # Tremor Burst can feed identity-specific generic resources. Keep this as
+    # a resource primitive rather than hard-coding the E.G.O/identity.
+    m=re.search(r'진동\s*폭발\s*(?:발생|발동)?\s*시.*?꽃잎\s*(\d+)\s*얻음', text)
+    if m:
+        add(AddResource('꽃잎', Const(int(m.group(1)))), 'tremor_burst_resource:꽃잎')
+
+    # Burst-followup resource conversion: consume up to a cap of Charge and
+    # convert the *actual* consumed amount into target Rupture count.  The
+    # consumed amount is carried in the event context so partial availability
+    # is handled without inventing a fixed value.
+    m=re.search(r'진동\s*폭발\s*시.*?충전\s*횟수(?:를|을)?\s*최대\s*(\d+)\s*소모하여\s*소모한\s*충전\s*횟수만큼\s*파열\s*횟수\s*(?:증가|부여)', text)
+    if m:
+        add(ConsumeChargeUpTo(Const(int(m.group(1)))), 'tremor_burst_charge_consume_up_to:'+m.group(1))
+        add(AddStatus('Rupture', count=ConsumedChargeValue()), 'tremor_burst_rupture_count_from_charge')
+
+    # Tremor Burst-specific modifiers. These are event-scoped primitives, not
+    # generic damage bonuses: the base is the Burst's stagger damage and the
+    # modifier is consumed only by the Burst that triggered this event.
+    # Some identities convert the final Burst stagger damage into Sin damage.
+    m=re.search(r'진동\s*폭발.*?(?:최종\s*)?흐트러짐\s*(?:손상|피해).*?(\d+(?:\.\d+)?)%.*?(분노|나태)(?:\s*속성)?\s*피해.*?최대\s*(\d+)', text)
+    if m:
+        add(AddBurstSecondaryDamage(SIN[m.group(2)], Const(float(m.group(1))/100), Const(float(m.group(3))) ), 'tremor_burst_secondary_damage')
+    m=re.search(r'진동\s*폭발.*?충전\s*횟수\s*(\d+)\s*(?:을|를)?\s*소모하여.*?흐트러짐\s*피해량\s*\+\s*(\d+(?:\.\d+)?)%', text)
+    if m:
+        add(ConsumeCharge(Const(int(m.group(1)))),'tremor_burst_charge_cost')
+        add(ModifyBurstContext(Const(float(m.group(1))/100)),'tremor_burst_stagger_bonus')
+    else:
+        m=re.search(r'진동\s*폭발.*?흐트러짐\s*피해량\s*\+\s*(\d+(?:\.\d+)?)%', text)
+        if m:
+            add(ModifyBurstContext(Const(float(m.group(1))/100)),'tremor_burst_stagger_bonus')
+    # Exact catalog rule: when Middle Finger Disciple Ishmael is dead,
+    # Spider House Ryo's basic skills apply +1 Burn Potency. Keep this as a
+    # skill-scoped application modifier; it is not a generic Burn damage bonus.
+    if '기본 스킬로 부여하는 화상 위력 +1' in text and '중지 제자 이스마엘' in text:
+        add(AddDefenseLevel(Const(2)), 'spider_house_reunion_defense_level_plus_2')
+        add(ModifyContext('burn_potency_bonus', Const(1)), 'burn_application_potency_bonus')
+
+    # Exact identity rule: N Corp Middle Hammer applies +1 Tremor Count when
+    # the target has Nails. Keep this as an application-context modifier, not
+    # a generic Tremor Count bonus, so it only affects Tremor actually granted
+    # during the same hit event.
+    if '못 이 있는 대상에게 부여하는 진동 횟수 +1' in text:
+        add(ModifyContext('tremor_count_bonus', Const(1)), 'ncorp_nails_tremor_count_bonus')
+
+    # Unit-wide Tremor application modifiers. Source-backed buffs such as
+    # Unrelenting Spirit say that the unit's Skills inflict additional Tremor;
+    # this is broader than the existing `이 스킬에서 부여하는 ...` rule.
+    # Keep it as the same event-scoped application context so the bonus is
+    # applied only when a Skill actually grants Tremor.
+    m = re.search(r'(?:이\s*유닛의|자신의)\s*스킬(?:로|에서|에)\s*.*?진동\s*위력\s*\+\s*(\d+)\s*(?:및|과)\s*진동\s*횟수\s*\+\s*(\d+)', text)
+    if m:
+        add(ModifyContext('tremor_potency_bonus', Const(int(m.group(1)))), 'tremor_unit_skill_potency_bonus')
+        add(ModifyContext('tremor_count_bonus', Const(int(m.group(2)))), 'tremor_unit_skill_count_bonus')
+    else:
+        m = re.search(r'(?:이\s*유닛의|자신의)\s*스킬(?:로|에서|에)\s*.*?진동\s*위력\s*\+\s*(\d+)', text)
+        if m:
+            add(ModifyContext('tremor_potency_bonus', Const(int(m.group(1)))), 'tremor_unit_skill_potency_bonus')
+        m = re.search(r'(?:이\s*유닛의|자신의)\s*스킬(?:로|에서|에)\s*.*?진동\s*횟수\s*\+\s*(\d+)', text)
+        if m:
+            add(ModifyContext('tremor_count_bonus', Const(int(m.group(1)))), 'tremor_unit_skill_count_bonus')
+
+    # Skill-scoped Tremor application modifiers are carried only by the current event.
+    m = re.search(r'이\s*스킬에서\s*부여하는\s*(?:출혈\s*,?\s*)?진동\s*위력\s*\+\s*(\d+)', text)
+    if m:
+        add(ModifyContext('tremor_potency_bonus', Const(int(m.group(1)))), 'tremor_application_potency_bonus')
+    m = re.search(r'이\s*스킬에서\s*부여하는\s*(?:출혈\s*,?\s*)?진동\s*횟수\s*\+\s*(\d+)', text)
+    if m:
+        add(ModifyContext('tremor_count_bonus', Const(int(m.group(1)))), 'tremor_application_count_bonus')
+
+    # A Burst-triggered next-turn typed Damage Up is stored in next-turn state.
+    m=re.search(r'진동\s*폭발\s*(?:발동\s*)?시.*?다음\s*턴에.*?신속\s*(\d+).*?타격\s*피해량\s*(?:증가|상승)\s*(\d+)', text)
+    if m:
+        add(AddNextTurnStatus('Haste',count=Const(int(m.group(1)))),'next_turn_status:Haste')
+        add(AddNextTurnStatus('Blunt Damage Up',potency=Const(int(m.group(1))*10)),'next_turn_status:BluntDamageUp')
+
+    # Count this turn's Tremor Bursts and convert the count into next-turn
+    # generic Damage Up stacks. The burst count is tracked by the event runtime
+    # per source identity, so this remains reusable across identities.
+    m=re.search(r'턴\s*종료\s*시.*?이번\s*턴에\s*자신이\s*진동\s*폭발을\s*시킨\s*횟수만큼\s*다음\s*턴에\s*피해량\s*(?:증가|상승)\s*(?:을|를)?\s*얻음.*?최대\s*(\d+)', text)
+    if m:
+        add(AddNextTurnStatus('Damage Up', potency=mul(Clamp(TremorBurstCount(), 0, int(m.group(1))), Const(10))), 'next_turn_status:tremor_burst_count_next_turn_damage_up')
+
+    # Burst-resolved follow-up rules. These are evaluated after the final
+    # Burst stagger damage is known, so scaling uses the actual resolved Burst.
+    burst_resolved_defense = False
+    if '진동 폭발' in text and '흐트러짐 손상 4 당' in text and '방어 레벨 1 감소' in text:
+        value = Clamp(div(ContextValue('burst_stagger_damage'), Const(4)), 0, 5)
+        if '다음 턴' in text:
+            add(AddNextTurnTargetStatus('Defense Level Down', potency=value), 'next_turn_status_target:tremor_burst_stagger_to_defense_down')
+        else:
+            add(AddStatus('Defense Level Down', potency=value), 'tremor_burst_stagger_to_defense_down')
+        burst_resolved_defense = True
+    if re.search(r'진동\s*폭발.*?파열\s*5\s*부여', text):
+        add(AddStatus('Rupture', potency=Const(5)), 'tremor_burst_rupture_5')
+    m=re.search(r'진동\s*폭발.*?다음\s*턴에\s*공격\s*레벨\s*증가\s*(\d+)', text)
+    if m:
+        add(AddNextTurnStatus('Attack Level Up', potency=Const(int(m.group(1)))), 'next_turn_status:tremor_burst_attack_level_up')
+    m=re.search(r'진동\s*폭발.*?진동\s*이\s*(\d+)\s*이상이면,\s*다음\s*턴에\s*보호\s*(\d+)\s*얻음', text)
+    if m:
+        add(AddNextTurnTargetStatus('Protection', potency=Const(int(m.group(2)))), 'next_turn_status_target:tremor_burst_protection')
+
+    # Generic status follow-ups caused by a resolved Tremor Burst.  These are
+    # target-state effects, not identity-specific runtimes.  Keep the burst
+    # event as the causal trigger so the same parser works for Vulnerable,
+    # Sin-count, Rupture-count, etc.
+    burst_status_map = {
+        '취약': 'Vulnerable', '타격 취약': 'Blunt Vulnerable',
+        '침잠': 'Sinking', '파열': 'Rupture', '화상': 'Burn',
+        '나태 취약': 'Gloom Vulnerable', '우울 취약': 'Gloom Vulnerable',
+    }
+    for ko_name, en_name in burst_status_map.items():
+        # `진동 폭발 시 ... 횟수 N 증가/부여` and `... 위력 N 부여`.
+        m = re.search(r'진동\s*폭발\s*(?:발동\s*)?시.*?'+re.escape(ko_name)+r'\s*(?:횟수|위력)?\s*(\d+)\s*(?:증가|부여|얻음)', text)
+        if m:
+            if '횟수' in m.group(0):
+                add(AddStatus(en_name, count=Const(int(m.group(1)))), 'tremor_burst_status_count:'+en_name)
+            else:
+                add(AddStatus(en_name, potency=Const(int(m.group(1)))), 'tremor_burst_status_potency:'+en_name)
+    # `이번 턴에 ... 취약 N 부여` is a current-turn target status.  If the
+    # source also explicitly says next turn, queue that state instead.
+    m = re.search(r'진동\s*폭발\s*(?:발동\s*)?시.*?(?:이번\s*턴에\s*)?취약\s*(\d+)\s*부여', text)
+    if m and not any(x.reason == 'tremor_burst_status_potency:Vulnerable' for x in out):
+        add(AddStatus('Vulnerable', potency=Const(int(m.group(1)))), 'tremor_burst_status_potency:Vulnerable')
+    # A burst can explicitly grant the same debuff again next turn.  Preserve
+    # the turn boundary instead of applying it immediately.
+    m = re.search(r'진동\s*폭발\s*(?:발동\s*)?시.*?다음\s*턴(?:에도)?\s*(?:나태|우울)\s*취약\s*(\d+)\s*부여', text)
+    if m:
+        add(AddNextTurnTargetStatus('Gloom Vulnerable', potency=Const(int(m.group(1)))), 'next_turn_status_target:tremor_burst_gloom_vulnerable')
+    m = re.search(r'진동\s*폭발\s*시.*?진동\s*수치의\s*(\d+(?:\.\d+)?)%\s*만큼\s*흐트러짐\s*(?:손상|피해량)\s*(?:증가|상승)', text)
+    if m and not any(x.reason == 'tremor_burst_stagger_bonus' for x in out):
+        add(ModifyBurstContext(mul(StatusValue('Tremor','potency','enemy'), Const(float(m.group(1))/100))), 'tremor_burst_stagger_bonus_from_tremor')
+
+    # Some source clauses express the Burst stagger modifier as `손상 N%
+    # 증가` rather than `피해량 +N%`.  Both describe the same event-scoped
+    # Burst modifier and must share ModifyBurstContext.
+    if not any(x.reason == 'tremor_burst_stagger_bonus' for x in out):
+        m = re.search(r'진동\s*폭발\s*시.*?흐트러짐\s*(?:손상|피해량).*?(\d+(?:\.\d+)?)%\s*(?:증가|상승)', text)
+        if m:
+            add(ModifyBurstContext(Const(float(m.group(1))/100)), 'tremor_burst_stagger_bonus')
+
+    # Persistent Damage Up stacks. One stack is represented as 10 percentage
+    # points, matching the engine's status convention. Attribute-specific stacks
+    # are kept as separate statuses and resolved by the damage engine per coin.
+    m=re.search(r'피해량\s*(?:증가|상승)\s*(\d+)\s*(?:를|을)?\s*(?:얻음|부여|증가)', text)
+    if m and not re.search(r'(?:참격|관통|타격)\s*피해량', text) and not any(ko+r'\s*피해량' in text for ko in SIN):
+        add(AddStatus('Damage Up', potency=Const(int(m.group(1))*10)), 'damage_up_stack')
+    for ko,en in [('참격','Slash'),('관통','Pierce'),('타격','Blunt')]:
+        m=re.search(ko+r'\s*피해량\s*(?:증가|상승)\s*(\d+)\s*(?:를|을)?\s*(?:얻음|부여|증가)',text)
+        if m: add(AddStatus(en+' Damage Up', potency=Const(int(m.group(1))*10)), 'typed_damage_up')
+    for ko,en in SIN.items():
+        m=re.search(ko+r'\s*피해량\s*(?:증가|상승)\s*(\d+)\s*(?:를|을)?\s*(?:얻음|부여|증가)',text)
+        if m: add(AddStatus(en+' Damage Up', potency=Const(int(m.group(1))*10)), 'sin_damage_up')
+
+    # Common combat-stat gains that directly influence one-turn damage.
+    m=re.search(r'(?:공격|합)\s*위력\s*(?:증가|\+)\s*(\d+)', text)
+    if m:
+        key='clash_power_bonus' if '합 위력' in text else 'attack_level_bonus'
+        reason='clash_power' if key=='clash_power_bonus' else 'offense_level'
+        add(ModifyContext(key,Const(int(m.group(1)))),reason)
+    m=re.search(r'공격\s*레벨\s*(?:증가|\+)\s*(\d+)', text)
+    if m and not re.search(r'다음\s*턴', text[max(0,m.start()-20):m.start()]): add(ModifyContext('attack_level_bonus',Const(int(m.group(1)))),'offense_level')
+    # Haste/shield are represented as statuses. Preserve explicit per-N
+    # scaling into NEXT_TURN_STATE instead of collapsing it to a fixed value.
+    scaled_next_turn = False
+    m=re.search(r'자신의\s*호흡(?:\s*위력)?\s*(\d+)\s*당,?\s*다음\s*턴에\s*신속\s*(\d+)\s*(?:얻음|부여|증가).*?최대\s*(\d+)', text)
+    if m:
+        per, amount, cap = map(int, m.groups())
+        add(AddNextTurnStatus('Haste',count=Clamp(mul(FloorValue(div(FieldValue('poise_potency','self'),Const(per))),Const(amount)),0,cap)),'next_turn_status:Haste_poise_scaling')
+        scaled_next_turn = True
+    if not scaled_next_turn:
+        m=re.search(r'자신의\s*충전(?:\s*위력|\s*횟수)?\s*(\d+)\s*당,?\s*다음\s*턴에\s*신속\s*(\d+)\s*(?:을|를)?\s*(?:얻음|부여|증가).*?최대\s*(\d+)', text)
+        if m:
+            per, amount, cap = map(int, m.groups())
+            add(AddNextTurnStatus('Haste',count=Clamp(mul(FloorValue(div(FieldValue('charge','self'),Const(per))),Const(amount)),0,cap)),'next_turn_status:Haste_charge_scaling')
+            scaled_next_turn = True
+        if not scaled_next_turn:
+            # Preserve parenthesized division forms such as
+            # `(자신의 충전 위력 / 2)만큼 다음 턴에 신속 얻음 (최대 2, 소수점 버림)`
+            # instead of falling through to a fixed Haste status.
+            m=re.search(r'\(\s*자신의\s*충전\s*위력\s*/\s*(\d+)\s*\)\s*만큼\s*다음\s*턴에\s*신속\s*(?:을|를)?\s*(?:얻음|부여|증가).*?최대\s*(\d+)', text)
+            if m:
+                per, cap = map(int, m.groups())
+                add(AddNextTurnStatus('Haste',count=Clamp(FloorValue(div(FieldValue('charge_potency','self'),Const(per))),0,cap)),'next_turn_status:Haste_charge_division')
+                scaled_next_turn = True
+    if not scaled_next_turn:
+        m=re.search(r'자신의\s*화상\s*(\d+)\s*당,?\s*다음\s*턴에\s*공격\s*레벨\s*증가\s*(\d+)\s*얻음.*?최대\s*(\d+)', text)
+        if m:
+            per, amount, cap = map(int, m.groups())
+            add(AddNextTurnStatus('Attack Level Up',count=Clamp(mul(FloorValue(div(FieldValue('burn_potency','self'),Const(per))),Const(amount)),0,cap)),'next_turn_status:AttackLevel_burn_scaling')
+            scaled_next_turn = True
+    if not scaled_next_turn:
+        m=re.search(r'다음\s*턴에\s*신속\s*(\d+)\s*(?:얻음|부여|증가)', text)
+        if m: add(AddNextTurnStatus('Haste',count=Const(int(m.group(1)))),'next_turn_status:Haste')
+        else:
+            m=re.search(r'신속\s*(\d+)\s*(?:얻음|부여|증가)', text)
+            if m: add(AddStatus('Haste',count=Const(int(m.group(1)))),'status:Haste')
+    # Charge Potency-scaled Shield. Keep the real FighterState shield separate
+    # from status-only buffs so the damage engine can consume it.
+    m=re.search(r'\(충전\s*위력\s*[x×]\s*(\d+)\)\s*만큼\s*보호막.*?최대\s*(\d+)', text)
+    if m:
+        add(AddShield(mul(FieldValue('charge_potency','self'),Const(int(m.group(1)))), Const(int(m.group(2)))), 'charge_potency_shield')
+    else:
+        m=re.search(r'\(자신의\s*충전\s*위력\)\s*만큼\s*보호막.*?최대\s*(\d+)', text)
+        if m: add(AddShield(FieldValue('charge_potency','self'), Const(int(m.group(1))), cap_total=('피격 직전' not in text)),'charge_potency_shield')
+        else:
+            m=re.search(r'보호막(?:을)?\s*(\d+)\s*(?:얻음|부여)', text)
+            if m: add(AddShield(Const(int(m.group(1)))),'status:Shield')
+    # All damage modifiers, fixed or state-derived, use ModifyContext + Value.
+    # A clause such as `자신의 오혈 1당 스킬 피해량 +3%` contains the
+    # same `피해량 +3%` substring as a fixed modifier.  Handle explicit
+    # per-stack resource scaling first so it cannot be miscompiled as a flat 3%.
+    # Encounter-scoped cumulative resource consumption is not the live resource
+    # value.  Parse this before the generic `X N당 피해량` rule so phrases such as
+    # `적중시 자신의 누적 소모 혈찬 10당, 피해량 +1%` cannot become a ResourceField
+    # named `적중시 자신의 누적 소모 혈찬`.
+    cumulative_damage = re.search(
+        r'(?:자신의\s*)?누적\s*소모\s*(혈찬|충전|생체\s*재료|탄환|경혈|혈갑|갈증|차원\s*표류|피어나는\s*가시)\s*'
+        r'(?:횟수|위력)?\s*(?:(\d+)\s*)?당\s*,?\s*'
+        r'(?:스킬\s*)?피해량\s*(?:\+|증가\s*)?\s*(\d+(?:\.\d+)?)%', text)
+    if cumulative_damage and '공용 누적 소모' not in text:
+        resource = cumulative_damage.group(1)
+        per = int(cumulative_damage.group(2) or 1)
+        amount = float(cumulative_damage.group(3))/100.0
+        capm = re.search(r'최대\s*(\d+(?:\.\d+)?)%', text)
+        cap = float(capm.group(1))/100.0 if capm else 999999.0
+        value = Clamp(mul(FloorValue(div(CumulativeResourceConsumedField(resource, 'self'), Const(per))), Const(amount)), 0, cap)
+        add(ModifyContext('dynamic_damage_bonus', value), 'cumulative_resource_damage_scaling')
+
+    # Protection is a status/buff, not a generic resource.  Source clauses
+    # such as `자신의 보호 1당, 피해량 +5%` must read the Protection potency
+    # from the owner's status state; falling through to ResourceField would
+    # silently resolve to zero because Protection is stored as a status.
+    protection_damage = None if cumulative_damage else re.search(
+        r'자신의\s*보호(?:\s*위력|\s*수치)?\s*(?:(\d+(?:\.\d+)?)\s*)?당\s*,?\s*'
+        r'(?:스킬\s*)?피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if protection_damage:
+        per = float(protection_damage.group(1) or 1.0)
+        amount = float(protection_damage.group(2)) / 100.0
+        capm = protection_damage.group(3)
+        cap = float(capm) / 100.0 if capm else 999999.0
+        value = Clamp(mul(FloorValue(div(StatusField('Protection','potency','self'), Const(per))), Const(amount)), 0, cap)
+        add(ModifyContext('dynamic_damage_bonus', value), 'protection_status_damage_scaling')
+
+    direct_named_damage = None if cumulative_damage else re.search(
+        r'\(\s*(?:자신의\s*)?대상의\s*([가-힣A-Za-z\u3400-\u9fff【】\[\] /・-]+)\s*\)\s*%', text)
+    if direct_named_damage:
+        raw_name = direct_named_damage.group(1).strip(' ,')
+        if raw_name and raw_name not in {'체력','잃은 체력'}:
+            add(ModifyContext('dynamic_damage_bonus',mul(ResourceField(raw_name, 'enemy'),Const(0.01))), 'target_named_resource_ratio_damage_scaling')
+
+    named_damage = None if cumulative_damage else re.search(
+        r'(?:(?:자신의|대상의)\s*)?([가-힣A-Za-z\u3400-\u9fff【】\[\]/・・ -]{1,30})\s*'
+        r'(?:수치|횟수|위력)?\s*(?:(\d+)\s*)?당\s*,?\s*'
+        r'(?:스킬\s*)?피해량\s*\+?\s*(\d+(?:\.\d+)?)%', text)
+    if named_damage:
+        scope_prefix = named_damage.group(0)
+        target_scope = 'enemy' if re.search(r'대상의\s*', scope_prefix) else 'self'
+        raw_name = named_damage.group(1).strip(' ,')
+        raw_name = re.sub(r'^(?:자신의|대상의)\s*', '', raw_name).strip()
+        per = int(named_damage.group(2) or 1)
+        amount = float(named_damage.group(3))/100.0
+        capm = re.search(r'최대\s*(\d+(?:\.\d+)?)%', text)
+        cap = float(capm.group(1))/100.0 if capm else 999999.0
+        if raw_name and raw_name not in {'출혈','화상','파열','침잠','진동','속박','충전','탄환','호흡','속도','보호','체력','잃은 체력','대상의 진동 위력','출혈 위력','화상 위력','파열 위력','침잠 위력','진동 위력','출혈 횟수','화상 횟수','파열 횟수','침잠 횟수','진동 횟수'} and not re.search(r'(?:출혈|화상|파열|침잠|진동)\s*과\s*(?:출혈|화상|파열|침잠|진동)\s*의\s*합', raw_name):
+            value = Clamp(mul(FloorValue(div(ResourceField(raw_name, target_scope), Const(per))), Const(amount)), 0, cap)
+            add(ModifyContext('dynamic_damage_bonus', value), 'named_resource_damage_scaling')
+
+    # Fixed modifiers are only parsed when the same clause is not an explicit
+    # `N당 피해량` scaling clause.
+    has_cumulative_resource_damage_scaling = bool(cumulative_damage)
+    has_named_damage_scaling = bool(named_damage) and not has_cumulative_resource_damage_scaling
+    # Typed damage scaling by a status count is not the same as generic
+    # damage.  Example: `대상의 화상 횟수 3 당 타격 피해량 +10%`.
+    # No executable typed-status scaling primitive is wired here yet, so do
+    # not let the generic damage parser silently turn it into +10% all damage.
+    typed_status_damage_unresolved = bool(re.search(
+        r'(?:대상의\s*)?(?:출혈|화상|파열|침잠|진동|속박|못|광신)\s*(?:위력|횟수|수치)?\s*\d+(?:\.\d+)?\s*당.*?(?:참격|관통|타격)\s*피해량',
+        text))
+    m=re.search(r'(?<!받는\s)(?:가하는\s*)?피해량(?:이|을)?\s*(?:\+\s*)?(\d+(?:\.\d+)?)%\s*(?:증가|상승|더)',text)
+    if '진동 폭발' in text and '흐트러짐 피해량' in text: m=None
+    has_critical_damage_scaling = bool(re.search(r'크리티컬\s*피해량', text) and re.search(r'(?:호흡|파열|침잠|화상|출혈|진동|속도\s*차이).*?크리티컬\s*피해량', text))
+    has_lost_hp_scaling_text = bool(re.search(r'잃은\s*체력.*피해량', text))
+    if m and not typed_status_damage_unresolved and not has_cumulative_resource_damage_scaling and not has_named_damage_scaling and not has_critical_damage_scaling and not has_lost_hp_scaling_text and not re.search(r'대상의\s*진동\s*위력\s*\d+\s*당\s*피해량', text): add(ModifyContext('dynamic_damage_bonus',Const(float(m.group(1))/100)),'damage_percent')
+    m=re.search(r'(?<!받는\s)(?:가하는\s*)?피해량\s*\+\s*(\d+(?:\.\d+)?)\s*%',text)
+    if m and not typed_status_damage_unresolved and not has_cumulative_resource_damage_scaling and not has_named_damage_scaling and not has_critical_damage_scaling and not has_lost_hp_scaling_text and not any(x.reason in ('damage_percent','named_resource_damage_scaling','tremor_potency_damage_scaling') or x.reason.endswith('_per_stack_capped') for x in out) and not re.search(r'대상의\s*진동\s*위력\s*\d+\s*당\s*피해량', text): add(ModifyContext('dynamic_damage_bonus',Const(float(m.group(1))/100)),'damage_percent')
+    # `받는 피해량` is target-side/incoming damage, not the owner's outgoing
+    # damage.  Keeping it in dynamic_damage_bonus silently turned clauses such
+    # as `자신이 받는 피해량 +25%. 가하는 피해량 +25%` into two outgoing +25%
+    # modifiers. Preserve a distinct channel until target-side damage resolution
+    # consumes it.
+    m=re.search(r'받는\s*피해량\s*([+-])\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        sign=1 if m.group(1)=='+' else -1; add(ModifyContext('incoming_damage_bonus',Const(sign*float(m.group(2))/100)),'damage_taken_percent')
+    m=re.search(r'코인\s*위력\s*\+\s*(\d+)',text)
+    # Do not also emit a flat +N when the same text declares a per-stack or
+    # per-resource scaling formula such as `호흡 5당 코인 위력 +1`.
+    has_coin_scaling = bool(re.search(r'(?:호흡|화상|출혈|파열|침잠|진동|충전|공명)[^\n]*?\d*\s*당[^\n]*?코인\s*위력', text))
+    if m and not has_coin_scaling: add(ModifyContext('coin_power_bonus',Const(int(m.group(1)))),'coin_power')
+    m=re.search(r'최종\s*위력\s*\+\s*(\d+)',text)
+    if m: add(ModifyContext('final_power_bonus',Const(int(m.group(1)))),'final_power')
+    m=re.search(r'(?:합\s*)?위력\s*([+-])\s*(\d+)',text)
+    if m and '코인 위력' not in text and '최종 위력' not in text and '부여하는' not in text:
+        sign=1 if m.group(1)=='+' else -1; add(ModifyContext('clash_power_bonus',Const(sign*int(m.group(2)))),'clash_power')
+    m=re.search(r'공격\s*레벨\s*(?:이\s*)?(?:증가|\+)\s*(\d+)',text)
+    if m: add(ModifyContext('attack_level_bonus',Const(int(m.group(1)))),'offense_level')
+    m=re.search(r'방어\s*레벨(?:이|을)?\s*(?:감소|-)\s*(\d+)',text)
+    if m: add(AddDefenseLevel(Const(-int(m.group(1)))),'defense_level')
+    m=re.search(r'자신의\s*충전\s*위력만큼\s*방어\s*레벨\s*(?:증가|상승|얻음)(?:\s*얻음)?(?:.*?최대\s*(\d+))?', text)
+    if m:
+        cap=float(m.group(1)) if m.group(1) else 999999.0
+        add(AddDefenseLevel(Clamp(FieldValue('charge_potency','self'),0,cap)),'charge_potency_defense_level')
+
+    # Poise/Respiration threshold -> coin power.  This is a high-impact one-turn
+    # pattern: e.g. "호흡 횟수 5당 코인 위력 +1 (최대 3)".  It is evaluated at
+    # COIN_START so a preceding coin/passive can change the value for later coins.
+    m=re.search(r"호흡(?:\s*횟수)?\s*(?:\d+)\s*당\s*코인\s*위력\s*\+?\s*(\d+).*?최대\s*(\d+)", text)
+    if m:
+        pm=re.search(r"호흡(\s*횟수)?\s*(\d+)", text)
+        per=int(pm.group(2))
+        amount=int(m.group(1)); cap=int(m.group(2))
+        # Bare `호흡` denotes Poise potency in the source text; only the
+        # explicit `호흡 횟수` form denotes Poise count.
+        field='poise_count' if pm.group(1) else 'poise'
+        value=Clamp(mul(FloorValue(div(FieldValue(field,'self'),Const(per))),Const(amount)),0,cap)
+        add(ModifyContext('coin_power_bonus',value),'poise_coin_power_scaling')
+
+    m=re.search(r'파열과 침잠의 합\s*(\d+)\s*당\s*피해량\s*\+\s*(\d+(?:\.\d+)?)%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        total=addv=BinaryValue(StatusField('Rupture','potency'),'+',StatusField('Sinking','potency'))
+        value=Clamp(mul(FloorValue(div(total,Const(int(m.group(1))))),pct(m.group(2))),0,float(m.group(3))/100)
+        add(ModifyContext('dynamic_damage_bonus',value),'rupture_plus_sinking_per_n')
+    m=re.search(r'충전\s*\(?\s*(?:x|×)\s*(\d+(?:\.\d+)?)\s*\)?%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        # Preserve the source's separate per-unit coefficient and cap.
+        # Previously the coefficient was accidentally reused as the cap.
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(FieldValue('charge_potency','self'),pct(m.group(1))),0,float(m.group(2))/100)),'charge_scaling')
+    # Explicit target-relative wording: '메인 공격 대상의 속도가 자신보다 느릴 때'.
+    # Keep the condition instead of relying only on a clamped positive speed delta.
+    m=re.search(r'메인\s*공격\s*대상(?:의)?\s*속도가\s*자신보다\s*느릴\s*때.*?속도\s*차이\s*(?:x|×)\s*(\d+(?:\.\d+)?)%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        diff=sub(FieldValue('speed','self'),FieldValue('speed','enemy'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(diff,pct(m.group(1))),0,float(m.group(2))/100)),'speed_difference_target_slower_scaling')
+    m=re.search(r'속도\s*차이\s*(?:1\s*당|당)\s*(\d+(?:\.\d+)?)%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        diff=sub(FieldValue('speed','self'),FieldValue('speed','enemy'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(diff,pct(m.group(1))),0,float(m.group(2))/100)),'speed_difference_scaling')
+    m=re.search(r'속도\s*차이\s*(?:x|×)\s*자신의\s*충전\s*위력\s*.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        diff=sub(FieldValue('speed','self'),FieldValue('speed','enemy'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(mul(diff,FieldValue('charge_potency','self')),Const(0.01)),0,float(m.group(1))/100)),'speed_difference_charge_potency_scaling')
+    m=re.search(r'속도\s*차이\s*(?:x|×)\s*(?:\(\s*)?(\d+(?:\.\d+)?)\s*\)?\s*%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        diff=sub(FieldValue('speed','self'),FieldValue('speed','enemy'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(diff,pct(m.group(1))),0,float(m.group(2))/100)),'speed_difference_scaling')
+    m=re.search(r'대상의 정신력이\s*0\s*미만이면.*?\(-대상의 정신력\s*/\s*(\d+)\)%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        neg=sub(Const(0),FieldValue('sp','enemy'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(div(neg,Const(int(m.group(1)))),0,float(m.group(1))/100)),'negative_target_sp_scaling')
+    # Source-backed self-SP scaling: e.g. '절망 상태일 때, 기본 스킬로 가하는 피해량이 (-정신력 / 2)%만큼 증가 (최대 20%)'.
+    # Keep the negative-SP gate implicit in the expression by clamping the
+    # positive value of -SP; non-negative SP therefore contributes 0.
+    m=re.search(r'(?:절망\s*상태일\s*때,?\s*)?(?:기본\s*스킬로\s*)?가하는\s*피해량이?\s*\(\s*-정신력\s*/\s*(\d+)\s*\)%.*?최대\s*(\d+(?:\.\d+)?)%',text)
+    if m:
+        neg=sub(Const(0),FieldValue('sp','self'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(div(neg,Const(int(m.group(1)))),0,float(m.group(2))/100)),'negative_self_sp_scaling')
+    # Dynamic status-stack damage scaling.  Preserve the source divisor and
+    # cap exactly: e.g. "대상의 화상 3 당 피해량 +10% (최대 50%)" means
+    # floor(Burn/3) * 10%, capped at 50%, not Burn * 10% and not an uncapped
+    # linear bonus.  Bare "화상당" is the 1-per-stack form.
+    for status,ko in [('Rupture','파열'),('Sinking','침잠'),('Burn','화상'),('Bleed','출혈'),('Tremor','진동')]:
+        # `진동 위력 N 당 피해량` has its own source-backed handler below;
+        # avoid producing a duplicate modifier here.
+        if status == 'Tremor' and re.search(r'대상의\s*진동\s*위력\s*\d+\s*당\s*피해량', text):
+            continue
+        patterns = [
+            rf'대상의\s*{ko}(?:\s*위력|\s*수치)?\s*(\d+(?:\.\d+)?)\s*당\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?',
+            rf'{ko}(?:\s*위력|\s*수치)?\s*(\d+(?:\.\d+)?)\s*당\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?',
+            rf'대상의\s*{ko}(?:\s*위력|\s*수치)?\s*당\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?',
+            rf'{ko}(?:\s*위력|\s*수치)?\s*당\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?',
+        ]
+        mm=None
+        for pat in patterns:
+            mm=re.search(pat,text)
+            if mm:
+                groups=mm.groups()
+                if len(groups)==3:
+                    per,amount,cap=groups
+                elif len(groups)==2:
+                    per=None; amount,cap=groups
+                else:
+                    continue
+                per=float(per) if per is not None else 1.0
+                amount=float(amount)
+                capv=float(cap)/100.0 if cap is not None else 999999.0
+                value=mul(FloorValue(div(StatusField(status,'potency','enemy'),Const(per))),pct(amount))
+                value=Clamp(value,0,capv)
+                add(ModifyContext('dynamic_damage_bonus',value),ko+'_per_stack_capped')
+                break
+    # Named resource/status scalings used by several E.G.O/identity passives.
+    # Keep this deliberately explicit to avoid treating arbitrary prose as a status.
+    for name in ('적안','참회','경멸의 시선','시선','경멸'):
+        m=re.search(re.escape(name)+r'.*?(?:/|\/)\s*(\d+)\s*\)?%.*?(?:피해량|크리티컬\s*피해량)', text)
+        if m:
+            field='potency'
+            add(ModifyContext('dynamic_damage_bonus',mul(StatusField(name,field,'self'),Const(1.0/int(m.group(1))/100.0))), 'named_status_damage_scaling')
+        m=re.search(r'피해량.*?\('+re.escape(name)+r'\s*/\s*(\d+)\)%', text)
+        if m:
+            add(ModifyContext('dynamic_damage_bonus',mul(StatusField(name,'potency','self'),Const(1.0/int(m.group(1))/100.0))), 'named_status_damage_scaling')
+    m=re.search(r'(?:자신의\s*)?잃은\s*체력\s*(\d+(?:\.\d+)?)\s*당\s*,?\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m and '%' not in m.group(1):
+        per=float(m.group(1)); amount=float(m.group(2))/100.0; cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+        missing=sub(FieldValue('max_hp','self'),FieldValue('hp','self'))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(FloorValue(div(missing,Const(per))),Const(amount)),0,cap)),'lost_hp_absolute_scaling')
+
+    # Lost-HP scaling. Preserve the source subject (self/target) and divisor.
+    m=re.search(r'대상의\s*잃은\s*체력\s*(\d+(?:\.\d+)?)%\s*당\s*,?\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        per=float(m.group(1)); amount=float(m.group(2))/100.0; cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+        missing=sub(Const(1), div(FieldValue('hp','enemy'),FieldValue('max_hp','enemy')))
+        value=Clamp(mul(FloorValue(div(missing,Const(per/100.0))),Const(amount)),0,cap)
+        add(ModifyContext('dynamic_damage_bonus',value),'target_lost_hp_scaling')
+    else:
+        m=re.search(r'(?:자신의\s*)?잃은\s*체력\s*(\d+(?:\.\d+)?)%\s*당\s*,?\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+        if m:
+            per=float(m.group(1)); amount=float(m.group(2))/100.0; cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+            missing=sub(Const(1), div(FieldValue('hp','self'),FieldValue('max_hp','self')))
+            value=Clamp(mul(FloorValue(div(missing,Const(per/100.0))),Const(amount)),0,cap)
+            add(ModifyContext('dynamic_damage_bonus',value),'lost_hp_scaling')
+    m=re.search(r'대상과\s*자신의\s*잃은\s*체력\s*합\s*(\d+(?:\.\d+)?)%\s*당\s*,?\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        per=float(m.group(1)); amount=float(m.group(2))/100.0; cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+        self_missing=sub(Const(1), div(FieldValue('hp','self'),FieldValue('max_hp','self')))
+        enemy_missing=sub(Const(1), div(FieldValue('hp','enemy'),FieldValue('max_hp','enemy')))
+        value=Clamp(mul(FloorValue(div(BinaryValue(self_missing,'+',enemy_missing),Const(per/100.0))),Const(amount)),0,cap)
+        add(ModifyContext('dynamic_damage_bonus',value),'self_target_lost_hp_sum_scaling')
+    m=re.search(r'대상의\s*잃은\s*체력의\s*(\d+(?:\.\d+)?)%\s*만큼\s*피해량(?:이)?\s*증가(?:함)?(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        amount=float(m.group(1))/100.0; cap=float(m.group(2))/100.0 if m.group(2) else 999999.0
+        missing=sub(Const(1), div(FieldValue('hp','enemy'),FieldValue('max_hp','enemy')))
+        add(ModifyContext('dynamic_damage_bonus',Clamp(mul(missing,Const(amount)),0,cap)),'target_lost_hp_ratio_scaling')
+
+    # Lost-HP scaling: damage increases by a percentage for each missing HP block.
+    m=re.search(r'잃은 체력\s*(\d+(?:\.\d+)?)%.*?피해량\s*증가\s*(\d+)',text)
+    if m:
+        # Damage Up 1 is treated as +10 percentage points in the catalog.
+        value=mul(FloorValue(div(sub(Const(100),mul(div(FieldValue('hp','self'),FieldValue('max_hp','self')),Const(100))),Const(float(m.group(1))))),pct(float(m.group(1))*10))
+        add(ModifyContext('dynamic_damage_bonus',value),'lost_hp_scaling')
+
+    # Critical-damage scaling must remain a critical-damage modifier.  Do not
+    # collapse these clauses into ordinary damage.  Source examples include
+    # `자신의 호흡당 크리티컬 피해량 +3% (최대 60%)`,
+    # `대상의 파열 1 당 크리티컬 피해량 +2% (최대 30%)`, and
+    # `속도 차이 1 당 크리티컬 피해량 +5% (최대 30%)`.
+    m=re.search(r'크리티컬\s*피해량\s*\+?\s*\(?(?:대상의\s*)?(화상|출혈|침잠|파열|진동)\s*(?:위력|수치)?\)?%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        en=STATUS[m.group(1)]
+        cap=float(m.group(2))/100.0 if m.group(2) else 999999.0
+        add(ModifyContext('crit_damage_bonus', Clamp(mul(StatusField(en,'potency','enemy'), Const(0.01)), 0, cap)), 'crit_damage_scaling')
+
+    m=re.search(r'자신의\s*20\s*을\s*초과하는\s*호흡\s*위력\s*(?:1\s*)?당\s*자신의\s*기본\s*공격\s*스킬\s*크리티컬\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        amount=float(m.group(1))/100.0; cap=float(m.group(2))/100.0 if m.group(2) else 999999.0
+        excess=sub(FieldValue('poise_potency','self'),Const(20))
+        add(ModifyContext('crit_damage_bonus',Clamp(mul(excess,Const(amount)),0,cap)),'poise_excess_crit_damage_scaling')
+
+    m=re.search(r'(?:자신의\s*)?호흡(?:\s*위력)?\s*(\d+(?:\.\d+)?)?\s*당\s*,?\s*크리티컬\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        per=float(m.group(1) or 1.0); amount=float(m.group(2))/100.0
+        cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+        add(ModifyContext('crit_damage_bonus', Clamp(mul(FloorValue(div(FieldValue('poise_potency','self'),Const(per))),Const(amount)),0,cap)), 'poise_crit_damage_scaling')
+
+    m=re.search(r'대상의\s*(화상|출혈|침잠|파열|진동)\s*(?:위력|수치)?\s*(\d+(?:\.\d+)?)?\s*당\s*크리티컬\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        en=STATUS[m.group(1)]; per=float(m.group(2) or 1.0); amount=float(m.group(3))/100.0
+        cap=float(m.group(4))/100.0 if m.group(4) else 999999.0
+        add(ModifyContext('crit_damage_bonus', Clamp(mul(FloorValue(div(StatusField(en,'potency','enemy'),Const(per))),Const(amount)),0,cap)), 'target_status_crit_damage_scaling')
+
+    m=re.search(r'(?:대상과의\s*)?속도\s*차이\s*(?:1\s*당|당)\s*크리티컬\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        amount=float(m.group(1))/100.0; cap=float(m.group(2))/100.0 if m.group(2) else 999999.0
+        diff=sub(FieldValue('speed','self'),FieldValue('speed','enemy'))
+        add(ModifyContext('crit_damage_bonus',Clamp(mul(diff,Const(amount)),0,cap)), 'speed_difference_crit_damage_scaling')
+
+    m=re.search(r'크리티컬\s*피해량\s*\+?\s*\(\s*(?:자신의\s*)?호흡(?:\s*위력)?\s*\+\s*대상의\s*(화상|출혈|침잠|파열|진동)(?:\s*위력)?\s*\)\s*%(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        en=STATUS[m.group(1)]; cap=float(m.group(2))/100.0 if m.group(2) else 999999.0
+        total=BinaryValue(StatusField('Poise','potency','self'),'+',StatusField(en,'potency','enemy'))
+        add(ModifyContext('crit_damage_bonus',Clamp(mul(total,Const(0.01)),0,cap)), 'cross_status_crit_damage_scaling')
+
+    m=re.search(r'\(\s*(?:자신의\s*)?호흡(?:\s*위력)?\s*\+\s*대상의\s*(화상|출혈|침잠|파열|진동)(?:\s*위력)?\s*\)\s*1\s*당\s*크리티컬\s*피해량\s*\+?\s*(\d+(?:\.\d+)?)%.*?(?:.*?최대\s*(\d+(?:\.\d+)?)%)?', text)
+    if m:
+        en=STATUS[m.group(1)]; amount=float(m.group(2))/100.0; cap=float(m.group(3))/100.0 if m.group(3) else 999999.0
+        total=BinaryValue(StatusField('Poise','potency','self'),'+',StatusField(en,'potency','enemy'))
+        add(ModifyContext('crit_damage_bonus',Clamp(mul(total,Const(amount)),0,cap)), 'cross_status_crit_damage_scaling')
+    return tuple(out)
+
+def effects(text):
+    parsed=parse_effects(text); return [x.effect for x in parsed],[x.reason for x in parsed]
+effects14 = effects
+effects15 = effects
+
+def _default_trigger(reasons):
+    if any(r in {
+        'damage_up_stack','typed_damage_up','sin_damage_up','damage_percent','damage_taken_percent','coin_power','offense_level','clash_power','final_power',
+        'charge_scaling','speed_difference_scaling','tremor_unit_skill_potency_bonus','tremor_unit_skill_count_bonus','poise_coin_power_scaling','negative_target_sp_scaling','negative_self_sp_scaling','파열_per_stack','침잠_per_stack',
+        '화상_per_stack','출혈_per_stack','진동_per_stack','burn_application_potency_bonus','rupture_plus_sinking_per_n','lost_hp_scaling','crit_damage_scaling','Rupture_damage_scaling','Sinking_damage_scaling','Burn_damage_scaling','Bleed_damage_scaling','Tremor_damage_scaling'
+    } for r in reasons):
+        return PassiveTrigger.COIN_HIT
+    return None
+
+@dataclass(frozen=True)
+class PassiveTemplate:
+    trigger: PassiveTrigger
+    condition: Condition
+    target_kind: str
+    effects: tuple[Effect,...]
+    max_activations: Any
+    source_text: str
+    deferred_turns: int = 0
+    target_spec: Any = None
+
+@lru_cache(maxsize=8192)
+def compile_clause_template(text: str, support: bool = False):
+    trigger=parse_trigger(text)
+    espec=parse_effects(text)
+    burst_resolved_defense = any(x.reason == 'tremor_burst_stagger_to_defense_down' or x.reason == 'next_turn_status_target:tremor_burst_stagger_to_defense_down' for x in espec)
+    if burst_resolved_defense:
+        trigger = PassiveTrigger.TREMOR_BURST_RESOLVED
+    es=tuple(x.effect for x in espec); reasons=tuple(x.reason for x in espec)
+    unresolved_typed_status_damage = bool(re.search(
+        r'(?:대상의\s*)?(?:출혈|화상|파열|침잠|진동|속박|못|광신)\s*(?:위력|횟수|수치)?\s*\d+(?:\.\d+)?\s*당.*?(?:참격|관통|타격)\s*피해량',
+        text))
+    if trigger is None: trigger=_default_trigger(reasons)
+    # Preserve v22 fallback: an otherwise executable effect clause without an explicit
+    # trigger is treated as a pre-attack effect. This keeps coverage stable while the
+    # canonical parser removes the old v14/v15/v22 duplication.
+    if trigger is None and es: trigger=PassiveTrigger.BEFORE_ATTACK
+    if trigger is None or not es:
+        return None, reasons, tuple(dict.fromkeys((('typed_status_damage_scaling',) if unresolved_typed_status_damage else ()) + (('trigger',) if trigger is None else ('effect',))))
+    unsupported_extra = ('typed_status_damage_scaling',) if unresolved_typed_status_damage else ()
+    # Future-turn effects are scheduled by PassiveRuntime rather than applied
+    # at the causal event. One-turn mode records the schedule; a multi-turn caller
+    # can consume it at the following TurnStart.
+    deferred_turns = 1 if re.search(r'다음\s*턴', text) else 0
+    # Explicit next-turn-state effects already queue their destination state.
+    # Do not additionally defer the whole passive rule or the effect would be
+    # scheduled twice / one turn too late.
+    if any(r.startswith('next_turn_status:') or r.startswith('next_turn_status_target:') for r in reasons):
+        deferred_turns = 0
+    condition=parse_conditions(text)
+    support_target_spec = None
+    support_rank_applied = False
+    support_rank_unsafe = False
+    # Support passives with a ranked ally phrase describe the recipient/actor
+    # selected by the support effect, not the support passive owner.  The old
+    # generic rank parser treated these phrases as an AllyRankCondition on the
+    # owner and then applied the effect to SelfTarget(), which can silently
+    # move the effect to the wrong identity.  Only promote the unambiguous
+    # bare ranked-ally forms here; filtered/priority variants are left out of
+    # this promotion rather than guessed.
+    if support:
+        if re.search(r'속도가\s*가장\s*(?:빠른|느린|높은|낮은)\s*적', text):
+            support_rank_unsafe = True
+        from passive_runtime_v29_base import AllySelectorTarget, AllyRankCondition
+        support_rank_patterns = [
+            (r'(?:자신을\s*제외한\s*)?속도가\s*가장\s*(?:빠른|높은)\s*아군', 'speed_max'),
+            (r'(?:자신을\s*제외한\s*)?속도가\s*가장\s*(?:빠른|높은)\s*인격', 'speed_max'),
+            (r'(?:자신을\s*제외한\s*)?속도가\s*가장\s*(?:느린|낮은)\s*아군', 'speed_min'),
+            (r'(?:자신을\s*제외한\s*)?현재\s*체력이\s*가장\s*(?:높은|많은)\s*아군', 'hp_max'),
+            (r'(?:자신을\s*제외한\s*)?현재\s*체력이\s*가장\s*(?:낮은|적은)\s*아군', 'hp_min'),
+            (r'(?:자신을\s*제외한\s*)?최대\s*체력이\s*가장\s*(?:높은|많은)\s*아군', 'max_hp_max'),
+            (r'(?:자신을\s*제외한\s*)?최대\s*체력이\s*가장\s*(?:낮은|적은)\s*아군', 'max_hp_min'),
+            (r'(?:자신을\s*제외한\s*)?체력이\s*가장\s*(?:높은|많은)\s*아군', 'hp_max'),
+            (r'(?:자신을\s*제외한\s*)?체력이\s*가장\s*(?:낮은|적은)\s*아군', 'hp_min'),
+            (r'(?:자신을\s*제외한\s*)?정신력이\s*가장\s*높은\s*아군', 'sp_max'),
+            (r'(?:자신을\s*제외한\s*)?정신력이\s*가장\s*낮은\s*아군', 'sp_min'),
+            (r'(?:자신을\s*제외한\s*)?충전(?:\s*횟수)?가\s*가장\s*(?:많은|높은)\s*아군', 'charge_max'),
+            (r'(?:자신을\s*제외한\s*)?충전(?:\s*횟수)?가\s*가장\s*(?:적은|낮은)\s*아군', 'charge_min'),
+            (r'(?:자신을\s*제외한\s*)?탄환이\s*가장\s*많은\s*아군', 'ammo_max'),
+            (r'(?:자신을\s*제외한\s*)?탄환이\s*가장\s*적은\s*아군', 'ammo_min'),
+            (r'(?:자신을\s*제외한\s*)?호흡\s*위력을(?:을|이)?\s*가장\s*많이\s*(?:보유한|가진)?\s*아군', 'poise_potency_max'),
+            (r'(?:자신을\s*제외한\s*)?호흡\s*위력(?:을|이)\s*가장\s*적게\s*(?:보유한|가진)?\s*아군', 'poise_potency_min'),
+            (r'(?:자신을\s*제외한\s*)?호흡(?:을|이)\s*가장\s*많이\s*(?:보유한|가진)\s*아군', 'poise_potency_max'),
+            (r'(?:자신을\s*제외한\s*)?호흡(?:을|이)\s*가장\s*적게\s*(?:보유한|가진)\s*아군', 'poise_potency_min'),
+        ]
+        for pat, policy in ([] if support_rank_unsafe else support_rank_patterns):
+            m_rank = re.search(pat, text)
+            if not m_rank:
+                continue
+            # Do not guess through a compound eligibility/priority phrase.
+            # Those require a filter+rank selector and are audited separately.
+            tail = text[m_rank.end():]
+            prefix = text[max(0, m_rank.start()-100):m_rank.start()]
+            target_filter_before_rank = bool(re.search(r'아군\s*중\s*$', prefix)) or bool(re.search(r'보유한\s*아군\s*중\s*$', prefix))
+            target_priority_or_exclusion = bool(re.search(r'우선|(?:패닉|침식).*제외|정신력을\s*회복할\s*수\s*없는', tail[:140]))
+            known_composite = bool(re.search(r'광신\s*이\s*있는\s*아군\s*중\s*정신력이\s*가장\s*낮은\s*아군', text))
+            if (target_filter_before_rank or target_priority_or_exclusion) and not known_composite:
+                # A ranked target with an additional eligibility/priority rule
+                # cannot safely fall back to SelfTarget.  Leave the clause
+                # unsupported until the generic Filter -> Priority -> Rank
+                # selector can represent it exactly.
+                support_rank_unsafe = True
+                break
+            count_m = re.search(r'\s*(\d+)명', tail[:18])
+            count = int(count_m.group(1)) if count_m else 1
+            exclude_owner = bool(re.search(r'자신을\s*제외한\s*$', text[:m_rank.start()+1]))
+            support_target_spec = AllySelectorTarget(policy, count, exclude_owner)
+            support_rank_applied = True
+            target_kind = 'custom'
+            if isinstance(condition, And):
+                condition = And(tuple(c for c in condition.conditions if not isinstance(c, AllyRankCondition)))
+            elif isinstance(condition, AllyRankCondition):
+                condition = Always()
+            break
+    if support_rank_unsafe:
+        return None, reasons, ('target_filter_or_priority',)
+    # Event-source rank rules: phrases such as "속도가 가장 느린 아군 1명이
+    # 진동 폭발로 입히는 ..." describe WHO caused the Burst, not who owns the
+    # passive. Replace the generic owner-rank predicate with an event-actor rank
+    # predicate so the common Burst runtime can evaluate it correctly.
+    if '진동 폭발' in text and re.search(r'속도가\s*가장\s*(빠른|느린)\s*아군', text):
+        from passive_runtime_v29_base import ActorRankCondition, AllyRankCondition
+        policy = 'speed_max' if re.search(r'속도가\s*가장\s*빠른\s*아군', text) else 'speed_min'
+        if isinstance(condition, And):
+            base = tuple(c for c in condition.conditions if not isinstance(c, AllyRankCondition))
+            condition = And(base + (ActorRankCondition(policy),))
+        elif isinstance(condition, AllyRankCondition):
+            condition = ActorRankCondition(policy)
+        else:
+            condition = And((condition, ActorRankCondition(policy)))
+    if re.search(r'진동\s*폭발.*?대상(?:의)?\s*진동\s*이\s*(\d+)\s*이상이면', text):
+        m_t = re.search(r'대상(?:의)?\s*진동\s*이\s*(\d+)\s*이상이면', text)
+        condition = And((condition, StatusAtLeast('Tremor', int(m_t.group(1)), 'enemy')))
+    burst_target_effect = any(x.reason == 'tremor_burst_effect' or x.reason.startswith('tremor_burst_') or x.reason.startswith('next_turn_status_target:') for x in espec)
+    amplitude_effect = any(x.reason.startswith('amplitude_conversion:') or x.reason.startswith('amplitude_entanglement:') for x in espec)
+    # Most `[적중시] 진폭 변환/얽힘` clauses implicitly operate on the hit
+    # target even when the noun `대상` is omitted. Explicit `자신의 진동`
+    # clauses remain self-targeted.
+    amplitude_target_effect = amplitude_effect and (
+        bool(re.search(r'(?:대상|적).*진폭', text))
+        or bool(re.search(r'진폭\s*(?:변환|얽힘)', text)) and not bool(re.search(r'자신의\s*진동', text))
+    )
+    # Source-backed event actor targeting.  Phrases such as `피격 시 공격자에게
+    # 침잠 1 부여` explicitly target the unit that caused the current hit, not
+    # the passive owner.  Falling through to SelfTarget silently applied these
+    # effects to the defender and produced a real source/engine mismatch.
+    attacker_target_effect = bool(re.search(r'공격자에게', text))
+    deferred_target_effect = any(x.reason.startswith('deferred_status_target:') or x.reason.startswith('deferred_status_target_count:') for x in espec)
+    target_kind='event' if (burst_resolved_defense or burst_target_effect or amplitude_target_effect or attacker_target_effect or deferred_target_effect) else ('custom' if support_rank_applied else 'self')
+    target_spec = EventTarget('attacker') if attacker_target_effect else (EventTarget('target') if deferred_target_effect else support_target_spec)
+    max_act=None
+    # Generic ally-target resolution for damage-relevant support passives.
+    # Only unambiguous FighterState-backed selectors are promoted; affiliation
+    # and other hidden roster predicates remain unsupported.
+    # Composite support selector: an ally carrying a status, then lowest SP.
+    # This source pattern omits an explicit 'N명' count; the game-facing
+    # singular target is therefore normalized to count=1.
+    if re.search(r'광신\s*이\s*있는\s*아군\s*중\s*정신력이\s*가장\s*낮은\s*아군', text):
+        from passive_runtime_v29_base import AllySelectorTarget
+        target_spec=AllySelectorTarget('status_present_sp_min:광신', 1, False)
+        target_kind='custom'
+    m_all = re.search(r'(?P<exclude>자신을\s*제외(?:하고|한)?\s*)?(?P<count>\d+)명(?:에게|에게\s*부여|에게\s*적용)', text)
+    if m_all and '아군' in text:
+        prefix=text[:m_all.start()]
+        segment=text[max(0, m_all.start()-90):m_all.end()+20]
+        if '소속' not in segment and '가문' not in segment and '인격' not in segment.split('아군')[-1]:
+            count=int(m_all.group('count')); exclude=bool(m_all.group('exclude')) or bool(re.search(r'자신을\s*제외',segment))
+            policy=None
+            if re.search(r'속도가\s*가장\s*빠른\s*아군',segment): policy='speed_max'
+            elif re.search(r'속도가\s*가장\s*느린\s*아군',segment): policy='speed_min'
+            elif re.search(r'(?:현재\s*)?체력\s*비율이\s*가장\s*낮은\s*아군',segment): policy='hp_percent_min'
+            elif re.search(r'(?:현재\s*)?체력\s*비율이\s*가장\s*높은\s*아군',segment): policy='hp_percent_max'
+            elif re.search(r'최대\s*체력이\s*가장\s*(?:낮은|적은)\s*아군',segment): policy='max_hp_min'
+            elif re.search(r'최대\s*체력이\s*가장\s*(?:높은|많은)\s*아군',segment): policy='max_hp_max'
+            elif re.search(r'충전을\s*보유한\s*아군\s*중\s*충전(?:\s*횟수)?가\s*가장\s*낮은\s*아군',segment): policy='charge_positive_min'
+            elif re.search(r'충전(?:\s*횟수)?(?:를|을)\s*가장\s*적게\s*(?:보유한|가지고)',segment): policy='charge_min'
+            elif re.search(r'충전(?:\s*횟수)?(?:가|이)\s*가장\s*많은\s*아군',segment): policy='charge_max'
+            elif re.search(r'충전(?:\s*횟수)?(?:가|이)\s*가장\s*적은\s*아군',segment): policy='charge_min'
+            elif re.search(r'탄환(?:을|이)\s*가장\s*많이\s*(?:보유한|가진)',segment): policy='ammo_max'
+            elif re.search(r'탄환(?:을|이)\s*가장\s*적게\s*(?:보유한|가진)',segment): policy='ammo_min'
+            elif re.search(r'호흡\s*위력을(?:을|이)?\s*가장\s*많이',segment): policy='poise_potency_max'
+            elif re.search(r'호흡\s*위력(?:을|이)\s*가장\s*적게',segment): policy='poise_potency_min'
+            elif re.search(r'호흡\s*횟수(?:를|가|이)\s*가장\s*많이',segment): policy='poise_count_max'
+            elif re.search(r'호흡\s*횟수(?:를|가|이)\s*가장\s*적게',segment): policy='poise_count_min'
+            elif re.search(r'호흡(?:을|이)\s*가장\s*많이\s*(?:보유한|가진)',segment): policy='poise_potency_max'
+            elif re.search(r'호흡(?:을|이)\s*가장\s*적게\s*(?:보유한|가진)',segment): policy='poise_potency_min'
+            elif re.search(r'정신력이\s*가장\s*낮은\s*아군',segment): policy='sp_min'
+            elif re.search(r'정신력이\s*가장\s*높은\s*아군',segment): policy='sp_max'
+            elif re.search(r'광신\s*이\s*있는\s*아군\s*중\s*정신력이\s*가장\s*낮은',segment): policy='status_present_sp_min:광신'
+            elif re.search(r'진동\s*횟수가\s*가장\s*높은\s*아군',segment): policy='highest_status_count:Tremor'
+            elif re.search(r'출혈과\s*출혈\s*횟수의\s*합이\s*가장\s*높은\s*아군',segment): policy='highest_status_total:Bleed'
+            elif re.search(r'진동\s*횟수가\s*가장\s*낮은\s*아군',segment): policy='lowest_status_count:Tremor'
+            elif re.search(r'자신보다\s*편성\s*순서가\s*빠른\s*아군',segment) and re.search(r'충전\s*횟수가\s*낮은',segment): policy='formation_before_owner_charge_min'
+            elif re.search(r'자신보다\s*편성\s*순서가\s*빠른\s*아군',segment): policy='formation_before_owner'
+            if policy:
+                from passive_runtime_v29_base import AllySelectorTarget, SelfPlusAllyTarget, AllAlliesTarget
+                target_spec=AllySelectorTarget(policy,count,exclude)
+                if '자신과' in segment and not exclude:
+                    target_spec=SelfPlusAllyTarget(AllySelectorTarget(policy,count,True))
+                target_kind='custom'
+            elif re.search(r'(?:자신을\s*제외하고\s*)?모든\s*아군',segment):
+                from passive_runtime_v29_base import AllAlliesTarget
+                target_spec=AllAlliesTarget(bool(re.search(r'자신을\s*제외',segment)))
+                target_kind='custom'
+    m=re.search(r'(?:턴|전투)\s*(?:당|중)[^\d]*(\d+)회',text)
+    if m: max_act=int(m.group(1))
+    m=re.search(r'턴마다\s*적\s*\d+명당\s*최대\s*(\d+)', text)
+    if m: max_act=int(m.group(1))
+    return PassiveTemplate(trigger,condition,target_kind,es,max_act,text, deferred_turns=deferred_turns, target_spec=target_spec), reasons, unsupported_extra
+
+def compile_one(record, owner, index=0):
+    text=str(record.get('effect','')).strip(); rules=[]; reasons=[]; unsupported=[]
+    for j,c in enumerate(split_clauses(text)):
+        template,rr,us=compile_clause_template(c, support=(str(record.get('type','')) == '서포트'))
+        reasons.extend(rr); unsupported.extend(us)
+        if template is None: continue
+        target=(template.target_spec if getattr(template,'target_spec',None) is not None else EventTarget('target')) if template.target_kind=='event' else (template.target_spec if template.target_kind=='custom' and getattr(template,'target_spec',None) is not None else SelfTarget())
+        rules.append(PassiveDefinition(
+            f"{record.get('id') or owner}:p{index}:r{j}", str(record.get('name','')), owner,
+            template.trigger,[template.condition],target,list(template.effects),
+            max_activations=template.max_activations,source_text=template.source_text,
+            deferred_turns=template.deferred_turns
+        ))
+
+    # Some passives express a modifier and then state that the modifier's
+    # effect is doubled under an additional condition, e.g.
+    # `속도 차이에 따른 피해량 증가` followed by
+    # `대상이 포박 상태면, 피해량이 증가하는 효과가 2배로 적용됨`.
+    # The second clause is not a new base modifier; it is a conditional copy
+    # of the preceding damage modifier.  Reuse the already compiled Effect
+    # objects instead of inventing a separate multiplier axis.
+    clauses = split_clauses(text)
+    for k, clause in enumerate(clauses):
+        if not re.search(r'피해량이\s*증가하는\s*효과가\s*2배로\s*적용', clause):
+            continue
+        if k <= 0:
+            continue
+        prev = clauses[k-1]
+        if not re.search(r'피해량\s*증가', prev) or not re.search(r'속도\s*차이', prev):
+            continue
+        extra_effects = []
+        for r in rules:
+            if r.source_text != prev:
+                continue
+            for effect in r.effects:
+                if isinstance(effect, ModifyContext) and effect.field == 'dynamic_damage_bonus':
+                    extra_effects.append(effect)
+            if extra_effects:
+                rules.append(PassiveDefinition(
+                    f"{record.get('id') or owner}:p{index}:r{len(rules)}", str(record.get('name','')), owner,
+                    r.trigger, parse_conditions(clause), r.target, list(extra_effects),
+                    source_text=clause
+                ))
+                reasons.append('conditional_damage_modifier_double')
+                break
+    return rules,reasons,unsupported
+
+# Old v22 call site expects compile_one tuple; catalog uses the same compact path.
+def compile_catalog(cat):
+    rows=[]; stat={'source_passives':0,'compiled_source_passives':0,'compiled_rules':0,'unsupported_source_passives':0,'reasons':{},'unsupported_reasons':{}}
+    for ident in cat.get('identities',[]):
+        for i,p in enumerate(ident.get('passives') or []):
+            rules,rs,us=compile_one(p,str(ident['id']),i); rows.append((ident,p,rules)); stat['source_passives']+=1
+            if rules: stat['compiled_source_passives']+=1; stat['compiled_rules']+=len(rules)
+            else: stat['unsupported_source_passives']+=1
+            for x in rs: stat['reasons'][x]=stat['reasons'].get(x,0)+1
+            for x in us: stat['unsupported_reasons'][x]=stat['unsupported_reasons'].get(x,0)+1
+    return rows,stat
+
+def write_metadata(rows,path):
+    out=[]
+    for ident,p,rules in rows:
+        for r in rules:
+            out.append({'identity_id':ident['id'],'identity_name':ident.get('name',''),'passive_id':p.get('id'),'passive_name':p.get('name',''),'rule_id':r.id,'trigger':r.trigger.value,'source_text':r.source_text})
+    with open(path,'w',encoding='utf-8') as f: json.dump(out,f,ensure_ascii=False,indent=2)
+
+def cache_info():
+    return {'clauses':split_clauses.cache_info()._asdict(),'triggers':parse_trigger.cache_info()._asdict(),'conditions':parse_conditions.cache_info()._asdict(),'effects':parse_effects.cache_info()._asdict(),'templates':compile_clause_template.cache_info()._asdict()}
+
+if __name__=='__main__':
+    import sys
+    cat=json.load(open(sys.argv[1],encoding='utf-8')); rows,s=compile_catalog(cat)
+    json.dump(s,open(sys.argv[2],'w',encoding='utf-8'),ensure_ascii=False,indent=2)
+    if len(sys.argv)>3: write_metadata(rows,sys.argv[3])
+    print(json.dumps(s,ensure_ascii=False,indent=2))
+    print(json.dumps(cache_info(),ensure_ascii=False))
+
+@dataclass(frozen=True)
+class CompiledPassive:
+    rules: tuple
+    reasons: tuple = ()
+    unsupported_reasons: tuple = ()
+
+@lru_cache(maxsize=8192)
+def _compile_passive_cached(record_json: str, owner: str, index: int):
+    record=json.loads(record_json)
+    rules,reasons,unsupported=compile_one(record,owner,index)
+    return CompiledPassive(tuple(rules),tuple(reasons),tuple(unsupported))
+
+def compile_passive_v29(record, owner, index=0):
+    """Runtime adapter: compile one catalog passive into executable definitions."""
+    return _compile_passive_cached(json.dumps(record,ensure_ascii=False,sort_keys=True),str(owner),int(index))
+
+# Compatibility name used by the previous solver; now points to the canonical compiler.
+compile_passive_v15 = compile_passive_v29

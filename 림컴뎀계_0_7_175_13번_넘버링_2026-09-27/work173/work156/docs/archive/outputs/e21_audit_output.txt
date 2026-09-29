@@ -1,0 +1,38 @@
+{
+  "version": "E21",
+  "source": "GIMMICK_GAP_REPORT_v4.md.json",
+  "scope": "explicit highest/most resource target-selection phrases",
+  "matched_records": 2,
+  "cases": [
+    {
+      "identity_name": "R사 제 4무리 코뿔소팀",
+      "passive_name": "기동 훈련",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "selector_case": "charge_highest_ally",
+      "phrase": "충전 횟수가 가장 높은 아군",
+      "source_text": "턴 종료 시 충전 횟수가 가장 높은 아군 1명이 충전 횟수 5당 다음 턴의 속도 최대 값 +1 (최대 3)",
+      "mapped_primitive": "highest_resource_selector",
+      "target_side": "ally",
+      "resource_semantics": "charge_count"
+    },
+    {
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "제압 사격",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "selector_case": "ammo_most_ally",
+      "phrase": "탄환을 가장 많이 보유한 아군",
+      "source_text": "탄환을 가장 많이 보유한 아군 인격이 탄환을 소모하는 스킬로 가하는 피해량 +10%\n(탄환이 없으면 적용되지 않음)",
+      "mapped_primitive": "highest_resource_selector",
+      "target_side": "ally",
+      "resource_semantics": "ammo_count"
+    }
+  ],
+  "conclusion": "The corpus contains explicit highest-resource ally selection cases; the symmetric primitive exists and should not be conflated with generic highest-HP/highest-status target selection."
+}

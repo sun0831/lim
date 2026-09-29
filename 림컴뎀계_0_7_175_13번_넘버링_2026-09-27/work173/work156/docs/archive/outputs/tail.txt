@@ -1,0 +1,342 @@
+                    'outcome': outcome,
+                    'clash_outcome': outcome,
+                    'fighter': fighter,
+                    'state': state,
+                    'resources': dict(getattr(fighter, 'resources', {}) or {}),
+                    'statuses': {k:v.__dict__.copy() for k,v in fighter.statuses.items()},
+                    'generated': request.generated,
+                }
+                for ga in gimmicks.after_clash(ident, skill, clash_trigger_ctx):
+                    inherit_target = (ga.target_policy in (None, '', 'main') and
+                                       ga.target_index is None and ga.target_ids is None and
+                                       request.target_policy is not None)
+                    generated = action_queue.triggered_from(
+                        request, ga.identity_id, ga.skill_id, ga.reason,
+                        source_event='after_clash',
+                        faces=ga.forced_faces,
+                        target_policy=(request.target_policy if inherit_target else ga.target_policy),
+                        target_index=(request.target_index if inherit_target else ga.target_index),
+                        target_ids=(request.target_ids if inherit_target else ga.target_ids),
+                        target_override_ids=(request.target_override_ids if inherit_target else ga.target_override_ids),
+                        coin_target_ids=(request.coin_target_ids if inherit_target else ga.coin_target_ids),
+                        trigger_kind=ga.trigger_kind,
+                    )
+                    queued = action_queue.enqueue_triggered(generated)
+                    state.event_log.append({
+                        'event':'gimmick_action_queued', 'action_index':idx,
+                        'queued':queued, 'reason':ga.reason, 'source':ga.source,
+                        'identity_id':ga.identity_id, 'skill_id':ga.skill_id,
+                        'trigger_kind':ga.trigger_kind, 'trigger_context':clash_trigger_ctx,
+                        'requested_index':request.requested_index,
+                        'depth':generated.depth, 'trigger_chain':generated.trigger_chain,
+                    })
+
+            # Optional probabilistic Bleed mode. It is action-local and feeds
+            # the expected remaining Bleed Count into subsequent actions.
+            bleed_probability_result = None
+            bleed_consumption = None
+            pcfg = a.get('bleed_clash_probability')
+            if pcfg and isinstance(pcfg, dict):
+                bleed_probability_result = self._run_probabilistic_bleed(state, skill, pcfg, fighter)
+                expected_damage_result = self._expected_probabilistic_clash_damage(
+                    state, ident, skill, faces, bleed_probability_result, bool(a.get('crit',False))
+                )
+                bleed_probability_result.update(expected_damage_result)
+                infinite = bool(scenario.get('bleed_count_infinite', False) or pcfg.get('bleed_count_infinite', False))
+                bleed_consumption = self._apply_bleed_proc_count(state, bleed_probability_result['expected_bleed_procs'], infinite=infinite, expected=True)
+                # Terminal-state bookkeeping is internal to the expected-damage
+                # calculation; do not expose the potentially large state map in
+                # normal calculator output.
+                bleed_probability_result.pop('_terminal_meta', None)
+                state.event_log.append({'event':'bleed_probability','action_index':idx+1,'identity_id':iid,'skill':skill.id,
+                    'expected_bleed_procs':bleed_probability_result['expected_bleed_procs'],
+                    'expected_bleed_procs_raw':bleed_probability_result['expected_bleed_procs_raw'],
+                    'probability_reaching_99_exchanges':bleed_probability_result['probability_reaching_99_exchanges'],
+                    'bleed_consumption':bleed_consumption})
+            elif clash_trace is not None:
+                infinite = bool(scenario.get('bleed_count_infinite', False))
+                bleed_consumption = self._apply_bleed_proc_count(state, clash_trace['total_bleed_procs'], infinite=infinite, expected=False)
+                state.event_log.append({'event':'bleed_consumption','action_index':idx+1,'identity_id':iid,'skill':skill.id, **bleed_consumption})
+            action_damage=state.turn_damage-before
+            damage_by_identity[iid]=damage_by_identity.get(iid,0.0)+action_damage
+            skill_key=f'{iid}:{skill.id}'
+            damage_by_skill[skill_key]=damage_by_skill.get(skill_key,0.0)+action_damage
+            action_expected_damage = (float(bleed_probability_result.get('expected_damage', 0.0))
+                                      if bleed_probability_result is not None else float(action_damage))
+            reuse_summary = self._probabilistic_reuse_summary(state, ident, skill)
+            expected_reuse_count = sum(float(x.get('expected_reuses', 0.0)) for x in reuse_summary)
+            # Keep deterministic damage authoritative; the probabilistic reuse
+            # expectation is exposed explicitly so callers do not confuse an
+            # expected branch with an actually executed branch.
+            expected_turn_damage += action_expected_damage
+            expected_damage_by_identity[iid] = expected_damage_by_identity.get(iid, 0.0) + action_expected_damage
+            expected_damage_by_skill[skill_key] = expected_damage_by_skill.get(skill_key, 0.0) + action_expected_damage
+            action_coins=[e for e in state.event_log if e.get('event')=='coin' and e.get('action_index')==idx+1]
+            action_target_damage = state.runtime.get('current_action_damage_by_target') or {}
+            action_has_explicit_targets = bool(state.runtime.get('enemy_target_states'))
+            fighter_now=state.fighters[iid]
+            action_start_resources=dict(state.runtime.get('current_action_resource_start',{}))
+            action_end_resources=dict(fighter_now.resources)
+            action_type = 'triggered' if request.generated else 'requested'
+            requested_action = request.to_dict()
+            resolved_action = {
+                'identity_id': iid,
+                'skill_id': skill.id,
+                'identity_name': ident.name,
+                'skill_name': skill.name,
+                'original_skill_id': original_skill_id,
+                'transformation': deepcopy(transform_info),
+            }
+            out.append({'index':idx,'action_type':action_type,'requested_action':requested_action,'resolved_action':resolved_action,'identity_id':iid,'identity_name':ident.name,'skill_id':skill.id,'skill_name':skill.name,'original_skill_id':original_skill_id,'transformation':transform_info,'damage':action_damage,'expected_damage':action_expected_damage,'expected_reuse_count':expected_reuse_count,'reuse_probability':reuse_summary,'main_target_damage':float((state.runtime.get('current_action_damage_by_target') or {}).get(str(state.runtime.get('target_selection',{}).get('resolved_ids',["main"])[0]), action_damage)) if state.runtime.get('current_action_damage_by_target') else action_damage,
+                    'additional_target_damage':float(action_damage - ((state.runtime.get('current_action_damage_by_target') or {}).get(str(state.runtime.get('target_selection',{}).get('resolved_ids',["main"])[0]), action_damage))) if state.runtime.get('current_action_damage_by_target') else action_damage*max(0,target_count-1),
+                    'total_damage_all_targets':action_damage if action_has_explicit_targets else action_damage*target_count,
+                    'damage_by_target':deepcopy(state.runtime.get('current_action_damage_by_target',{})),
+                    'expected_main_target_damage':action_expected_damage if not state.runtime.get('current_action_damage_by_target') else float((state.runtime.get('current_action_damage_by_target') or {}).get(str(state.runtime.get('target_selection',{}).get('resolved_ids',["main"])[0]), action_expected_damage)),
+                    'expected_additional_target_damage':action_expected_damage*max(0,target_count-1) if not state.runtime.get('current_action_damage_by_target') else max(0.0, action_expected_damage-float((state.runtime.get('current_action_damage_by_target') or {}).get(str(state.runtime.get('target_selection',{}).get('resolved_ids',["main"])[0]), action_expected_damage))),
+                    'expected_total_damage_all_targets':action_expected_damage if action_has_explicit_targets else action_expected_damage*target_count,'faces':faces,'outcome':outcome,'coins':action_coins,'clash_trace':clash_trace,'bleed_probability':bleed_probability_result,'bleed_consumption':bleed_consumption,'resonance':res_info,'condition_modifiers':mods,'resource_consumption':dict(consumed_this_action),'resource_dynamic_damage_bonus':state.runtime.get('current_action_dynamic_damage_bonus',0.0),'generated':request.generated,'reason':request.reason,'target_policy':request.target_policy,'target_index':request.target_index,'target_ids':request.target_ids,'target_override_ids':request.target_override_ids,'coin_target_ids':request.coin_target_ids,'resolved_target_selection':deepcopy(state.runtime.get('target_selection',{})),
+                    'requested_index':request.requested_index,'source_action_index':request.source_action_index,
+                    'source_event':request.source_event,'trigger_chain':list(request.trigger_chain),'execution_index':idx,'depth':request.depth,
+                    'state_at_action_start':{'enemy_hp':action_start_hp,'enemy_staggered':action_start_staggered,'fighter_sp':fighter_now.sp,'fighter_poise':fighter_now.poise.__dict__.copy(),'fighter_resources':action_start_resources},
+                    'state_at_action_end':{'enemy_hp':float(state.enemy.hp),'enemy_staggered':bool(state.enemy.staggered),'enemy_stagger_level':int(state.enemy.stagger_level),'enemy_stagger_index':int(state.enemy.stagger_index),'fighter_sp':fighter_now.sp,'fighter_poise':fighter_now.poise.__dict__.copy(),'fighter_resources':action_end_resources}})
+            # Drain target-local death callbacks collected during coin resolution.
+            # Resource/heal effects are already applied by the callback; any queued
+            # generated actions are inserted only after the full source action.
+            pending_kills = list(state.runtime.pop('pending_target_kill_actions', []))
+            state.runtime['pending_target_kill_actions'] = []
+            for ga, kill_ctx in pending_kills:
+                generated = action_queue.triggered_from(
+                    request, ga.identity_id, ga.skill_id, ga.reason,
+                    source_event='after_target_kill', faces=ga.forced_faces,
+                    target_policy=ga.target_policy, target_index=ga.target_index,
+                    target_ids=ga.target_ids, target_override_ids=ga.target_override_ids, coin_target_ids=ga.coin_target_ids,
+                    trigger_kind=ga.trigger_kind,
+                )
+                queued = action_queue.enqueue_triggered(generated)
+                state.event_log.append({
+                    'event':'target_kill_action_queued', 'action_index':idx,
+                    'queued':queued, 'identity_id':ga.identity_id, 'skill_id':ga.skill_id,
+                    'trigger_kind':ga.trigger_kind, 'target_id':kill_ctx.get('target_id'),
+                    'reason':ga.reason, 'requested_index':request.requested_index,
+                    'depth':generated.depth, 'trigger_chain':generated.trigger_chain,
+                })
+
+            # Kill-triggered skill reuse: when this action newly kills the main
+            # target, queue the same skill once (or according to its declarative
+            # rule).  The reused copy is marked so it cannot recursively trigger
+            # another kill-reuse cycle.  Because this calculator uses an aggregate
+            # target count rather than separate enemy objects, the reused skill is
+            # meaningful only when another target slot exists.
+            if (not request.suppress_kill_reuse
+                    and action_start_hp > 0
+                    and state.enemy.hp <= 0
+                    and target_count > 1
+                    and getattr(skill, 'kill_reuse_rules', None)):
+                kill_key = f'{iid}:{skill.id}'
+                used_kill = int(state.runtime.setdefault('kill_reuse_counts', {}).get(kill_key, 0))
+                for kri, krule in enumerate(getattr(skill, 'kill_reuse_rules', []) or []):
+                    limit = int(krule.get('max_reuses', 0))
+                    if used_kill >= limit:
+                        continue
+                    if not self._condition_met(state, ident, krule.get('condition'), skill):
+                        continue
+                    state.runtime['kill_reuse_counts'][kill_key] = used_kill + 1
+                    # Reset the aggregate main-target state to the configured
+                    # enemy baseline to represent the next occupied target slot.
+                    enemy_cfg = scenario.get('enemy', {}) or {}
+                    state.enemy.hp = float(enemy_cfg.get('hp', enemy_cfg.get('max_hp', state.enemy.max_hp)))
+                    state.enemy.stagger_level = int(enemy_cfg.get('stagger_level', 0))
+                    state.enemy.stagger_index = int(enemy_cfg.get('stagger_index', 0))
+                    generated = action_queue.triggered_from(
+                        request, iid, skill.id,
+                        f'kill_reuse:{skill.id}',
+                        source_event='kill_reuse',
+                        faces=list(faces),
+                        suppress_kill_reuse=True,
+                    )
+                    queued = action_queue.enqueue_triggered(generated)
+                    state.event_log.append({
+                        'event': 'kill_reuse_queued',
+                        'action_index': idx,
+                        'identity_id': iid,
+                        'skill_id': skill.id,
+                        'reason': 'target_killed',
+                        'target_slot_consumed': 1,
+                        'queued': queued,
+                        'requested_index': request.requested_index,
+                        'depth': generated.depth,
+                    })
+                    break
+
+            # Special mechanics can enqueue additional attacks. They execute
+            # immediately after the triggering action. Trigger evaluation receives
+            # both action-start and action-end stagger state, so effects such as
+            # 'was not staggered before the attack, then became staggered' are
+            # distinguishable from an already-staggered target.
+            action_end_staggered = bool(state.enemy.staggered)
+            trigger_ctx = {
+                'action_index': idx,
+                'action_start_staggered': action_start_staggered,
+                'action_end_staggered': action_end_staggered,
+                'action_start_hp': action_start_hp,
+                'action_end_hp': float(state.enemy.hp),
+                'target_died': bool(action_start_hp > 0 and state.enemy.hp <= 0),
+                'state': state,
+                'generated': request.generated,
+                'resources': dict(getattr(state.fighters.get(iid), 'resources', {}) or {}),
+                'current_resonance': dict(state.runtime.get('current_resonance', {}) or {}),
+                'enemy_hp': float(state.enemy.hp),
+                'enemy_max_hp': float(state.enemy.max_hp),
+                'actual_damage': float(state.turn_damage - before),
+                'action_ammo_spent': max(0, action_start_ammo - int(getattr(state.fighters[iid], 'ammo', 0))),
+                'is_lowest_ammo_identity': state.runtime.get('ammo_min_identity') == iid,
+                'available_identity_ids': list(getattr(gimmicks, 'available_identity_ids', []) or []),
+                'actor_statuses': {k: v.__dict__ for k, v in getattr(state.fighters.get(iid), 'statuses', {}).items()} if state.fighters.get(iid) is not None else {},
+            }
+            for ga in gimmicks.after_skill(ident,skill,trigger_ctx):
+                generated_skill_id = ga.skill_id
+                generated_faces = ga.forced_faces
+                # Support-attack skill selection is deliberately deterministic:
+                # for a formation-relative support command, use the selected
+                # ally's next *requested* action.  Do not invent a skill, pick
+                # the highest-damage skill, or consume the original request.
+                # This also permits the same identity to act again later.
+                if generated_skill_id == '__support_default__':
+                    generated_skill_id = None
+                    selected_pending = None
+                    for pending in action_queue.items[action_queue.position:]:
+                        if (not pending.generated and str(pending.identity_id) == str(ga.identity_id)):
+                            selected_pending = pending
+                            generated_skill_id = pending.skill_id
+                            if generated_faces is None and pending.faces is not None:
+                                generated_faces = list(pending.faces)
+                            break
+                    if generated_skill_id is None:
+                        state.event_log.append({'event':'gimmick_action_skipped','action_index':idx,
+                            'reason':'captain_right_assist_no_pending_requested_skill','identity_id':ga.identity_id,
+                            'skill_selection_policy':'next_requested_action'})
+                        continue
+                # A trigger rule's ``main`` policy is its historical default, not an
+                # instruction to discard the source action's explicit target.
+                # Preserve the triggering action's target metadata unless the
+                # gimmick explicitly selects another policy/index/id set.
+                inherit_target = (ga.target_policy in (None, '', 'main') and
+                                   ga.target_index is None and ga.target_ids is None and
+                                   request.target_policy is not None)
+                generated=action_queue.triggered_from(
+                    request, ga.identity_id, generated_skill_id, ga.reason,
+                    source_event=ga.trigger_kind, faces=generated_faces,
+                    target_policy=(request.target_policy if inherit_target else ga.target_policy),
+                    target_index=(request.target_index if inherit_target else ga.target_index),
+                    target_ids=(request.target_ids if inherit_target else ga.target_ids),
+                    coin_target_ids=(request.coin_target_ids if inherit_target else ga.coin_target_ids),
+                    trigger_kind=ga.trigger_kind,
+                )
+                queued=action_queue.enqueue_triggered(generated)
+                state.event_log.append({'event':'gimmick_action_queued','action_index':idx,
+                                        'queued':queued,'reason':ga.reason,'source':ga.source,
+                                        'identity_id':ga.identity_id,'skill_id':ga.skill_id,
+                                        'trigger_kind':ga.trigger_kind,'trigger_context':trigger_ctx,
+                                        'requested_index':request.requested_index,
+                                        'depth':generated.depth,'trigger_chain':generated.trigger_chain})
+            # Resource threshold triggers are evaluated after the source action.
+            # This preserves the user's requested order while allowing a threshold
+            # reached during a skill/coin to affect subsequent actions immediately.
+            # Drain newly-created threshold events as well, so a trigger that
+            # gains/consumes another resource can form a finite resource chain.
+            while resource_event_cursor < len(state.event_log):
+                rev=state.event_log[resource_event_cursor]; resource_event_cursor += 1
+                if rev.get('event') not in ('resource_threshold_reached','resource_cumulative_consumed'):
+                    continue
+                if 'identity_id' not in rev: rev['identity_id']=iid
+                for ga in gimmicks.after_resource_event(state, rev, identity_map, action_index=idx):
+                    generated=action_queue.triggered_from(request, ga.identity_id, ga.skill_id, ga.reason,
+                        source_event=ga.trigger_kind, faces=ga.forced_faces,
+                        target_policy=ga.target_policy, target_index=ga.target_index, target_ids=ga.target_ids,
+                        coin_target_ids=ga.coin_target_ids,
+                        trigger_kind=ga.trigger_kind)
+                    queued=action_queue.enqueue_triggered(generated)
+                    state.event_log.append({'event':'resource_trigger_action_queued','action_index':idx,
+                        'queued':queued,'identity_id':ga.identity_id,'skill_id':ga.skill_id,
+                        'trigger_kind':ga.trigger_kind,'source_event':'resource_threshold_reached',
+                        'depth':generated.depth,'trigger_chain':generated.trigger_chain})
+        self.core.machine.end_turn(state)
+        # Full-turn Bleed-state DP runs in parallel with the authoritative
+        # deterministic solver. It carries branch-specific Bleed Count into
+        # later requested actions instead of reusing one action-local mean.
+        turn_bleed_state = self._probabilistic_turn_state(expected_turn_base_state, scenario, identity_map, out)
+        if turn_bleed_state is not None and turn_bleed_state.get('final_state_signature'):
+            turn_bleed_state['final_condition_flags'] = list(turn_bleed_state['final_state_signature'][-2])
+        if turn_bleed_state is not None:
+            expected_turn_damage = float(turn_bleed_state['expected_turn_damage'])
+            expected_damage_by_identity = dict(turn_bleed_state['expected_damage_by_identity'])
+            expected_damage_by_skill = dict(turn_bleed_state['expected_damage_by_skill'])
+        requested_plan=[x.to_dict() for x in action_queue.items if not x.generated]
+        # Keep legacy `turn_damage` as the main-target damage. Expose aggregate
+        # multi-target totals separately so existing callers remain compatible.
+        expected_main_target_damage = float(turn_bleed_state['expected_turn_damage'] if turn_bleed_state is not None else expected_turn_damage)
+        explicit_targets = bool(state.runtime.get('enemy_target_states'))
+        if explicit_targets:
+            main_damage_by_identity = {iid:0.0 for iid in identity_map}
+            additional_damage_by_identity = {iid:0.0 for iid in identity_map}
+            main_damage_by_skill = {}
+            additional_damage_by_skill = {}
+            for row in out:
+                iid=row['identity_id']; sk=f"{iid}:{row['skill_id']}"
+                dm=row.get('damage_by_target',{}) or {}
+                ids=list(dm.keys())
+                primary_id=str(state.runtime.get('enemy_target_states',[{}])[0].get('id','0'))
+                primary=float(dm.get(primary_id,0.0))
+                extra=max(0.0,float(sum(dm.values()))-primary)
+                main_damage_by_identity[iid]=main_damage_by_identity.get(iid,0.0)+primary
+                additional_damage_by_identity[iid]=additional_damage_by_identity.get(iid,0.0)+extra
+                main_damage_by_skill[sk]=main_damage_by_skill.get(sk,0.0)+primary
+                additional_damage_by_skill[sk]=additional_damage_by_skill.get(sk,0.0)+extra
+            total_damage_by_identity={iid:main_damage_by_identity.get(iid,0.0)+additional_damage_by_identity.get(iid,0.0) for iid in identity_map}
+            total_damage_by_skill={k:main_damage_by_skill.get(k,0.0)+additional_damage_by_skill.get(k,0.0) for k in set(main_damage_by_skill)|set(additional_damage_by_skill)}
+            expected_main_damage_by_identity=dict(main_damage_by_identity)
+            expected_additional_damage_by_identity=dict(additional_damage_by_identity)
+            expected_total_damage_by_identity=dict(total_damage_by_identity)
+            expected_main_damage_by_skill=dict(main_damage_by_skill)
+            expected_additional_damage_by_skill=dict(additional_damage_by_skill)
+            expected_total_damage_by_skill=dict(total_damage_by_skill)
+            expected_total_all_targets=float(state.turn_damage)
+            final_main=float(sum(main_damage_by_identity.values()))
+            final_additional=float(sum(additional_damage_by_identity.values()))
+            final_total=float(state.turn_damage)
+        else:
+            main_damage_by_identity = dict(damage_by_identity)
+            additional_damage_by_identity = {iid: dmg * max(0, target_count-1) for iid, dmg in main_damage_by_identity.items()}
+            total_damage_by_identity = {iid: dmg * target_count for iid, dmg in main_damage_by_identity.items()}
+            expected_main_damage_by_identity = dict(expected_damage_by_identity)
+            expected_additional_damage_by_identity = {iid: dmg * max(0, target_count-1) for iid, dmg in expected_main_damage_by_identity.items()}
+            expected_total_damage_by_identity = {iid: dmg * target_count for iid, dmg in expected_main_damage_by_identity.items()}
+            main_damage_by_skill = dict(damage_by_skill)
+            additional_damage_by_skill = {k: dmg * max(0, target_count-1) for k, dmg in main_damage_by_skill.items()}
+            total_damage_by_skill = {k: dmg * target_count for k, dmg in main_damage_by_skill.items()}
+            expected_main_damage_by_skill = dict(expected_damage_by_skill)
+            expected_additional_damage_by_skill = {k: dmg * max(0, target_count-1) for k, dmg in expected_main_damage_by_skill.items()}
+            expected_total_damage_by_skill = {k: dmg * target_count for k, dmg in expected_main_damage_by_skill.items()}
+            expected_total_all_targets = expected_main_target_damage * target_count
+            final_main=float(state.turn_damage); final_additional=float(state.turn_damage*max(0,target_count-1)); final_total=float(state.turn_damage*target_count)
+        target_state_output={}
+        for x in state.runtime.get('enemy_target_states',[]):
+            e=x['state']; target_state_output[str(x['id'])]={'index':int(x['index']),'hp':float(e.hp),'max_hp':float(e.max_hp),'staggered':bool(e.staggered),'stagger_level':int(e.stagger_level),'stagger_index':int(e.stagger_index),'statuses':{k:v.__dict__.copy() for k,v in e.statuses.items()}}
+        return {'requested_plan':requested_plan,'execution_count':len(action_queue.executed),'target_count':target_count,'main_target_damage':final_main,'additional_target_damage':final_additional,'total_damage_all_targets':final_total,'turn_damage':state.turn_damage,'expected_turn_damage':expected_main_target_damage,'expected_main_target_damage':expected_main_target_damage,'expected_additional_target_damage':expected_main_target_damage*max(0,target_count-1) if not explicit_targets else final_additional,'expected_total_damage_all_targets':expected_total_all_targets,'action_local_expected_turn_damage':expected_turn_damage,'turn_bleed_state':turn_bleed_state,'enemy_hp_before':float(scenario.get('enemy',{}).get('hp',scenario.get('enemy',{}).get('max_hp',1))),'enemy_hp_after':state.enemy.hp,'target_states':target_state_output,'actions':out,'fighters':{i:{'sp':f.sp,'charge':f.charge,'ammo':f.ammo,'defense_level_bonus':getattr(f,'defense_level_bonus',0),'resources':dict(f.resources),'poise':f.poise.__dict__.copy(),'statuses':{k:v.__dict__.copy() for k,v in f.statuses.items()}} for i,f in state.fighters.items()},'resource_specs':{k:{'minimum':v.minimum,'maximum':v.maximum,'threshold_variants':dict(v.threshold_variants),'threshold_operators':dict(v.threshold_operators),'turn_reset':v.turn_reset} for k,v in resource_runtime.specs.items()},'enemy_sp':state.enemy.sp,'enemy_stagger_level':state.enemy.stagger_level,'enemy_stagger_index':state.enemy.stagger_index,'enemy_stagger_thresholds':list(state.enemy.stagger_thresholds),'enemy_staggered':state.enemy.staggered,'damage_by_identity':damage_by_identity,'damage_by_skill':damage_by_skill,'main_target_damage_by_identity':main_damage_by_identity,'additional_target_damage_by_identity':additional_damage_by_identity,'total_damage_all_targets_by_identity':total_damage_by_identity,'expected_damage_by_identity':expected_damage_by_identity,'expected_damage_by_skill':expected_damage_by_skill,'expected_main_target_damage_by_identity':expected_main_damage_by_identity,'expected_additional_target_damage_by_identity':expected_additional_damage_by_identity,'expected_total_damage_all_targets_by_identity':expected_total_damage_by_identity,'main_target_damage_by_skill':main_damage_by_skill,'additional_target_damage_by_skill':additional_damage_by_skill,'total_damage_all_targets_by_skill':total_damage_by_skill,'expected_main_target_damage_by_skill':expected_main_damage_by_skill,'expected_additional_target_damage_by_skill':expected_additional_damage_by_skill,'expected_total_damage_all_targets_by_skill':expected_total_damage_by_skill,'enemy_statuses':{k:v.__dict__.copy() for k,v in state.enemy.statuses.items()},'virtual_bleed_count':float(state.runtime.get('virtual_bleed_count',0.0)),'event_log':state.event_log,'passive_trace':getattr(self.core.machine.passive_runtime,'trace',[]),'resonance':resonance_plan,'gimmicks':gimmicks.summary(),'trigger_rules':gimmicks.trigger_rules_data(),'passive_variant_mode':passive_variant_mode,'active_passives':{iid:[p.get('name','') for p in ps] for iid,ps in selected_passives.items()},'action_trace':out,'state_diff':{'enemy_hp_delta':float(state.enemy.hp)-float(scenario.get('enemy',{}).get('hp',scenario.get('enemy',{}).get('max_hp',1))),'turn_damage':float(state.turn_damage)},'next_turn_state':deepcopy(state.runtime.get('next_turn_state',{}))}
+
+    def enumerate_branches(self, scenario, identity_map):
+        import itertools
+        total=sum(len(self._skill(identity_map[str(a['identity_id'])],a['skill_id']).coins) for a in scenario.get('actions',[]))
+        limit=int(scenario.get('max_enumerated_coins',16))
+        if total>limit: raise ValueError(f'enumeration blocked: {total} coins > {limit}')
+        results=[]
+        for flat in itertools.product(('H','T'), repeat=total):
+            sc=deepcopy(scenario); pos=0
+            for a in sc.get('actions',[]):
+                n=len(self._skill(identity_map[str(a['identity_id'])],a['skill_id']).coins); a['faces']=list(flat[pos:pos+n]); pos+=n
+            sc['coin_mode']='fixed'; results.append(self.solve(sc,identity_map))
+        return results
+
+
+# Backward-compatible aliases for existing callers.
+OneTurnSolverV21 = OneTurnSolverV29
+IdentityCatalogV19 = IdentityCatalogV29

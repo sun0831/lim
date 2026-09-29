@@ -1,0 +1,29 @@
+{
+  "enemy": {
+    "hp": 1000,
+    "max_hp": 1000,
+    "level": 60,
+    "defense_level": 0,
+    "physical_res": {"slash": 1, "pierce": 1, "blunt": 1},
+    "sin_res": {"lust": 1}
+  },
+  "actions": [
+    {
+      "identity_id": "a",
+      "skill_id": "S1",
+      "faces": ["H", "H", "H"],
+      "clash": {
+        "skill_power": 5,
+        "coins": [
+          {"coin_power": 1},
+          {"coin_power": 1},
+          {"coin_power": 1}
+        ],
+        "initial_attacker_coins": 3,
+        "initial_defender_coins": 3,
+        "exchange_outcomes": ["W", "W", "L", "L", "L"]
+      }
+    }
+  ],
+  "passive_mode": "off"
+}

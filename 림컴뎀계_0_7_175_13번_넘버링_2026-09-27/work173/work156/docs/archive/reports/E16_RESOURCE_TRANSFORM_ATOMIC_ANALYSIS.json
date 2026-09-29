@@ -1,0 +1,21 @@
+{
+  "resource_entries": 215,
+  "unique_source_text": 214,
+  "semantic_clauses": 829,
+  "clause_hit_counts": {
+    "A_trigger_gain": 222,
+    "B_affiliation_scaled": 12,
+    "C_cumulative_spend": 20,
+    "G_random_count_scaled": 2,
+    "E_zero_transform": 2,
+    "F_lowest_resource_target": 6,
+    "D_resource_scaled_modifier": 7
+  },
+  "overlap_distribution": {
+    "1": 200,
+    "0": 594,
+    "2": 34,
+    "3": 1
+  },
+  "unmatched_clause_count": 594
+}

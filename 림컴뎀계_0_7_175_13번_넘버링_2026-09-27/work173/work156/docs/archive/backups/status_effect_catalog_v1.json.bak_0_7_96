@@ -1,0 +1,1218 @@
+{
+  "source": "OldBoom/Limbus-Company-Auto-Guides docs/status-effects.md (source: limbuscompany.wiki.gg/wiki/Status_Effects)",
+  "schema_version": 1,
+  "effects": [
+    {
+      "name": "Burn",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "strength",
+        "count": "duration_and_procs"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Bleed",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "damage",
+        "count": "attack_coin_procs"
+      },
+      "consumption": "attack_coin",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Tremor",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "stagger_threshold",
+        "count": "duration"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Rupture",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "damage",
+        "count": "hit_procs"
+      },
+      "consumption": "on_hit",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Sinking",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "sp_damage",
+        "count": "hit_procs"
+      },
+      "consumption": "on_hit",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Poise",
+      "category": "positive",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "crit_chance",
+        "count": "crit_and_turn_end"
+      },
+      "consumption": "on_crit_or_turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Charge",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Power Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "final_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Attack Power Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "final_power"
+      },
+      "expiration": "turn_end",
+      "skill_scope": "attack"
+    },
+    {
+      "name": "Defense Power Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "final_power"
+      },
+      "expiration": "turn_end",
+      "skill_scope": "defense"
+    },
+    {
+      "name": "Clash Power Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "clash_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Base Power Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "base_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Offense Level Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "offense_level"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Defense Level Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "defense_level"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Haste",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "speed"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Damage Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_scale"
+      },
+      "expiration": "turn_end",
+      "max_count": 10,
+      "max_reason": "source_definition_max_100_percent"
+    },
+    {
+      "name": "Protection",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_taken_scale"
+      },
+      "expiration": "turn_end",
+      "max_count": 10,
+      "max_reason": "source_definition_max_100_percent"
+    },
+    {
+      "name": "Crit DMG Up",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "crit_damage_scale"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Plus Coin Boost",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "plus_coin_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Minus Coin Drop",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "minus_coin_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "HP Healing Boost",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "healing_scale"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Weak-resist DMG Boost",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_scale"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "E.G.O Resource Amp",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource_gain"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Power Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "final_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Attack Power Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "final_power"
+      },
+      "expiration": "turn_end",
+      "skill_scope": "attack"
+    },
+    {
+      "name": "Defense Power Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "final_power"
+      },
+      "expiration": "turn_end",
+      "skill_scope": "defense"
+    },
+    {
+      "name": "Clash Power Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "clash_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Offense Level Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "offense_level"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Defense Level Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "defense_level"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Bind",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "speed_down"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Damage Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_scale"
+      },
+      "expiration": "turn_end",
+      "max_count": 10,
+      "max_reason": "source_definition_max_100_percent"
+    },
+    {
+      "name": "Fragile",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_taken_scale"
+      },
+      "expiration": "turn_end",
+      "max_count": 10,
+      "max_reason": "source_definition_max_100_percent"
+    },
+    {
+      "name": "Paralyze",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "coins_affected"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Plus Coin Drop",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "plus_coin_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Minus Coin Boost",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "minus_coin_power"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "HP Healing Down",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "healing_scale"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Poison",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "damage_then_halve"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Immobilized",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "flag"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Aggro",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "target_weight"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Unbreakable Coin",
+      "category": "neutral",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "coin_flag"
+      },
+      "expiration": "skill_or_rule"
+    },
+    {
+      "name": "Dark Flame",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "defense_loss_and_damage_scale"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Shattered World",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "burn_damage_multiplier"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Spore",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "burn_count_conversion"
+      },
+      "expiration": "rule_or_turn"
+    },
+    {
+      "name": "Resident Reg. Microchip",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "wrath_envy_damage_and_burn_on_clash_lose"
+      },
+      "consumption": "turn_end",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Searing Birdcage",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "wrath_resistance_and_bind"
+      },
+      "consumption": "turn_end",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Nails",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "bleed_count_bonus"
+      },
+      "consumption": "turn_start_and_turn_end",
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Amplitude Conversion",
+      "category": "neutral",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "tremor_conversion_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Amplitude Entanglement",
+      "category": "neutral",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "tremor_fusion_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Tremor — Superposition",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "tremor",
+        "count": "tremor"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Red Plum Blossom",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "crit_chance_and_crit_damage"
+      },
+      "expiration": "count_zero_or_rule"
+    },
+    {
+      "name": "Needle",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "bleed_and_trigger_count"
+      },
+      "consumption": "trigger",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Lodged Arrow",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "bleed_potency_and_defense_loss"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Corpus Theater (Hong Lu)",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "trigger_count"
+      },
+      "consumption": "bleed_gain_trigger",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Sewing Target",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "bleed_based_damage_taken"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Polydipsic Rose",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "turn_duration"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Rose Wedge",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "bleed_amplification",
+        "count": "duration_or_stacks"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Maggots",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "turn_end_damage_and_bleed_gain"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Tremor - Decay",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "defense_level_loss"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tremor - Fracture",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "stagger_level_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Tremor - Reverb",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "burst_damage"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tremor - Everlasting",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "burst_probability"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tremor - Chain",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "potency": "clash_power_loss"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tremor - Scorch",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "burn_interaction"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Tremor - Hemorrhage",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "bleed_interaction"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Time Moratorium",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "stored_damage_scale"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Butterfly",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "living",
+        "count": "departed"
+      },
+      "consumption": "on_hit_or_turn_end",
+      "expiration": "rule"
+    },
+    {
+      "name": "Sheut Fracture",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "damage_and_threshold"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Sinking Deluge",
+      "category": "negative",
+      "value_mode": "double",
+      "value_semantics": {
+        "potency": "sinking",
+        "count": "sinking"
+      },
+      "consumption": "conversion",
+      "expiration": "rule"
+    },
+    {
+      "name": "Faint Aroma",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "sinking_damage_counter"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "The Uninvited",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "sinking_damage_taken_scale"
+      },
+      "expiration": "death"
+    },
+    {
+      "name": "Photoelectricity",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "charge_gain"
+      },
+      "expiration": "turn_end"
+    },
+    {
+      "name": "Spark Discharge",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "charge_and_rupture_gain"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Charged Sting",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "charge_damage_taken"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Lasso",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "turn_duration"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Concussion",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "rupture_and_stagger_multiplier"
+      },
+      "consumption": "turn_end",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Open Wound",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "bind_and_conversion"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Talisman",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "rupture_interaction"
+      },
+      "consumption": "on_hit",
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Twisted Curse Talisman",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "rupture_trigger"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Echoes of the Manor",
+      "category": "neutral",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Impending Ruin",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "morale_panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Shattermark",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Blue Sand",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Dazzle",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Solitude",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "panic_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Bloodflame",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "base_skill_burn_rupture_potency"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Fanatic",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "final_power_vs_nails"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Blooming Thorn",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "defense_and_bleed"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Festive Fever",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "damage_vs_bleed"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Shimmering (Bloodfiend)",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "bloodfeast_conversion"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Dark Cloud Blade",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "slash_power_and_bleed"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Battle Ready",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "bleed_and_slash_modifiers"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Strider (Wu)",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "haste_and_tremor"
+      },
+      "consumption": "turn_end",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Rupture Protection",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "rupture_damage_reduction"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Burgeoning of Horns",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "rupture_sinking_potency"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Wild Hunt",
+      "category": "positive",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "survival_revival_rule"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Contempt of the Gaze",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "gaze_damage_scale"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Sword of the Homeland - Rending",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "skill1_final_power"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Sword of the Homeland - Penetrating",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "skill2_final_power"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Erudition",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "discard_to_shield"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Hardblood Armor",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "heal_scale"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Focused Performance",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "skill_power_and_damage"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tarnished Blood",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "turn_end_self_damage"
+      },
+      "consumption": "turn_end",
+      "expiration": "stack_zero"
+    },
+    {
+      "name": "Somatic Frisson-inspiring Melody",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "speed_clash_damage"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Fell Bullet",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "crit_damage_per_memory"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Linebreaker",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "shield_and_final_power"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Iron Maiden",
+      "category": "positive",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "aggro_and_defense_and_reflect"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Overcharge",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "immobilized_charge_shield"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Gebura's Blade",
+      "category": "positive",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "unbreakable_damage_survival"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Mark of Decay",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "gluttony_damage_and_deathrite"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Corpus Ingredient",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource"
+      },
+      "consumption": "turn_end",
+      "expiration": "count_zero"
+    },
+    {
+      "name": "Artwork: Fascia",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "corpus_ingredient_scaling"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Bloodfeast",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource"
+      },
+      "consumption": "bleed_interaction",
+      "expiration": "resource_zero"
+    },
+    {
+      "name": "Torn Memory",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource"
+      },
+      "consumption": "skill_use",
+      "expiration": "resource_zero"
+    },
+    {
+      "name": "K Corp Ampule",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "turn_start_threshold"
+      },
+      "expiration": "death_or_rule"
+    },
+    {
+      "name": "Discard",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "skill_discard_resource"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Insight",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "discard_resource_interaction"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Procuration (Hermes)",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "skill_unlock"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Tianjiu Star's Blade",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "stack": "haste_threshold"
+      },
+      "consumption": "turn_end",
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Arrow (Shi)",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "resource"
+      },
+      "consumption": "skill_use",
+      "expiration": "resource_zero"
+    },
+    {
+      "name": "Magic Bullet",
+      "category": "neutral",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "skill_power"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Responsibility",
+      "category": "positive",
+      "value_mode": "single",
+      "value_semantics": {
+        "value": "clash_damage_taken_modifiers"
+      },
+      "expiration": "rule_or_source"
+    },
+    {
+      "name": "Surgery",
+      "category": "negative",
+      "value_mode": "single",
+      "value_semantics": {
+        "count": "hp_and_damage_scale"
+      },
+      "expiration": "death_or_rule"
+    },
+    {
+      "name": "Deathrite - Haste",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Enfeeble",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Fissure",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Halt",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Impede",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Venom",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_damage"
+      },
+      "expiration": "rule"
+    },
+    {
+      "name": "Deathrite - Wane",
+      "category": "negative",
+      "value_mode": "zero",
+      "value_semantics": {
+        "value": "rupture_trigger_condition"
+      },
+      "expiration": "rule"
+    }
+  ]
+}

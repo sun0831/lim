@@ -1,0 +1,12 @@
+{
+  "test_files": 124,
+  "tests": 345,
+  "categories": {
+    "probability_bleed": 32,
+    "affiliation_gimmick": 112,
+    "architecture": 76,
+    "other": 34,
+    "combat_runtime": 91
+  },
+  "exact_duplicate_groups": 1
+}

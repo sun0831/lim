@@ -1,0 +1,91 @@
+{
+  "version": "22.0",
+  "purpose": "User-defined one-turn sequential damage calculation",
+  "coin_mode": "fixed",
+  "allies": {
+    "identity-id": {
+      "level": 60,
+      "speed": 8,
+      "sp": 45,
+      "hp": 999999,
+      "max_hp": 999999,
+      "charge": 12,
+      "ammo": 0,
+      "poise": {
+        "potency": 0,
+        "count": 0
+      },
+      "sin_resources": {
+        "wrath": 0,
+        "lust": 0,
+        "sloth": 0,
+        "gluttony": 0,
+        "gloom": 0,
+        "pride": 0,
+        "envy": 0
+      },
+      "resources": {},
+      "statuses": {}
+    }
+  },
+  "enemy": {
+    "hp": 10000,
+    "max_hp": 10000,
+    "level": 60,
+    "speed": 5,
+    "defense_level": 0,
+    "defense_level_bonus": 0,
+    "physical_res": {
+      "slash": 1.0,
+      "pierce": 1.0,
+      "blunt": 1.0
+    },
+    "sin_res": {
+      "wrath": 1.0,
+      "lust": 1.0,
+      "sloth": 1.0,
+      "gluttony": 1.0,
+      "gloom": 1.0,
+      "pride": 1.0,
+      "envy": 1.0
+    },
+    "stagger_level": 0,
+    "stagger_index": 0,
+    "stagger_thresholds": [
+      6500,
+      3500,
+      1500
+    ],
+    "statuses": {}
+  },
+  "actions": [
+    {
+      "identity_id": "identity-id",
+      "skill_id": "skill-id",
+      "faces": [
+        "H"
+      ],
+      "target_count": 1
+    }
+  ],
+  "resonance": "automatic_from_actions",
+  "auto_generate_sin_resources": true,
+  "passive_mode": "off",
+  "condition_overrides": {},
+  "condition_effects": [],
+  "action_order_semantics": "actions are user-requested order; runtime triggers are inserted immediately after source action",
+  "max_trigger_depth": 16,
+  "hp_input_policy": {
+    "mode": "manual_start_state",
+    "unit_fields": {
+      "hp": "user-specified current HP at START_STATE",
+      "max_hp": "user-specified maximum HP at START_STATE"
+    },
+    "applies_to": [
+      "allies",
+      "enemy"
+    ],
+    "auto_override_from_identity_data": false,
+    "legacy_omission_compatible": true
+  }
+}

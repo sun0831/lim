@@ -1,0 +1,935 @@
+{
+  "axis": "stack_threshold",
+  "records": 43,
+  "unique_source_texts": 43,
+  "cluster_counts": {
+    "numeric_or_resource_threshold": 43,
+    "activation_limit": 9,
+    "resource_or_stack_threshold": 31,
+    "hp_threshold": 5,
+    "status_threshold": 18,
+    "speed_threshold": 8,
+    "mental_threshold": 6,
+    "resonance_threshold": 3
+  },
+  "new_axis_runtime_required": false,
+  "rationale": "Existing ConditionRuntime supports generic numeric comparisons, resource thresholds, status count/potency thresholds, HP percentage thresholds, resonance conditions; activation limits are handled by trigger/ledger semantics. Therefore stack_threshold is an analysis axis, not a standalone runtime.",
+  "rows": [
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "source_text": "자신 또는 중지 소속의 아군 인격이 적에게 피격 시, 대상에게 복수 대상을 1 부여하고 앙갚음 장부 [히스클리프] 1 얻음 (스킬당 1회)\n아군 인격 사망시, 앙갚음 장부 [히스클리프] 3 얻음\n\n턴 시작시 자신의 원한 문신이 15 이상이면 아래 효과 적용\n- 기본 스킬 하나를 ‘전원, 처형이다!!’로 변경 (가장 왼쪽 슬롯의 아래 스킬 우선 적용)\n· 변경된 스킬이 다른 스킬로 변경되어 사용할 수 없게 되면, 위 효과를 다시 발동함\n- 이번 턴이 종료될 때까지 전투 BGM을 변경 (일부 전투 제외)\n\n대기 해제 또는 복귀로 등장한 턴의 전투 시작시, ‘내 헤어쿠포오오오온!!!!'을 무작위 대상에게 사용함\n- 해당 공격 종료 시 모든 아군 중지 인격에게 공격 레벨 증가 1, 방어 레벨 증가 1 부여",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "source_text": "스테이지 첫 등장 시 자신의 생체 재료 횟수가 (전장에 있는 약지 소속 아군 수 x 2)만큼 증가 (최대 10)\n\n스킬 종료 시 해당 스킬로 체력 또는 보호막 피해를 입혔으면, 자신의 생체 재료 횟수 5 증가\n- 대상이 사망했으면, 추가로 횟수 3 증가\n\n전투 중 누적으로 자신의 생체 재료 횟수 10을 소모할 때마다 생체 재료를 1 얻음\n- 위 효과로 생체 재료 위력이 2 이상이 되면, 작품명: 파시아 얻음\n\n기본 공격 스킬과 합 가능 반격 스킬이 충전 횟수를 얻는 스킬로 취급됨",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "source_text": "스테이지 첫 등장 시 자신의 생체 재료 횟수가 (전장에 있는 약지 소속 아군 수 x 2)만큼 증가 (최대 10)\n\n스킬 종료 시 해당 스킬로 체력 또는 보호막 피해를 입혔으면, 자신의 생체 재료 횟수 5 증가\n- 대상이 사망했으면, 추가로 횟수 3 증가\n\n전투 중 누적으로 자신의 생체 재료 횟수 10을 소모할 때마다 생체 재료를 1 얻음\n- 위 효과로 생체 재료 위력이 2 이상이 되면, 작품명: 티비아 얻음\n\n기본 공격 스킬과 합 가능 반격 스킬이 충전 횟수를 얻는 스킬로 취급됨",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10916",
+      "identity_name": "거미집 엄지 아비",
+      "source_text": "스테이지에 첫 등장 시 예지안 30 얻음 / 자신의 예지안 수치가 0이 되면, 예지안이 예지안 과열로 변경됨 / 예지안이 있을 때, 다음 효과 발동 - 합 진행 시 매 합마다 가속하는 미래 1 얻음 (스킬당 5회) - 일방 공격 또는 파괴 불가 코인 공격을 당하거나 공격 스킬에 합 패배 시 '예지' 스킬 발동 (턴당 1회) / 예지안은 다음 조건에 따라 수치가 감소 - 매 합마다 예지안 1 감소 - 일방 공격 또는 파괴 불가 코인 공격을 당하여, 패시브 효과로 '예지' 스킬 발동 시 예지안 3 감소 - 합 패배 시 패시브 효과로 '예지' 스킬 발동 시 예지안 5 감소 / 자신의 예지안이 예지안 과열로 변경된 턴 종료 시, 다음 효과 발동 - 재장전 (전투당 1회) - 다음 턴 시작 시 조작 슬롯에 '처분'이 없으면, 기본 스킬 하나를 '처분'으로 변경 (가장 왼쪽 슬롯의 위 스킬 우선) / 전투 중 자신의 예지안이 0이 되거나, 흐트러짐 상태가 되거나 거미집 엄지 제자 히스클리프가 사망하였으면, 다음 턴에 신(心) - 불명예 얻음 (대기 해제 시 거미집 엄지 제자 히스클리프가 사망한 상태면, 턴 시작 시 신(心) - 불명예 얻음) / 턴 종료 시 이번 턴에 처음으로 흐트러졌으면, 흐트러짐 해제 (강제 흐트러짐 제외)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음\n충전이 2 이상이면, 피해량이 (충전 x 3)%만큼 증가 (최대 15%)\n- 대상의 체력이 50% 미만이면 (충전 x 5)%만큼 추가로 증가 (최대 25%)\n\n적을 처치하면 자신과 충전 횟수가 가장 적은 아군 2명이 (2 + 충전)만큼 충전 횟수 증가 (최대 5, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "hp_threshold",
+          "confidence": "high",
+          "reason": "HP percentage threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "source_text": "홍원 군주 홍루와 존명 발동 시, 홍원 군주 홍루가 흑수환염[黑獣丸染]으로 아래 효과 얻음\n- 기본 스킬의 마지막 코인 적중 시, 진동 폭발 1회 (턴 당 1회)\n\n전투 인원에 가주 후보 이스마엘이 있다면, 아래 효과 적용\n- 가주 후보 이스마엘이 스킬 효과로 파열 또는 파열 횟수 부여 시 호흡 위력 3 얻음 (턴 당 2회, E.G.O 스킬에는 적용되지 않음)\n- 턴 시작 시 가주 후보 이스마엘에게 공격 위력 증가 1 부여. 이스마엘의 호흡 위력이 10 이상이면, 공격 위력 증가 1 추가 부여\n- ‘흑풍마각월참’ 사용 후 가주 후보 이스마엘이 적춘 스킬로 원호 공격함 (턴 당 1회)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "source_text": "속도가 가장 빠른 아군 1명이 화상 또는 특수 화상을 보유한 적에게 합 승리 시, 다음 턴에 신속 1을 얻음 (턴당 1회)\n- 대상의 화상 위력이 20 이상이면, 신속 1을 추가로 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "source_text": "속도가 가장 느린 아군이 전투 시작 시 충전 횟수가 5 이상 있으면, 다음 턴에 신속 2를 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11211",
+      "identity_name": "불주먹 사무소 생존자",
+      "source_text": "자신이 이번 전투에서 소모한 12구산 연료, 과열 연료당 피해량 +0.2% (최대 40%)\n- 메인 타겟이 , 거나, 대상의 화상과 화상 횟수의 합이 30 이상이면, 대신 피해량 +0.3% (최대 60%)\n\n12구산 연료, 과열 연료가 1 이상일 때, 화상이 부여된 적을 흐트러짐 상태로 만들거나 처치하면 화상이 없거나 화상 횟수가 가장 낮은 무작위 적 2명의 화상 횟수 2 증가 (턴 당 1 회)\n- 집중 전투인 경우 부위에 부여",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음\n충전이 2 이상이면, 피해량이 (충전 x 3)%만큼 증가 (최대 15%)\n\n적을 처치하면 자신과 충전 횟수가 가장 적은 아군 1명이 충전만큼 충전 횟수 증가 (최대 3, 충전을 소모하거나 스스로 획득하는 스킬을 보유한 아군에게 우선으로 적용됨)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "source_text": "턴 시작 시, 경혈 15 이상이고 다음의 인격이 전투에 참가 중이거나 사망했으면, 자신의 가장 왼쪽 슬롯의 스킬이 강화됨.\n- 라만차랜드 신부 그레고르: 스킬 1 강화\n- 라만차랜드 이발사 오티스: 스킬 2 강화\n- 자신: 스킬 3 강화\n- 라만차랜드 공주 로쟈: 수비 스킬 강화\n\n자신을 제외한 아군이 출혈 피해를 받거나 혈찬을 소모할 때, 경혈 2 얻음 (턴 당 3회)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11110",
+      "identity_name": "W사 3등급 정리 요원 팀장",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전을 1 얻음\n턴 종료 시, 자신을 포함한 W사 직원 (충전)명에게 편성 순서가 가장 뒤인 순으로 다음 턴에 합 위력 증가 1 부여 (최대 부여 대상 수: 5명)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11208",
+      "identity_name": "흑운회 부조장",
+      "source_text": "속도가 가장 느린 아군 1명이 출혈이 10 이상 부여된 적에게 공격 적중 시 다음 턴에 공격 레벨 감소 1 부여 (턴 당 3회)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "source_text": "속도가 가장 빠른 아군 1명이 탄환을 소모하는 스킬 사용 시 대상보다 속도가 3 이상 높다면, 가하는 피해량 +(대상과의 속도 차이 x 2)% (최대 10%)\n(탄환이 없으면 적용되지 않음. 단, 탄환 버프는 보유하였으나 수치가 0인 경우에는 효과가 적용됨)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "source_text": "속도가 가장 빠른 아군 1명이 탄환을 소모하는 스킬 사용 시 대상보다 속도가 3 이상 높다면, 가하는 피해량 +(대상과의 속도 차이 x 3)% (최대 15%)\n(탄환이 없으면 적용되지 않음. 단, 탄환 버프는 보유하였으나 수치가 0인 경우에는 효과가 적용됨)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10211",
+      "identity_name": "LCE E.G.O:: 홍염살",
+      "source_text": "전투 시작 시 자신의 잃은 체력이 80% 이상이고 화상이 30 미만이면, 화상을 30까지 얻음. (스테이지 당 1회)\n\n턴 종료 시 자신의 화상 6당, 다음 턴에 공격 레벨 증가 1 얻음 (최대 5)\n\n사망 시 아래의 효과 발동\n- 모든 적에게 화상 2 부여. 자신의 화상을 나누어 부여 (1명당 최대 3)\n- 가장 부족한 속성의 E.G.O 자원 2종 2개씩 획득\n\n홍염살 최대 감응 【열화침식】 스킬의 효과로 사망하였으면, 효과가 강화됨\n- 모든 적에게 화상 3 부여. 자신의 화상을 나누어 부여 (1명당 최대 5)\n- 가장 부족한 속성의 E.G.O 자원 2종 2개씩 획득\n- 자신의 화상이 30 이상이었으면, 대기 해제되는 인원 1명에게 공격 레벨 증가 3 부여",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "hp_threshold",
+          "confidence": "high",
+          "reason": "HP percentage threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "source_text": "턴 종료 시 지령의 가호가 3/6/9이면, 해금 - I/해금 - II/해금 - III 얻음\n\n해금 - I을 얻으면, 정신력을 15 소모하여 개화 E.G.O::대행 상태가 됨\n- 정신력 소모 전 정신력이 25까지 증가하고 (증가한 정신력/5)만큼 카르마 얻음 (소수점 올림)\n- 이후 턴 시작 시 해금이 있고, 정신력이 25 이상이면,\n정신력을 15 소모하여 해당 상태가 됨\n\n개화 E.G.O::대행 상태가 될 때,\n- 해당 턴의 흐트러짐 해제\n(해제할 수 없는 흐트러짐이면 해당 상태가 될 수 없음)\n- 해당 상태일 때, 당연한 믿음 얻음\n\n턴 시작 시 정신력이 0 이하면, 해당 상태 해제",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "source_text": "적이 침잠 피해를 받으면 꽃잎 1 얻음\n적에게 부여되는 잔향만큼 꽃잎 얻음\n진동 폭발 발생 시, 꽃잎 2 얻음\n\n자신의 공격 스킬 종료시, 자신의 꽃잎이 30 이상이면, 잔향이 가장 높은 대상에게 '황홀한 종말' 발동\n\n흐트러진 대상에게 가하는 피해량 +(대상의 잔향)%\n\n이번 턴에 자신의 체력을 최대 체력의 10% 이상 잃으면, 최대 체력의 3%, 정신력 10 회복 (턴당 1회)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        },
+        {
+          "route": "hp_threshold",
+          "confidence": "high",
+          "reason": "HP percentage threshold"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "source_text": "마침표 사무소 해결사 히스클리프가 후방 지원 배치 상태거나, 대기 인원으로 편성되어 있다면 마침표 사무소 대표 홍루 인격의 스킬2, 스킬3이 강화됨\n\n전투 시작시 자신의 호흡 위력이 20 이상이면, 호흡 횟수 1 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10515",
+      "identity_name": "약지 야수파 스튜던트",
+      "source_text": "기본 스킬 적중 시 찢긴 색채 [루주] 1 부여\n- 이 효과는 스킬에서 부정적인 효과를 부여하는 것으로 취급됨\n\n턴 종료 시 이번 전투 동안 자신이 찢긴 색채 [루주]를 10 이상 부여했으면, 야수파 - 마스크 드 시앵 얻음\n\n약지 야수파 도슨트 로쟈의 ‘크리틱’ 스킬 코인 시작 시, 약지 야수파 스튜던트 뫼르소가 결점 보완 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "source_text": "전투 시작 시 충전 횟수가 5 이상 있으면, 다음 턴에 신속 2를 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "source_text": "전투 시작 시 충전 횟수가 5 이상 있으면, 다음 턴에 신속 2를 얻음.충전 횟수가 10 이상 있으면, 신속 1을 추가로 얻음.",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "source_text": "전투 중 누적으로 자신의 사랑/증오 횟수 10을 소모할 때마다, 사랑/증오 1 얻음\n\n스테이지 시작시 히스테리가 없다면, 히스테리 효과를 얻음\n\n스테이지 시작시 사랑/증오가 없다면, 사랑/증오 효과를 얻음\n\n턴 시작시\n- 정신력이 0 이상이면, 마법소녀 등장! 얻음, 역변-리버스드 제거\n- 정신력이 0 미만이면, 역변-리버스드 얻음, 마법소녀 등장! 제거\n\n자신의 기본 공격 스킬의 정신력 소모 효과에 의해서 정신력이 -40 미만으로 내려가지 않음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10410",
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "source_text": "적안을 얻는 코인을 사용하여 적에게 적중 시\n- 피해량이 (적안/2)%만큼 증가\n- 대상에게 출혈이 있으면, 적안 1 얻음 (턴 당 최대 3)\n\n참회를 얻는 코인을 사용하여 적에게 적중 시\n- 피해량이 (참회/2)%만큼 증가\n- 자신의 정신력이 20 이상이면 참회 1 얻음 (턴 당 최대 3)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10410",
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "source_text": "적안을 얻는 코인을 사용하여 적에게 적중 시\n- 피해량이 (적안/2)%만큼 증가\n- 대상의 속도가 자신보다 3 이상 낮으면, 피해량이 (적안/2)%만큼 추가로 증가\n- 대상에게 출혈이 있으면, 적안 1 얻음 (턴 당 최대 3)\n\n참회를 얻는 코인을 사용하여 적에게 적중 시\n- 피해량이 (참회/2)%만큼 증가\n- 대상의 정신력이 자신보다 낮으면, 피해량이 (참회/2)%만큼 추가로 증가 (정신력이 없는 대상일 경우, 0으로 계산)\n- 자신의 정신력이 20 이상이면 참회 1 얻음 (턴 당 최대 3)\n\n적에게 피격 시, 참회 1 얻음 (최대 3)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "source_text": "다음 턴 시작 시 (분노 공명 수)만큼 충전 횟수 증가.\n충전 횟수가 5 이상이면 신속 1, 공격 위력 증가 1을 얻음\n상시 발동: 스테이지 시작 시 탄환 +3",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "resonance_threshold",
+          "confidence": "high",
+          "reason": "resonance-count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10815",
+      "identity_name": "LCD 현장추리팀",
+      "source_text": "기본 공격 스킬 종료 시 자신의 묵 공방 - 예[銳] 2식 발도 / 추력:도깨비불이 15 이상이면, '상전 청린화' 발동 (턴당 1회)\n수비 스킬 합 패배 시 신속이 3 이상이면, 수비 스킬 종료 시까지 피해로 인해 흐트러짐 상태가 되지 않고, 피격 후 '골단' 발동 (턴당 2회, 강제 흐트러짐 제외)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "source_text": "다음 턴 시작 시 (분노 공명 수)만큼 충전 횟수 증가.\n충전 횟수가 5 이상이면 신속 1, 공격 위력 증가 1을 얻음",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "resonance_threshold",
+          "confidence": "high",
+          "reason": "resonance-count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11216",
+      "identity_name": "새벽 사무소 대표",
+      "source_text": "현재 체력이 가장 많은 아군이 화상이 있는 적에게 공격 적중 시, 진동 2 부여 (턴당 1회)\n- 대상의 화상이 10 이상이면, 마지막 코인 적중 시 진동 폭발. 진동 횟수 1 감소",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10713",
+      "identity_name": "W사 4등급 정리 요원 - CCA",
+      "source_text": "- 전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음\n- 턴 시작시, 자신의 충전 위력만큼 방어 레벨 증가 얻음 (최대 6)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10902",
+      "identity_name": "흑운회 와카슈",
+      "source_text": "반격 시 자신의 호흡이 5 이상이면 스킬 3으로 발동",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11015",
+      "identity_name": "거미집 소지 제자",
+      "source_text": "전투 시작시, (오만 공명 수 / 2) +1만큼 호흡 얻음 (최대 4. 소수점 버림)\n\n전투 종료시 자신의 호흡 위력이 20 이상이면, 자신의 호흡 횟수 1 증가",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "resonance_threshold",
+          "confidence": "high",
+          "reason": "resonance-count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11007",
+      "identity_name": "어금니 보트 센터 해결사",
+      "source_text": "자신의 진동 횟수가 10 이상일 때 공격 적중 시 앞면이 나온 경우, 코인 효과로 적에게 부여하는 진동 과 진동 횟수 +1",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10506",
+      "identity_name": "R사 제 4무리 코뿔소팀",
+      "source_text": "턴 종료 시 충전 횟수 5당 다음 턴의 속도 최대 값 +2 (최대 6)\n턴 시작 시 충전 횟수가 5 이상 있으면 자신의 가장 오른쪽 슬롯 1개에 도발치 3 상승.",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음\n\n충전이 2 이상이면,\n- 기본 공격 스킬로 부여하는 침잠 부여량 +1 (침잠 횟수만 증가하거나 스스로 침잠을 얻는 경우에는 적용되지 않음)\n- 기본 공격 스킬의 피해량이 (충전 x 3)%만큼 증가 (최대 15%)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다, 충전 1 얻음\n\n충전이 2 이상이면,\n- 충전 2당 기본 공격 스킬로 부여하는 침잠 부여량 +1 (최대 2, 침잠 횟수만 증가하거나 스스로 침잠을 얻는 경우에는 적용되지 않음)\n- 기본 공격 스킬의 피해량이 (충전 x 5)%만큼 증가 (최대 25%)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10505",
+      "identity_name": "장미스패너 공방 해결사",
+      "source_text": "대상의 진동 이 5 이상이면 대상의 합 위력 -1\n흐트러짐 상태가 해제될 때 최대 체력의 5%만큼 체력 회복",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "hp_threshold",
+          "confidence": "high",
+          "reason": "HP percentage threshold"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음\n\n적에게 침잠 위력을 부여하는 기본 공격 스킬 사용시 메인 타겟에게 침잠이 없으면, 침잠을 5 얻고 해당 스킬 효과로 부여하는 침잠 위력이 2배가 됨 (턴당 1회, 집중 전투면 부위로 취급)\n\n자신의 체력이 35% 미만일 시, 기본 공격 스킬의 최종 위력 +1",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "hp_threshold",
+          "confidence": "high",
+          "reason": "HP percentage threshold"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음\n\n적에게 침잠 위력을 부여하는 기본 공격 스킬 사용시 메인 타겟에게 침잠이 없으면, 침잠을 5 얻고 해당 스킬 효과로 부여하는 침잠 위력이 2배가 됨 (턴당 1회, 집중 전투면 부위로 취급)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "source_text": "전투 중 누적으로 자신의 충전 횟수 10을 소모할 때마다 충전 1 얻음\n충전 역장을 얻을 때, 고전압 외피로 전환되어 얻음\n\n자신의 충전이 3 이상이면, 속도 최솟값, 최댓값 +1\n\n이번 전투에서 체력이 0이 되는 피해를 받았을 때,\n(5 + 자신의 충전x3)만큼 자가 충전 얻음 (최대 20, 전투당 1회)",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        },
+        {
+          "route": "speed_threshold",
+          "confidence": "high",
+          "reason": "speed comparison/selector condition"
+        },
+        {
+          "route": "activation_limit",
+          "confidence": "high",
+          "reason": "activation cap belongs to trigger/ledger, not threshold primitive"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10604",
+      "identity_name": "남부 리우 협회 5과",
+      "source_text": "자신의 정신력이 30 이상이면 공격 스킬의 스킬 효과, 코인 효과로 부여하는 화상 횟수 부여 값 +1",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "status_threshold",
+          "confidence": "high",
+          "reason": "status potency/count threshold"
+        },
+        {
+          "route": "mental_threshold",
+          "confidence": "high",
+          "reason": "mental/SP threshold; generic comparison"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10212",
+      "identity_name": "흑수 - 묘 필두",
+      "source_text": "주살【파】의 수치가 0이 되어 소멸 시, 붕괴 표식이 부여됨",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    },
+    {
+      "identity_id": "identity-10212",
+      "identity_name": "흑수 - 묘 필두",
+      "source_text": "주살【파】의 수치가 0이 되어 소멸시, 붕괴 표식이 부여됨",
+      "routes": [
+        {
+          "route": "numeric_or_resource_threshold",
+          "confidence": "high",
+          "reason": "generic numeric/resource threshold or threshold crossing"
+        },
+        {
+          "route": "resource_or_stack_threshold",
+          "confidence": "high",
+          "reason": "resource/stack-like value is thresholded"
+        }
+      ]
+    }
+  ]
+}

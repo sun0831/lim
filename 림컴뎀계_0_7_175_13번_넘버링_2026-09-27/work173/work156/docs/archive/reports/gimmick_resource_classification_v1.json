@@ -1,0 +1,68 @@
+{
+  "version": "0.6.17",
+  "policy": {
+    "keyword_equivalent": "Mechanically equivalent to one of seven keywords -> stay in that keyword module; affiliation owns acquisition/consumption rules.",
+    "affiliation_bound": "Primarily a faction/organization gimmick -> sub-resource of affiliation module, not a new global keyword.",
+    "standalone": "Shared by unrelated affiliations -> standalone resource.",
+    "identity_specific": "Character-only -> identity-specific."
+  },
+  "classifications": [
+    {
+      "resource": "생체 재료",
+      "class": "keyword_equivalent",
+      "keyword": "charge",
+      "affiliation": "ring",
+      "reason": "Ring-specific resource, but mechanically treated as Charge-compatible; Ring supplies acquisition/consumption rules.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "새벽불",
+      "class": "affiliation_bound",
+      "affiliation": "dawn_office",
+      "reason": "Dawn Office-specific resource.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "검지의 지령",
+      "class": "affiliation_bound",
+      "affiliation": "index",
+      "reason": "Index Finger-specific command resource.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "중지 - 원한",
+      "class": "affiliation_bound",
+      "affiliation": "middle",
+      "reason": "Middle Finger-specific resource used by revenge mechanics.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "중지식 강화 문신",
+      "class": "affiliation_bound",
+      "affiliation": "middle",
+      "reason": "Middle Finger-specific tattoo state directly modifies skills.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "원한 문신",
+      "class": "affiliation_bound",
+      "affiliation": "middle",
+      "reason": "Middle Finger revenge/tattoo state.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "앙갚음 장부",
+      "class": "affiliation_bound",
+      "affiliation": "middle",
+      "reason": "Middle Finger revenge ledger.",
+      "status": "confirmed"
+    },
+    {
+      "resource": "불꽃나비의 관",
+      "class": "affiliation_bound",
+      "affiliation": "dawn_office",
+      "reason": "Dawn Office-specific named state/trigger.",
+      "status": "confirmed"
+    }
+  ]
+}

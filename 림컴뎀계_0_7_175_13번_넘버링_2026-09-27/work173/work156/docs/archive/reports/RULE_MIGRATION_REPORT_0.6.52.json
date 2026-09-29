@@ -1,0 +1,530 @@
+{
+  "total_rules": 55,
+  "fully_generic_rules": 50,
+  "deferred_rules": 5,
+  "unknown_rules": 0,
+  "effect_state_counts": {
+    "deferred": 5,
+    "generic": 52
+  },
+  "effect_kind_counts": {
+    "support_poise_count_bonus": 1,
+    "support_action": 6,
+    "hongmaehwa_crit": 1,
+    "resource_gain_lowest_allies": 2,
+    "resource_gain": 18,
+    "resource_gain_affiliation_count": 2,
+    "status_potency_damage": 1,
+    "poise_gain_lowest_ally": 2,
+    "heal_lowest_ally": 2,
+    "extra_damage_scale": 1,
+    "poise_gain": 1,
+    "queue_action": 10,
+    "support_poise_gain": 1,
+    "poise_gain_lowest_affiliation": 2,
+    "poise_gain_self_bonus": 1,
+    "status_gain_affiliation": 1,
+    "register_fatal_prevention": 2,
+    "register_damage_modifier_highest_poise": 1,
+    "enemy_status_count_gain": 1,
+    "resource_consume": 1
+  },
+  "unsupported_condition_counts": {},
+  "records": [
+    {
+      "rule_id": "gimmick:1",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 0,
+      "deferred_effects": 1,
+      "unknown_effects": 0,
+      "status": "deferred"
+    },
+    {
+      "rule_id": "gimmick:2",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:3",
+      "event": "after_coin",
+      "effects": 1,
+      "generic_effects": 0,
+      "deferred_effects": 1,
+      "unknown_effects": 0,
+      "status": "deferred"
+    },
+    {
+      "rule_id": "gimmick:4",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:5",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:6",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:7",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:8",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:9",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:10",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:11",
+      "event": "battle_start",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:12",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:13",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:14",
+      "event": "after_coin",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:15",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:16",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:17",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:18",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:19",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:20",
+      "event": "after_kill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:21",
+      "event": "after_coin",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:22",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 0,
+      "deferred_effects": 1,
+      "unknown_effects": 0,
+      "status": "deferred"
+    },
+    {
+      "rule_id": "gimmick:23",
+      "event": "after_received_attack",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:24",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:25",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:26",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 0,
+      "deferred_effects": 1,
+      "unknown_effects": 0,
+      "status": "deferred"
+    },
+    {
+      "rule_id": "gimmick:27",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:28",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:29",
+      "event": "battle_start",
+      "effects": 2,
+      "generic_effects": 2,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:30",
+      "event": "battle_start",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:31",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:32",
+      "event": "battle_start",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:33",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:34",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:35",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:36",
+      "event": "battle_start",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:37",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:38",
+      "event": "after_received_attack",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:39",
+      "event": "after_received_attack",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:40",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:41",
+      "event": "after_received_attack",
+      "effects": 2,
+      "generic_effects": 1,
+      "deferred_effects": 1,
+      "unknown_effects": 0,
+      "status": "deferred"
+    },
+    {
+      "rule_id": "gimmick:42",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:43",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:44",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:45",
+      "event": "after_clash",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:46",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:47",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:48",
+      "event": "after_clash",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:49",
+      "event": "battle_start",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:50",
+      "event": "after_clash",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:51",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:52",
+      "event": "resource_cumulative_consumed",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:53",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:54",
+      "event": "after_skill",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    },
+    {
+      "rule_id": "gimmick:55",
+      "event": "after_coin",
+      "effects": 1,
+      "generic_effects": 1,
+      "deferred_effects": 0,
+      "unknown_effects": 0,
+      "status": "generic"
+    }
+  ]
+}

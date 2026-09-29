@@ -1,0 +1,102 @@
+"""Catalog-driven status-effect adapter.
+
+This layer does not invent mechanics for identity-specific effects.  It only
+translates catalog entries whose value semantics have an unambiguous mapping to
+existing DamageModifierRuntime fields.  Unsupported/compound effects remain
+explicitly deferred for dedicated Rule/Keyword runtimes.
+"""
+from __future__ import annotations
+from typing import Any, Dict, Mapping
+
+from status_effect_lifecycle_v1 import get_status_effect_spec, lifecycle_profile
+from buff_debuff_runtime_v1 import BuffDebuffRuntime
+
+# Catalog value-semantic -> common modifier field.
+SEMANTIC_TO_MODIFIER = {
+    "damage_scale": "damage_percent",
+    "damage_taken_scale": "damage_percent",
+    "final_power": "skill_power",
+    "clash_power": "skill_power",
+    "base_power": "base_power_bonus",
+    "offense_level": "attack_level_bonus",
+    "defense_level": "defense_level_bonus",
+    "crit_damage_scale": "critical_damage_percent",
+    "plus_coin_power": "coin_power",
+    "minus_coin_power": "coin_power",
+}
+
+class StatusEffectRuntime:
+    """Apply catalog-backed common status semantics without guessing special rules."""
+
+    @classmethod
+    def _modifier_for(cls, name: str, *, value: float, kind: str) -> tuple[Dict[str, float], Dict[str, Any]]:
+        spec = get_status_effect_spec(name)
+        if not spec:
+            return {}, {"supported": False, "reason": "unknown_catalog_effect"}
+        semantics = dict(spec.get("value_semantics") or {})
+        category = str(spec.get("category", "unspecified"))
+        modifiers: Dict[str, float] = {}
+        mapped = []
+        for semantic, modifier in SEMANTIC_TO_MODIFIER.items():
+            if semantic not in semantics.values():
+                continue
+            # Positive effects increase the mapped value; negative effects
+            # decrease it.  Damage-taken effects use the same signed channel:
+            # positive Protection reduces incoming damage, Fragile increases it.
+            sign = 1.0 if category == "positive" else -1.0 if category == "negative" else 1.0
+            if semantic == "damage_taken_scale":
+                sign *= -1.0
+            amount = float(value)
+            if semantic in {"damage_scale", "damage_taken_scale"}:
+                # Source definitions use X*10% per stack; DamageModifierRuntime
+                # stores this channel as a decimal multiplier (0.10 = 10%).
+                amount /= 10.0
+            modifiers[modifier] = modifiers.get(modifier, 0.0) + sign * amount
+            mapped.append({"semantic": semantic, "modifier": modifier, "sign": sign})
+        if not mapped:
+            return {}, {"supported": False, "reason": "no_unambiguous_common_modifier"}
+        return modifiers, {"supported": True, "mapped": mapped, "profile": lifecycle_profile(name)}
+
+    @classmethod
+    def apply_catalog_effect(cls, state, *, target_id: str, name: str, kind: str = "buff",
+                             value: float | None = None, potency: int = 0, count: int = 0,
+                             source_id: str = "", rule_id: str = "", **kwargs) -> Dict[str, Any]:
+        spec = get_status_effect_spec(name) or {}
+        semantics = dict(spec.get("value_semantics") or {})
+        max_count = spec.get("max_count")
+        if max_count is not None:
+            count = min(int(count), int(max_count))
+        if value is None:
+            # Catalog semantics decide whether the displayed strength comes
+            # from Count or Potency.  This prevents a caller from silently
+            # applying the default value=1 to a multi-stack status.
+            semantic_values = list(semantics.values())
+            if any(v in {"damage_scale", "damage_taken_scale", "final_power", "clash_power", "plus_coin_power", "minus_coin_power"} for v in semantic_values):
+                value = float(count)
+            elif any(v in {"offense_level", "defense_level", "crit_damage_scale", "base_power"} for v in semantic_values):
+                value = float(potency)
+            else:
+                value = 1.0
+        modifiers, meta = cls._modifier_for(name, value=float(value), kind=kind)
+        if not meta.get("supported"):
+            return {"applied": False, "deferred": True, "name": name, **meta}
+        modifier_policy = dict(kwargs.pop("modifier_policy", {}) or {})
+        skill_scope = spec.get("skill_scope")
+        if skill_scope:
+            modifier_policy["skill_scope"] = str(skill_scope)
+        item = BuffDebuffRuntime.apply(
+            state, target_id=str(target_id), name=str(name), kind=kind,
+            potency=int(potency), count=int(count), modifiers=modifiers,
+            modifier_policy=modifier_policy,
+            source_id=str(source_id), rule_id=str(rule_id), **kwargs
+        )
+        return {"applied": True, "deferred": False, "applied_value": float(value), "item": item, **meta}
+
+    @classmethod
+    def inspect(cls, name: str) -> Dict[str, Any]:
+        spec = get_status_effect_spec(name)
+        if not spec:
+            return {"name": name, "supported": False, "reason": "unknown_catalog_effect"}
+        modifiers, meta = cls._modifier_for(name, value=1.0, kind="buff")
+        return {"name": name, "supported": bool(meta.get("supported")),
+                "candidate_modifiers": modifiers, **meta}

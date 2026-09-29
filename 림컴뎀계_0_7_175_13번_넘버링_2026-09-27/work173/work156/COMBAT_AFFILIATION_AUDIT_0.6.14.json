@@ -1,0 +1,172 @@
+{
+  "version": "0.6.14",
+  "principle": "Raw affiliations are metadata. combat_affiliations are only groups whose membership/presence/skills/passives can affect combat resolution.",
+  "modules": {
+    "dawn_office": {
+      "basis": "Dawn identities directly cross-trigger each other, share Dawn resources, and modify each other's follow-up attacks.",
+      "members": [
+        {
+          "identity_id": "identity-10216",
+          "name": "새벽 사무소 해결사 파우스트"
+        },
+        {
+          "identity_id": "identity-11009",
+          "name": "새벽 사무소 해결사 싱클레어"
+        },
+        {
+          "identity_id": "identity-11216",
+          "name": "새벽 사무소 대표 그레고르"
+        }
+      ]
+    },
+    "middle": {
+      "basis": "Middle membership changes revenge/ledger acquisition, retaliation, buffs, and death/received-hit interactions.",
+      "members": [
+        {
+          "identity_id": "identity-10306",
+          "name": "중지 작은 아우 돈키호테"
+        },
+        {
+          "identity_id": "identity-10507",
+          "name": "중지 작은 아우 뫼르소"
+        },
+        {
+          "identity_id": "identity-10715",
+          "name": "중지 작은 형님 히스클리프"
+        },
+        {
+          "identity_id": "identity-10814",
+          "name": "거미집 중지 제자 이스마엘"
+        },
+        {
+          "identity_id": "identity-11012",
+          "name": "중지 작은 아우 싱클레어"
+        },
+        {
+          "identity_id": "identity-11115",
+          "name": "거미집 중지 아비 오티스"
+        }
+      ]
+    },
+    "pequod": {
+      "basis": "Captain Ishmael explicitly changes effects for Pequod allies; Pequod membership therefore changes kill-trigger recovery/buff outcomes.",
+      "members": [
+        {
+          "identity_id": "identity-10107",
+          "name": "피쿼드호 일등 항해사 이상"
+        },
+        {
+          "identity_id": "identity-10707",
+          "name": "피쿼드호 작살잡이 히스클리프"
+        },
+        {
+          "identity_id": "identity-10808",
+          "name": "피쿼드호 선장 이스마엘"
+        }
+      ]
+    },
+    "ring": {
+      "basis": "Ring membership changes Bio Material initialization/consumption and student/mentor cross-effects.",
+      "members": [
+        {
+          "identity_id": "identity-10109",
+          "name": "약지 점묘파 스튜던트 이상"
+        },
+        {
+          "identity_id": "identity-10215",
+          "name": "거미집 약지 제자 파우스트"
+        },
+        {
+          "identity_id": "identity-10515",
+          "name": "약지 야수파 스튜던트 뫼르소"
+        },
+        {
+          "identity_id": "identity-10614",
+          "name": "거미집 약지 아비 홍루"
+        },
+        {
+          "identity_id": "identity-10915",
+          "name": "약지 야수파 도슨트 로쟈"
+        },
+        {
+          "identity_id": "identity-11109",
+          "name": "약지 점묘파 스튜던트 오티스"
+        }
+      ]
+    },
+    "spider_house": {
+      "basis": "Spider House membership changes Ryoshu's death/presence effects and several cross-identity effects.",
+      "members": [
+        {
+          "identity_id": "identity-10115",
+          "name": "거미집 검지 아비 이상"
+        },
+        {
+          "identity_id": "identity-10215",
+          "name": "거미집 약지 제자 파우스트"
+        },
+        {
+          "identity_id": "identity-10314",
+          "name": "검지 대행자 - 개화 E.G.O:: 대행 돈키호테"
+        },
+        {
+          "identity_id": "identity-10415",
+          "name": "거미집의 검 료슈"
+        },
+        {
+          "identity_id": "identity-10614",
+          "name": "거미집 약지 아비 홍루"
+        },
+        {
+          "identity_id": "identity-10716",
+          "name": "거미집 엄지 제자 히스클리프"
+        },
+        {
+          "identity_id": "identity-10814",
+          "name": "거미집 중지 제자 이스마엘"
+        },
+        {
+          "identity_id": "identity-10916",
+          "name": "거미집 엄지 아비 로쟈"
+        },
+        {
+          "identity_id": "identity-11015",
+          "name": "거미집 소지 제자 싱클레어"
+        },
+        {
+          "identity_id": "identity-11115",
+          "name": "거미집 중지 아비 오티스"
+        }
+      ]
+    },
+    "black_cloud": {
+      "basis": "Black Cloud members are the recipient pool for Black Cloud incoming-attack support reactions; their presence changes whether/whom those reactions affect.",
+      "members": [
+        {
+          "identity_id": "identity-10403",
+          "name": "흑운회 와카슈 료슈"
+        },
+        {
+          "identity_id": "identity-10602",
+          "name": "흑운회 와카슈 홍루"
+        },
+        {
+          "identity_id": "identity-10712",
+          "name": "흑운회 와카슈 히스클리프"
+        },
+        {
+          "identity_id": "identity-10811",
+          "name": "흑운회 부조장 이스마엘"
+        },
+        {
+          "identity_id": "identity-10902",
+          "name": "흑운회 와카슈 로쟈"
+        },
+        {
+          "identity_id": "identity-11208",
+          "name": "흑운회 부조장 그레고르"
+        }
+      ]
+    }
+  }
+}

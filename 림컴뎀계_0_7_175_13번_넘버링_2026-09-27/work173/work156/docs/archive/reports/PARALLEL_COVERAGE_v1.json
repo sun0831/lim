@@ -1,0 +1,11 @@
+{
+  "identities": 184,
+  "skills": 621,
+  "skills_with_resource_gain": 5,
+  "skills_with_resource_cost": 15,
+  "skills_with_conditional_resource": 3,
+  "skills_with_conditional_max": 4,
+  "skills_with_consumption_damage": 4,
+  "skills_with_transform_text": 27,
+  "skills_with_resource_coin_cost": 14
+}

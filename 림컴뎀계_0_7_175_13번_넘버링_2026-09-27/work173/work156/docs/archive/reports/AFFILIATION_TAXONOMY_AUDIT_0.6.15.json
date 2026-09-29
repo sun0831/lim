@@ -1,0 +1,955 @@
+{
+  "version": "0.6.15",
+  "total_identities": 184,
+  "unique_raw_affiliations": 62,
+  "normalized_affiliations": 56,
+  "confirmed_combat_affiliations": [
+    "black_cloud",
+    "blade_lineage",
+    "dawn_office",
+    "full_stop",
+    "index",
+    "la_mancha_land",
+    "liu",
+    "middle",
+    "n_corp",
+    "pequod",
+    "ring",
+    "seven",
+    "spider_house",
+    "thumb",
+    "w_corp",
+    "zwei"
+  ],
+  "unverified_affiliations": [
+    "atl",
+    "backstreet_cook",
+    "black_beast_chicken",
+    "black_beast_horse",
+    "black_beast_rabbit",
+    "black_beast_sheep",
+    "black_beast_snake",
+    "cinq",
+    "dead_rabbits",
+    "devyat",
+    "dieci",
+    "dual_hook_pirate",
+    "family_ga",
+    "fang_hunt",
+    "firepunch_office",
+    "g_corp",
+    "h_corp",
+    "hook_office",
+    "jeong_office",
+    "k_corp",
+    "kong_kong",
+    "l_corp",
+    "lca",
+    "lce",
+    "limbus_company",
+    "linton",
+    "mari",
+    "mariachi",
+    "molar",
+    "multi_crack",
+    "nightstiletto",
+    "oufi",
+    "pinky",
+    "r_corp",
+    "shi",
+    "t_corp",
+    "trouble_shooter",
+    "wild_hunt",
+    "wuthering_heights",
+    "yurodivy"
+  ],
+  "groups": {
+    "atl": {
+      "id": "atl",
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 4,
+      "aliases": [
+        "ATL"
+      ],
+      "members": [
+        "identity-10104",
+        "identity-10705",
+        "identity-10805",
+        "identity-11006"
+      ]
+    },
+    "backstreet_cook": {
+      "id": "backstreet_cook",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "BACKSTREET COOK"
+      ],
+      "members": [
+        "identity-10404",
+        "identity-11204"
+      ]
+    },
+    "black_beast_chicken": {
+      "id": "black_beast_chicken",
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "BLACK BEAST CHICKEN"
+      ],
+      "members": [
+        "identity-10714",
+        "identity-11014"
+      ]
+    },
+    "black_beast_horse": {
+      "id": "black_beast_horse",
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "BLACK BEAST HORSE"
+      ],
+      "members": [
+        "identity-10114"
+      ]
+    },
+    "black_beast_rabbit": {
+      "id": "black_beast_rabbit",
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "BLACK BEAST RABBIT"
+      ],
+      "members": [
+        "identity-10212",
+        "identity-10411",
+        "identity-11112"
+      ]
+    },
+    "black_beast_sheep": {
+      "id": "black_beast_sheep",
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "BLACK BEAST SHEEP"
+      ],
+      "members": [
+        "identity-10313"
+      ]
+    },
+    "black_beast_snake": {
+      "id": "black_beast_snake",
+      "category": "beast_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "BLACK BEAST SNAKE"
+      ],
+      "members": [
+        "identity-10912",
+        "identity-11212"
+      ]
+    },
+    "black_cloud": {
+      "id": "black_cloud",
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "black_cloud",
+      "member_count": 6,
+      "aliases": [
+        "BLACK CLOUD"
+      ],
+      "members": [
+        "identity-10403",
+        "identity-10602",
+        "identity-10712",
+        "identity-10811",
+        "identity-10902",
+        "identity-11208"
+      ]
+    },
+    "blade_lineage": {
+      "id": "blade_lineage",
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "blade_lineage",
+      "member_count": 6,
+      "aliases": [
+        "BLADE LINEAGE"
+      ],
+      "members": [
+        "identity-10103",
+        "identity-10208",
+        "identity-10308",
+        "identity-10508",
+        "identity-11002",
+        "identity-11102"
+      ]
+    },
+    "cinq": {
+      "id": "cinq",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 5,
+      "aliases": [
+        "CINQ"
+      ],
+      "members": [
+        "identity-10305",
+        "identity-10311",
+        "identity-10511",
+        "identity-11008",
+        "identity-11106"
+      ]
+    },
+    "dawn_office": {
+      "id": "dawn_office",
+      "category": "office",
+      "combat_relevance": "confirmed",
+      "combat_module": "dawn_office",
+      "member_count": 3,
+      "aliases": [
+        "DAWN"
+      ],
+      "members": [
+        "identity-10216",
+        "identity-11009",
+        "identity-11216"
+      ]
+    },
+    "dead_rabbits": {
+      "id": "dead_rabbits",
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "DEAD RABBITS"
+      ],
+      "members": [
+        "identity-10509"
+      ]
+    },
+    "devyat": {
+      "id": "devyat",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "DEVYAT"
+      ],
+      "members": [
+        "identity-10910",
+        "identity-11011"
+      ]
+    },
+    "dieci": {
+      "id": "dieci",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 4,
+      "aliases": [
+        "DIECI"
+      ],
+      "members": [
+        "identity-10108",
+        "identity-10510",
+        "identity-10608",
+        "identity-10907"
+      ]
+    },
+    "dual_hook_pirate": {
+      "id": "dual_hook_pirate",
+      "category": "crew_faction",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "DUAL HOOK PIRATE"
+      ],
+      "members": [
+        "identity-11207"
+      ]
+    },
+    "family_ga": {
+      "id": "family_ga",
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "FAMILY GA",
+        "FAMILY GA CANCELED"
+      ],
+      "members": [
+        "identity-10114",
+        "identity-10613",
+        "identity-10812"
+      ]
+    },
+    "fang_hunt": {
+      "id": "fang_hunt",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "FANG HUNT"
+      ],
+      "members": [
+        "identity-10610"
+      ]
+    },
+    "firepunch_office": {
+      "id": "firepunch_office",
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "FIREPUNCH OFFICE"
+      ],
+      "members": [
+        "identity-11211"
+      ]
+    },
+    "full_stop": {
+      "id": "full_stop",
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "full_stop",
+      "member_count": 2,
+      "aliases": [
+        "FULL STOP"
+      ],
+      "members": [
+        "identity-10611",
+        "identity-10711"
+      ]
+    },
+    "g_corp": {
+      "id": "g_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "G CORP"
+      ],
+      "members": [
+        "identity-11103",
+        "identity-11203"
+      ]
+    },
+    "h_corp": {
+      "id": "h_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 12,
+      "aliases": [
+        "H CORP"
+      ],
+      "members": [
+        "identity-10114",
+        "identity-10212",
+        "identity-10313",
+        "identity-10411",
+        "identity-10413",
+        "identity-10613",
+        "identity-10714",
+        "identity-10812",
+        "identity-10912",
+        "identity-11014",
+        "identity-11112",
+        "identity-11212"
+      ]
+    },
+    "hook_office": {
+      "id": "hook_office",
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "HOOK OFFICE"
+      ],
+      "members": [
+        "identity-10607"
+      ]
+    },
+    "index": {
+      "id": "index",
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "index",
+      "member_count": 3,
+      "aliases": [
+        "INDEX FINGER"
+      ],
+      "members": [
+        "identity-10115",
+        "identity-10214",
+        "identity-10314"
+      ]
+    },
+    "jeong_office": {
+      "id": "jeong_office",
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "JEONG OFFICE"
+      ],
+      "members": [
+        "identity-10813"
+      ]
+    },
+    "k_corp": {
+      "id": "k_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "K사"
+      ],
+      "members": [
+        "identity-10605"
+      ]
+    },
+    "kong_kong": {
+      "id": "kong_kong",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "KONG KONG"
+      ],
+      "members": [
+        "identity-10603"
+      ]
+    },
+    "l_corp": {
+      "id": "l_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 10,
+      "aliases": [
+        "L CORP"
+      ],
+      "members": [
+        "identity-10110",
+        "identity-10203",
+        "identity-10207",
+        "identity-10307",
+        "identity-10312",
+        "identity-10410",
+        "identity-10414",
+        "identity-10514",
+        "identity-10913",
+        "identity-11107"
+      ]
+    },
+    "la_mancha_land": {
+      "id": "la_mancha_land",
+      "category": "location_group",
+      "combat_relevance": "confirmed",
+      "combat_module": "la_mancha_land",
+      "member_count": 5,
+      "aliases": [
+        "LA MANCHA LAND"
+      ],
+      "members": [
+        "identity-10310",
+        "identity-10513",
+        "identity-10911",
+        "identity-11111",
+        "identity-11210"
+      ]
+    },
+    "lca": {
+      "id": "lca",
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "LIMBUS COMPANY LCA"
+      ],
+      "members": [
+        "identity-11114"
+      ]
+    },
+    "lce": {
+      "id": "lce",
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 4,
+      "aliases": [
+        "LCE"
+      ],
+      "members": [
+        "identity-10111",
+        "identity-10211",
+        "identity-11214",
+        "identity-11215"
+      ]
+    },
+    "limbus_company": {
+      "id": "limbus_company",
+      "category": "organization",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 20,
+      "aliases": [
+        "림버스 컴퍼니",
+        "LCB",
+        "LIMBUS COMPANY LCC",
+        "LIMBUS COMPANY LCA"
+      ],
+      "members": [
+        "identity-10101",
+        "identity-10111",
+        "identity-10201",
+        "identity-10211",
+        "identity-10301",
+        "identity-10401",
+        "identity-10406",
+        "identity-10501",
+        "identity-10601",
+        "identity-10701",
+        "identity-10801",
+        "identity-10804",
+        "identity-10901",
+        "identity-10903",
+        "identity-11001",
+        "identity-11101",
+        "identity-11114",
+        "identity-11201",
+        "identity-11214",
+        "identity-11215"
+      ]
+    },
+    "linton": {
+      "id": "linton",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "LINTON"
+      ],
+      "members": [
+        "identity-10408",
+        "identity-10809",
+        "identity-11209"
+      ]
+    },
+    "liu": {
+      "id": "liu",
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "liu",
+      "member_count": 7,
+      "aliases": [
+        "LIU"
+      ],
+      "members": [
+        "identity-10112",
+        "identity-10407",
+        "identity-10502",
+        "identity-10604",
+        "identity-10806",
+        "identity-10908",
+        "identity-11202"
+      ]
+    },
+    "mari": {
+      "id": "mari",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "MARIACHI"
+      ],
+      "members": [
+        "identity-11004"
+      ]
+    },
+    "mariachi": {
+      "id": "mariachi",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "MARIACHI"
+      ],
+      "members": [
+        "identity-11004"
+      ]
+    },
+    "middle": {
+      "id": "middle",
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "middle",
+      "member_count": 6,
+      "aliases": [
+        "MIDDLE FINGER"
+      ],
+      "members": [
+        "identity-10306",
+        "identity-10507",
+        "identity-10715",
+        "identity-10814",
+        "identity-11012",
+        "identity-11115"
+      ]
+    },
+    "molar": {
+      "id": "molar",
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 4,
+      "aliases": [
+        "MOLAR"
+      ],
+      "members": [
+        "identity-10105",
+        "identity-10807",
+        "identity-11007",
+        "identity-11105"
+      ]
+    },
+    "multi_crack": {
+      "id": "multi_crack",
+      "category": "syndicate",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "MULTI CRACK"
+      ],
+      "members": [
+        "identity-10210",
+        "identity-10709"
+      ]
+    },
+    "n_corp": {
+      "id": "n_corp",
+      "category": "corporation",
+      "combat_relevance": "confirmed",
+      "combat_module": "n_corp",
+      "member_count": 8,
+      "aliases": [
+        "N사",
+        "N사 광신도"
+      ],
+      "members": [
+        "identity-10113",
+        "identity-10204",
+        "identity-10304",
+        "identity-10412",
+        "identity-10504",
+        "identity-10704",
+        "identity-10904",
+        "identity-11005"
+      ]
+    },
+    "nightstiletto": {
+      "id": "nightstiletto",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "NIGHTSTILETTO"
+      ],
+      "members": [
+        "identity-11213"
+      ]
+    },
+    "oufi": {
+      "id": "oufi",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "OUFI",
+        "OUFI COOP"
+      ],
+      "members": [
+        "identity-10708",
+        "identity-10813"
+      ]
+    },
+    "pequod": {
+      "id": "pequod",
+      "category": "crew_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "pequod",
+      "member_count": 3,
+      "aliases": [
+        "PEQUOD CREW"
+      ],
+      "members": [
+        "identity-10107",
+        "identity-10707",
+        "identity-10808"
+      ]
+    },
+    "pinky": {
+      "id": "pinky",
+      "category": "finger_faction",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 0,
+      "aliases": [
+        "PINKY"
+      ],
+      "members": []
+    },
+    "r_corp": {
+      "id": "r_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 5,
+      "aliases": [
+        "R사"
+      ],
+      "members": [
+        "identity-10506",
+        "identity-10612",
+        "identity-10703",
+        "identity-10802",
+        "identity-10914"
+      ]
+    },
+    "ring": {
+      "id": "ring",
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "ring",
+      "member_count": 6,
+      "aliases": [
+        "RING FINGER",
+        "RING FINGER POINTILLISM",
+        "RING FINGER PHYSICAL",
+        "RING FINGER FAUVISM"
+      ],
+      "members": [
+        "identity-10109",
+        "identity-10215",
+        "identity-10515",
+        "identity-10614",
+        "identity-10915",
+        "identity-11109"
+      ]
+    },
+    "seven": {
+      "id": "seven",
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "seven",
+      "member_count": 5,
+      "aliases": [
+        "SEVEN"
+      ],
+      "members": [
+        "identity-10102",
+        "identity-10206",
+        "identity-10402",
+        "identity-10706",
+        "identity-11104"
+      ]
+    },
+    "shi": {
+      "id": "shi",
+      "category": "association",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 4,
+      "aliases": [
+        "SHI"
+      ],
+      "members": [
+        "identity-10213",
+        "identity-10303",
+        "identity-10702",
+        "identity-10803"
+      ]
+    },
+    "spider_house": {
+      "id": "spider_house",
+      "category": "syndicate",
+      "combat_relevance": "confirmed",
+      "combat_module": "spider_house",
+      "member_count": 10,
+      "aliases": [
+        "SPIDER HOUSE"
+      ],
+      "members": [
+        "identity-10115",
+        "identity-10215",
+        "identity-10314",
+        "identity-10415",
+        "identity-10614",
+        "identity-10716",
+        "identity-10814",
+        "identity-10916",
+        "identity-11015",
+        "identity-11115"
+      ]
+    },
+    "t_corp": {
+      "id": "t_corp",
+      "category": "corporation",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "T사"
+      ],
+      "members": [
+        "identity-10309",
+        "identity-10909",
+        "identity-11113"
+      ]
+    },
+    "thumb": {
+      "id": "thumb",
+      "category": "finger_faction",
+      "combat_relevance": "confirmed",
+      "combat_module": "thumb",
+      "member_count": 2,
+      "aliases": [
+        "THUMB FINGER"
+      ],
+      "members": [
+        "identity-10512",
+        "identity-11013"
+      ]
+    },
+    "trouble_shooter": {
+      "id": "trouble_shooter",
+      "category": "office",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "TROUBLE SHOOTER"
+      ],
+      "members": [
+        "identity-10505",
+        "identity-10905",
+        "identity-11205"
+      ]
+    },
+    "w_corp": {
+      "id": "w_corp",
+      "category": "corporation",
+      "combat_relevance": "confirmed",
+      "combat_module": "w_corp",
+      "member_count": 8,
+      "aliases": [
+        "W CORP"
+      ],
+      "members": [
+        "identity-10106",
+        "identity-10202",
+        "identity-10302",
+        "identity-10405",
+        "identity-10503",
+        "identity-10606",
+        "identity-10713",
+        "identity-11110"
+      ]
+    },
+    "wild_hunt": {
+      "id": "wild_hunt",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 1,
+      "aliases": [
+        "WILD HUNT"
+      ],
+      "members": [
+        "identity-10710"
+      ]
+    },
+    "wuthering_heights": {
+      "id": "wuthering_heights",
+      "category": "location_group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 3,
+      "aliases": [
+        "WUTHERING HEIGHTS"
+      ],
+      "members": [
+        "identity-10209",
+        "identity-10710",
+        "identity-11108"
+      ]
+    },
+    "yurodivy": {
+      "id": "yurodivy",
+      "category": "group",
+      "combat_relevance": "unverified",
+      "combat_module": null,
+      "member_count": 2,
+      "aliases": [
+        "YURODIVY"
+      ],
+      "members": [
+        "identity-10409",
+        "identity-10609"
+      ]
+    },
+    "zwei": {
+      "id": "zwei",
+      "category": "association",
+      "combat_relevance": "confirmed",
+      "combat_module": "zwei",
+      "member_count": 6,
+      "aliases": [
+        "ZWEI"
+      ],
+      "members": [
+        "identity-10205",
+        "identity-10810",
+        "identity-10906",
+        "identity-11003",
+        "identity-11010",
+        "identity-11206"
+      ]
+    }
+  }
+}

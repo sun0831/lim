@@ -1,0 +1,5531 @@
+{
+  "version": "E35-2",
+  "scope": "GIMMICK_GAP_REPORT_v4.json / gaps",
+  "record_count": 360,
+  "total_clauses": 1103,
+  "converted_clauses": 346,
+  "unsupported_clauses": 757,
+  "clause_conversion_rate_percent": 31.37,
+  "category": {
+    "action_trigger": {
+      "clauses": 871,
+      "converted": 281,
+      "rate_percent": 32.26
+    },
+    "cross_identity": {
+      "clauses": 489,
+      "converted": 174,
+      "rate_percent": 35.58
+    },
+    "multi_target": {
+      "clauses": 149,
+      "converted": 67,
+      "rate_percent": 44.97
+    },
+    "probability_random": {
+      "clauses": 137,
+      "converted": 29,
+      "rate_percent": 21.17
+    },
+    "resource_transform": {
+      "clauses": 829,
+      "converted": 249,
+      "rate_percent": 30.04
+    },
+    "skill_transform": {
+      "clauses": 146,
+      "converted": 39,
+      "rate_percent": 26.71
+    },
+    "special_state": {
+      "clauses": 244,
+      "converted": 66,
+      "rate_percent": 27.05
+    },
+    "stack_threshold": {
+      "clauses": 149,
+      "converted": 55,
+      "rate_percent": 36.91
+    },
+    "target_selection": {
+      "clauses": 358,
+      "converted": 118,
+      "rate_percent": 32.96
+    }
+  },
+  "primitive_contract_usage": {
+    "affiliation_target_selector": 39,
+    "condition_action_state": 211,
+    "condition_hp_stagger_predicate": 4,
+    "condition_identity_relation": 9,
+    "condition_resource_predicate": 2,
+    "condition_status_predicate": 10,
+    "condition_threshold": 4,
+    "damage_modifier_effect": 132,
+    "forced_followup_action": 7,
+    "lowest_resource_selector": 22,
+    "probabilistic_trigger": 1,
+    "resource_effect": 30,
+    "skill_swap_timed": 4,
+    "state_effect": 59,
+    "status_effect": 57
+  },
+  "unknown_primitive_contracts": {},
+  "unsupported_reasons": {
+    "effect": 318,
+    "trigger": 439
+  },
+  "records": [
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "passive_name": "앙갚음 장부",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "skill_transform",
+        "probability_random",
+        "multi_target",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 8,
+      "converted_clauses": 4,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:0:0:0:e35:0:0",
+        "gap:0:1:0:e35:0:0",
+        "gap:0:3:0:e35:0:0",
+        "gap:0:7:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "재회 [再會]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "skill_transform",
+        "multi_target",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 16,
+      "converted_clauses": 8,
+      "unsupported_clauses": 8,
+      "rule_ids": [
+        "gap:1:1:0:e35:0:0",
+        "gap:1:2:0:e35:0:0",
+        "gap:1:4:0:e35:0:0",
+        "gap:1:7:0:p0:r0",
+        "gap:1:8:0:p0:r0",
+        "gap:1:9:0:p0:r0",
+        "gap:1:12:0:p0:r0",
+        "gap:1:13:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "passive_name": "소중한 작품 파시아",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 1,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:2:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "시공간 잔상 분열",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "skill_transform",
+        "probability_random",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 3,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:3:1:0:e35:0:0",
+        "gap:3:2:0:e35:0:0",
+        "gap:3:4:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "passive_name": "일생의 작품 티비아",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 1,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:4:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "단말기로 전해진 지령",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "skill_transform",
+        "probability_random",
+        "special_state"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "passive_name": "신체극복",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:6:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10613",
+      "identity_name": "홍원 군주",
+      "passive_name": "더러운 피마저 받아들이고, 누군가의 피를 묻혀가며 뜻을 이룬다.",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "multi_target",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:7:2:0:p0:r0",
+        "gap:7:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "돛대",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:8:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "돛대",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:9:0:0:e35:0:0",
+        "gap:9:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10413",
+      "identity_name": "홍원 방랑무사",
+      "passive_name": "군.가.곁.좋\n(군주라… 그런 가능성에서 곁을 지켰다면 더할 나위 없이 좋았겠군.)",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10712",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "흑운도",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:11:0:0:e35:0:0",
+        "gap:11:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10916",
+      "identity_name": "거미집 엄지 아비",
+      "passive_name": "예지안",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state",
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:12:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "신탁 단말기 [카두세우스]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "skill_transform",
+        "probability_random"
+      ],
+      "clauses": 15,
+      "converted_clauses": 0,
+      "unsupported_clauses": 15,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "multi_target",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:14:0:0:p0:r0",
+        "gap:14:1:0:p0:r0",
+        "gap:14:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10712",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "흑운도",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:15:0:0:e35:0:0",
+        "gap:15:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "passive_name": "작은 형님",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:16:0:0:e35_7:0:0",
+        "gap:16:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10716",
+      "identity_name": "거미집 엄지 제자",
+      "passive_name": "필사의 분전",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state"
+      ],
+      "clauses": 5,
+      "converted_clauses": 2,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:17:2:0:e35:0:0",
+        "gap:17:3:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "중지는 잊지 않아",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:19:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "passive_name": "구마지심 [狗馬之心]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state",
+        "stack_threshold"
+      ],
+      "clauses": 6,
+      "converted_clauses": 3,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:20:1:0:p0:r0",
+        "gap:20:3:0:e35_7:0:0",
+        "gap:20:4:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "passive_name": "경신법",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:21:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10907",
+      "identity_name": "남부 디에치 협회 4과",
+      "passive_name": "지식 전도",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "봉인된 검 [레바테인]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state"
+      ],
+      "clauses": 16,
+      "converted_clauses": 2,
+      "unsupported_clauses": 14,
+      "rule_ids": [
+        "gap:23:8:0:e35:0:0",
+        "gap:23:9:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "passive_name": "열차 정리 매뉴얼 전달",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10713",
+      "identity_name": "W사 4등급 정리 요원 - CCA",
+      "passive_name": "‘언젠가 결항 열차용 정리 장비도 노려볼수있겠지’",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11009",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "불안정한 자아의 껍질",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 0,
+      "unsupported_clauses": 5,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11211",
+      "identity_name": "불주먹 사무소 생존자",
+      "passive_name": "나만 살아남아버렸어...",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "multi_target",
+        "stack_threshold"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:27:0:0:p0:r0",
+        "gap:27:1:0:p0:r0",
+        "gap:27:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10113",
+      "identity_name": "N사 E.G.O:: 흉탄",
+      "passive_name": "대상 지정",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "검지 아비",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform",
+        "special_state"
+      ],
+      "clauses": 5,
+      "converted_clauses": 0,
+      "unsupported_clauses": 5,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10210",
+      "identity_name": "멀티크랙 사무소 대표",
+      "passive_name": "전류 해체",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:30:0:0:p0:r0",
+        "gap:30:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10813",
+      "identity_name": "정사무소 대표",
+      "passive_name": "코이코이[こいこい]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "special_state"
+      ],
+      "clauses": 11,
+      "converted_clauses": 3,
+      "unsupported_clauses": 8,
+      "rule_ids": [
+        "gap:31:6:0:e35_7:0:0",
+        "gap:31:7:0:e35_7:0:0",
+        "gap:31:8:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10214",
+      "identity_name": "검지 수행자: 【쪽지】",
+      "passive_name": "쪽지로 전해진 지령",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "special_state"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "passive_name": "경신법",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:33:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "단말기로 전해진 지령",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "special_state"
+      ],
+      "clauses": 7,
+      "converted_clauses": 0,
+      "unsupported_clauses": 7,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10413",
+      "identity_name": "홍원 방랑무사",
+      "passive_name": "협객",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:35:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10613",
+      "identity_name": "홍원 군주",
+      "passive_name": "흑수군주",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 2,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:36:1:0:e35:0:0",
+        "gap:36:5:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10915",
+      "identity_name": "약지 야수파 도슨트",
+      "passive_name": "지도 편달",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "multi_target"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "자식 교육",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11214",
+      "identity_name": "로보토미 E.G.O:: 램프",
+      "passive_name": "E.G.O 장비 숙련 매뉴얼",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:39:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10106",
+      "identity_name": "W사 3등급 정리 요원",
+      "passive_name": "비워낸 생각",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:40:0:0:p0:r0",
+        "gap:40:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10106",
+      "identity_name": "W사 3등급 정리 요원",
+      "passive_name": "비워낸 생각",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:41:0:0:p0:r0",
+        "gap:41:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10111",
+      "identity_name": "LCE E.G.O:: 초롱",
+      "passive_name": "외형 또한 이전 L사의 E.G.O에 비해, 환상체와 가깝게 추출할 수 있소",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:42:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10111",
+      "identity_name": "LCE E.G.O:: 초롱",
+      "passive_name": "외형 또한 이전 L사의 E.G.O에 비해, 환상체와 가깝게 추출할 수 있소",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:43:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "아류 산초 경혈식",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10404",
+      "identity_name": "료. 고. 파. 주방장",
+      "passive_name": "즉흥 조리",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10511",
+      "identity_name": "서부 섕크 협회 3과",
+      "passive_name": "한 발 더 빠르게",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:46:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "정밀 조준",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:47:0:0:p0:r0",
+        "gap:47:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "passive_name": "원한 문신 공명",
+      "categories": [
+        "action_trigger",
+        "skill_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 3,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:48:0:0:e35:0:0",
+        "gap:48:1:0:e35:0:0",
+        "gap:48:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "제세동",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "제세동",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10116",
+      "identity_name": "LCE E.G.O::차원찢개",
+      "passive_name": "뚫린 골목",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:51:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "포이어팔터 [스티그마 공방]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11008",
+      "identity_name": "남부 섕크 협회 4과 부장",
+      "passive_name": "느리시네요",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:53:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11110",
+      "identity_name": "W사 3등급 정리 요원 팀장",
+      "passive_name": "과충전 / 정리 지시",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:54:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11208",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "흑운검법",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11213",
+      "identity_name": "밤의 송곳 카피타노",
+      "passive_name": "패밀리의 숙청인",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:56:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "앞으로 나서게. 지원하도록 하지.",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 10,
+      "converted_clauses": 4,
+      "unsupported_clauses": 6,
+      "rule_ids": [
+        "gap:57:0:0:p0:r0",
+        "gap:57:6:0:p0:r0",
+        "gap:57:8:0:p0:r0",
+        "gap:57:9:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "앞으로 나서게. 지원하도록 하지.",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 10,
+      "converted_clauses": 4,
+      "unsupported_clauses": 6,
+      "rule_ids": [
+        "gap:58:0:0:p0:r0",
+        "gap:58:6:0:p0:r0",
+        "gap:58:8:0:p0:r0",
+        "gap:58:9:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11216",
+      "identity_name": "새벽 사무소 대표",
+      "passive_name": "모르겐포이어 [스티그마 공방]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 1,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:59:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "죽어가는나비를본다.",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random"
+      ],
+      "clauses": 10,
+      "converted_clauses": 1,
+      "unsupported_clauses": 9,
+      "rule_ids": [
+        "gap:60:9:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10113",
+      "identity_name": "N사 E.G.O:: 흉탄",
+      "passive_name": "흉탄",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:61:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "모조된 삶",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform"
+      ],
+      "clauses": 7,
+      "converted_clauses": 2,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:62:0:0:p0:r0",
+        "gap:62:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10201",
+      "identity_name": "LCB 수감자",
+      "passive_name": "관찰",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "선배",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "skill_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "혈족을 책임지게 된 자",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:65:0:0:e35:0:0",
+        "gap:65:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "passive_name": "채워지지 않는 공허",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10510",
+      "identity_name": "남부 디에치 협회 4과 부장",
+      "passive_name": "자율 학습 지시",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "맹호의 도약",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:68:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "맹호의 도약",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:69:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10811",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "몰려드는 검은 구름",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:70:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10811",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "몰려드는 검은 구름",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:71:0:0:e35:0:0",
+        "gap:71:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10915",
+      "identity_name": "약지 야수파 도슨트",
+      "passive_name": "부서지진 않게 조심조심…",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:72:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11008",
+      "identity_name": "남부 섕크 협회 4과 부장",
+      "passive_name": "잠든 살기",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:73:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "여러 점",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "multi_target"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11213",
+      "identity_name": "밤의 송곳 카피타노",
+      "passive_name": "패밀리의 숙청인",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:75:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "구원의 손",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10211",
+      "identity_name": "LCE E.G.O:: 홍염살",
+      "passive_name": "불나방",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "special_state",
+        "stack_threshold"
+      ],
+      "clauses": 9,
+      "converted_clauses": 4,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:77:1:0:p0:r0",
+        "gap:77:3:0:p0:r0",
+        "gap:77:6:0:p0:r0",
+        "gap:77:8:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "해금/개화 E.G.O::대행",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "stack_threshold"
+      ],
+      "clauses": 10,
+      "converted_clauses": 0,
+      "unsupported_clauses": 10,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "전화",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:79:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "passive_name": "시들지 않는 꽃",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 6,
+      "converted_clauses": 3,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:80:2:0:p0:r0",
+        "gap:80:4:0:p0:r0",
+        "gap:80:5:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "지혜성 [地慧星]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "probability_random"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:81:3:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10509",
+      "identity_name": "데드레빗츠 보스",
+      "passive_name": "내가 책임진다",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10509",
+      "identity_name": "데드레빗츠 보스",
+      "passive_name": "내가 책임진다",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "삽시호 [揷翅虎]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 9,
+      "converted_clauses": 0,
+      "unsupported_clauses": 9,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "왕자였던 자가 해야하는 일",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:85:0:0:e35:0:0",
+        "gap:85:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "듀라한",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:86:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11214",
+      "identity_name": "로보토미 E.G.O:: 램프",
+      "passive_name": "아직 구해야 할 생명이 더 남아있었나",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:87:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "교류 방출 지원",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:88:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10409",
+      "identity_name": "20구 유로지비",
+      "passive_name": "제.지",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:89:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "passive_name": "봄의 탄생",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:90:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10715",
+      "identity_name": "중지 작은 형님",
+      "passive_name": "앙갚음 장부",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:91:0:0:e35:0:0",
+        "gap:91:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10807",
+      "identity_name": "어금니 보트 센터 해결사",
+      "passive_name": "크랲 드라이버",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:92:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10814",
+      "identity_name": "거미집 중지 제자",
+      "passive_name": "중지는 잊지 않는다구요",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 6,
+      "converted_clauses": 1,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:93:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10814",
+      "identity_name": "거미집 중지 제자",
+      "passive_name": "중지는 잊지 않는다구요",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 8,
+      "converted_clauses": 1,
+      "unsupported_clauses": 7,
+      "rule_ids": [
+        "gap:94:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10815",
+      "identity_name": "LCD 현장추리팀",
+      "passive_name": "림버스 컴퍼니 제작 특수 의체 시제품 mk5 - 도깨비팔",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:95:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11006",
+      "identity_name": "로보토미 E.G.O:: 홍적",
+      "passive_name": "기원부",
+      "categories": [
+        "target_selection",
+        "skill_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11012",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "빽",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:97:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "탄환 상납",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "재장전",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "앙갚음 장부 - 거미집 특별 조항",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 13,
+      "converted_clauses": 2,
+      "unsupported_clauses": 11,
+      "rule_ids": [
+        "gap:101:7:0:e35:0:0",
+        "gap:101:8:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11208",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "흑운검법",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10105",
+      "identity_name": "어금니 사무소 해결사",
+      "passive_name": "벌려진 일 수습",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:103:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "passive_name": "흑풍마각 [黑風馬脚]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:104:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "passive_name": "흑풍마각 [黑風馬脚]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 6,
+      "converted_clauses": 1,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:105:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10214",
+      "identity_name": "검지 수행자: 【쪽지】",
+      "passive_name": "지령이 이끄는 대로…",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:106:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "혈갑",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:107:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "이 또한 마법의 삐삐님의 은혜일테지",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:108:0:0:e35:0:0",
+        "gap:108:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "너희 모두 재밌는 걸 보여주지",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:109:2:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "전술적 사격 지원",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:110:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10704",
+      "identity_name": "N사 작은 망치",
+      "passive_name": "젠장...",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:111:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10808",
+      "identity_name": "피쿼드호 선장",
+      "passive_name": "피쿼드호의 선장",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:112:2:0:e35:0:0",
+        "gap:112:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10812",
+      "identity_name": "가주 후보",
+      "passive_name": "여환[餘桓]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10907",
+      "identity_name": "남부 디에치 협회 4과",
+      "passive_name": "깨달음의 빛",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "경혈의 가시",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11009",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "이글거리는 검",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:116:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "여러 점",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11210",
+      "identity_name": "라만차랜드 신부",
+      "passive_name": "돈키호테류 경혈 6식 채찍",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "passive_name": "보호와 억제를 위한 갑주",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10306",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "원한 문신",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:120:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10306",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "원한 문신",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:121:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "전화",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:122:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10506",
+      "identity_name": "R사 제 4무리 코뿔소팀",
+      "passive_name": "기동 훈련",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10515",
+      "identity_name": "약지 야수파 스튜던트",
+      "passive_name": "약지 야수파 스튜던트",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "passive_name": "익숙해진 정리 업무",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10606",
+      "identity_name": "W사 2등급 정리 요원",
+      "passive_name": "익숙해진 정리 업무",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10709",
+      "identity_name": "멀티크랙 사무소 해결사",
+      "passive_name": "충전 모듈 추가",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10714",
+      "identity_name": "흑수 - 유 필두",
+      "passive_name": "맞부딪치는 혈투",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10714",
+      "identity_name": "흑수 - 유 필두",
+      "passive_name": "투계",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10812",
+      "identity_name": "가주 후보",
+      "passive_name": "시동[始動]",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 2,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:130:0:0:p0:r0",
+        "gap:130:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "\"피를 피워내..\"",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11013",
+      "identity_name": "동부 엄지 솔다토II",
+      "passive_name": "총검술",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11015",
+      "identity_name": "거미집 소지 제자",
+      "passive_name": "정신일도",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11114",
+      "identity_name": "LCA 우제트 선봉 3팀 팀장",
+      "passive_name": "호루스의 셉터 - 레플리카",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11114",
+      "identity_name": "LCA 우제트 선봉 3팀 팀장",
+      "passive_name": "호루스의 셉터 - 레플리카",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "딸램… 고맙다.",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:136:2:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11203",
+      "identity_name": "G사 일등대리",
+      "passive_name": "인자 코드 G-3",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11210",
+      "identity_name": "라만차랜드 신부",
+      "passive_name": "돈키호테류 경혈 6식 채찍",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11212",
+      "identity_name": "흑수 - 사",
+      "passive_name": "뱀과 같이 유연하고 늘어나며 급작스럽게",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:140:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10112",
+      "identity_name": "남부 리우 협회 3과",
+      "passive_name": "내면의 열혈",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:141:0:0:e35:0:0",
+        "gap:141:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10112",
+      "identity_name": "남부 리우 협회 3과",
+      "passive_name": "내면의 열혈",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:142:0:0:e35:0:0",
+        "gap:142:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10112",
+      "identity_name": "남부 리우 협회 3과",
+      "passive_name": "리우 방진",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:143:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10116",
+      "identity_name": "LCE E.G.O::차원찢개",
+      "passive_name": "속도와좌표와속도",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:144:0:0:p0:r0",
+        "gap:144:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "passive_name": "사랑과 증오의 이름으로 - !E.G.O 장비 동기화율 초과주의!",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 7,
+      "converted_clauses": 0,
+      "unsupported_clauses": 7,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10410",
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "passive_name": "거미대가리 / 해골바가지",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 6,
+      "converted_clauses": 2,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:146:1:0:p0:r0",
+        "gap:146:4:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10410",
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "passive_name": "거미대가리 / 해골바가지",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 9,
+      "converted_clauses": 4,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:147:1:0:p0:r0",
+        "gap:147:2:0:p0:r0",
+        "gap:147:5:0:p0:r0",
+        "gap:147:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "놓쳤던 @#$의 손",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "사사 [師事]",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:150:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10508",
+      "identity_name": "검계 우두머리",
+      "passive_name": "본국검술",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "multi_target"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10605",
+      "identity_name": "K사 3등급 적출직 직원",
+      "passive_name": "고농축 앰플",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10609",
+      "identity_name": "20구 유로지비",
+      "passive_name": "진동유착 변형 전투 지팡이 (미허가 발명품)",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:153:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "passive_name": "마에스트로의 크리틱",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:154:1:0:p0:r0",
+        "gap:154:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "부수고, 찢어, 꿰뚫는다",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:155:0:0:p0:r0",
+        "gap:155:2:0:p0:r0",
+        "gap:155:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11006",
+      "identity_name": "로보토미 E.G.O:: 홍적",
+      "passive_name": "부적 떼기",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11014",
+      "identity_name": "흑수 - 유",
+      "passive_name": "싸움에 취해보죠",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "probability_random"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:157:0:0:p0:r0",
+        "gap:157:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11210",
+      "identity_name": "라만차랜드 신부",
+      "passive_name": "자멸적 헌신",
+      "categories": [
+        "action_trigger",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11210",
+      "identity_name": "라만차랜드 신부",
+      "passive_name": "자멸적 헌신",
+      "categories": [
+        "action_trigger",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "미학견습",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:160:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "신의 가호",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:161:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10213",
+      "identity_name": "동부 시 협회 3과",
+      "passive_name": "저격 - 활",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 8,
+      "converted_clauses": 4,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:162:0:0:e35:0:0",
+        "gap:162:4:0:p0:r0",
+        "gap:162:5:0:p0:r0",
+        "gap:162:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "화전",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random",
+        "multi_target"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:163:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10412",
+      "identity_name": "N사 E.G.O:: 경멸, 경외",
+      "passive_name": "쓰러질 수조차 없게 붙드는 손아귀",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "multi_target"
+      ],
+      "clauses": 5,
+      "converted_clauses": 2,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:164:3:0:p0:r0",
+        "gap:164:4:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "‘피를 두르고, 가면을 쓰고, 피가 명하는 대로’",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:165:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10610",
+      "identity_name": "송곳니 사냥 사무소 해결사",
+      "passive_name": "혈귀 공략 교본 - 지혈",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:166:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "passive_name": "풀 뜯을 준비",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:167:0:0:p0:r0",
+        "gap:167:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10704",
+      "identity_name": "N사 작은 망치",
+      "passive_name": "젠장...",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:168:0:0:e35:0:0",
+        "gap:168:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10706",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "본능적 간파",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "마왕의 부름",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:170:0:0:p0:r0",
+        "gap:170:2:0:p0:r0",
+        "gap:170:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "마왕의 부름",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:171:0:0:p0:r0",
+        "gap:171:2:0:p0:r0",
+        "gap:171:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "저격",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "저격",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 5,
+      "converted_clauses": 0,
+      "unsupported_clauses": 5,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10713",
+      "identity_name": "W사 4등급 정리 요원 - CCA",
+      "passive_name": "컨제스쳔 클리닝 아머",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 3,
+      "converted_clauses": 3,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:174:0:0:p0:r0",
+        "gap:174:1:0:p0:r0",
+        "gap:174:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10716",
+      "identity_name": "거미집 엄지 제자",
+      "passive_name": "재회 [再会] - 엄지",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:175:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10716",
+      "identity_name": "거미집 엄지 제자",
+      "passive_name": "일대일 결투라면...",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:176:0:0:p0:r0",
+        "gap:176:1:0:e35:0:0",
+        "gap:176:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10815",
+      "identity_name": "LCD 현장추리팀",
+      "passive_name": "귀화요격",
+      "categories": [
+        "action_trigger",
+        "special_state",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10815",
+      "identity_name": "LCD 현장추리팀",
+      "passive_name": "돌아가야 할 곳",
+      "categories": [
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:178:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10908",
+      "identity_name": "남부 리우 협회 4과 부장",
+      "passive_name": "뜨거운 기세",
+      "categories": [
+        "action_trigger",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:179:0:0:p0:r0",
+        "gap:179:1:0:p0:r0",
+        "gap:179:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "배신 당한 기사의 속삭임",
+      "categories": [
+        "resource_transform",
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 7,
+      "converted_clauses": 0,
+      "unsupported_clauses": 7,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "절망하는 모든 자들을 위해…",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:181:1:0:p0:r0",
+        "gap:181:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10203",
+      "identity_name": "살아남은 로보토미 직원",
+      "passive_name": "각오",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10507",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "의리",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:183:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "포자 확산",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "일벌",
+      "categories": [
+        "action_trigger",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:185:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10605",
+      "identity_name": "K사 3등급 적출직 직원",
+      "passive_name": "재생 앰플 활성화",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10703",
+      "identity_name": "R사 제 4무리 토끼팀",
+      "passive_name": "풀 뜯을 준비",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:187:0:0:p0:r0",
+        "gap:187:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "정밀 조준",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:188:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10711",
+      "identity_name": "마침표 사무소 해결사",
+      "passive_name": "감적수",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:189:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10712",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "임전",
+      "categories": [
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:190:0:0:e35:0:0",
+        "gap:190:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10810",
+      "identity_name": "서부 츠바이 협회 3과",
+      "passive_name": "충격상쇄 그레이트소드",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10810",
+      "identity_name": "서부 츠바이 협회 3과",
+      "passive_name": "충격상쇄 그레이트소드",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10811",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "임전",
+      "categories": [
+        "resource_transform",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:193:0:0:e35:0:0",
+        "gap:193:1:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10908",
+      "identity_name": "남부 리우 협회 4과 부장",
+      "passive_name": "뜨거운 기세",
+      "categories": [
+        "action_trigger",
+        "multi_target",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:194:0:0:p0:r0",
+        "gap:194:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "경혈의 가시",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "눈물로 벼려낸 검 - !E.G.O 장비 동기화율 초과주의!",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11010",
+      "identity_name": "서부 츠바이 협회 3과",
+      "passive_name": "보호 임무 시작",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "밑그림",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:198:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "밑그림",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:199:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11111",
+      "identity_name": "라만차랜드 이발사",
+      "passive_name": "돈키호테류 경혈 8식 가위",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:200:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11216",
+      "identity_name": "새벽 사무소 대표",
+      "passive_name": "스티그마 공방 의체",
+      "categories": [
+        "action_trigger",
+        "stack_threshold",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:201:0:0:p0:r0",
+        "gap:201:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "미학견습",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:202:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10113",
+      "identity_name": "N사 E.G.O:: 흉탄",
+      "passive_name": "휘발된 추억",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "모조된 삶",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:204:0:0:p0:r0",
+        "gap:204:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10115",
+      "identity_name": "거미집 검지 아비",
+      "passive_name": "신탁 단말기 [카두세우스]",
+      "categories": [
+        "target_selection",
+        "resource_transform",
+        "probability_random"
+      ],
+      "clauses": 11,
+      "converted_clauses": 0,
+      "unsupported_clauses": 11,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10214",
+      "identity_name": "검지 수행자: 【쪽지】",
+      "passive_name": "수행자의 검",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 3,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:206:0:0:p0:r0",
+        "gap:206:1:0:p0:r0",
+        "gap:206:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "passive_name": "크리틱으로부터의 영감",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:207:1:0:p0:r0",
+        "gap:207:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10216",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "단열 코트",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:208:2:0:p0:r0",
+        "gap:208:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10310",
+      "identity_name": "라만차랜드 실장",
+      "passive_name": "혈찬",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "passive_name": "초염옥구",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:210:0:0:p0:r0",
+        "gap:210:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "passive_name": "",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:211:0:0:p0:r0",
+        "gap:211:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10311",
+      "identity_name": "동부 섕크 협회 3과",
+      "passive_name": "초염옥구",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:212:0:0:p0:r0",
+        "gap:212:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10501",
+      "identity_name": "LCB 수감자",
+      "passive_name": "각오",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 7,
+      "converted_clauses": 2,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:214:2:0:p0:r0",
+        "gap:214:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10608",
+      "identity_name": "남부 디에치 협회 4과",
+      "passive_name": "열쇠 들여다보기",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10609",
+      "identity_name": "20구 유로지비",
+      "passive_name": "내가 범인이라면...?",
+      "categories": [
+        "target_selection",
+        "probability_random",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:216:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10713",
+      "identity_name": "W사 4등급 정리 요원 - CCA",
+      "passive_name": "방어지향 충전",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:217:0:0:p0:r0",
+        "gap:217:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10716",
+      "identity_name": "거미집 엄지 제자",
+      "passive_name": "팔레르모 검술",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 8,
+      "converted_clauses": 6,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:218:1:0:p0:r0",
+        "gap:218:2:0:p0:r0",
+        "gap:218:3:0:p0:r0",
+        "gap:218:5:0:p0:r0",
+        "gap:218:6:0:p0:r0",
+        "gap:218:7:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10808",
+      "identity_name": "피쿼드호 선장",
+      "passive_name": "피쿼드호의 선장",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:219:2:0:e35:0:0",
+        "gap:219:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10812",
+      "identity_name": "가주 후보",
+      "passive_name": "파흡자환[破吸自桓]",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:220:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10902",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "흑운도",
+      "categories": [
+        "skill_transform",
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "절망하는 모든 자들을 위해…",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:222:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10915",
+      "identity_name": "약지 야수파 도슨트",
+      "passive_name": "야수파 - 야성적인 색채",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 6,
+      "converted_clauses": 0,
+      "unsupported_clauses": 6,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11014",
+      "identity_name": "흑수 - 유",
+      "passive_name": "투계",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:224:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11015",
+      "identity_name": "거미집 소지 제자",
+      "passive_name": "정검[整劍]",
+      "categories": [
+        "action_trigger",
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:225:0:0:p0:r0",
+        "gap:225:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11106",
+      "identity_name": "남부 섕크 협회 4과",
+      "passive_name": "흘리기",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:226:0:0:e35_7:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11207",
+      "identity_name": "쌍갈고리 해적단 부선장",
+      "passive_name": "총알은 비싸다고",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:227:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11216",
+      "identity_name": "새벽 사무소 대표",
+      "passive_name": "새벽녘의 해결사",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:228:2:0:p0:r0",
+        "gap:228:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "passive_name": "매지컬 파워 차징 서포트",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10407",
+      "identity_name": "남부 리우 협회 4과",
+      "passive_name": "화전",
+      "categories": [
+        "action_trigger",
+        "target_selection",
+        "probability_random"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:230:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10511",
+      "identity_name": "서부 섕크 협회 3과",
+      "passive_name": "",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:231:0:0:p0:r0",
+        "gap:231:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10511",
+      "identity_name": "서부 섕크 협회 3과",
+      "passive_name": "결투 생방송",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:232:0:0:p0:r0",
+        "gap:232:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "‘피를 두르고, 가면을 쓰고, 피가 명하는 대로’",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:233:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10705",
+      "identity_name": "로보토미 E.G.O:: 여우비",
+      "passive_name": "눈물비",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:234:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10706",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "단서 연결",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10706",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "단서 연결",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11007",
+      "identity_name": "어금니 보트 센터 해결사",
+      "passive_name": "불안정한 출력",
+      "categories": [
+        "action_trigger",
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11205",
+      "identity_name": "장미스패너 공방 해결사",
+      "passive_name": "톱날 정비",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10312",
+      "identity_name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "passive_name": "사랑의 마법소녀 / 증오의 여왕",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:239:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10406",
+      "identity_name": "LCCB 대리",
+      "passive_name": "담.탐",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:240:0:0:p0:r0",
+        "gap:240:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10506",
+      "identity_name": "R사 제 4무리 코뿔소팀",
+      "passive_name": "rrR-#4 슈트 가압 가동",
+      "categories": [
+        "action_trigger",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10508",
+      "identity_name": "검계 우두머리",
+      "passive_name": "추모",
+      "categories": [
+        "action_trigger",
+        "multi_target"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10511",
+      "identity_name": "서부 섕크 협회 3과",
+      "passive_name": "결투 생방송",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:243:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10707",
+      "identity_name": "피쿼드호 작살잡이",
+      "passive_name": "헤집어진 문신",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:244:0:0:p0:r0",
+        "gap:244:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10707",
+      "identity_name": "피쿼드호 작살잡이",
+      "passive_name": "헤집어진 문신",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:245:0:0:e35:0:0",
+        "gap:245:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10802",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파집속",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:246:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "정의의 마법소녀 / 절망의 기사",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 8,
+      "converted_clauses": 4,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:247:2:0:p0:r0",
+        "gap:247:3:0:p0:r0",
+        "gap:247:5:0:p0:r0",
+        "gap:247:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11004",
+      "identity_name": "마리아치 보스",
+      "passive_name": "유흥",
+      "categories": [
+        "action_trigger",
+        "probability_random"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:248:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11114",
+      "identity_name": "LCA 우제트 선봉 3팀 팀장",
+      "passive_name": "선봉대",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:249:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "재회 [再會] - 중지",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:250:2:0:e35_7:0:0",
+        "gap:250:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10103",
+      "identity_name": "검계 살수",
+      "passive_name": "사사",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10110",
+      "identity_name": "로보토미 E.G.O:: 엄숙한 애도",
+      "passive_name": "쏘아라.쏘으리로다.",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:252:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10202",
+      "identity_name": "W사 2등급 정리 요원",
+      "passive_name": "무전",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:253:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10206",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "차가 식기 전에...",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10207",
+      "identity_name": "로보토미 E.G.O:: 후회",
+      "passive_name": "떠밀린 후회",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:255:0:0:p0:r0",
+        "gap:255:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10207",
+      "identity_name": "로보토미 E.G.O:: 후회",
+      "passive_name": "떠밀린 후회",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:256:0:0:p0:r0",
+        "gap:256:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10211",
+      "identity_name": "LCE E.G.O:: 홍염살",
+      "passive_name": "내화",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10307",
+      "identity_name": "로보토미 E.G.O:: 초롱",
+      "passive_name": "초롱초롱",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10307",
+      "identity_name": "로보토미 E.G.O:: 초롱",
+      "passive_name": "초롱초롱",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10308",
+      "identity_name": "검계 살수",
+      "passive_name": "함께 쉬는 숨",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:260:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10308",
+      "identity_name": "검계 살수",
+      "passive_name": "함께 쉬는 숨",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:261:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-10402",
+      "identity_name": "남부 세븐 협회 6과",
+      "passive_name": "아이스 브레이킹",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10403",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "행동대장",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10409",
+      "identity_name": "20구 유로지비",
+      "passive_name": "조.감",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10502",
+      "identity_name": "남부 리우 협회 6과",
+      "passive_name": "마찰 타격점",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10503",
+      "identity_name": "W사 2등급 정리 요원",
+      "passive_name": "묵묵함",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10507",
+      "identity_name": "중지 작은 아우",
+      "passive_name": "의리",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:267:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "E.G.O 변조 / 포자탄",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 9,
+      "converted_clauses": 1,
+      "unsupported_clauses": 8,
+      "rule_ids": [
+        "gap:268:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10602",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "조직의 보복",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10604",
+      "identity_name": "남부 리우 협회 5과",
+      "passive_name": "따뜻하죠?",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "제압 사격",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:271:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10615",
+      "identity_name": "S사 추노꾼",
+      "passive_name": "추쇄건[推刷巾]",
+      "categories": [
+        "action_trigger",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:272:0:0:p0:r0",
+        "gap:272:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10802",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파집속",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:273:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10805",
+      "identity_name": "로보토미 E.G.O:: 출렁임",
+      "passive_name": "차오르는 액체",
+      "categories": [
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10805",
+      "identity_name": "로보토미 E.G.O:: 출렁임",
+      "passive_name": "차오르는 액체",
+      "categories": [
+        "resource_transform",
+        "special_state"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10809",
+      "identity_name": "에드가 가문 버틀러",
+      "passive_name": "묵은 먼지 털기",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10811",
+      "identity_name": "흑운회 부조장",
+      "passive_name": "구름 공방 칼날",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11007",
+      "identity_name": "어금니 보트 센터 해결사",
+      "passive_name": "출력 개조",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11105",
+      "identity_name": "어금니 사무소 해결사",
+      "passive_name": "무용담",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:279:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11105",
+      "identity_name": "어금니 사무소 해결사",
+      "passive_name": "윽박과 응원",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11213",
+      "identity_name": "밤의 송곳 카피타노",
+      "passive_name": "틈새 노리기",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10105",
+      "identity_name": "어금니 사무소 해결사",
+      "passive_name": "이럴 때 일수록...",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:282:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10206",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "세븐 협회의 티타임",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10206",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "세븐 협회의 티타임",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 0,
+      "unsupported_clauses": 4,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10208",
+      "identity_name": "검계 살수",
+      "passive_name": "매화 같이 터져나오는 피",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10212",
+      "identity_name": "흑수 - 묘 필두",
+      "passive_name": "흑수화[묘] / 묘 필두",
+      "categories": [
+        "resource_transform",
+        "cross_identity"
+      ],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:286:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10414",
+      "identity_name": "로보토미 E.G.O:: 잔향・외로움",
+      "passive_name": "시들지 않는 꽃",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:287:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10508",
+      "identity_name": "검계 우두머리",
+      "passive_name": "본국검술",
+      "categories": [
+        "target_selection",
+        "multi_target"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파 충전 집속 뿔",
+      "categories": [
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:289:0:0:p0:r0",
+        "gap:289:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10612",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "뇌파 충전 집속 뿔",
+      "categories": [
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 4,
+      "converted_clauses": 2,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:290:0:0:p0:r0",
+        "gap:290:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10704",
+      "identity_name": "N사 작은 망치",
+      "passive_name": "독경",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10710",
+      "identity_name": "와일드헌트",
+      "passive_name": "울고 또 울어라",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:292:0:0:p0:r0",
+        "gap:292:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10714",
+      "identity_name": "흑수 - 유 필두",
+      "passive_name": "염조불사전[炎鳥不死戰]",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11214",
+      "identity_name": "로보토미 E.G.O:: 램프",
+      "passive_name": "현혹의 램프",
+      "categories": [
+        "action_trigger",
+        "resource_transform"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:294:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10302",
+      "identity_name": "W사 3등급 정리 요원",
+      "passive_name": "급속충전",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10309",
+      "identity_name": "T사 3등급 징수직 직원",
+      "passive_name": "황금 시간 - 받아내기",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10415",
+      "identity_name": "거미집의 검",
+      "passive_name": "잔상 반향",
+      "categories": [
+        "special_state",
+        "cross_identity"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:297:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10505",
+      "identity_name": "장미스패너 공방 해결사",
+      "passive_name": "만성 피로",
+      "categories": [
+        "action_trigger",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:298:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10506",
+      "identity_name": "R사 제 4무리 코뿔소팀",
+      "passive_name": "rrR-#4 슈트 가압 가동",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10514",
+      "identity_name": "로보토미 E.G.O:: 호넷【변조】",
+      "passive_name": "포자 확산",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10608",
+      "identity_name": "남부 디에치 협회 4과",
+      "passive_name": "열쇠 들여다보기",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "집중",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10614",
+      "identity_name": "거미집 약지 아비",
+      "passive_name": "마에스트로의 크리틱",
+      "categories": [
+        "action_trigger",
+        "special_state"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:303:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10707",
+      "identity_name": "피쿼드호 작살잡이",
+      "passive_name": "절박",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:304:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10707",
+      "identity_name": "피쿼드호 작살잡이",
+      "passive_name": "절박",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:305:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "성탄절 장식된 뿔",
+      "categories": [
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:306:0:0:p0:r0",
+        "gap:306:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11008",
+      "identity_name": "남부 섕크 협회 4과 부장",
+      "passive_name": "잠든 살기",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11106",
+      "identity_name": "남부 섕크 협회 4과",
+      "passive_name": "흘리기",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11107",
+      "identity_name": "로보토미 E.G.O:: 마탄",
+      "passive_name": "사수의 파이프",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11107",
+      "identity_name": "로보토미 E.G.O:: 마탄",
+      "passive_name": "사수의 파이프",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11203",
+      "identity_name": "G사 일등대리",
+      "passive_name": "긴급 식량보급",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "혈점묘파",
+      "categories": [
+        "probability_random"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10215",
+      "identity_name": "거미집 약지 제자",
+      "passive_name": "크리틱으로부터의 영감",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:313:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10314",
+      "identity_name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "passive_name": "역시 마법의 삐삐님은 본인이 원하는 걸 알아주시는 군!",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 5,
+      "converted_clauses": 3,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:314:0:0:p0:r0",
+        "gap:314:1:0:p0:r0",
+        "gap:314:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10410",
+      "identity_name": "로보토미 E.G.O:: 적안・참회",
+      "passive_name": "E.G.O 동화",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10914",
+      "identity_name": "R사 제 4무리 순록팀",
+      "passive_name": "성탄절 장식된 뿔",
+      "categories": [
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:316:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11005",
+      "identity_name": "쥐어들 자",
+      "passive_name": "몰린",
+      "categories": [
+        "target_selection",
+        "cross_identity"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:317:0:0:e35:0:0"
+      ]
+    },
+    {
+      "identity_id": "identity-11109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "혈점묘파",
+      "categories": [
+        "probability_random"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11215",
+      "identity_name": "LCE E.G.O:: AEDD",
+      "passive_name": "끈질긴 생명력",
+      "categories": [
+        "resource_transform",
+        "stack_threshold"
+      ],
+      "clauses": 5,
+      "converted_clauses": 1,
+      "unsupported_clauses": 4,
+      "rule_ids": [
+        "gap:319:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "과제평가",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:320:0:0:p0:r0",
+        "gap:320:1:0:p0:r0",
+        "gap:320:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10109",
+      "identity_name": "약지 점묘파 스튜던트",
+      "passive_name": "과제평가",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 4,
+      "converted_clauses": 3,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:321:0:0:p0:r0",
+        "gap:321:1:0:p0:r0",
+        "gap:321:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10209",
+      "identity_name": "워더링하이츠 버틀러",
+      "passive_name": "버틀러식 대응",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:322:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10303",
+      "identity_name": "남부 시 협회 5과 부장",
+      "passive_name": "마음가짐",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10613",
+      "identity_name": "홍원 군주",
+      "passive_name": "꼬리는 밟히지 말고 처리해주세요.",
+      "categories": [
+        "target_selection"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10615",
+      "identity_name": "S사 추노꾼",
+      "passive_name": "추노꾼",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10909",
+      "identity_name": "T사 2등급 징수직 직원",
+      "passive_name": "황금 시간 - 맞서기",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:326:1:0:p0:r0",
+        "gap:326:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11211",
+      "identity_name": "불주먹 사무소 생존자",
+      "passive_name": "12구산 특제 공방 연료",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 0,
+      "unsupported_clauses": 3,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10611",
+      "identity_name": "마침표 사무소 대표",
+      "passive_name": "전술적 사격 지원",
+      "categories": [
+        "cross_identity"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11113",
+      "identity_name": "T사 3등급 강력징수직 직원",
+      "passive_name": "황금 시간 - 공진",
+      "categories": [
+        "action_trigger"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:329:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10313",
+      "identity_name": "흑수 - 미",
+      "passive_name": "망양지탄 [亡羊之嘆]",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 1,
+      "unsupported_clauses": 2,
+      "rule_ids": [
+        "gap:330:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10512",
+      "identity_name": "동부 엄지 카포IIII",
+      "passive_name": "천퇴성도 [天退星刀]",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 7,
+      "converted_clauses": 2,
+      "unsupported_clauses": 5,
+      "rule_ids": [
+        "gap:331:2:0:p0:r0",
+        "gap:331:6:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10515",
+      "identity_name": "약지 야수파 스튜던트",
+      "passive_name": "차오르는 영감",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 3,
+      "converted_clauses": 2,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:332:1:0:p0:r0",
+        "gap:332:2:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10604",
+      "identity_name": "남부 리우 협회 5과",
+      "passive_name": "끓어오르는군요~",
+      "categories": [
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10114",
+      "identity_name": "흑수 - 오 필두",
+      "passive_name": "필두선봉",
+      "categories": [
+        "resource_transform"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:334:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10212",
+      "identity_name": "흑수 - 묘 필두",
+      "passive_name": "",
+      "categories": [
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10212",
+      "identity_name": "흑수 - 묘 필두",
+      "passive_name": "천구성",
+      "categories": [
+        "stack_threshold"
+      ],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10403",
+      "identity_name": "흑운회 와카슈",
+      "passive_name": "흑운도",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 1,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:337:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10706",
+      "identity_name": "남부 세븐 협회 4과",
+      "passive_name": "본능적 간파",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11205",
+      "identity_name": "장미스패너 공방 해결사",
+      "passive_name": "톱날 가동",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10304",
+      "identity_name": "N사 중간 망치",
+      "passive_name": "두드릴지라!",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:340:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "혈찬",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10814",
+      "identity_name": "거미집 중지 제자",
+      "passive_name": "열선 무기",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10911",
+      "identity_name": "라만차랜드 공주",
+      "passive_name": "혈찬",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10913",
+      "identity_name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "passive_name": "정의의 마법소녀 / 절망의 기사",
+      "categories": [],
+      "clauses": 4,
+      "converted_clauses": 1,
+      "unsupported_clauses": 3,
+      "rule_ids": [
+        "gap:344:3:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-11111",
+      "identity_name": "라만차랜드 이발사",
+      "passive_name": "혈찬",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11115",
+      "identity_name": "거미집 중지 아비",
+      "passive_name": "피와 불의 냄새",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11210",
+      "identity_name": "라만차랜드 신부",
+      "passive_name": "혈찬",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 0,
+      "unsupported_clauses": 2,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10803",
+      "identity_name": "남부 시 협회 5과",
+      "passive_name": "사선발악",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11009",
+      "identity_name": "새벽 사무소 해결사",
+      "passive_name": "스티그마 공방 무기 / 격정",
+      "categories": [
+        "special_state"
+      ],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:349:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10313",
+      "identity_name": "흑수 - 미",
+      "passive_name": "발파각쇄",
+      "categories": [],
+      "clauses": 5,
+      "converted_clauses": 4,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:350:0:0:p0:r0",
+        "gap:350:2:0:p0:r0",
+        "gap:350:3:0:p0:r0",
+        "gap:350:4:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10313",
+      "identity_name": "흑수 - 미",
+      "passive_name": "발파각쇄",
+      "categories": [],
+      "clauses": 6,
+      "converted_clauses": 5,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:351:0:0:p0:r0",
+        "gap:351:1:0:p0:r0",
+        "gap:351:3:0:p0:r0",
+        "gap:351:4:0:p0:r0",
+        "gap:351:5:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10513",
+      "identity_name": "라만차랜드 왕자",
+      "passive_name": "잔이 넘치도록",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10708",
+      "identity_name": "남부 외우피 협회 3과",
+      "passive_name": "엄중한 입회",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 2,
+      "unsupported_clauses": 0,
+      "rule_ids": [
+        "gap:353:0:0:p0:r0",
+        "gap:353:1:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10910",
+      "identity_name": "북부 제뱌찌 협회 3과",
+      "passive_name": "한 번만 봐주면 진짜 제대로 배달 끝낼게!",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10915",
+      "identity_name": "약지 야수파 도슨트",
+      "passive_name": "여기서는 조금 더 거칠게…!",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11011",
+      "identity_name": "북부 제뱌찌 협회 3과",
+      "passive_name": "다음에는 제대로 배달할게요...",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-11213",
+      "identity_name": "밤의 송곳 카피타노",
+      "passive_name": "고통 없는 자비",
+      "categories": [],
+      "clauses": 1,
+      "converted_clauses": 0,
+      "unsupported_clauses": 1,
+      "rule_ids": []
+    },
+    {
+      "identity_id": "identity-10307",
+      "identity_name": "로보토미 E.G.O:: 초롱",
+      "passive_name": "잘근잘근 냠냠",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:358:0:0:p0:r0"
+      ]
+    },
+    {
+      "identity_id": "identity-10307",
+      "identity_name": "로보토미 E.G.O:: 초롱",
+      "passive_name": "잘근잘근 냠냠",
+      "categories": [],
+      "clauses": 2,
+      "converted_clauses": 1,
+      "unsupported_clauses": 1,
+      "rule_ids": [
+        "gap:359:0:0:p0:r0"
+      ]
+    }
+  ]
+}

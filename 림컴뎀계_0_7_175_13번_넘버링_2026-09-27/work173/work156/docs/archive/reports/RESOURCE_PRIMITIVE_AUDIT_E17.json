@@ -1,0 +1,21 @@
+{
+  "source": "GIMMICK_GAP_REPORT_v4.md.json",
+  "resource_transform_count": 215,
+  "unique_source_text_count": 214,
+  "duplicate_source_text_count": 1,
+  "heuristic_candidates": {
+    "trigger_gain_candidate": 141,
+    "unclassified_or_composite": 40,
+    "affiliation_count_candidate": 14,
+    "resource_scaled_modifier_candidate": 13,
+    "cumulative_spend_candidate": 7
+  },
+  "examples": {
+    "trigger_gain_candidate": "자신 또는 중지 소속의 아군 인격이 적에게 피격 시, 대상에게 복수 대상을 1 부여하고 앙갚음 장부 [히스클리프] 1 얻음 (스킬당 1회)\n아군 인격 사망시, 앙갚음 장부 [히스클리프] 3 얻음\n\n턴 시작시 자신의 원한 문신이 15 이상이면 아래 효과 적용\n- 기본 스킬 하나를 ‘전원, 처형이다!!’로 변경 (가장 왼쪽 ",
+    "unclassified_or_composite": "턴 시작 시,\n- 자신의 해금 단계에 따라 지령[단말기] I/지령[단말기] II/지령[단말기] III/지령[단말기] IV 얻음\n- 무작위 적 1명에게 지령 대상 부여 (집중 전투면, 부위에 부여)\n- 조작 슬롯의 자신의 기본 공격 스킬에 지령 표식 부여 (슬롯당 1개, 최대 2개 부여)\n· 해금 - II 이상이면, 스킬 ",
+    "affiliation_count_candidate": "자신을 포함해 전투에 참여한 아군 흑운회 소속 인격이 2명 이상이면 흑운도 1 얻음 (최대 1)\n\n이번 턴에 수비 스킬을 사용한 적 또는 공격 시작 전에 최대 체력인 적에게 입히는 피해량 +10%\n\n이번 턴에 적이 자신을 제외한 아군을 스킬로 공격하여 피해를 입혔으면, 공격자를 스킬 1로 일방 공격함 (턴 당 1회)",
+    "resource_scaled_modifier_candidate": "속도가 가장 빠른 아군 1명이 탄환을 소모하는 스킬 사용 시 대상보다 속도가 3 이상 높다면, 가하는 피해량 +(대상과의 속도 차이 x 2)% (최대 10%)\n(탄환이 없으면 적용되지 않음. 단, 탄환 버프는 보유하였으나 수치가 0인 경우에는 효과가 적용됨)",
+    "cumulative_spend_candidate": "전투 중 누적으로 자신의 사랑/증오 횟수 10을 소모할 때마다, 사랑/증오 1 얻음\n\n스테이지 시작시 히스테리가 없다면, 히스테리 효과를 얻음\n\n스테이지 시작시 사랑/증오가 없다면, 사랑/증오 효과를 얻음\n\n턴 시작시\n- 정신력이 0 이상이면, 마법소녀 등장! 얻음, 역변-리버스드 제거\n- 정신력이 0 미만이면, 역변-리"
+  },
+  "note": "Heuristic audit only; not semantic ground truth. Composite rules may match first applicable pattern."
+}
