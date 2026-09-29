@@ -4,6 +4,9 @@
 - `지키는 검`, `꿰뚫는 검`처럼 일반 자원으로 저장되는 명명 자원의 `N 이상` / `N일 경우` 표면 문법을 공통 파서에서 처리하도록 확장했다.
 - 별도 인격 전용 Runtime은 추가하지 않았다.
 - 신규/관련 회귀 6개, 기존 passive compiler 회귀 55개 통과.
+- 대상 선택 primitive에 구조화 policy(dict) 경로를 추가해 `filters -> priority -> selector -> fallback` 순서로 평가할 수 있게 했다.
+- `status_present`, `status_absent`, `exclude_ids`, `exclude_self+owner_id`, `alive_only` 등 공통 필터를 selector 레이어에서 재사용 가능하게 만들었다.
+- 관련 회귀로 구조화 policy의 필터/우선순위/폴백 동작을 검증하는 테스트를 추가했다.
 
 # 0.7.174
 - `identity-10913 / 정의의 마법소녀 / 절망의 기사`: `절망 상태일 때, 기본 스킬로 가하는 피해량이 (-정신력 / 2)%만큼 증가 (최대 20%)`가 음수 정신력만으로 무조건 적용되지 않도록 `절망` 상태 보유 조건을 연결했다.
